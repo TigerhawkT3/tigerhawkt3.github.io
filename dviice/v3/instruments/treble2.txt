@@ -1,0 +1,43 @@
+
+<tr>
+<td><img name="B7" tone="3951.07" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G7" tone="3135.96" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E7" tone="2637.02" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C7" tone="2093" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A6" tone="1760" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F6" tone="1396.91" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D6" tone="1174.66" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="B5" tone="987.77" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="G5" tone="783.99" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E5" tone="659.26" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="C5" tone="523.25" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A4" tone="440" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F4" tone="349.23" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D4" tone="293.66" src="blank.png" width="27" height="29"></td>
+</tr>

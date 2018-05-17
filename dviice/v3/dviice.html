@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DVIICE</title>
+<meta name="description" content="Digital Virtual Instantaneous Instrument Comparator and Emulator">
+<meta name="keywords" content="music,musical,musician,musicians,note,notes,
+ instrument,instrumental,tool,education,educational,learn,learning,
+ harmonica,diatonic,piano,guitar,treble,bass,clef,scale,
+ compare,comparison,chart,diagram,layout,emulate,emulator,emulation">
+<meta name="author" content="David 'TigerhawkT3' 'Farranor' Muller">
+<link rel="stylesheet" type="text/css" href="style.css">
+<!--
+    This page was conceived, designed, and coded for
+    www.tigerhawkt3.com, by me, David "TigerhawkT3"
+    "Farranor" Muller, except for the noted segments.
+    Many, many thanks to "Old Pedant" at
+    www.codingforums.com for the original streamlined
+    highlighting function and extensive troubleshooting
+    help. Thanks to www.softsynth.com for the Web Audio API
+    file and the tone-generating javascript code.
+    Additional thanks for keeping it up to date when
+    Google changes things. :)
+-->
+</head>
+<body>
+<audio id="C1" preload="auto"><source src="tones/C1.mp3" type="audio/mpeg"><source src="tones/C1.ogg" type="audio/ogg"></audio>
+<audio id="C1s" preload="auto"><source src="tones/C1s.mp3" type="audio/mpeg"><source src="tones/C1s.ogg" type="audio/ogg"></audio>
+<audio id="D1" preload="auto"><source src="tones/D1.mp3" type="audio/mpeg"><source src="tones/D1.ogg" type="audio/ogg"></audio>
+<audio id="D1s" preload="auto"><source src="tones/D1s.mp3" type="audio/mpeg"><source src="tones/D1s.ogg" type="audio/ogg"></audio>
+<audio id="E1" preload="auto"><source src="tones/E1.mp3" type="audio/mpeg"><source src="tones/E1.ogg" type="audio/ogg"></audio>
+<audio id="F1" preload="auto"><source src="tones/F1.mp3" type="audio/mpeg"><source src="tones/F1.ogg" type="audio/ogg"></audio>
+<audio id="F1s" preload="auto"><source src="tones/F1s.mp3" type="audio/mpeg"><source src="tones/F1s.ogg" type="audio/ogg"></audio>
+<audio id="G1" preload="auto"><source src="tones/G1.mp3" type="audio/mpeg"><source src="tones/G1.ogg" type="audio/ogg"></audio>
+<audio id="G1s" preload="auto"><source src="tones/G1s.mp3" type="audio/mpeg"><source src="tones/G1s.ogg" type="audio/ogg"></audio>
+<audio id="A1" preload="auto"><source src="tones/A1.mp3" type="audio/mpeg"><source src="tones/A1.ogg" type="audio/ogg"></audio>
+<audio id="A1s" preload="auto"><source src="tones/A1s.mp3" type="audio/mpeg"><source src="tones/A1s.ogg" type="audio/ogg"></audio>
+<audio id="B1" preload="auto"><source src="tones/B1.mp3" type="audio/mpeg"><source src="tones/B1.ogg" type="audio/ogg"></audio>
+<audio id="C2" preload="auto"><source src="tones/C2.mp3" type="audio/mpeg"><source src="tones/C2.ogg" type="audio/ogg"></audio>
+<audio id="C2s" preload="auto"><source src="tones/C2s.mp3" type="audio/mpeg"><source src="tones/C2s.ogg" type="audio/ogg"></audio>
+<audio id="D2" preload="auto"><source src="tones/D2.mp3" type="audio/mpeg"><source src="tones/D2.ogg" type="audio/ogg"></audio>
+<audio id="D2s" preload="auto"><source src="tones/D2s.mp3" type="audio/mpeg"><source src="tones/D2s.ogg" type="audio/ogg"></audio>
+<audio id="E2" preload="auto"><source src="tones/E2.mp3" type="audio/mpeg"><source src="tones/E2.ogg" type="audio/ogg"></audio>
+<audio id="F2" preload="auto"><source src="tones/F2.mp3" type="audio/mpeg"><source src="tones/F2.ogg" type="audio/ogg"></audio>
+<audio id="F2s" preload="auto"><source src="tones/F2s.mp3" type="audio/mpeg"><source src="tones/F2s.ogg" type="audio/ogg"></audio>
+<audio id="G2" preload="auto"><source src="tones/G2.mp3" type="audio/mpeg"><source src="tones/G2.ogg" type="audio/ogg"></audio>
+<audio id="G2s" preload="auto"><source src="tones/G2s.mp3" type="audio/mpeg"><source src="tones/G2s.ogg" type="audio/ogg"></audio>
+<audio id="A2" preload="auto"><source src="tones/A2.mp3" type="audio/mpeg"><source src="tones/A2.ogg" type="audio/ogg"></audio>
+<audio id="A2s" preload="auto"><source src="tones/A2s.mp3" type="audio/mpeg"><source src="tones/A2s.ogg" type="audio/ogg"></audio>
+<audio id="B2" preload="auto"><source src="tones/B2.mp3" type="audio/mpeg"><source src="tones/B2.ogg" type="audio/ogg"></audio>
+<audio id="C3" preload="auto"><source src="tones/C3.mp3" type="audio/mpeg"><source src="tones/C3.ogg" type="audio/ogg"></audio>
+<audio id="C3s" preload="auto"><source src="tones/C3s.mp3" type="audio/mpeg"><source src="tones/C3s.ogg" type="audio/ogg"></audio>
+<audio id="D3" preload="auto"><source src="tones/D3.mp3" type="audio/mpeg"><source src="tones/D3.ogg" type="audio/ogg"></audio>
+<audio id="D3s" preload="auto"><source src="tones/D3s.mp3" type="audio/mpeg"><source src="tones/D3s.ogg" type="audio/ogg"></audio>
+<audio id="E3" preload="auto"><source src="tones/E3.mp3" type="audio/mpeg"><source src="tones/E3.ogg" type="audio/ogg"></audio>
+<audio id="F3" preload="auto"><source src="tones/F3.mp3" type="audio/mpeg"><source src="tones/F3.ogg" type="audio/ogg"></audio>
+<audio id="F3s" preload="auto"><source src="tones/F3s.mp3" type="audio/mpeg"><source src="tones/F3s.ogg" type="audio/ogg"></audio>
+<audio id="G3" preload="auto"><source src="tones/G3.mp3" type="audio/mpeg"><source src="tones/G3.ogg" type="audio/ogg"></audio>
+<audio id="G3s" preload="auto"><source src="tones/G3s.mp3" type="audio/mpeg"><source src="tones/G3s.ogg" type="audio/ogg"></audio>
+<audio id="A3" preload="auto"><source src="tones/A3.mp3" type="audio/mpeg"><source src="tones/A3.ogg" type="audio/ogg"></audio>
+<audio id="A3s" preload="auto"><source src="tones/A3s.mp3" type="audio/mpeg"><source src="tones/A3s.ogg" type="audio/ogg"></audio>
+<audio id="B3" preload="auto"><source src="tones/B3.mp3" type="audio/mpeg"><source src="tones/B3.ogg" type="audio/ogg"></audio>
+<audio id="C4" preload="auto"><source src="tones/C4.mp3" type="audio/mpeg"><source src="tones/C4.ogg" type="audio/ogg"></audio>
+<audio id="C4s" preload="auto"><source src="tones/C4s.mp3" type="audio/mpeg"><source src="tones/C4s.ogg" type="audio/ogg"></audio>
+<audio id="D4" preload="auto"><source src="tones/D4.mp3" type="audio/mpeg"><source src="tones/D4.ogg" type="audio/ogg"></audio>
+<audio id="D4s" preload="auto"><source src="tones/D4s.mp3" type="audio/mpeg"><source src="tones/D4s.ogg" type="audio/ogg"></audio>
+<audio id="E4" preload="auto"><source src="tones/E4.mp3" type="audio/mpeg"><source src="tones/E4.ogg" type="audio/ogg"></audio>
+<audio id="F4" preload="auto"><source src="tones/F4.mp3" type="audio/mpeg"><source src="tones/F4.ogg" type="audio/ogg"></audio>
+<audio id="F4s" preload="auto"><source src="tones/F4s.mp3" type="audio/mpeg"><source src="tones/F4s.ogg" type="audio/ogg"></audio>
+<audio id="G4" preload="auto"><source src="tones/G4.mp3" type="audio/mpeg"><source src="tones/G4.ogg" type="audio/ogg"></audio>
+<audio id="G4s" preload="auto"><source src="tones/G4s.mp3" type="audio/mpeg"><source src="tones/G4s.ogg" type="audio/ogg"></audio>
+<audio id="A4" preload="auto"><source src="tones/A4.mp3" type="audio/mpeg"><source src="tones/A4.ogg" type="audio/ogg"></audio>
+<audio id="A4s" preload="auto"><source src="tones/A4s.mp3" type="audio/mpeg"><source src="tones/A4s.ogg" type="audio/ogg"></audio>
+<audio id="B4" preload="auto"><source src="tones/B4.mp3" type="audio/mpeg"><source src="tones/B4.ogg" type="audio/ogg"> ></audio>
+<audio id="C5" preload="auto"><source src="tones/C5.mp3" type="audio/mpeg"><source src="tones/C5.ogg" type="audio/ogg"></audio>
+<audio id="C5s" preload="auto"><source src="tones/C5s.mp3" type="audio/mpeg"><source src="tones/C5s.ogg" type="audio/ogg"></audio>
+<audio id="D5" preload="auto"><source src="tones/D5.mp3" type="audio/mpeg"><source src="tones/D5.ogg" type="audio/ogg"></audio>
+<audio id="D5s" preload="auto"><source src="tones/D5s.mp3" type="audio/mpeg"><source src="tones/D5s.ogg" type="audio/ogg"></audio>
+<audio id="E5" preload="auto"><source src="tones/E5.mp3" type="audio/mpeg"><source src="tones/E5.ogg" type="audio/ogg"></audio>
+<audio id="F5" preload="auto"><source src="tones/F5.mp3" type="audio/mpeg"><source src="tones/F5.ogg" type="audio/ogg"></audio>
+<audio id="F5s" preload="auto"><source src="tones/F5s.mp3" type="audio/mpeg"><source src="tones/F5s.ogg" type="audio/ogg"></audio>
+<audio id="G5" preload="auto"><source src="tones/G5.mp3" type="audio/mpeg"><source src="tones/G5.ogg" type="audio/ogg"></audio>
+<audio id="G5s" preload="auto"><source src="tones/G5s.mp3" type="audio/mpeg"><source src="tones/G5s.ogg" type="audio/ogg"></audio>
+<audio id="A5" preload="auto"><source src="tones/A5.mp3" type="audio/mpeg"><source src="tones/A5.ogg" type="audio/ogg"></audio>
+<audio id="A5s" preload="auto"><source src="tones/A5s.mp3" type="audio/mpeg"><source src="tones/A5s.ogg" type="audio/ogg"></audio>
+<audio id="B5" preload="auto"><source src="tones/B5.mp3" type="audio/mpeg"><source src="tones/B5.ogg" type="audio/ogg"></audio>
+<audio id="C6" preload="auto"><source src="tones/C6.mp3" type="audio/mpeg"><source src="tones/C6.ogg" type="audio/ogg"></audio>
+<audio id="C6s" preload="auto"><source src="tones/C6s.mp3" type="audio/mpeg"><source src="tones/C6s.ogg" type="audio/ogg"></audio>
+<audio id="D6" preload="auto"><source src="tones/D6.mp3" type="audio/mpeg"><source src="tones/D6.ogg" type="audio/ogg"></audio>
+<audio id="D6s" preload="auto"><source src="tones/D6s.mp3" type="audio/mpeg"><source src="tones/D6s.ogg" type="audio/ogg"></audio>
+<audio id="E6" preload="auto"><source src="tones/E6.mp3" type="audio/mpeg"><source src="tones/E6.ogg" type="audio/ogg"></audio>
+<audio id="F6" preload="auto"><source src="tones/F6.mp3" type="audio/mpeg"><source src="tones/F6.ogg" type="audio/ogg"></audio>
+<audio id="F6s" preload="auto"><source src="tones/F6s.mp3" type="audio/mpeg"><source src="tones/F6s.ogg" type="audio/ogg"></audio>
+<audio id="G6" preload="auto"><source src="tones/G6.mp3" type="audio/mpeg"><source src="tones/G6.ogg" type="audio/ogg"></audio>
+<audio id="G6s" preload="auto"><source src="tones/G6s.mp3" type="audio/mpeg"><source src="tones/G6s.ogg" type="audio/ogg"></audio>
+<audio id="A6" preload="auto"><source src="tones/A6.mp3" type="audio/mpeg"><source src="tones/A6.ogg" type="audio/ogg"></audio>
+<audio id="A6s" preload="auto"><source src="tones/A6s.mp3" type="audio/mpeg"><source src="tones/A6s.ogg" type="audio/ogg"></audio>
+<audio id="B6" preload="auto"><source src="tones/B6.mp3" type="audio/mpeg"><source src="tones/B6.ogg" type="audio/ogg"></audio>
+<audio id="C7" preload="auto"><source src="tones/C7.mp3" type="audio/mpeg"><source src="tones/C7.ogg" type="audio/ogg"></audio>
+<audio id="C7s" preload="auto"><source src="tones/C7s.mp3" type="audio/mpeg"><source src="tones/C7s.ogg" type="audio/ogg"></audio>
+<audio id="D7" preload="auto"><source src="tones/D7.mp3" type="audio/mpeg"><source src="tones/D7.ogg" type="audio/ogg"></audio>
+<audio id="D7s" preload="auto"><source src="tones/D7s.mp3" type="audio/mpeg"><source src="tones/D7s.ogg" type="audio/ogg"></audio>
+<audio id="E7" preload="auto"><source src="tones/E7.mp3" type="audio/mpeg"><source src="tones/E7.ogg" type="audio/ogg"></audio>
+<audio id="F7" preload="auto"><source src="tones/F7.mp3" type="audio/mpeg"><source src="tones/F7.ogg" type="audio/ogg"></audio>
+<audio id="F7s" preload="auto"><source src="tones/F7s.mp3" type="audio/mpeg"><source src="tones/F7s.ogg" type="audio/ogg"></audio>
+<audio id="G7" preload="auto"><source src="tones/G7.mp3" type="audio/mpeg"><source src="tones/G7.ogg" type="audio/ogg"></audio>
+<audio id="G7s" preload="auto"><source src="tones/G7s.mp3" type="audio/mpeg"><source src="tones/G7s.ogg" type="audio/ogg"></audio>
+<audio id="A7" preload="auto"><source src="tones/A7.mp3" type="audio/mpeg"><source src="tones/A7.ogg" type="audio/ogg"></audio>
+<audio id="A7s" preload="auto"><source src="tones/A7s.mp3" type="audio/mpeg"><source src="tones/A7s.ogg" type="audio/ogg"></audio>
+<audio id="B7" preload="auto"><source src="tones/B7.mp3" type="audio/mpeg"><source src="tones/B7.ogg" type="audio/ogg"></audio>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/webaudio_tools.js"> </script>
+<script type="text/javascript" src="scripts/tone.js"></script>
+<script type="text/javascript" src="scripts/dynamiccontent.js"></script>
+<script>
+// speed bump for iframe content thieves
+// https://stackoverflow.com/a/2896882
+if (top!=self){
+    top.location.replace(document.location);
+    alert("For security reasons, framing is not allowed; click OK to remove the frames.")
+}
+// zoneMenu to change instrumentMenu and tuneMenu
+$(document).ready(function(){
+    $('#zoneMenu').change(function(){
+        // The id indicated by the highlighted 'instrumentMenu' option
+        // has its content replaced by the string indicated
+        // by the value of the highlighted 'zoneMenu' option.
+	var temp = $("#zoneMenu").val()
+    $("#instrumentMenu").html(menu["instrument" + temp]);
+	if (temp == "1") $("#tuneMenu").html(menu.diatonicrichter);
+	else if (temp == "2") $("#tuneMenu").html(menu.piano);
+	else $("#tuneMenu").html(menu.guitar);
+  });
+});
+
+// instrumentMenu to change tuneMenu
+$(document).ready(function(){
+    $('#instrumentMenu').change(function(){
+        // The id indicated by the highlighted 'tuneMenu' option
+        // has its content replaced by the string indicated
+        // by the value of the highlighted 'zoneMenu' option.
+        $("#tuneMenu").html(menu[$("#instrumentMenu").val()]);
+  });
+});
+
+// when go button is clicked, instrument and img are loaded
+$(document).ready(function(){
+    $('#go').click(function (){
+            // Load the instrument image.
+            $("#img" + $("#zoneMenu").val()).html(img[$("#instrumentMenu").val()]);
+            // Load the instrument.
+            $("#instrument" + $("#zoneMenu").val()).html(instrument[$("#instrumentMenu").val() + $("#tuneMenu").val()]);
+            attachAll("instrument" + $("#zoneMenu").val());
+        });
+    $('#instrumentimg1').html(img.diatonicrichter)
+    $('#instrument1').html(instrument.diatonicrichterc)
+    $('#instrumentimg2').html(img.piano)
+    $('#instrument2').html(instrument.pianostandard)
+    $('#instrumentimg3').html(img.guitar)
+    $('#instrument3').html(instrument.guitarstandard)
+    attachAll('instrument1');
+    attachAll('instrument2');
+    attachAll('instrument3');
+    for (let clef of ['treble1', 'treble2', 'treble3', 'treble4', 'bass1', 'bass2', 'bass3', 'bass4']) {
+        $("#" + clef).html(instrument[clef])
+        attachAll(clef); 
+    }
+});
+
+// when version button is clicked, if it's in chrome mode, switches itself
+// to compatibility mode, and changes text. in compatibility, switches
+// itself to chrome, changes text.
+$(document).ready(function(){
+
+  $('#version').click(function(){
+    if ($('#version').attr('mode') == 'chrome') {
+      $('#version').attr('mode', 'compatibility')
+      $('#version').html("Switch to desktop version<br/>(Currently in compatibility version)")
+    }
+
+    else {
+      $('#version').attr('mode', 'chrome')
+      $('#version').html("Switch to compatibility version<br/>(Currently in desktop version)")
+    }
+
+  });
+});
+</script>
+
+<button id='version' class='ver' mode='compatibility'>Switch to desktop version<br/>(Currently in compatibility version)</button>
+
+<table class='chooser'>
+<tr>
+<td>
+<select id='zoneMenu'>
+<option value='1'>Zone 1</option>
+<option value='2'>Zone 2</option>
+<option value='3'>Zone 3</option>
+</select>
+</td>
+<td>
+<select id='instrumentMenu'>
+<option value='diatonicrichter'>Richter diatonic</option>
+<option value='diatonicminor'>Diatonic minor</option>
+<option value='diatonicpowerbender'>Powerbender diatonic</option>
+</select>
+</td>
+<td>
+<select id='tuneMenu'>
+<option value='lowf'>Low F</option>
+<option value='g'>G</option>
+<option value='ab'>Ab</option>
+<option value='a'>A</option>
+<option value='bb'>Bb</option>
+<option value='b'>B</option>
+<option value='c'>C</option>
+<option value='db'>Db</option>
+<option value='d'>D</option>
+<option value='eb'>Eb</option>
+<option value='e'>E</option>
+<option value='f'>F</option>
+<option value='fs'>F#</option>
+<option value='highg'>High G</option>
+</select>
+</td>
+<td>
+<button id='go'>Go!</button>
+</td>
+</tr>
+</table>
+<font size="+1">&nbsp; Welcome to the DVIICE! Need help? <a href="help.html">Click here.</a></font>
+
+<div class="instrumentimg1" id="instrumentimg1"><img src="diatonic.png"></div>
+<table class="instrument1" id="instrument1"></table>
+
+<div class="instrumentimg2" id="instrumentimg2"><img src="piano.png"></div>
+<table class="instrument2" id="instrument2"></table>
+
+<div class="instrumentimg3" id="instrumentimg3"><img src="guitar.png"></div>
+<table class="instrument3" id="instrument3"></table>
+
+<table class="treble1" id="treble1"></table>
+<table class="treble2" id="treble2"></table>
+<table class="treble3" id="treble3"></table>
+<table class="treble4" id="treble4"></table>
+<table class="bass1" id="bass1"></table>
+<table class="bass2" id="bass2"></table>
+<table class="bass3" id="bass3"></table>
+<table class="bass4" id="bass4"></table>
+
+<textarea
+placeholder="Type notes in this text box for an easy record! For example, type the following for &quot;The Minstrel Boy&quot; (180BPM):
+wa,sv  bmnbvn , 2t `/t2. , `bn,n4bbbbvv `a,s2vv `bmnbv2n , t `/t. , bn,n4bbb vvv `et / 2. `/t2/ . ,  `,2.  `n2n `n 4. / t  `wt2v  `bmnbv4nn,,t `/t2. , `bn,n4bbbbvv  `
+Click outside this box if you don't want played notes to show up. Use spaces for rests.
+Enter a BPM in the box to the right (default 120) and hit the play button below it to play back your song."
+autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
+</textarea>
+<textarea placeholder="bpm" rows="1" cols="3" class="tempo" id="tempo"></textarea>
+<button onclick="playback()" class="player">Play!</button>
+
+<script type="text/javascript">
+// IE and Edge can't iterate over iterator objects in a for-each loop like Chrome
+// and Firefox can, so those objects are converted to arrays with Array.from()
+function attachAll( inTable ) {
+    for (var p of Array.from(document.getElementById(inTable).getElementsByTagName("img"))) { 
+        p.onmouseover = doMouseOver;
+        p.onmouseout  = doMouseOut;
+        p.onmousedown = doMouseDown;
+        p.onmouseup   = doMouseUp;
+        p.onclick     = doClick;
+        p.setAttribute("originalSrc",p.src);
+    }
+}
+
+function sleep(ms) {
+    // a sleep function. usage:
+    // async func() { await sleep(1000) }
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+function doMouseOver() {
+    for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
+}
+function doMouseOut() {
+    for (var p of Array.from(document.getElementsByName(this.name))) p.src = p.getAttribute("originalSrc");
+}
+function doMouseDown() {
+    if ($('#version').attr('mode') == 'chrome') startTone(parseFloat($(this).attr('tone')))
+}
+function doMouseUp() {
+    if ($('#version').attr('mode') == 'chrome') stopTone()
+}
+function doClick() {
+    if ($('#version').attr('mode') == 'compatibility') document.getElementById($(this).attr('name')).play()
+}
+// keyboard controls
+var pitches = {"V":32.7, "G":34.65, "B":36.71, "H":38.89, "N":41.2,
+                 "M":43.65, "K":46.25, ",":49, "L":51.91, ".":55,
+                 ";":58.27, "/":61.74, "T":65.41, "6":69.3, "Y":73.42,
+                 "7":77.78, "U":82.41, "I":87.31, "9":92.5, "O":98,
+                 "0":103.83, "P":110, "-":116.54, "[":123.47}
+var note_names = {"V":"C", "G":"Cs", "B":"D", "H":"Ds", "N":"E",
+                  "M":"F", "K":"Fs", ",":"G", "L":"Gs", ".":"A",
+                  ";":"As", "/":"B", "T":"C", "6":"Cs", "Y":"D",
+                  "7":"Ds", "U":"E", "I":"F", "9":"Fs", "O":"G",
+                  "0":"Gs", "P":"A", "-":"As", "[":"B"}
+var multipliers = {"Z":0, "X":1, "C":2, "A":3, "S":4, "D":5}
+var multiplier = 3
+var playing = null;
+function press(event) {
+    var event = event.key.toUpperCase()
+    if (event == '`') modulatorGain.gain.value = 0;
+    else if ('12345'.includes(event)) modulatorGain.gain.value = event * 5;
+    else if ("ZXCASD".includes(event)) multiplier = multipliers[event]
+    else if ('QWER'.includes(event)) oscillator.type = {Q: 'sine', W: 'triangle', E: 'square', R: 'sawtooth'}[event]
+    else if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
+        var additional = 'T6Y7UI9O0P-['.includes(event)
+        var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
+        if ($('#version').attr('mode') == 'chrome' ) {
+            if (playing == event) return;
+            playing = event;
+            startTone(pitches[event] * (2**multiplier))
+        }
+        else if ($('#version').attr('mode') == 'compatibility') document.getElementById(note_name).play()
+        for (var p of Array.from(document.getElementsByName(note_name))) p.src = "blue.png"
+    }
+}
+function release(event) {
+    var event = event.key.toUpperCase()
+    if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
+        playing = null;
+        if ($('#version').attr('mode') == 'chrome' ) stopTone()
+        var additional = 'T6Y7UI9O0P-['.includes(event)
+        var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
+        for (var p of Array.from(document.getElementsByName(note_name))) p.src = p.getAttribute("originalSrc");
+    }
+}
+document.onkeydown = press;
+document.onkeyup = release;
+// end of keyboard controls
+async function playback() {
+    for (c of document.getElementById('textlog').value.toUpperCase()) {
+        let tempo = (60000/parseInt(document.getElementById('tempo').value)) || 500
+        if (c == '`') {
+            modulatorGain.gain.value = 0
+            continue
+        }
+        if ('12345'.includes(c)) {
+            modulatorGain.gain.value = c * 5
+            continue
+        }
+        if (c == ' ') {
+            await sleep(tempo)
+            continue
+        }
+        if ('QWER'.includes(c)) {
+            oscillator.type = {Q: 'sine', W: 'triangle', E: 'square', R: 'sawtooth'}[c]
+            continue
+        }
+        if ("ZXCASD".includes(c)) {
+            multiplier = multipliers[c]
+            continue
+        }
+        if (!(c in note_names)) continue;
+        let additional = 'T6Y7UI9O0P-['.includes(c)
+        let note_name = note_names[c][0] + (multiplier+additional+1) + note_names[c].slice(1,2)
+        if ($('#version').attr('mode') == 'chrome' ) {
+            startTone(pitches[c] * (2**multiplier))
+        }
+        else if ($('#version').attr('mode') == 'compatibility') {
+            document.getElementById(note_name).play()
+        }
+        var pix = Array.from(document.getElementsByName(note_name));
+        for (p of pix) p.src = 'blue.png'
+        await sleep(tempo)
+        for (p of pix) p.src = p.getAttribute('originalSrc')
+        stopTone()
+    }
+}
+</script>
+</body>
+</html>

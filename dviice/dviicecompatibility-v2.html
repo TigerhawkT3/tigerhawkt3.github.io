@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DVIICE</title>
+<meta name="description" content="Digital Virtual Instantaneous Instrument Comparator and Emulator">
+<meta name="keywords" content="music,musical,musician,musicians,note,notes,
+ instrument,instrumental,tool,education,educational,learn,learning,
+ harmonica,diatonic,piano,guitar,treble,bass,clef,scale,
+ compare,comparison,chart,diagram,layout,emulate,emulator,emulation">
+<meta name="author" content="David 'TigerhawkT3' 'Farranor' Muller">
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end of reset tool */
+/* This page was conceived, designed, and coded for
+   www.tigerhawkt3.com, by me, David "TigerhawkT3"
+   "Farranor" Muller, except for the noted segments.
+   Many, many thanks to "Old Pedant" at
+   www.codingforums.com for the streamlined
+   highlighting function and extensive troubleshooting
+   help. */
+img
+{
+display: block;
+}
+table.instrument1
+{
+position:absolute;
+left:26px;
+top:39px;
+}
+table.instrument2
+{
+position:absolute;
+left:719px;
+top:39px;
+}
+table.instrument3
+{
+position:absolute;
+left:26px;
+top:502px;
+}
+div.instrumentimg1
+{
+position:absolute;
+left:26px;
+top:39px;
+z-index:-1;
+}
+div.instrumentimg2
+{
+position:absolute;
+left:719px;
+top:39px;
+z-index:-1;
+}
+div.instrumentimg3
+{
+position:absolute;
+left:26px;
+top:502px;
+z-index:-1;
+}
+table.treble1
+{
+position:absolute;
+left:1616px;
+top:76px;
+}
+table.treble2
+{
+position:absolute;
+left:1644px;
+top:60px;
+}
+table.treble3
+{
+position:absolute;
+left:1672px;
+top:65px;
+}
+table.treble4
+{
+position:absolute;
+left:1701px;
+top:81px;
+}
+table.bass1
+{
+position:absolute;
+left:1616px;
+top:517px;
+}
+table.bass2
+{
+position:absolute;
+left:1644px;
+top:532px;
+}
+table.bass3
+{
+position:absolute;
+left:1672px;
+top:508px;
+}
+table.bass4
+{
+position:absolute;
+left:1701px;
+top:555px;
+}
+table.choose1
+{
+position:absolute;
+left:666px;
+top:11px;
+z-index:0;
+}
+table.choose2
+{
+position:absolute;
+left:1480px;
+top:39px;
+z-index:1;
+}
+table.choose3
+{
+position:absolute;
+left:26px;
+top:950px;
+z-index:1;
+}
+table.guitartuning
+{
+position:absolute;
+left:1750px;
+top:39px;
+}
+body
+{
+background-image:url('bg.png');
+background-repeat:no-repeat;
+background-position:left top;
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){  $("#i1powerbenderc").click(function(){    $("#instrumentimg1").load("imgpowerbender.txt"); $("#instrument1").load("instrumentscompatibility/harppowerbenderc.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1lowf").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harplowf.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1g").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpg.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1ab").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpab.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1a").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpa.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1bb").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpbb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1b").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1c").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpc.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1db").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpdb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1d").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpd.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1eb").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpeb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1e").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpe.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1f").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpf.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1fs").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harpfs.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1highg").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentscompatibility/harphighg.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i2piano").click(function(){    $("#instrumentimg2").load("imgpiano.txt"); $("#instrument2").load("instrumentscompatibility/piano.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2chromatic12").click(function(){    $("#instrumentimg2").load("imgchromatic12.txt"); $("#instrument2").load("instrumentscompatibility/chromatic12.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2tenor12").click(function(){    $("#instrumentimg2").load("imgchromatic12.txt"); $("#instrument2").load("instrumentscompatibility/tenor12.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2lowf").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harplowf.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2g").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpg.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2ab").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpab.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2a").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpa.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2bb").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpbb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2b").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2c").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpc.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2db").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpdb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2d").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpd.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2eb").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpeb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2e").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpe.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2f").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpf.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2fs").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harpfs.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2highg").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentscompatibility/harphighg.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i3guitar").click(function(){     $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitar.txt", function( ) { attachAll("instrument3"); }); }); });
+$(document).ready(function(){  $("#i3piano").click(function(){    $("#instrumentimg3").load("imgpiano.txt"); $("#instrument3").load("instrumentscompatibility/piano.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3chromatic12").click(function(){    $("#instrumentimg3").load("imgchromatic12.txt"); $("#instrument3").load("instrumentscompatibility/chromatic12.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3tenor12").click(function(){    $("#instrumentimg3").load("imgchromatic12.txt"); $("#instrument3").load("instrumentscompatibility/tenor12.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3chromatic16").click(function(){    $("#instrumentimg3").load("imgchromatic16.txt"); $("#instrument3").load("instrumentscompatibility/chromatic16.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3lowf").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harplowf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3g").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpg.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3ab").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpab.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3a").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpa.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3bb").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpbb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3b").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpc.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3db").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpdb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3eb").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpeb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpe.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3f").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3fs").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harpfs.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3highg").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentscompatibility/harphighg.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2a2c3se3a3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropena.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3b2f3sb3f4sb4d5s").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropenb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c2g2c3g3c4e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropenc.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3f3sa3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropend.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2b2e3g3sb3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropene.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3f2a2c3f3c4f4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropenf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2g2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitaropeng.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3g2b2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitardobro.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2a2d3g3c4f4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitarallfourth.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3a3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitardadgad.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2g2c3f3a3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitarlowd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3b3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitardropd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2sg2sc3sf3sa3sd4s").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitareb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitardoulbedropd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c2g2c3f3g3c4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentscompatibility/guitardadgaddropc.txt", function( ) { attachAll("instrument3"); });  });});
+</script>
+
+</head>
+
+<body>
+<audio id="C1" preload="auto"><source src="tones/C1.mp3" type="audio/mpeg"><source src="tones/C1.ogg" type="audio/ogg"></audio>
+<audio id="C1s" preload="auto"><source src="tones/C1s.mp3" type="audio/mpeg"><source src="tones/C1s.ogg" type="audio/ogg"></audio>
+<audio id="D1" preload="auto"><source src="tones/D1.mp3" type="audio/mpeg"><source src="tones/D1.ogg" type="audio/ogg"></audio>
+<audio id="D1s" preload="auto"><source src="tones/D1s.mp3" type="audio/mpeg"><source src="tones/D1s.ogg" type="audio/ogg"></audio>
+<audio id="E1" preload="auto"><source src="tones/E1.mp3" type="audio/mpeg"><source src="tones/E1.ogg" type="audio/ogg"></audio>
+<audio id="F1" preload="auto"><source src="tones/F1.mp3" type="audio/mpeg"><source src="tones/F1.ogg" type="audio/ogg"></audio>
+<audio id="F1s" preload="auto"><source src="tones/F1s.mp3" type="audio/mpeg"><source src="tones/F1s.ogg" type="audio/ogg"></audio>
+<audio id="G1" preload="auto"><source src="tones/G1.mp3" type="audio/mpeg"><source src="tones/G1.ogg" type="audio/ogg"></audio>
+<audio id="G1s" preload="auto"><source src="tones/G1s.mp3" type="audio/mpeg"><source src="tones/G1s.ogg" type="audio/ogg"></audio>
+<audio id="A1" preload="auto"><source src="tones/A1.mp3" type="audio/mpeg"><source src="tones/A1.ogg" type="audio/ogg"></audio>
+<audio id="A1s" preload="auto"><source src="tones/A1s.mp3" type="audio/mpeg"><source src="tones/A1s.ogg" type="audio/ogg"></audio>
+<audio id="B1" preload="auto"><source src="tones/B1.mp3" type="audio/mpeg"><source src="tones/B1.ogg" type="audio/ogg"></audio>
+<audio id="C2" preload="auto"><source src="tones/C2.mp3" type="audio/mpeg"><source src="tones/C2.ogg" type="audio/ogg"></audio>
+<audio id="C2s" preload="auto"><source src="tones/C2s.mp3" type="audio/mpeg"><source src="tones/C2s.ogg" type="audio/ogg"></audio>
+<audio id="D2" preload="auto"><source src="tones/D2.mp3" type="audio/mpeg"><source src="tones/D2.ogg" type="audio/ogg"></audio>
+<audio id="D2s" preload="auto"><source src="tones/D2s.mp3" type="audio/mpeg"><source src="tones/D2s.ogg" type="audio/ogg"></audio>
+<audio id="E2" preload="auto"><source src="tones/E2.mp3" type="audio/mpeg"><source src="tones/E2.ogg" type="audio/ogg"></audio>
+<audio id="F2" preload="auto"><source src="tones/F2.mp3" type="audio/mpeg"><source src="tones/F2.ogg" type="audio/ogg"></audio>
+<audio id="F2s" preload="auto"><source src="tones/F2s.mp3" type="audio/mpeg"><source src="tones/F2s.ogg" type="audio/ogg"></audio>
+<audio id="G2" preload="auto"><source src="tones/G2.mp3" type="audio/mpeg"><source src="tones/G2.ogg" type="audio/ogg"></audio>
+<audio id="G2s" preload="auto"><source src="tones/G2s.mp3" type="audio/mpeg"><source src="tones/G2s.ogg" type="audio/ogg"></audio>
+<audio id="A2" preload="auto"><source src="tones/A2.mp3" type="audio/mpeg"><source src="tones/A2.ogg" type="audio/ogg"></audio>
+<audio id="A2s" preload="auto"><source src="tones/A2s.mp3" type="audio/mpeg"><source src="tones/A2s.ogg" type="audio/ogg"></audio>
+<audio id="B2" preload="auto"><source src="tones/B2.mp3" type="audio/mpeg"><source src="tones/B2.ogg" type="audio/ogg"></audio>
+<audio id="C3" preload="auto"><source src="tones/C3.mp3" type="audio/mpeg"><source src="tones/C3.ogg" type="audio/ogg"></audio>
+<audio id="C3s" preload="auto"><source src="tones/C3s.mp3" type="audio/mpeg"><source src="tones/C3s.ogg" type="audio/ogg"></audio>
+<audio id="D3" preload="auto"><source src="tones/D3.mp3" type="audio/mpeg"><source src="tones/D3.ogg" type="audio/ogg"></audio>
+<audio id="D3s" preload="auto"><source src="tones/D3s.mp3" type="audio/mpeg"><source src="tones/D3s.ogg" type="audio/ogg"></audio>
+<audio id="E3" preload="auto"><source src="tones/E3.mp3" type="audio/mpeg"><source src="tones/E3.ogg" type="audio/ogg"></audio>
+<audio id="F3" preload="auto"><source src="tones/F3.mp3" type="audio/mpeg"><source src="tones/F3.ogg" type="audio/ogg"></audio>
+<audio id="F3s" preload="auto"><source src="tones/F3s.mp3" type="audio/mpeg"><source src="tones/F3s.ogg" type="audio/ogg"></audio>
+<audio id="G3" preload="auto"><source src="tones/G3.mp3" type="audio/mpeg"><source src="tones/G3.ogg" type="audio/ogg"></audio>
+<audio id="G3s" preload="auto"><source src="tones/G3s.mp3" type="audio/mpeg"><source src="tones/G3s.ogg" type="audio/ogg"></audio>
+<audio id="A3" preload="auto"><source src="tones/A3.mp3" type="audio/mpeg"><source src="tones/A3.ogg" type="audio/ogg"></audio>
+<audio id="A3s" preload="auto"><source src="tones/A3s.mp3" type="audio/mpeg"><source src="tones/A3s.ogg" type="audio/ogg"></audio>
+<audio id="B3" preload="auto"><source src="tones/B3.mp3" type="audio/mpeg"><source src="tones/B3.ogg" type="audio/ogg"></audio>
+<audio id="C4" preload="auto"><source src="tones/C4.mp3" type="audio/mpeg"><source src="tones/C4.ogg" type="audio/ogg"></audio>
+<audio id="C4s" preload="auto"><source src="tones/C4s.mp3" type="audio/mpeg"><source src="tones/C4s.ogg" type="audio/ogg"></audio>
+<audio id="D4" preload="auto"><source src="tones/D4.mp3" type="audio/mpeg"><source src="tones/D4.ogg" type="audio/ogg"></audio>
+<audio id="D4s" preload="auto"><source src="tones/D4s.mp3" type="audio/mpeg"><source src="tones/D4s.ogg" type="audio/ogg"></audio>
+<audio id="E4" preload="auto"><source src="tones/E4.mp3" type="audio/mpeg"><source src="tones/E4.ogg" type="audio/ogg"></audio>
+<audio id="F4" preload="auto"><source src="tones/F4.mp3" type="audio/mpeg"><source src="tones/F4.ogg" type="audio/ogg"></audio>
+<audio id="F4s" preload="auto"><source src="tones/F4s.mp3" type="audio/mpeg"><source src="tones/F4s.ogg" type="audio/ogg"></audio>
+<audio id="G4" preload="auto"><source src="tones/G4.mp3" type="audio/mpeg"><source src="tones/G4.ogg" type="audio/ogg"></audio>
+<audio id="G4s" preload="auto"><source src="tones/G4s.mp3" type="audio/mpeg"><source src="tones/G4s.ogg" type="audio/ogg"></audio>
+<audio id="A4" preload="auto"><source src="tones/A4.mp3" type="audio/mpeg"><source src="tones/A4.ogg" type="audio/ogg"></audio>
+<audio id="A4s" preload="auto"><source src="tones/A4s.mp3" type="audio/mpeg"><source src="tones/A4s.ogg" type="audio/ogg"></audio>
+<audio id="B4" preload="auto"><source src="tones/B4.mp3" type="audio/mpeg"><source src="tones/B4.ogg" type="audio/ogg"> ></audio>
+<audio id="C5" preload="auto"><source src="tones/C5.mp3" type="audio/mpeg"><source src="tones/C5.ogg" type="audio/ogg"></audio>
+<audio id="C5s" preload="auto"><source src="tones/C5s.mp3" type="audio/mpeg"><source src="tones/C5s.ogg" type="audio/ogg"></audio>
+<audio id="D5" preload="auto"><source src="tones/D5.mp3" type="audio/mpeg"><source src="tones/D5.ogg" type="audio/ogg"></audio>
+<audio id="D5s" preload="auto"><source src="tones/D5s.mp3" type="audio/mpeg"><source src="tones/D5s.ogg" type="audio/ogg"></audio>
+<audio id="E5" preload="auto"><source src="tones/E5.mp3" type="audio/mpeg"><source src="tones/E5.ogg" type="audio/ogg"></audio>
+<audio id="F5" preload="auto"><source src="tones/F5.mp3" type="audio/mpeg"><source src="tones/F5.ogg" type="audio/ogg"></audio>
+<audio id="F5s" preload="auto"><source src="tones/F5s.mp3" type="audio/mpeg"><source src="tones/F5s.ogg" type="audio/ogg"></audio>
+<audio id="G5" preload="auto"><source src="tones/G5.mp3" type="audio/mpeg"><source src="tones/G5.ogg" type="audio/ogg"></audio>
+<audio id="G5s" preload="auto"><source src="tones/G5s.mp3" type="audio/mpeg"><source src="tones/G5s.ogg" type="audio/ogg"></audio>
+<audio id="A5" preload="auto"><source src="tones/A5.mp3" type="audio/mpeg"><source src="tones/A5.ogg" type="audio/ogg"></audio>
+<audio id="A5s" preload="auto"><source src="tones/A5s.mp3" type="audio/mpeg"><source src="tones/A5s.ogg" type="audio/ogg"></audio>
+<audio id="B5" preload="auto"><source src="tones/B5.mp3" type="audio/mpeg"><source src="tones/B5.ogg" type="audio/ogg"></audio>
+<audio id="C6" preload="auto"><source src="tones/C6.mp3" type="audio/mpeg"><source src="tones/C6.ogg" type="audio/ogg"></audio>
+<audio id="C6s" preload="auto"><source src="tones/C6s.mp3" type="audio/mpeg"><source src="tones/C6s.ogg" type="audio/ogg"></audio>
+<audio id="D6" preload="auto"><source src="tones/D6.mp3" type="audio/mpeg"><source src="tones/D6.ogg" type="audio/ogg"></audio>
+<audio id="D6s" preload="auto"><source src="tones/D6s.mp3" type="audio/mpeg"><source src="tones/D6s.ogg" type="audio/ogg"></audio>
+<audio id="E6" preload="auto"><source src="tones/E6.mp3" type="audio/mpeg"><source src="tones/E6.ogg" type="audio/ogg"></audio>
+<audio id="F6" preload="auto"><source src="tones/F6.mp3" type="audio/mpeg"><source src="tones/F6.ogg" type="audio/ogg"></audio>
+<audio id="F6s" preload="auto"><source src="tones/F6s.mp3" type="audio/mpeg"><source src="tones/F6s.ogg" type="audio/ogg"></audio>
+<audio id="G6" preload="auto"><source src="tones/G6.mp3" type="audio/mpeg"><source src="tones/G6.ogg" type="audio/ogg"></audio>
+<audio id="G6s" preload="auto"><source src="tones/G6s.mp3" type="audio/mpeg"><source src="tones/G6s.ogg" type="audio/ogg"></audio>
+<audio id="A6" preload="auto"><source src="tones/A6.mp3" type="audio/mpeg"><source src="tones/A6.ogg" type="audio/ogg"></audio>
+<audio id="A6s" preload="auto"><source src="tones/A6s.mp3" type="audio/mpeg"><source src="tones/A6s.ogg" type="audio/ogg"></audio>
+<audio id="B6" preload="auto"><source src="tones/B6.mp3" type="audio/mpeg"><source src="tones/B6.ogg" type="audio/ogg"></audio>
+<audio id="C7" preload="auto"><source src="tones/C7.mp3" type="audio/mpeg"><source src="tones/C7.ogg" type="audio/ogg"></audio>
+<audio id="C7s" preload="auto"><source src="tones/C7s.mp3" type="audio/mpeg"><source src="tones/C7s.ogg" type="audio/ogg"></audio>
+<audio id="D7" preload="auto"><source src="tones/D7.mp3" type="audio/mpeg"><source src="tones/D7.ogg" type="audio/ogg"></audio>
+<audio id="D7s" preload="auto"><source src="tones/D7s.mp3" type="audio/mpeg"><source src="tones/D7s.ogg" type="audio/ogg"></audio>
+<audio id="E7" preload="auto"><source src="tones/E7.mp3" type="audio/mpeg"><source src="tones/E7.ogg" type="audio/ogg"></audio>
+<audio id="F7" preload="auto"><source src="tones/F7.mp3" type="audio/mpeg"><source src="tones/F7.ogg" type="audio/ogg"></audio>
+<audio id="F7s" preload="auto"><source src="tones/F7s.mp3" type="audio/mpeg"><source src="tones/F7s.ogg" type="audio/ogg"></audio>
+<audio id="G7" preload="auto"><source src="tones/G7.mp3" type="audio/mpeg"><source src="tones/G7.ogg" type="audio/ogg"></audio>
+<audio id="G7s" preload="auto"><source src="tones/G7s.mp3" type="audio/mpeg"><source src="tones/G7s.ogg" type="audio/ogg"></audio>
+<audio id="A7" preload="auto"><source src="tones/A7.mp3" type="audio/mpeg"><source src="tones/A7.ogg" type="audio/ogg"></audio>
+<audio id="A7s" preload="auto"><source src="tones/A7s.mp3" type="audio/mpeg"><source src="tones/A7s.ogg" type="audio/ogg"></audio>
+<audio id="B7" preload="auto"><source src="tones/B7.mp3" type="audio/mpeg"><source src="tones/B7.ogg" type="audio/ogg"></audio>
+
+<font size="+1">&nbsp <a href="help.html">Help</a> | <a href="dviicechromesafari-v2.html">I'm using Chrome or Safari</a> | <a href="v3/dviice.html">Use V3, the latest version!</a></font>
+
+<div class="instrumentimg1" id="instrumentimg1"><img src="diatonic.png"></div>
+<table class="instrument1" id="instrument1">
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onclick="document.getElementById('A6s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onclick="document.getElementById('D6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onclick="document.getElementById('F6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onclick="document.getElementById('B6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onclick="document.getElementById('E6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onclick="document.getElementById('G6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7" onclick="document.getElementById('C7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onclick="document.getElementById('G6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onclick="document.getElementById('C7s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose1">
+<tr>
+<td><button id="i1powerbenderc">Powerbender C</button></td>
+</tr>
+<tr>
+<td><button id="i1lowf">Lo F</button></td>
+</tr>
+<tr>
+<td><button id="i1g">G</button></td>
+</tr>
+<tr>
+<td><button id="i1ab">Ab</button></td>
+</tr>
+<tr>
+<td><button id="i1a">A</button></td>
+</tr>
+<tr>
+<td><button id="i1bb">Bb</button></td>
+</tr>
+<tr>
+<td><button id="i1b">B</button></td>
+</tr>
+<tr>
+<td><button id="i1c">C</button></td>
+</tr>
+<tr>
+<td><button id="i1db">Db</button></td>
+</tr>
+<tr>
+<td><button id="i1d">D</button></td>
+</tr>
+<tr>
+<td><button id="i1eb">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i1e">E</button></td>
+</tr>
+<tr>
+<td><button id="i1f">F</button></td>
+</tr>
+<tr>
+<td><button id="i1fs">F#</button></td>
+</tr>
+<tr>
+<td><button id="i1highg">Hi G</button></td>
+</tr>
+</table>
+<div class="instrumentimg2" id="instrumentimg2"><img src="piano.png"></div>
+<table class="instrument2" id="instrument2">
+<tr>
+<td><img name="C1" onclick="document.getElementById('C1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C1s" onclick="document.getElementById('C1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D1" onclick="document.getElementById('D1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D1s" onclick="document.getElementById('D1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E1" onclick="document.getElementById('E1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F1" onclick="document.getElementById('F1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F1s" onclick="document.getElementById('F1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G1" onclick="document.getElementById('G1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G1s" onclick="document.getElementById('G1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A1" onclick="document.getElementById('A1').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A1s" onclick="document.getElementById('A1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B1" onclick="document.getElementById('B1').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C2" onclick="document.getElementById('C2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C2s" onclick="document.getElementById('C2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D2" onclick="document.getElementById('D2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D2s" onclick="document.getElementById('D2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E2" onclick="document.getElementById('E2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2" onclick="document.getElementById('F2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2s" onclick="document.getElementById('F2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2" onclick="document.getElementById('G2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2s" onclick="document.getElementById('G2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C3" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C6" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onclick="document.getElementById('D6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onclick="document.getElementById('E6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onclick="document.getElementById('F6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onclick="document.getElementById('G6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onclick="document.getElementById('G6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onclick="document.getElementById('A6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onclick="document.getElementById('B6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C7" onclick="document.getElementById('C7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onclick="document.getElementById('C7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7" onclick="document.getElementById('D7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7s" onclick="document.getElementById('D7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E7" onclick="document.getElementById('E7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7" onclick="document.getElementById('F7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7s" onclick="document.getElementById('F7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7" onclick="document.getElementById('G7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7s" onclick="document.getElementById('G7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A7" onclick="document.getElementById('A7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A7s" onclick="document.getElementById('A7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B7" onclick="document.getElementById('B7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose2">
+<tr>
+<td><button id="i2piano">Piano</button></td>
+</tr>
+<tr>
+<td><button id="i2chromatic12">C4 Chromatic</button></td>
+</tr>
+<tr>
+<td><button id="i2tenor12">Tenor Chromatic</button></td>
+</tr>
+<tr>
+<td><button id="i2lowf">Lo F</button></td>
+</tr>
+<tr>
+<td><button id="i2g">G</button></td>
+</tr>
+<tr>
+<td><button id="i2ab">Ab</button></td>
+</tr>
+<tr>
+<td><button id="i2a">A</button></td>
+</tr>
+<tr>
+<td><button id="i2bb">Bb</button></td>
+</tr>
+<tr>
+<td><button id="i2b">B</button></td>
+</tr>
+<tr>
+<td><button id="i2c">C</button></td>
+</tr>
+<tr>
+<td><button id="i2db">Db</button></td>
+</tr>
+<tr>
+<td><button id="i2d">D</button></td>
+</tr>
+<tr>
+<td><button id="i2eb">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i2e">E</button></td>
+</tr>
+<tr>
+<td><button id="i2f">F</button></td>
+</tr>
+<tr>
+<td><button id="i2fs">F#</button></td>
+</tr>
+<tr>
+<td><button id="i2highg">Hi G</button></td>
+</tr>
+</table>
+<div class="instrumentimg3" id="instrumentimg3"><img src="guitar.png"></div>
+<table class="instrument3" id="instrument3">
+<tr>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D3" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="A2" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="E2" onclick="document.getElementById('E2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2" onclick="document.getElementById('F2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2s" onclick="document.getElementById('F2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2" onclick="document.getElementById('G2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2s" onclick="document.getElementById('G2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose3">
+<tr>
+<td><button id="i3guitar">Guitar</button></td>
+<td><button id="i3piano">Piano</button></td>
+<td><button id="i3chromatic12">C4 Chromatic</button></td>
+<td><button id="i3tenor12">Tenor Chromatic</button></td>
+<td><button id="i3chromatic16">Chromatic 16</button></td>
+<td><button id="i3lowf">Low F</button></td>
+<td><button id="i3g">G</button></td>
+<td><button id="i3ab">Ab</button></td>
+<td><button id="i3a">A</button></td>
+<td><button id="i3bb">Bb</button></td>
+<td><button id="i3b">B</button></td>
+<td><button id="i3c">C</button></td>
+<td><button id="i3db">Db</button></td>
+<td><button id="i3d">D</button></td>
+<td><button id="i3eb">Eb</button></td>
+<td><button id="i3e">E</button></td>
+<td><button id="i3f">F</button></td>
+<td><button id="i3fs">F#</button></td>
+<td><button id="i3highg">Hi G</button></td>
+</tr>
+</table>
+<table class="treble1" id="treble1">
+<tr>
+<td><img name="A7" onclick="document.getElementById('A7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="F7" onclick="document.getElementById('F7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="D7" onclick="document.getElementById('D7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B6" onclick="document.getElementById('B6').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G6" onclick="document.getElementById('G6').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E6" onclick="document.getElementById('E6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="C6" onclick="document.getElementById('C6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+</table>
+<table class="treble2" id="treble2">
+<tr>
+<td><img name="B7" onclick="document.getElementById('B7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G7" onclick="document.getElementById('G7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E7" onclick="document.getElementById('E7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C7" onclick="document.getElementById('C7').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A6" onclick="document.getElementById('A6').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F6" onclick="document.getElementById('F6').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D6" onclick="document.getElementById('D6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="B5" onclick="document.getElementById('B5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E5" onclick="document.getElementById('E5').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D4" onclick="document.getElementById('D4').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="treble3" id="treble3">
+<tr>
+<td><img name="A7s" onclick="document.getElementById('A7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F7s" onclick="document.getElementById('F7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C7s" onclick="document.getElementById('C7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A6s" onclick="document.getElementById('A6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F6s" onclick="document.getElementById('F6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C6s" onclick="document.getElementById('C6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A5s" onclick="document.getElementById('A5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table
+
+</table>
+<table class="treble4" id="treble4">
+<tr>
+<td><img name="G7s" onclick="document.getElementById('G7s').play()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="19"></td>
+</tr>
+<tr>
+<td><img name="D7s" onclick="document.getElementById('D7s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img name="G6s" onclick="document.getElementById('G6s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="22"></td>
+</tr>
+<tr>
+<td><img name="D6s" onclick="document.getElementById('D6s').play()" src="blank.png" width="27" height="25"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="27" height="24"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="37"></td>
+</tr>
+<tr>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="D4s" onclick="document.getElementById('D4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+<table class="bass1" id="bass1">
+<tr>
+<td><img name="C4" onclick="document.getElementById('C4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A3" onclick="document.getElementById('A3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F3" onclick="document.getElementById('F3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D3" onclick="document.getElementById('D3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="B2" onclick="document.getElementById('B2').play()" src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G2" onclick="document.getElementById('G2').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E2" onclick="document.getElementById('E2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C2" onclick="document.getElementById('C2').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A1" onclick="document.getElementById('A1').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="F1" onclick="document.getElementById('F1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D1" onclick="document.getElementById('D1').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass2" id="bass2">
+<tr>
+<td><img name="B3" onclick="document.getElementById('B3').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="G3" onclick="document.getElementById('G3').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E3" onclick="document.getElementById('E3').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C3" onclick="document.getElementById('C3').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="A2" onclick="document.getElementById('A2').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F2" onclick="document.getElementById('F2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="D2" onclick="document.getElementById('D2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B1" onclick="document.getElementById('B1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="G1" onclick="document.getElementById('G1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="E1" onclick="document.getElementById('E1').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C1" onclick="document.getElementById('C1').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass3" id="bass3">
+<tr>
+<td><img name="C4s" onclick="document.getElementById('C4s').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A3s" onclick="document.getElementById('A3s').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F3s" onclick="document.getElementById('F3s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C3s" onclick="document.getElementById('C3s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A2s" onclick="document.getElementById('A2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F2s" onclick="document.getElementById('F2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C2s" onclick="document.getElementById('C2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A1s" onclick="document.getElementById('A1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F1s" onclick="document.getElementById('F1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C1s" onclick="document.getElementById('C1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass4" id="bass4">
+<tr>
+<td><img name="G3s" onclick="document.getElementById('G3s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img name="D3s" onclick="document.getElementById('D3s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img name="G2s" onclick="document.getElementById('G2s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="23"></td>
+</tr>
+<tr>
+<td><img name="D2s" onclick="document.getElementById('D2s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G1s" onclick="document.getElementById('G1s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img name="D1s" onclick="document.getElementById('D1s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+<table class="guitartuning">
+<tr>
+<td>Guitar tunings:</td>
+</tr>
+<tr>
+<td><button id="i3e2a2c3se3a3e4">Open A</button></td>
+</tr>
+<tr>
+<td><button id="i3b2f3sb3f4sb4d5s">Open B</button></td>
+</tr>
+<tr>
+<td><button id="i3c2g2c3g3c4e4">Open C</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3f3sa3d4">Open D</button></td>
+</tr>
+<tr>
+<td><button id="i3e2b2e3g3sb3e4">Open E</button></td>
+</tr>
+<tr>
+<td><button id="i3f2a2c3f3c4f4">Open F</button></td>
+</tr>
+<tr>
+<td><button id="i3d2g2d3g3b3d4">Open G</button></td>
+</tr>
+<tr>
+<td><button id="i3g2b2d3g3b3d4">Dobro</button></td>
+</tr>
+<tr>
+<td><button id="i3e2a2d3g3c4f4">All Fourths</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3a3d4">DADGAD</button></td>
+</tr>
+<tr>
+<td><button id="i3d2g2c3f3a3d4">Low D</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3b3e4">Drop D</button></td>
+</tr>
+<tr>
+<td><button id="i3d2sg2sc3sf3sa3sd4s">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3b3d4">Double Drop D</button></td>
+</tr>
+<tr>
+<td><button id="i3c2g2c3f3g3c4">DADGAD Drop C</button></td>
+</tr>
+</table>
+<script type="text/javascript">
+      function attachAll( inTable )
+      {
+          var pix = document.getElementById(inTable).getElementsByTagName("img");
+          for ( var p = 0; p < pix.length; ++p ) 
+          { 
+              var pic = pix[p];
+              pic.onmouseover = doMouseOver;
+              pic.onmouseout  = doMouseOut;
+              pic.setAttribute("originalSrc",pic.src);
+          }
+      }
+      attachAll("instrument1");
+      attachAll("instrument2");
+      attachAll("instrument3");
+      attachAll("treble1");
+      attachAll("treble2");
+      attachAll("treble3");
+      attachAll("treble4");
+      attachAll("bass1");
+      attachAll("bass2");
+      attachAll("bass3");
+      attachAll("bass4");
+      
+      function doMouseOver( )
+      {
+          var pix = document.getElementsByName(this.name);
+          for ( var p = 0; p < pix.length; ++p )
+          {
+              pix[p].src = "blue.png";
+          }
+      }
+      function doMouseOut( )
+      {
+          var pix = document.getElementsByName(this.name);
+          for ( var p = 0; p < pix.length; ++p )
+          {
+              pix[p].src = pix[p].getAttribute("originalSrc");
+          }
+      }
+</script>
+</body>
+</html>

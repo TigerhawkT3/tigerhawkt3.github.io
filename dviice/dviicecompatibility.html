@@ -1,0 +1,4914 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DVIICE</title>
+<meta name="description" content="Digital Virtual Instantaneous Instrument Comparator and Emulator">
+<meta name="keywords" content="music,musical,musician,musicians,note,notes,
+ instrument,instrumental,tool,education,educational,learn,learning,
+ harmonica,diatonic,piano,guitar,treble,bass,clef,scale,
+ compare,comparison,chart,diagram,layout,emulate,emulator,emulation">
+<meta name="author" content="David 'TigerhawkT3' 'Farranor' Muller">
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end of reset tool */
+/* This page was conceived, designed, and coded for
+   www.tigerhawkt3.com, by me, David "TigerhawkT3"
+   "Farranor" Muller, except for the noted segments. */
+img
+{
+display: block;
+}
+td.big
+{
+height:62px;
+width:62px;
+}
+td.small
+{
+height:29px;
+width:28px;
+}
+table.harmonica
+{
+position:absolute;
+left:26px;
+top:11px;
+}
+table.piano
+{
+position:absolute;
+left:719px;
+top:39px;
+height:427px;
+}
+table.guitar
+{
+position:absolute;
+left:26px;
+top:502px;
+}
+table.treble1
+{
+position:absolute;
+left:1616px;
+top:61px;
+}
+table.treble2
+{
+position:absolute;
+left:1644px;
+top:45px;
+}
+table.treble3
+{
+position:absolute;
+left:1672px;
+top:50px;
+}
+table.treble4
+{
+position:absolute;
+left:1701px;
+top:66px;
+}
+table.bass1
+{
+position:absolute;
+left:1616px;
+top:502px;
+}
+table.bass2
+{
+position:absolute;
+left:1644px;
+top:517px;
+}
+table.bass3
+{
+position:absolute;
+left:1672px;
+top:493px;
+}
+table.bass4
+{
+position:absolute;
+left:1701px;
+top:540px;
+}
+body
+{
+background-image:url('bgsecond.png');
+background-repeat:no-repeat;
+background-position:left top;
+}
+font.titlebar
+{
+position:absolute;
+left:0px;
+top:0px;
+z-index:5;
+}
+</style>
+
+</head>
+
+<body>
+<audio id="C1" src="tones/C1.mp3" src="tones/C1.ogg"></audio>
+<audio id="C1s" src="tones/C1s.mp3" src="tones/C1s.ogg"></audio>
+<audio id="D1" src="tones/D1.mp3" src="tones/D1.ogg"></audio>
+<audio id="D1s" src="tones/D1s.mp3" src="tones/D1s.ogg"></audio>
+<audio id="E1" src="tones/E1.mp3" src="tones/E1.ogg"></audio>
+<audio id="F1" src="tones/F1.mp3" src="tones/F1.ogg"></audio>
+<audio id="F1s" src="tones/F1s.mp3" src="tones/F1s.ogg"></audio>
+<audio id="G1" src="tones/G1.mp3" src="tones/G1.ogg"></audio>
+<audio id="G1s" src="tones/G1s.mp3" src="tones/G1s.ogg"></audio>
+<audio id="A1" src="tones/A1.mp3" src="tones/A1.ogg"></audio>
+<audio id="A1s" src="tones/A1s.mp3" src="tones/A1s.ogg"></audio>
+<audio id="B1" src="tones/B1.mp3" src="tones/B1.ogg"></audio>
+<audio id="C2" src="tones/C2.mp3" src="tones/C2.ogg"></audio>
+<audio id="C2s" src="tones/C2s.mp3" src="tones/C2s.ogg"></audio>
+<audio id="D2" src="tones/D2.mp3" src="tones/D2.ogg"></audio>
+<audio id="D2s" src="tones/D2s.mp3" src="tones/D2s.ogg"></audio>
+<audio id="E2" src="tones/E2.mp3" src="tones/E2.ogg"></audio>
+<audio id="F2" src="tones/F2.mp3" src="tones/F2.ogg"></audio>
+<audio id="F2s" src="tones/F2s.mp3" src="tones/F2s.ogg"></audio>
+<audio id="G2" src="tones/G2.mp3" src="tones/G2.ogg"></audio>
+<audio id="G2s" src="tones/G2s.mp3" src="tones/G2s.ogg"></audio>
+<audio id="A2" src="tones/A2.mp3" src="tones/A2.ogg"></audio>
+<audio id="A2s" src="tones/A2s.mp3" src="tones/A2s.ogg"></audio>
+<audio id="B2" src="tones/B2.mp3" src="tones/B2.ogg"></audio>
+<audio id="C3" src="tones/C3.mp3" src="tones/C3.ogg"></audio>
+<audio id="C3s" src="tones/C3s.mp3" src="tones/C3s.ogg"></audio>
+<audio id="D3" src="tones/D3.mp3" src="tones/D3.ogg"></audio>
+<audio id="D3s" src="tones/D3s.mp3" src="tones/D3s.ogg"></audio>
+<audio id="E3" src="tones/E3.mp3" src="tones/E3.ogg"></audio>
+<audio id="F3" src="tones/F3.mp3" src="tones/F3.ogg"></audio>
+<audio id="F3s" src="tones/F3s.mp3" src="tones/F3s.ogg"></audio>
+<audio id="G3" src="tones/G3.mp3" src="tones/G3.ogg"></audio>
+<audio id="G3s" src="tones/G3s.mp3" src="tones/G3s.ogg"></audio>
+<audio id="A3" src="tones/A3.mp3" src="tones/A3.ogg"></audio>
+<audio id="A3s" src="tones/A3s.mp3" src="tones/A3s.ogg"></audio>
+<audio id="B3" src="tones/B3.mp3" src="tones/B3.ogg"></audio>
+<audio id="C4" src="tones/C4.mp3" src="tones/C4.ogg"></audio>
+<audio id="C4s" src="tones/C4s.mp3" src="tones/C4s.ogg"></audio>
+<audio id="D4" src="tones/D4.mp3" src="tones/D4.ogg"></audio>
+<audio id="D4s" src="tones/D4s.mp3" src="tones/D4s.ogg"></audio>
+<audio id="E4" src="tones/E4.mp3" src="tones/E4.ogg"></audio>
+<audio id="F4" src="tones/F4.mp3" src="tones/F4.ogg"></audio>
+<audio id="F4s" src="tones/F4s.mp3" src="tones/F4s.ogg"></audio>
+<audio id="G4" src="tones/G4.mp3" src="tones/G4.ogg"></audio>
+<audio id="G4s" src="tones/G4s.mp3" src="tones/G4s.ogg"></audio>
+<audio id="A4" src="tones/A4.mp3" src="tones/A4.ogg"></audio>
+<audio id="A4s" src="tones/A4s.mp3" src="tones/A4s.ogg"></audio>
+<audio id="B4" src="tones/B4.mp3" src="tones/B4.ogg"></audio>
+<audio id="C5" src="tones/C5.mp3" src="tones/C5.ogg"></audio>
+<audio id="C5s" src="tones/C5s.mp3" src="tones/C5s.ogg"></audio>
+<audio id="D5" src="tones/D5.mp3" src="tones/D5.ogg"></audio>
+<audio id="D5s" src="tones/D5s.mp3" src="tones/D5s.ogg"></audio>
+<audio id="E5" src="tones/E5.mp3" src="tones/E5.ogg"></audio>
+<audio id="F5" src="tones/F5.mp3" src="tones/F5.ogg"></audio>
+<audio id="F5s" src="tones/F5s.mp3" src="tones/F5s.ogg"></audio>
+<audio id="G5" src="tones/G5.mp3" src="tones/G5.ogg"></audio>
+<audio id="G5s" src="tones/G5s.mp3" src="tones/G5s.ogg"></audio>
+<audio id="A5" src="tones/A5.mp3" src="tones/A5.ogg"></audio>
+<audio id="A5s" src="tones/A5s.mp3" src="tones/A5s.ogg"></audio>
+<audio id="B5" src="tones/B5.mp3" src="tones/B5.ogg"></audio>
+<audio id="C6" src="tones/C6.mp3" src="tones/C6.ogg"></audio>
+<audio id="C6s" src="tones/C6s.mp3" src="tones/C6s.ogg"></audio>
+<audio id="D6" src="tones/D6.mp3" src="tones/D6.ogg"></audio>
+<audio id="D6s" src="tones/D6s.mp3" src="tones/D6s.ogg"></audio>
+<audio id="E6" src="tones/E6.mp3" src="tones/E6.ogg"></audio>
+<audio id="F6" src="tones/F6.mp3" src="tones/F6.ogg"></audio>
+<audio id="F6s" src="tones/F6s.mp3" src="tones/F6s.ogg"></audio>
+<audio id="G6" src="tones/G6.mp3" src="tones/G6.ogg"></audio>
+<audio id="G6s" src="tones/G6s.mp3" src="tones/G6s.ogg"></audio>
+<audio id="A6" src="tones/A6.mp3" src="tones/A6.ogg"></audio>
+<audio id="A6s" src="tones/A6s.mp3" src="tones/A6s.ogg"></audio>
+<audio id="B6" src="tones/B6.mp3" src="tones/B6.ogg"></audio>
+<audio id="C7" src="tones/C7.mp3" src="tones/C7.ogg"></audio>
+<audio id="C7s" src="tones/C7s.mp3" src="tones/C7s.ogg"></audio>
+<audio id="D7" src="tones/D7.mp3" src="tones/D7.ogg"></audio>
+<audio id="D7s" src="tones/D7s.mp3" src="tones/D7s.ogg"></audio>
+<audio id="E7" src="tones/E7.mp3" src="tones/E7.ogg"></audio>
+<audio id="F7" src="tones/F7.mp3" src="tones/F7.ogg"></audio>
+<audio id="F7s" src="tones/F7s.mp3" src="tones/F7s.ogg"></audio>
+<audio id="G7" src="tones/G7.mp3" src="tones/G7.ogg"></audio>
+<audio id="G7s" src="tones/G7s.mp3" src="tones/G7s.ogg"></audio>
+<audio id="A7" src="tones/A7.mp3" src="tones/A7.ogg"></audio>
+<audio id="A7s" src="tones/A7s.mp3" src="tones/A7s.ogg"></audio>
+<audio id="B7" src="tones/B7.mp3" src="tones/B7.ogg"></audio>
+
+<script>
+function C1on()
+{
+element=document.getElementById('C1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C1off()
+{
+element=document.getElementById('C1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C1son()
+{
+element=document.getElementById('C1sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C1sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C1soff()
+{
+element=document.getElementById('C1sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C1sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D1on()
+{
+element=document.getElementById('D1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D1off()
+{
+element=document.getElementById('D1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D1son()
+{
+element=document.getElementById('D1sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D1sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D1soff()
+{
+element=document.getElementById('D1sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D1sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E1on()
+{
+element=document.getElementById('E1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E1off()
+{
+element=document.getElementById('E1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F1on()
+{
+element=document.getElementById('F1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F1off()
+{
+element=document.getElementById('F1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F1son()
+{
+element=document.getElementById('F1sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F1sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F1soff()
+{
+element=document.getElementById('F1sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F1sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G1on()
+{
+element=document.getElementById('G1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G1off()
+{
+element=document.getElementById('G1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G1son()
+{
+element=document.getElementById('G1sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G1sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G1soff()
+{
+element=document.getElementById('G1sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G1sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A1on()
+{
+element=document.getElementById('A1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A1off()
+{
+element=document.getElementById('A1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A1son()
+{
+element=document.getElementById('A1sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A1sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A1soff()
+{
+element=document.getElementById('A1sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A1sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B1on()
+{
+element=document.getElementById('B1p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B1c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B1off()
+{
+element=document.getElementById('B1p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B1c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C2on()
+{
+element=document.getElementById('C2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C2c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C2off()
+{
+element=document.getElementById('C2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C2c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C2son()
+{
+element=document.getElementById('C2sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C2sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C2soff()
+{
+element=document.getElementById('C2sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C2sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D2on()
+{
+element=document.getElementById('D2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D2c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D2off()
+{
+element=document.getElementById('D2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D2c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D2son()
+{
+element=document.getElementById('D2sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D2sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D2soff()
+{
+element=document.getElementById('D2sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D2sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E2on()
+{
+element=document.getElementById('E2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E2c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E2g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E2off()
+{
+element=document.getElementById('E2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E2c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E2g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F2on()
+{
+element=document.getElementById('F2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F2c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F2g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F2off()
+{
+element=document.getElementById('F2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F2c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F2g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F2son()
+{
+element=document.getElementById('F2sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F2sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F2sg1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F2soff()
+{
+element=document.getElementById('F2sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F2sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F2sg1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G2on()
+{
+element=document.getElementById('G2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G2c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G2g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G2off()
+{
+element=document.getElementById('G2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G2c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G2g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G2son()
+{
+element=document.getElementById('G2sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G2sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G2sg1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G2soff()
+{
+element=document.getElementById('G2sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G2sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G2sg1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A2on()
+{
+element=document.getElementById('A2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2g2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A2off()
+{
+element=document.getElementById('A2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2g2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A2son()
+{
+element=document.getElementById('A2sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A2sg2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A2soff()
+{
+element=document.getElementById('A2sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A2sg2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B2on()
+{
+element=document.getElementById('B2p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B2c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B2g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B2g2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B2off()
+{
+element=document.getElementById('B2p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B2c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B2g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B2g2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C3on()
+{
+element=document.getElementById('C3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3g2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C3off()
+{
+element=document.getElementById('C3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3g2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C3son()
+{
+element=document.getElementById('C3sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C3sg2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C3soff()
+{
+element=document.getElementById('C3sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C3sg2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D3on()
+{
+element=document.getElementById('D3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D3off()
+{
+element=document.getElementById('D3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D3son()
+{
+element=document.getElementById('D3sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D3sg3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D3soff()
+{
+element=document.getElementById('D3sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D3sg3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E3on()
+{
+element=document.getElementById('E3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E3g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E3off()
+{
+element=document.getElementById('E3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E3g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F3on()
+{
+element=document.getElementById('F3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F3off()
+{
+element=document.getElementById('F3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F3son()
+{
+element=document.getElementById('F3sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F3sg3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F3soff()
+{
+element=document.getElementById('F3sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F3sg3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G3on()
+{
+element=document.getElementById('G3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3g4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G3off()
+{
+element=document.getElementById('G3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3g4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G3son()
+{
+element=document.getElementById('G3sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G3sg4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G3soff()
+{
+element=document.getElementById('G3sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G3sg4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A3on()
+{
+element=document.getElementById('A3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3g4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A3off()
+{
+element=document.getElementById('A3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3g4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A3son()
+{
+element=document.getElementById('A3sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A3sg4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A3soff()
+{
+element=document.getElementById('A3sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A3sg4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B3on()
+{
+element=document.getElementById('B3p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B3g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B3off()
+{
+element=document.getElementById('B3p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B3g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C4on()
+{
+element=document.getElementById('C4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4c1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4c2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C4off()
+{
+element=document.getElementById('C4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4c1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4c2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C4son()
+{
+element=document.getElementById('C4sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sc1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sc2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sg4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C4sg5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C4soff()
+{
+element=document.getElementById('C4sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sc1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sc2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sg4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C4sg5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D4on()
+{
+element=document.getElementById('D4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D4off()
+{
+element=document.getElementById('D4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D4son()
+{
+element=document.getElementById('D4sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D4sg4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D4soff()
+{
+element=document.getElementById('D4sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D4sg4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E4on()
+{
+element=document.getElementById('E4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E4g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E4off()
+{
+element=document.getElementById('E4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E4g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F4on()
+{
+element=document.getElementById('F4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F4off()
+{
+element=document.getElementById('F4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F4son()
+{
+element=document.getElementById('F4sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sg4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F4sg5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F4soff()
+{
+element=document.getElementById('F4sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sg4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F4sg5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G4on()
+{
+element=document.getElementById('G4h1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4h2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4g4');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4g5');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G4off()
+{
+element=document.getElementById('G4h1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4h2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4g4');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4g5');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G4son()
+{
+element=document.getElementById('G4sh1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sh2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G4sg4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G4soff()
+{
+element=document.getElementById('G4sh1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sh2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G4sg4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A4on()
+{
+element=document.getElementById('A4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4g4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A4off()
+{
+element=document.getElementById('A4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4g4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A4son()
+{
+element=document.getElementById('A4sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sg3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A4sg4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A4soff()
+{
+element=document.getElementById('A4sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sg3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A4sg4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B4on()
+{
+element=document.getElementById('B4h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B4g4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B4off()
+{
+element=document.getElementById('B4h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B4g4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C5on()
+{
+element=document.getElementById('C5h1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5h2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5g3');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5g4');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C5off()
+{
+element=document.getElementById('C5h1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5h2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5g3');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5g4');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C5son()
+{
+element=document.getElementById('C5sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C5sg3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C5soff()
+{
+element=document.getElementById('C5sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C5sg3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D5on()
+{
+element=document.getElementById('D5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D5off()
+{
+element=document.getElementById('D5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D5son()
+{
+element=document.getElementById('D5sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5sg2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D5sg3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D5soff()
+{
+element=document.getElementById('D5sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5sg2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D5sg3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E5on()
+{
+element=document.getElementById('E5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E5g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E5g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E5off()
+{
+element=document.getElementById('E5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E5g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E5g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F5on()
+{
+element=document.getElementById('F5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5g2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5g3');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F5off()
+{
+element=document.getElementById('F5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5g2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5g3');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F5son()
+{
+element=document.getElementById('F5sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F5sg2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F5soff()
+{
+element=document.getElementById('F5sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F5sg2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G5on()
+{
+element=document.getElementById('G5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5g2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G5off()
+{
+element=document.getElementById('G5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5g2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G5son()
+{
+element=document.getElementById('G5sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5sg1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G5sg2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G5soff()
+{
+element=document.getElementById('G5sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5sg1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G5sg2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A5on()
+{
+element=document.getElementById('A5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5g1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5g2');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A5off()
+{
+element=document.getElementById('A5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5g1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5g2');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A5son()
+{
+element=document.getElementById('A5sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A5sg1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A5soff()
+{
+element=document.getElementById('A5sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A5sg1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B5on()
+{
+element=document.getElementById('B5h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B5p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B5c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B5g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B5off()
+{
+element=document.getElementById('B5h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B5p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B5c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B5g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C6on()
+{
+element=document.getElementById('C6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C6off()
+{
+element=document.getElementById('C6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C6son()
+{
+element=document.getElementById('C6sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6sc');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C6sg1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C6soff()
+{
+element=document.getElementById('C6sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6sc');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C6sg1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D6on()
+{
+element=document.getElementById('D6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D6c');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D6g1');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D6off()
+{
+element=document.getElementById('D6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D6c');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D6g1');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D6son()
+{
+element=document.getElementById('D6sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D6sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D6sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D6soff()
+{
+element=document.getElementById('D6sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D6sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D6sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E6on()
+{
+element=document.getElementById('E6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E6c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E6off()
+{
+element=document.getElementById('E6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E6c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F6on()
+{
+element=document.getElementById('F6h1');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F6h2');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F6c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F6off()
+{
+element=document.getElementById('F6h1');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F6h2');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F6c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F6son()
+{
+element=document.getElementById('F6sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F6sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F6sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F6soff()
+{
+element=document.getElementById('F6sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F6sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F6sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G6on()
+{
+element=document.getElementById('G6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G6c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G6off()
+{
+element=document.getElementById('G6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G6c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G6son()
+{
+element=document.getElementById('G6sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G6sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G6sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G6soff()
+{
+element=document.getElementById('G6sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G6sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G6sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A6on()
+{
+element=document.getElementById('A6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A6c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A6off()
+{
+element=document.getElementById('A6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A6c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A6son()
+{
+element=document.getElementById('A6sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A6sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A6sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A6soff()
+{
+element=document.getElementById('A6sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A6sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A6sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B6on()
+{
+element=document.getElementById('B6h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B6p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B6c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B6off()
+{
+element=document.getElementById('B6h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B6p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B6c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C7on()
+{
+element=document.getElementById('C7h');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C7off()
+{
+element=document.getElementById('C7h');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function C7son()
+{
+element=document.getElementById('C7sh');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C7sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('C7sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function C7soff()
+{
+element=document.getElementById('C7sh');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C7sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('C7sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D7on()
+{
+element=document.getElementById('D7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D7off()
+{
+element=document.getElementById('D7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function D7son()
+{
+element=document.getElementById('D7sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('D7sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function D7soff()
+{
+element=document.getElementById('D7sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('D7sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function E7on()
+{
+element=document.getElementById('E7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('E7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function E7off()
+{
+element=document.getElementById('E7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('E7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F7on()
+{
+element=document.getElementById('F7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F7off()
+{
+element=document.getElementById('F7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function F7son()
+{
+element=document.getElementById('F7sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('F7sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function F7soff()
+{
+element=document.getElementById('F7sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('F7sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G7on()
+{
+element=document.getElementById('G7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G7off()
+{
+element=document.getElementById('G7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function G7son()
+{
+element=document.getElementById('G7sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('G7sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function G7soff()
+{
+element=document.getElementById('G7sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('G7sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A7on()
+{
+element=document.getElementById('A7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A7off()
+{
+element=document.getElementById('A7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function A7son()
+{
+element=document.getElementById('A7sp');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('A7sc');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function A7soff()
+{
+element=document.getElementById('A7sp');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('A7sc');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+<script>
+function B7on()
+{
+element=document.getElementById('B7p');
+  {
+  element.src="blue.png";
+  }
+element=document.getElementById('B7c');
+  {
+  element.src="blue.png";
+  }
+}
+</script>
+<script>
+function B7off()
+{
+element=document.getElementById('B7p');
+  {
+  element.src="blank.png";
+  }
+element=document.getElementById('B7c');
+  {
+  element.src="blank.png";
+  }
+}
+</script>
+
+<font class="titlebar" size="+1">&nbsp <a href="dviicechromesafari.html">I'm using Chrome or Safari</a> | <a href="v3/dviice.html">Use V3, the latest version!</a></font>
+
+<table class="harmonica">
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img id="A6sh" onmouseover="A6son()"
+onmouseout="A6soff()" onclick="document.getElementById('A6s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="D4sh" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sh1" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5h1" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5sh" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5sh" onmouseover="F5son()"
+onmouseout="F5soff()" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5sh" onmouseover="A5son()"
+onmouseout="A5soff()" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img id="D6sh" onmouseover="D6son()"
+onmouseout="D6soff()" onclick="document.getElementById('D6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F6sh" onmouseover="F6son()"
+onmouseout="F6soff()" onclick="document.getElementById('F6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B6h" onmouseover="B6on()"
+onmouseout="B6off()" onclick="document.getElementById('B6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C4h" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4h" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4h1" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5h2" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E5h" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5h" onmouseover="G5on()"
+onmouseout="G5off()" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C6h" onmouseover="C6on()"
+onmouseout="C6off()" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E6h" onmouseover="E6on()"
+onmouseout="E6off()" onclick="document.getElementById('E6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G6h" onmouseover="G6on()"
+onmouseout="G6off()" onclick="document.getElementById('G6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C7h" onmouseover="C7on()"
+onmouseout="C7off()" onclick="document.getElementById('C7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="D4h" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4h2" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4h" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5h" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5h" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5h" onmouseover="A5on()"
+onmouseout="A5off()" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B5h" onmouseover="B5on()"
+onmouseout="B5off()" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D6h" onmouseover="D6on()"
+onmouseout="D6off()" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F6h1" onmouseover="F6on()"
+onmouseout="F6off()" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A6h" onmouseover="A6on()"
+onmouseout="A6off()" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C4sh" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sh" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sh" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5sh" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img id="G5sh" onmouseover="G5son()"
+onmouseout="G5soff()" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C6sh" onmouseover="C6son()"
+onmouseout="C6soff()" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F6h2" onmouseover="F6on()"
+onmouseout="F6off()" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G6sh" onmouseover="G6son()"
+onmouseout="G6soff()" onclick="document.getElementById('G6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C7sh" onmouseover="C7son()"
+onmouseout="C7soff()" onclick="document.getElementById('C7s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img id="F4h" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4h" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img id="G4sh2" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="piano">
+<tr>
+<td><img id="C1p" onmouseover="C1on()"
+onmouseout="C1off()" onclick="document.getElementById('C1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C1sp" onmouseover="C1son()"
+onmouseout="C1soff()" onclick="document.getElementById('C1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D1p" onmouseover="D1on()"
+onmouseout="D1off()" onclick="document.getElementById('D1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D1sp" onmouseover="D1son()"
+onmouseout="D1soff()" onclick="document.getElementById('D1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E1p" onmouseover="E1on()"
+onmouseout="E1off()" onclick="document.getElementById('E1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F1p" onmouseover="F1on()"
+onmouseout="F1off()" onclick="document.getElementById('F1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F1sp" onmouseover="F1son()"
+onmouseout="F1soff()" onclick="document.getElementById('F1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G1p" onmouseover="G1on()"
+onmouseout="G1off()" onclick="document.getElementById('G1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G1sp" onmouseover="G1son()"
+onmouseout="G1soff()" onclick="document.getElementById('G1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A1p" onmouseover="A1on()"
+onmouseout="A1off()" onclick="document.getElementById('A1').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A1sp" onmouseover="A1son()"
+onmouseout="A1soff()" onclick="document.getElementById('A1s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B1p" onmouseover="B1on()"
+onmouseout="B1off()" onclick="document.getElementById('B1').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C2p" onmouseover="C2on()"
+onmouseout="C2off()" onclick="document.getElementById('C2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C2sp" onmouseover="C2son()"
+onmouseout="C2soff()" onclick="document.getElementById('C2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D2p" onmouseover="D2on()"
+onmouseout="D2off()" onclick="document.getElementById('D2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D2sp" onmouseover="D2son()"
+onmouseout="D2soff()" onclick="document.getElementById('D2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E2p" onmouseover="E2on()"
+onmouseout="E2off()" onclick="document.getElementById('E2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F2p" onmouseover="F2on()"
+onmouseout="F2off()" onclick="document.getElementById('F2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F2sp" onmouseover="F2son()"
+onmouseout="F2soff()" onclick="document.getElementById('F2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G2p" onmouseover="G2on()"
+onmouseout="G2off()" onclick="document.getElementById('G2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G2sp" onmouseover="G2son()"
+onmouseout="G2soff()" onclick="document.getElementById('G2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A2p" onmouseover="A2on()"
+onmouseout="A2off()" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A2sp" onmouseover="A2son()"
+onmouseout="A2soff()" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B2p" onmouseover="B2on()"
+onmouseout="B2off()" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C3p" onmouseover="C3on()"
+onmouseout="C3off()" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C3sp" onmouseover="C3son()"
+onmouseout="C3soff()" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3p" onmouseover="D3on()"
+onmouseout="D3off()" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3sp" onmouseover="D3son()"
+onmouseout="D3soff()" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E3p" onmouseover="E3on()"
+onmouseout="E3off()" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3p" onmouseover="F3on()"
+onmouseout="F3off()" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3sp" onmouseover="F3son()"
+onmouseout="F3soff()" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3p" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3sp" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3p" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3sp" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B3p" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C4p" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sp" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4p" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4sp" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4p" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4p" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sp" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4p" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sp" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4p" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sp" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4p" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C5p" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5sp" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5p" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5sp" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E5p" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5p" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5sp" onmouseover="F5son()"
+onmouseout="F5soff()" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5p" onmouseover="G5on()"
+onmouseout="G5off()" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5sp" onmouseover="G5son()"
+onmouseout="G5soff()" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5p" onmouseover="A5on()"
+onmouseout="A5off()" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5sp" onmouseover="A5son()"
+onmouseout="A5soff()" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B5p" onmouseover="B5on()"
+onmouseout="B5off()" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C6p" onmouseover="C6on()"
+onmouseout="C6off()" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C6sp" onmouseover="C6son()"
+onmouseout="C6soff()" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D6p" onmouseover="D6on()"
+onmouseout="D6off()" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D6sp" onmouseover="D6son()"
+onmouseout="D6soff()" onclick="document.getElementById('D6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E6p" onmouseover="E6on()"
+onmouseout="E6off()" onclick="document.getElementById('E6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F6p" onmouseover="F6on()"
+onmouseout="F6off()" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F6sp" onmouseover="F6son()"
+onmouseout="F6soff()" onclick="document.getElementById('F6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G6p" onmouseover="G6on()"
+onmouseout="G6off()" onclick="document.getElementById('G6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G6sp" onmouseover="G6son()"
+onmouseout="G6soff()" onclick="document.getElementById('G6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A6p" onmouseover="A6on()"
+onmouseout="A6off()" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A6sp" onmouseover="A6son()"
+onmouseout="A6soff()" onclick="document.getElementById('A6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B6p" onmouseover="B6on()"
+onmouseout="B6off()" onclick="document.getElementById('B6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="C7p" onmouseover="C7on()"
+onmouseout="C7off()" onclick="document.getElementById('C7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C7sp" onmouseover="C7son()"
+onmouseout="C7soff()" onclick="document.getElementById('C7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D7p" onmouseover="D7on()"
+onmouseout="D7off()" onclick="document.getElementById('D7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D7sp" onmouseover="D7son()"
+onmouseout="D7soff()" onclick="document.getElementById('D7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E7p" onmouseover="E7on()"
+onmouseout="E7off()" onclick="document.getElementById('E7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F7p" onmouseover="F7on()"
+onmouseout="F7off()" onclick="document.getElementById('F7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F7sp" onmouseover="F7son()"
+onmouseout="F7soff()" onclick="document.getElementById('F7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G7p" onmouseover="G7on()"
+onmouseout="G7off()" onclick="document.getElementById('G7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G7sp" onmouseover="G7son()"
+onmouseout="G7soff()" onclick="document.getElementById('G7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A7p" onmouseover="A7on()"
+onmouseout="A7off()" onclick="document.getElementById('A7').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A7sp" onmouseover="A7son()"
+onmouseout="A7soff()" onclick="document.getElementById('A7s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B7p" onmouseover="B7on()"
+onmouseout="B7off()" onclick="document.getElementById('B7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+</table>
+<table class="guitar">
+<tr>
+<td><img id="E4g5" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4g5" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sg5" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4g5" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sg4" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4g4" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sg4" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4g4" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5g4" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5sg3" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5g3" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5sg3" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E5g3" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5g3" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5sg2" onmouseover="F5son()"
+onmouseout="F5soff()" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5g2" onmouseover="G5on()"
+onmouseout="G5off()" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5sg2" onmouseover="G5son()"
+onmouseout="G5soff()" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5g2" onmouseover="A5on()"
+onmouseout="A5off()" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5sg1" onmouseover="A5son()"
+onmouseout="A5soff()" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B5g1" onmouseover="B5on()"
+onmouseout="B5off()" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C6g1" onmouseover="C6on()"
+onmouseout="C6off()" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C6sg1" onmouseover="C6son()"
+onmouseout="C6soff()" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D6g1" onmouseover="D6on()"
+onmouseout="D6off()" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="B3g5" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4g5" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sg5" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4g5" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4sg4" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4g4" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4g4" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sg4" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4g4" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sg3" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4g3" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sg3" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4g3" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5g3" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5sg2" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5g2" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5sg2" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E5g2" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5g2" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5sg1" onmouseover="F5son()"
+onmouseout="F5soff()" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5g1" onmouseover="G5on()"
+onmouseout="G5off()" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G5sg1" onmouseover="G5son()"
+onmouseout="G5soff()" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A5g1" onmouseover="A5on()"
+onmouseout="A5off()" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="G3g4" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3sg4" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3g4" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3sg4" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B3g4" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4g4" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sg4" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4g4" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4sg3" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4g3" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4g3" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sg3" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4g3" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sg2" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4g2" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sg2" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4g2" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5g2" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5sg1" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5g1" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D5sg1" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E5g1" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F5g1" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="D3g3" onmouseover="D3on()"
+onmouseout="D3off()" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3sg3" onmouseover="D3son()"
+onmouseout="D3soff()" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E3g3" onmouseover="E3on()"
+onmouseout="E3off()" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3g3" onmouseover="F3on()"
+onmouseout="F3off()" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3sg3" onmouseover="F3son()"
+onmouseout="F3soff()" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3g3" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3sg3" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3g3" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3sg3" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B3g3" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4g3" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sg3" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4g3" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4sg2" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4g2" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4g2" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sg2" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4g2" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4sg1" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4g1" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A4sg1" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B4g1" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C5g1" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="A2g2" onmouseover="A2on()"
+onmouseout="A2off()" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A2sg2" onmouseover="A2son()"
+onmouseout="A2soff()" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B2g2" onmouseover="B2on()"
+onmouseout="B2off()" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C3g2" onmouseover="C3on()"
+onmouseout="C3off()" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C3sg2" onmouseover="C3son()"
+onmouseout="C3soff()" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3g2" onmouseover="D3on()"
+onmouseout="D3off()" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3sg2" onmouseover="D3son()"
+onmouseout="D3soff()" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E3g2" onmouseover="E3on()"
+onmouseout="E3off()" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3g2" onmouseover="F3on()"
+onmouseout="F3off()" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3sg2" onmouseover="F3son()"
+onmouseout="F3soff()" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3g2" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3sg2" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3g2" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3sg2" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B3g2" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4g2" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sg2" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4g2" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4sg1" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E4g1" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4g1" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F4sg1" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G4g1" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img id="E2g1" onmouseover="E2on()"
+onmouseout="E2off()" onclick="document.getElementById('E2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F2g1" onmouseover="F2on()"
+onmouseout="F2off()" onclick="document.getElementById('F2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F2sg1" onmouseover="F2son()"
+onmouseout="F2soff()" onclick="document.getElementById('F2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G2g1" onmouseover="G2on()"
+onmouseout="G2off()" onclick="document.getElementById('G2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G2sg1" onmouseover="G2son()"
+onmouseout="G2soff()" onclick="document.getElementById('G2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A2g1" onmouseover="A2on()"
+onmouseout="A2off()" onclick="document.getElementById('A2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A2sg1" onmouseover="A2son()"
+onmouseout="A2soff()" onclick="document.getElementById('A2s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B2g1" onmouseover="B2on()"
+onmouseout="B2off()" onclick="document.getElementById('B2').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C3g1" onmouseover="C3on()"
+onmouseout="C3off()" onclick="document.getElementById('C3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C3sg1" onmouseover="C3son()"
+onmouseout="C3soff()" onclick="document.getElementById('C3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3g1" onmouseover="D3on()"
+onmouseout="D3off()" onclick="document.getElementById('D3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D3sg1" onmouseover="D3son()"
+onmouseout="D3soff()" onclick="document.getElementById('D3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="E3g1" onmouseover="E3on()"
+onmouseout="E3off()" onclick="document.getElementById('E3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3g1" onmouseover="F3on()"
+onmouseout="F3off()" onclick="document.getElementById('F3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="F3sg1" onmouseover="F3son()"
+onmouseout="F3soff()" onclick="document.getElementById('F3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3g1" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="G3sg1" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3g1" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="A3sg1" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="B3g1" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4g1" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="C4sg1" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img id="D4g1" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="treble1">
+<tr>
+<td><img id="A7c" onmouseover="A7on()"
+onmouseout="A7off()" onclick="document.getElementById('A7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="F7c" onmouseover="F7on()"
+onmouseout="F7off()" onclick="document.getElementById('F7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="D7c" onmouseover="D7on()"
+onmouseout="D7off()" onclick="document.getElementById('D7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="B6c" onmouseover="B6on()"
+onmouseout="B6off()" onclick="document.getElementById('B6').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="G6c" onmouseover="G6on()"
+onmouseout="G6off()" onclick="document.getElementById('G6').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="E6c" onmouseover="E6on()"
+onmouseout="E6off()" onclick="document.getElementById('E6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="C6c" onmouseover="C6on()"
+onmouseout="C6off()" onclick="document.getElementById('C6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A5c" onmouseover="A5on()"
+onmouseout="A5off()" onclick="document.getElementById('A5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F5c" onmouseover="F5on()"
+onmouseout="F5off()" onclick="document.getElementById('F5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="D5c" onmouseover="D5on()"
+onmouseout="D5off()" onclick="document.getElementById('D5').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="B4c" onmouseover="B4on()"
+onmouseout="B4off()" onclick="document.getElementById('B4').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="G4c" onmouseover="G4on()"
+onmouseout="G4off()" onclick="document.getElementById('G4').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="E4c" onmouseover="E4on()"
+onmouseout="E4off()" onclick="document.getElementById('E4').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="C4c2" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+</table>
+<table class="treble2">
+<tr>
+<td><img id="B7c" onmouseover="B7on()"
+onmouseout="B7off()" onclick="document.getElementById('B7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="G7c" onmouseover="G7on()"
+onmouseout="G7off()" onclick="document.getElementById('G7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="E7c" onmouseover="E7on()"
+onmouseout="E7off()" onclick="document.getElementById('E7').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="C7c" onmouseover="C7on()"
+onmouseout="C7off()" onclick="document.getElementById('C7').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="A6c" onmouseover="A6on()"
+onmouseout="A6off()" onclick="document.getElementById('A6').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="F6c" onmouseover="F6on()"
+onmouseout="F6off()" onclick="document.getElementById('F6').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="D6c" onmouseover="D6on()"
+onmouseout="D6off()" onclick="document.getElementById('D6').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="B5c" onmouseover="B5on()"
+onmouseout="B5off()" onclick="document.getElementById('B5').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="G5c" onmouseover="G5on()"
+onmouseout="G5off()" onclick="document.getElementById('G5').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="E5c" onmouseover="E5on()"
+onmouseout="E5off()" onclick="document.getElementById('E5').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="C5c" onmouseover="C5on()"
+onmouseout="C5off()" onclick="document.getElementById('C5').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="A4c" onmouseover="A4on()"
+onmouseout="A4off()" onclick="document.getElementById('A4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="F4c" onmouseover="F4on()"
+onmouseout="F4off()" onclick="document.getElementById('F4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="D4c" onmouseover="D4on()"
+onmouseout="D4off()" onclick="document.getElementById('D4').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="treble3">
+<tr>
+<td><img id="A7sc" onmouseover="A7son()"
+onmouseout="A7soff()" onclick="document.getElementById('A7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F7sc" onmouseover="F7son()"
+onmouseout="F7soff()" onclick="document.getElementById('F7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C7sc" onmouseover="C7son()"
+onmouseout="C7soff()" onclick="document.getElementById('C7s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A6sc" onmouseover="A6son()"
+onmouseout="A6soff()" onclick="document.getElementById('A6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F6sc" onmouseover="F6son()"
+onmouseout="F6soff()" onclick="document.getElementById('F6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C6sc" onmouseover="C6son()"
+onmouseout="C6soff()" onclick="document.getElementById('C6s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A5sc" onmouseover="A5son()"
+onmouseout="A5soff()" onclick="document.getElementById('A5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F5sc" onmouseover="F5son()"
+onmouseout="F5soff()" onclick="document.getElementById('F5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C5sc" onmouseover="C5son()"
+onmouseout="C5soff()" onclick="document.getElementById('C5s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A4sc" onmouseover="A4son()"
+onmouseout="A4soff()" onclick="document.getElementById('A4s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F4sc" onmouseover="F4son()"
+onmouseout="F4soff()" onclick="document.getElementById('F4s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C4sc2" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table
+
+</table>
+<table class="treble4">
+<tr>
+<td><img id="G7sc" onmouseover="G7son()"
+onmouseout="G7soff()" onclick="document.getElementById('G7s').play()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="19"></td>
+</tr>
+<tr>
+<td><img id="D7sc" onmouseover="D7son()"
+onmouseout="D7soff()" onclick="document.getElementById('D7s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img id="G6sc" onmouseover="G6son()"
+onmouseout="G6soff()" onclick="document.getElementById('G6s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="22"></td>
+</tr>
+<tr>
+<td><img id="D6sc" onmouseover="D6son()"
+onmouseout="D6soff()" onclick="document.getElementById('D6s').play()" src="blank.png" width="27" height="25"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img id="G5sc" onmouseover="G5son()"
+onmouseout="G5soff()" onclick="document.getElementById('G5s').play()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="D5sc" onmouseover="D5son()"
+onmouseout="D5soff()" onclick="document.getElementById('D5s').play()" src="blank.png" width="27" height="24"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="37"></td>
+</tr>
+<tr>
+<td><img id="G4sc" onmouseover="G4son()"
+onmouseout="G4soff()" onclick="document.getElementById('G4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="D4sc" onmouseover="D4son()"
+onmouseout="D4soff()" onclick="document.getElementById('D4s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+<table class="bass1">
+<tr>
+<td><img id="C4c1" onmouseover="C4on()"
+onmouseout="C4off()" onclick="document.getElementById('C4').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="A3c" onmouseover="A3on()"
+onmouseout="A3off()" onclick="document.getElementById('A3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="F3c" onmouseover="F3on()"
+onmouseout="F3off()" onclick="document.getElementById('F3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="D3c" onmouseover="D3on()"
+onmouseout="D3off()" onclick="document.getElementById('D3').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="B2c" onmouseover="B2on()"
+onmouseout="B2off()" onclick="document.getElementById('B2').play()" src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img id="G2c" onmouseover="G2on()"
+onmouseout="G2off()" onclick="document.getElementById('G2').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="E2c" onmouseover="E2on()"
+onmouseout="E2off()" onclick="document.getElementById('E2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="C2c" onmouseover="C2on()"
+onmouseout="C2off()" onclick="document.getElementById('C2').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="A1c" onmouseover="A1on()"
+onmouseout="A1off()" onclick="document.getElementById('A1').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="F1c" onmouseover="F1on()"
+onmouseout="F1off()" onclick="document.getElementById('F1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="D1c" onmouseover="D1on()"
+onmouseout="D1off()" onclick="document.getElementById('D1').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass2">
+<tr>
+<td><img id="B3c" onmouseover="B3on()"
+onmouseout="B3off()" onclick="document.getElementById('B3').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="G3c" onmouseover="G3on()"
+onmouseout="G3off()" onclick="document.getElementById('G3').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="E3c" onmouseover="E3on()"
+onmouseout="E3off()" onclick="document.getElementById('E3').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="C3c" onmouseover="C3on()"
+onmouseout="C3off()" onclick="document.getElementById('C3').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="A2c" onmouseover="A2on()"
+onmouseout="A2off()" onclick="document.getElementById('A2').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="F2c" onmouseover="F2on()"
+onmouseout="F2off()" onclick="document.getElementById('F2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="D2c" onmouseover="D2on()"
+onmouseout="D2off()" onclick="document.getElementById('D2').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="B1c" onmouseover="B1on()"
+onmouseout="B1off()" onclick="document.getElementById('B1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="G1c" onmouseover="G1on()"
+onmouseout="G1off()" onclick="document.getElementById('G1').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="E1c" onmouseover="E1on()"
+onmouseout="E1off()" onclick="document.getElementById('E1').play()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img id="C1c" onmouseover="C1on()"
+onmouseout="C1off()" onclick="document.getElementById('C1').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass3">
+<tr>
+<td><img id="C4sc1" onmouseover="C4son()"
+onmouseout="C4soff()" onclick="document.getElementById('C4s').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="A3sc" onmouseover="A3son()"
+onmouseout="A3soff()" onclick="document.getElementById('A3s').play()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img id="F3sc" onmouseover="F3son()"
+onmouseout="F3soff()" onclick="document.getElementById('F3s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C3sc" onmouseover="C3son()"
+onmouseout="C3soff()" onclick="document.getElementById('C3s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A2sc" onmouseover="A2son()"
+onmouseout="A2soff()" onclick="document.getElementById('A2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F2sc" onmouseover="F2son()"
+onmouseout="F2soff()" onclick="document.getElementById('F2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C2sc" onmouseover="C2son()"
+onmouseout="C2soff()" onclick="document.getElementById('C2s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="A1sc" onmouseover="A1son()"
+onmouseout="A1soff()" onclick="document.getElementById('A1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img id="F1sc" onmouseover="F1son()"
+onmouseout="F1soff()" onclick="document.getElementById('F1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img id="C1sc" onmouseover="C1son()"
+onmouseout="C1soff()" onclick="document.getElementById('C1s').play()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass4">
+<tr>
+<td><img id="G3sc" onmouseover="G3son()"
+onmouseout="G3soff()" onclick="document.getElementById('G3s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img id="D3sc" onmouseover="D3son()"
+onmouseout="D3soff()" onclick="document.getElementById('D3s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img id="G2sc" onmouseover="G2son()"
+onmouseout="G2soff()" onclick="document.getElementById('G2s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="23"></td>
+</tr>
+<tr>
+<td><img id="D2sc" onmouseover="D2son()"
+onmouseout="D2soff()" onclick="document.getElementById('D2s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img id="G1sc" onmouseover="G1son()"
+onmouseout="G1soff()" onclick="document.getElementById('G1s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img id="D1sc" onmouseover="D1son()"
+onmouseout="D1soff()" onclick="document.getElementById('D1s').play()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+</body>
+</html>

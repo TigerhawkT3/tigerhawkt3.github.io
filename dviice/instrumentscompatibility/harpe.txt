@@ -1,0 +1,84 @@
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="D7" onclick="document.getElementById('D7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="G4" onclick="document.getElementById('G4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onclick="document.getElementById('G5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onclick="document.getElementById('A5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onclick="document.getElementById('D6').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onclick="document.getElementById('G6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onclick="document.getElementById('A6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7s" onclick="document.getElementById('D7s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="E4" onclick="document.getElementById('E4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onclick="document.getElementById('G4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onclick="document.getElementById('E5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onclick="document.getElementById('G5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onclick="document.getElementById('B5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onclick="document.getElementById('E6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onclick="document.getElementById('G6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onclick="document.getElementById('B6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="E7" onclick="document.getElementById('E7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="F4s" onclick="document.getElementById('F4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onclick="document.getElementById('B4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onclick="document.getElementById('D5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onclick="document.getElementById('F5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onclick="document.getElementById('A5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onclick="document.getElementById('C6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onclick="document.getElementById('D6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onclick="document.getElementById('F6s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onclick="document.getElementById('C7s').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="F4" onclick="document.getElementById('F4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onclick="document.getElementById('A4s').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onclick="document.getElementById('D5').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onclick="document.getElementById('F5').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onclick="document.getElementById('C6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onclick="document.getElementById('F6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onclick="document.getElementById('A6').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7" onclick="document.getElementById('C7').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7" onclick="document.getElementById('F7').play()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onclick="document.getElementById('A4').play()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onclick="document.getElementById('C5s').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onclick="document.getElementById('C5').play()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>

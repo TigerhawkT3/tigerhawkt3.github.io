@@ -1,0 +1,86 @@
+﻿<html>
+	
+<head>
+	<title>What's new</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.6.2.573">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Chess.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Whatsnew");
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">What's new</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Introduction.html">Introduction</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Introduction.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Welcome.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="GettingStarted.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p class="rvps2"><span class="rvts6">Chess 11 includes the following updates:</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><a class="rvts13" href="Navigation.html">Visible move list</a><span class="rvts6">: a new pane to the right of the board displays the current game's stored list of moves in </span><a class="rvts13" href="ICCFnotation.html">ICCF format</a></li>
+<li class="rvps2"><a class="rvts13" href="Promotion1.html">Promotion</a><span class="rvts6">: you can now promote a pawn to a queen, rook, bishop, or knight</span></li>
+<li class="rvps2"><a class="rvts13" href="ImportICCFandopen.html">Import ICCF</a><span class="rvts6">: you can now import a list of moves in ICCF notation to be automatically converted into Chess's native format and loaded into the game</span></li>
+<li class="rvps2"><a class="rvts13" href="ExportgameinICCFnotation.html">Export ICCF</a><span class="rvts6">: you can now export the current game's stored list of moves to ICCF notation</span></li>
+<li class="rvps2"><a class="rvts13" href="Exportallnotations.html">Export notations</a><span class="rvts6">: you can now export the current game's stored list of moves to a tab-delimited list of moves in several notations</span></li>
+<li class="rvps2"><span class="rvts6">Bug fix: you can no longer move for the computer after stepping back to its turn</span></li>
+<li class="rvps2"><span class="rvts6">Bug fix: Castling moves are now properly highlighted when being replayed in either direction</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Chess 11 uses a new save file format that allows for pawn underpromotion. It is compatible with save files from version 9 or 10 which do not contain pawn promotions, as promotion moves in those save files lack the promotion indicator character that lets Chess 11 differentiate between saved moves and manual moves. You can update an incompatible save file from version 9 or 10 by editing the file and adding a "1" to the end of each promotion move.</span></p>
+<p></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2015 by David Muller. All Rights Reserved.</div>
+		</div>
+	</body>
+	
+</html>
+

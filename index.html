@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/ico" href="images/favicon.ico">
+<title>The Home of TigerhawkT3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td>
+<div class="btn-group">
+<a class="button current"><span>Home</span></a>
+  <a href="programming.html" class="button"><span>Programming</span></a>
+  <a href="music.html" class="button"><span>Music</span></a>
+  <a href="articles.html" class="button"><span>Articles</span></a>
+  <a href="other.html" class="button"><span>Other</span></a>
+</div></td></tr></table>
+<table width="700" height="20%" border="0" align="center" cellpadding="10" cellspacing="0">
+  <tr>
+    <th width="700" scope="col"><font size="5">Welcome to my website! I hope you enjoy your stay.</font></th>
+  </tr>
+  <tr>
+    <th scope="col"><div align="left">
+      <pre>
+<comment># yay, programming!</comment>
+rate = <number>0.96</number>
+potency = <number>100</number>
+month = <number>1</number>
+<keyword>while</keyword> potency > <number>50</number>:
+    <keyword>print</keyword>(month, potency)
+    month += <number>1</number>
+    potency *= rate
+
+<keyword>print</keyword>(month, potency, <string>'discard'</string>)
+
+<comment># might as well one-line it&trade;</comment>
+[<keyword>None</keyword> <keyword>for</keyword> dct <keyword>in</keyword> [{<string>'month'</string>:<number>1</number>, <string>'rate'</string>:<number>.96</number>, <string>'potency'</string>:<number>100</number>}]
+          <keyword>for</keyword> x <keyword>in</keyword> iter(<keyword>lambda</keyword>: dct[<string>'potency'</string>]><number>50</number>, <keyword>False</keyword>)
+              <keyword>if</keyword> (<keyword>print</keyword>(dct[<string>'month'</string>], dct[<string>'potency'</string>]),
+                  dct.__setitem__(<string>'month'</string>, dct[<string>'month'</string>]+<number>1</number>), 
+                  dct.__setitem__(<string>'potency'</string>, dct[<string>'potency'</string>]*dct[<string>'rate'</string>]),
+                  dct[<string>'potency'</string>]<<number>50</number>)[-<number>1</number>]
+                <keyword>and</keyword> <keyword>print</keyword>(dct[<string>'month'</string>], dct[<string>'potency'</string>], <string>'discard'</string>)] <keyword>or</keyword> <keyword>None</keyword></pre>
+    </div></th>
+  </tr>
+</table>
+<table width="700"  border="0" align="center" cellpadding="0" cellspacing="0" style="text-align:justify">
+  <tr>
+    <td><div align="center">
+      <p><strong><font size="+3" face="Helvetica, sans-serif, Arial Black">NEWS</font><font face="Helvetica, sans-serif, Arial Black"><br />
+      <br />
+        </font> </strong></p>
+    </div></td>
+  </tr>
+  <tr>
+    <td><p>
+        <date>20180515:</date> The <a href="dviice/v3/dviice.html">DVIICE</a> has been updated with new back-end code that allows it to work outside of an Apache-capable server. This opens it up to hosting on more basic servers, and it can even run locally, with all features! It used to load instruments by retrieving the corresponding file, reading its contents, parsing those contents as HTML, and inserting that into the page. Now the instruments are stored as strings in a script, and I can simply access them directly. It's like going from Python code of <code>num = int(open('data.txt').read())</code> to <code>from data import num</code>. Much easier, and not something I would've thought of when I first started writing the original DVIICE back in 2013, before I'd actually learned programming. Anyway, it works the same as before, only now it's available as <a href="dviice/v3/dviice_v3.zip">a zip file</a> for local use. Enjoy!<br /><br />
+        <em>I also added the ability to select sine, triangle, square, or sawtooth waves with Q, W, E, and R, and set vibrato levels with "`" (off) through 5 (strong). Because.</em><br /><br />
+        <details><summary>2018</summary><br />
+        <date>20180507:</date><h2>OH MY GOD THE SITE LOOKS DIFFERENT</h2>
+        Yes. I changed it.<br /><br />
+        It's been about ten years since I last updated this site's look and organization. I realized that all the categories in the navigation bar pointed to things I haven't updated in years, while all the relatively recent stuff was buried in this "News" area. No more! I not only made relevant content more accessible (I didn't delete the legacy pages; your bookmarks won't break), I also updated the code behind the navigation bar. It no longer consists of huge blocks of JavaScript that swap out hand-made images of text - it's pure CSS. Along with the change a few days ago moving to the <code>details</code> HTML tag for collapsible sections, this site gets along without JavaScript except on pages like <a href="time/index.html">the clock</a> or <a href="dviice/v3/dviice.html">the DVIICE</a>.<br /><br />
+        <date>20180506:</date> The <a href="time/index.html">clock</a> had a slight problem on mobile: if the device locked (screen off), the function that announced the time couldn't fire, and there's no way to break through that barrier. However, if the device locks while that function is in progress, it's allowed to complete. My solution was to abandon <code>setInterval</code> (which is the obvious and correct solution for a clock or timer) and set up a wrapper function that calls the primary updating function in a loop, with a one-second sleep. Devices may block functions from starting, but they won't block functions from continuing, so this "foot in the door" lets us hang on to the necessary permissions. So now that works.<br /><br />
+        I also changed the notes from C/F/D/G to C4/E4/G4/C5 (C5/E5/G5/C6 on mobile), for better clarity on which digit is playing.<br /><br />
+        <date>20180503:</date> Two updates again! First, <a href="time/index.html">the clock</a> now lets you click/tap anywhere on the page if you're on a mobile device, so you don't have to tap the text and have the browser try to highlight it. The mobile version also plays an octave higher (from C5 instead of C4), which is easier for small speakers.<br /><br />
+        Second, <a href="dviice/v3/dviice.html">Version 3 of the DVIICE</a> now allows playback! Enter a BPM in the box to the right of the "notes" area (the default is 120 BPM), and click "Play!". Use a space for rests.<br /><br />
+        <date>20180503:</date> Yes, two updates in one push. The stylesheet I started using back in 2015 just so happens to be bad at actually loading pages. It sometimes tried to add a fade effect to transition to a new page, and sometimes it would either require a refresh on the new page or simply fail with an error. Well, after first changing everything to work with some <a href="https://www.w3schools.com/howto/howto_js_accordion.asp">pure HTML5/JS/CSS code I found</a>, I kept looking and apparently there's now HTML that literally does exactly what I want with nothing but a <a href="https://www.w3schools.com/tags/tag_details.asp"><code>details</code> tag and a <code>summary</code></a> tag. So now we're back to the old look, just tidied up a bit.<br /><br />
+        <date>20180502:</date> Remember when I <a href="time.html">made a clock</a> a few weeks ago? A clean, simple, uncluttered clock? Well, <a href="time/index.html">I cluttered it</a>. The clutter is in the source code, though, and it doesn't load the audio unless you use it, so that's something. Anyway, if you use it the same way as you did the old version, there's no difference. However, you can now click/tap the time, and you'll get a dialog box asking how often you want to hear the time. If you provide a positive integer, it'll beep out the time immediately and then again when the minute is a multiple of n:
+        <ol><li>First digit of hour, C4 for 0 and F4 for 1</li>
+            <li>Second digit of hour, C4 for 0 and F4 for 1</li>
+            <li>First digit of minute, D4 for 0 and G4 for 1</li>
+            <li>Second digit of minute, D4 for 0 and G4 for 1</li></ol>
+        So 14:05 would be F FCC D GDG.<br /><br />
+        Note that the original version is now preserved at <a href="time.html">tigerhawkt3.com/time.html</a> while the new version has replaced the old version at <a href="time/index.html">tigerhawkt3.com/time/index.html</a>.<br /><br />
+        <date>20180412:</date> It's surprisingly hard to find a good, simple clock these days. <a href="http://www.time.gov">time.gov</a> is the standard, of course, with time zones, delay correction, a daylight map, and so on. However, the actual clock widget is very small, and they disable the dynamic update on days where the time changes to ease the server load. So I made my own. And then I made another, and another. First I made one in <a href="big_clock.pyw">Python with tkinter</a>, because I like Python and tkinter. That seemed like overkill, so I tried <a href="simple_clock.ps1">PowerShell</a> - it works fine, but styling is quite difficult in PowerShell and my solution for a large display was Windows Magnifier... not ideal. Then I thought maybe <a href="time.html">HTML5/JS/CSS</a> would work, and it turns out that it does.<br /><br />
+        I briefly toyed with centering the display vertically, but that doesn't play well with Chrome for Android's address bar. The window size doesn't take the address bar into account, so content that fits in the window without any scrolling can be hidden under the address bar and the address bar can't be collapsed because that only happens when you scroll down. Android isn't even capable of opening local HTML files in Chrome, and Chrome for Android doesn't have a "view source" option, so that was kind of a pain as well. I don't really like the mobile environment.<br /><br />
+        Anyway, the HTML version is a simple clock with no applets, ads, or distractions. It works on any device with a modern browser. Note that it gets the time from your device rather than from an online timekeeping service.<br /><br />
+        </details>
+        <details><summary>2017</summary><br />
+        <date>20171028:</date> I needed a stopwatch today. When you Google "stopwatch," Google gives you a page with a stopwatch widget. But it still shows the regular search results, which are full of Flash stopwatches. I was sure that was unnecessary, as a stopwatch is just a timer with a couple buttons and a single dynamic element.<br /></br>
+        Five hours later, I have a <a href="http://www.tigerhawkt3.com/stopwatch.html">Stopwatch</a> that not only lets you run a single timer like normal people want to do, but also allows you to split a session into segments (a "lap timer"), soft-reset completed sessions into a table, keep track of totals and split times, and keep the buttons in sight at the top while also auto-scrolling to the latest split. Press "start/stop" to make the timer run or pause, press "split/reset" while running to split, press "split/reset" while stopped to save the current session and start a new one, and press "split/reset" again before starting the next session to completely reset it.<br /><br />
+        <date>20170627:</date> Guess what! Something in JS's string replace or parseInt API changed in the last few months, so the <a href="http://www.tigerhawkt3.com/sto_superstream.html">HTML/JS STO loot parser</a> was giving wrong results. Instead of replacing all the commas and parsing the result to an integer like "1,000,000" to "1000000" to 1000000, it was parsing "1,000,000" to "1000,000" to 1000. Which is, of course, dreadfully wrong. Fortunately, I double-checked the results for digital rust when I ran it for the first time in a few months, and noticed the discrepancy! It's not paranoia if it actually happens. :) Anyway, I fixed it. If you've been using it between release and this date, rerun it.<br />
+        <br />
+        <date>20170605:</date> <a href="dviice/v3/dviice.html">Version 3 of the DVIICE</a> now supports logging for keyboard input! Just click the text box before playing notes, and there you have it. Click outside the text box if you don't want played notes to show up there.<br />
+        <br />
+        <date>20170509:</date> <a href="dviice/v3/dviice.html">Version 3 of the DVIICE</a> now supports keyboard input! Play natural notes and sharps in a range of two octaves, selected with ZXCASD. For more, see the <a href="http://tigerhawkt3.com/dviice/v3/help.html">Help</a>.<br />
+        <br />
+        <date>20170105:</date> I wrote a log parser with many loot analysis methods for Star Trek Online in Python last year. I recently rewrote it into a streamlined version and a further-streamlined version in both Python and Julia, as well as a <a href="http://www.tigerhawkt3.com/sto_superstream.html">JavaScript version</a> of the more-streamlined algorithm. GitHub links:
+        <ul><li><a href="https://github.com/TigerhawkT3/sto_loot_parser">The original parser</a></li>
+        <li><a href="https://github.com/TigerhawkT3/small_scripts/blob/master/sto_loot_parser_streamlined.py">The streamlined Python parser</a></li>
+        <li><a href="https://github.com/TigerhawkT3/small_scripts/blob/master/sto_superstream.py">The further-streamlined Python parser</a></li>
+        <li><a href="https://github.com/TigerhawkT3/small_scripts/blob/master/sto_loot_parser_streamlined.jl">The streamlined Julia parser</a></li>
+        <li><a href="https://github.com/TigerhawkT3/small_scripts/blob/master/sto_superstream.jl">The further-streamlined Julia parser</a></li></ul>
+        If you want a full version with a powerful analysis engine, use the original parser. It allows you to show daily totals, daily cumulative totals, lockbox wins, Dabo results, and more, with any item or category of items you like. If you want a simpler version, use the <a href="http://www.tigerhawkt3.com/sto_superstream.html">JavaScript version</a>, as all you have to do is click the link and select your files. It will give you daily totals for Contraband, Dilithium, Dilithium Ore, and Energy Credits. I chose that analysis and those items because those are the figures I'm interested in tracking. If you need more flexibility, use the original version written in Python.<br />
+        <br />
+        </details>
+        <details><summary>2016</summary><br />
+        <date>20160429:</date> I've been streaming on YouTube every day now for over a month. I alternate "Let's Play" days and "Let's Code" days. You'll see me either playing a video game for PC, Sega Genesis, or Nintendo 64, or writing a bit of Python code. You can check out my channel <a href="https://www.youtube.com/channel/UCwjSKYidCQSFLaJUl36E_jA">here</a>.<br />
+        <br />
+        </details>
+        <details><summary>2015</summary><br />
+        <date>20151213:</date> Are <a href="ebooksandemulators.html">Ebooks and Emulators</a> valuable new technologies, or phonies to be scorned? This article is about twice as long as <a href="whywindows.html">Why Windows?</a>, but it has pictures.<br />
+        <p>
+        <date>20150917:</date> Chess 11! It uses a new chess notation module I wrote. It's a useful module in its own right: it supports pipes and redirection from your favorite command shell, and can export to space-aligned or tab-delimited output. You'll find it in the Chess 11 source files.<br />
+        <br />
+        Chess 11 has the following new features/fixes:
+        <ul>
+            <li>There is a new pane to the right of the game board that shows a list of the current game's moves, in ICCF notation.</li>
+            <li>You can underpromote a pawn to any piece (queen, rook, bishop, knight) instead of the game automatically forcing a queen promotion.</li>
+            <li>Instead of only being able to load a list of moves in the game's internal notation (which was pretty close to ICCF notation), you can now import a list of moves in ICCF notation, and it will be converted and loaded automatically.</li>
+            <li>Similarly, you can now export a list of moves in ICCF notation.</li>
+            <li>You can export a tab-delimited chart of the current game's moves in a variety of notations. You can't import this whole thing back into the game, but you can isolate the ICCF column and import that.</li>
+            <li>Bug fix: you can no longer move for the AI by stepping back to its turn.</li>
+            <li>Bug fix: castling moves are highlighted properly during navigation.</li>
+        </ul>
+        Get the <a href="Chess11_src.zip">source</a>, the <a href="Chess11_win32.zip">32-bit Windows version</a>, or the <a href="Chess11_win64.zip">64-bit Windows version</a>.<br />
+        <br />
+        <date>20150605:</date> New look for this page. I wanted to put the older news items into a collapsible widget, and the ready-made stylesheet I <a href="http://www.w3schools.com/jquerymobile/jquerymobile_collapsibles.asp">found on w3schools</a> looked like this. Not-quite-black text, off-white background, and sans serif fonts. I think it looks fine. Either way, I don't plan to apply this stylesheet to any other pages.<br />
+        <br />
+        <date>20150425:</date> Chess 10 is here! New features include the following:
+        <ul>
+            <li>Volume control</li>
+            <li>Time control</li>
+            <li>Background image selection</li>
+            <li>Background animation color selection</li>
+            <li>Grid line color selection</li>
+            <li>Developer console (use with caution)</li>
+        </ul>
+        Get the <a href="Chess10_src.zip">source</a>, the <a href="Chess10_win32.zip">32-bit Windows version</a>, or the <a href="Chess10_win64.zip">64-bit Windows version</a>.<br />
+        <br />
+        <date>20150228:</date> <a href="whywindows.html">Why do I prefer Windows?</a> The answer is a few screens long. You should get a snack.<br />
+        <br />
+        <date>20150222:</date> There are several new things here that I have neglected to put in this news area. Sorry.<br />
+        <br />
+        First, what's the smallest floating-point number your device can handle before it rounds to zero? Find out with the <a href="smallest_float.html">Smallest Float</a> page.<br />
+        <br />
+        Next, there is a <a href="wintereventschedule.html">schedule</a> for the Winter Wonderland events that occur in Star Trek Online during the winter event. It won't be too useful right now, but just wait until December rolls around.<br />
+        <br />
+        There is a <a href="images/sto_maze.gif">map</a> of the server room maze in the Star Trek Online episode "Dust to Dust." There is a special bridge officer you can find in that maze, but it's in a random dead end, so you'll just have to have a look around.<br />
+        <br />
+        I learned Python last year. It's a straightforward language to learn, and a great language to do things in. One of the things I have made so far is a program to help plan half-square quilting patterns (my sister quilts). It is available as <a href="quiltingpattern2_src.zip">source</a> and as a <a href="QuiltingPattern2.zip">frozen package</a> that runs on 32-bit Windows PCs without needing a Python installation. There's also an earlier version 1 (<a href="quiltingpattern1_src.zip">source</a> or <a href="quiltingpattern1.zip">frozen</a>), but you don't want that. Still, it's there, because data. After starting it up, you'll find instructions at the bottom of the window.<br />
+        <br />
+        Another thing I have made so far - or, I should say, something I make - is a chess game. It is currently on version 9, and I'm working on version 10. I'm keeping old versions available, but I very highly recommend getting the latest one to avoid bugs (not to mention all the cool new features I keep adding).<br /><br />
+        <a href="chess.zip">Chess 5 with piece icons</a><br />
+        <a href="chess5-py.zip">Chess 5, source only</a><br />
+        <a href="chess6.zip">Chess 6, source</a><br />
+        <a href="Chess8.zip">Chess 8, frozen</a><br />
+        <a href="Chess8_src.zip">Chess 8, source</a><br />
+        <a href="Chess9.zip">Chess 9, old frozen release</a><br />
+        <a href="Chess9_src.zip">Chess 9, source</a><br />
+        <a href="Chess9_win32.zip">Chess 9, win32</a><br />
+        <a href="Chess9_win64.zip">Chess 9, win64</a><br />
+        <br />
+        Those last three are all the latest version, until I'm done with version 10.<br />
+        <br />
+        </details>
+        <details><summary>2014</summary><br />
+        <date>20140616:</date> The DVIICE V3 now has the ukulele in various tunings.<br />
+        <br />
+        <date>20140327:</date> The DVIICE V3 now has Powerbender harps in a full range of 14 keys, from Low F to High G. I have also added natural minor harp tunings, from Abm to Gm.<br />
+        <br />
+        <date>20140305:</date> <a href="dviice/v3/dviice.html">Version 3 of the DVIICE</a> is now available. Switch between Chrome/Safari and Compatibility modes on the fly, with the click of a button. Assign instruments to instrument zones with a unified menu.<br />
+        <br />
+        <date>20140101:</date> The DVIICE now loads instruments and their images in a single click. Added Powerbender tuning (just C for now) to Instrument 1.<br />
+        <br />
+        </details>
+        <details><summary>2013</summary><br />
+        <date>20131215:</date> The DVIICE now has alternate guitar tunings, including open tunings, all fourths, DADGAD, and more.<br />
+        <br />
+        <date>20130903:</date> I have updated the DVIICE with new functionality and better coding. You can now select from a variety of instruments/keys for Instrument 1, Instrument 2, and Instrument 3. Remember to use the &quot;Display (X)&quot; button if you're choosing an instrument with a different layout. There is a <a href="dviice/dviicechromesafari-v2.html">Chrome/Safari version</a>, and a <a href="dviice/dviicecompatibility-v2.html">compatibility version</a>. Many thanks to &quot;Old Pedant&quot; at www.codingforums.com for his patience and generosity with giving me a new highlighting methodology and helping troubleshoot and debug the whole thing.<br />
+        <br />
+        <date>20130822:</date> I have created the Digital Virtual Instantaneous Instrument Comparator and Emulator, or DVIICE, a tool that allows users to compare note positions between a 10-hole diatonic harmonica, a six-string guitar, a piano, and a musical scale. Mouse over a note to display all enharmonic (equivalent) notes, and click a note to play it (uses an equal-tempered scale). The <a href="dviice/dviicechromesafari.html">Chrome/Safari version</a> (using the Web Audio API) allows you to hold the button down for a continuous note, while the <a href="dviice/dviicecompatibility.html">compatibility version</a> (using HTML5 - works on modern browsers) produces fixed tones of one beat (half a second) in length.<br />
+        <br />
+        Want to change a guitar tab into a harmonica tab? Use the DVIICE to quickly translate each fret on the guitar to the proper hole (with any required overblows or bends) on the harmonica. Want to create sheet music out of your harmonica ditty? Tell the DVIICE how it goes on the harmonica, and it will show you where each note belongs.<br />
+        <br />
+        You can find links for each version in the &quot;<a href="other.htm">Other</a>&quot; section, accessed via the eponymous button on the navigation bar. Save it for offline use by downloading and extracting <a href="dviice.zip">this zip file</a>.<br />
+        <br />
+        </details>
+        <details><summary>2012</summary><br />
+        <date>20120912:</date> I'm now posting <a href="lolreplay/index.htm">replays of my League of Legends matches</a>.<br />
+        <br />
+        <date>20120428:</date> Added a large batch of rage comics. Now at 58 comics.<br />
+        <br />
+        </details>
+        <details><summary>2011</summary><br />
+        <date>20110814:</date> I made a <a href="ragegallery.htm">gallery for my rage comics</a>.<br />
+        <br />
+        <date>20110814:</date> I wrote a review for the Fenix TK35 and posted it on 4sevens.com. I didn't take any pictures for it, so I'm just going to link to it instead of making my own page for it. <a href="http://www.4sevens.com/product_reviews_info.php?products_id=2586&reviews_id=997">Here it is</a>.<br />
+        <br />
+        <date>20110808:</date> Did you know that I have a <a href="career/index.htm">Career</a>? True story. <br />
+        <br />
+        </details>
+        <details><summary>2010</summary><br />
+        <date>20100823:</date> WoW-related: GraphCalc <a href="wowstuff">scripts</a> for warrior/bear rage generation as of patch 3.3.5. <br />
+        <br />
+        </details>
+        <details><summary>2008</summary><br />
+        <date>20080422:</date> The <a href="lbdl_1.htm">short film &quot;Look, But Don't Lick&quot;</a> is up.<br />
+        <br />
+        <date>20080316:</date> I gave Paul his birthday present, and he liked it! <a href="birthdaymag_gift_1.htm">Video here</a>. I've also added a <a href="hbt_lights_1.htm">little video</a> that's funny for you but annoying for me.<br />
+        <br />
+        <date>20080314:</date> Happy 21st birthday, Paul! There's a <a href="birthdaymag_1.htm">video</a> of Paul's newly modded flashlight build, a fully dimmable Maglite.<br />
+        <br />
+        <date>20080306:</date> The <a href="welcomemat.htm">Welcome Mat</a> has been updated! The new version can be found <a href="welcomemat">here</a>.<br />
+        <br />
+        <date>20080222:</date> If you'd like your banner ad near the top of this page, please <a href="contact.html">contact me</a>.<br />
+        <br />
+        <date>20080217:</date> I've added a new clip to the <a href="myvideos.htm">videos</a> page. Enjoy!<br />
+        <br />
+        <date>20080206:</date> If you want to view my videos but don't want to stream it in a Flash player, you can download the .avi versions and view them easily at your convenience. Just go to the <a href="http://tigerhawkt3.com/videos">http://tigerhawkt3.com/videos</a> directory.<br />
+        <br />
+        <date>20080206:</date> I'm going to start providing updates about the site. It'll include new features, content, and so on.</p>
+        </p>
+        </details>
+      <div align="center"></div></td>
+  </tr>
+</table>
+<p align="center"><a href="contact.html">Contact</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

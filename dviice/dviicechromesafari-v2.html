@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DVIICE</title>
+<meta name="description" content="Digital Virtual Instantaneous Instrument Comparator and Emulator">
+<meta name="keywords" content="music,musical,musician,musicians,note,notes,
+ instrument,instrumental,tool,education,educational,learn,learning,
+ harmonica,diatonic,piano,guitar,treble,bass,clef,scale,
+ compare,comparison,chart,diagram,layout,emulate,emulator,emulation">
+<meta name="author" content="David 'TigerhawkT3' 'Farranor' Muller">
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end of reset tool */
+/* Thanks to www.softsynth.com for the Web Audio API
+   file and the tone-generating javascript code. */
+/* This page was conceived, designed, and coded for
+   www.tigerhawkt3.com, by me, David "TigerhawkT3"
+   "Farranor" Muller, except for the noted segments.
+   Many, many thanks to "Old Pedant" at
+   www.codingforums.com for the streamlined
+   highlighting function and extensive troubleshooting
+   help. */
+img
+{
+display: block;
+}
+table.instrument1
+{
+position:absolute;
+left:26px;
+top:39px;
+}
+table.instrument2
+{
+position:absolute;
+left:719px;
+top:39px;
+}
+table.instrument3
+{
+position:absolute;
+left:26px;
+top:502px;
+}
+div.instrumentimg1
+{
+position:absolute;
+left:26px;
+top:39px;
+z-index:-1;
+}
+div.instrumentimg2
+{
+position:absolute;
+left:719px;
+top:39px;
+z-index:-1;
+}
+div.instrumentimg3
+{
+position:absolute;
+left:26px;
+top:502px;
+z-index:-1;
+}
+table.treble1
+{
+position:absolute;
+left:1616px;
+top:76px;
+}
+table.treble2
+{
+position:absolute;
+left:1644px;
+top:60px;
+}
+table.treble3
+{
+position:absolute;
+left:1672px;
+top:65px;
+}
+table.treble4
+{
+position:absolute;
+left:1701px;
+top:81px;
+}
+table.bass1
+{
+position:absolute;
+left:1616px;
+top:517px;
+}
+table.bass2
+{
+position:absolute;
+left:1644px;
+top:532px;
+}
+table.bass3
+{
+position:absolute;
+left:1672px;
+top:508px;
+}
+table.bass4
+{
+position:absolute;
+left:1701px;
+top:555px;
+}
+table.choose1
+{
+position:absolute;
+left:666px;
+top:11px;
+z-index:0;
+}
+table.choose2
+{
+position:absolute;
+left:1480px;
+top:39px;
+z-index:1;
+}
+table.choose3
+{
+position:absolute;
+left:26px;
+top:950px;
+z-index:1;
+}
+table.guitartuning
+{
+position:absolute;
+left:1750px;
+top:39px;
+}
+body
+{
+background-image:url('bg.png');
+background-repeat:no-repeat;
+background-position:left top;
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){  $("#i1powerbenderc").click(function(){    $("#instrumentimg1").load("imgpowerbender.txt"); $("#instrument1").load("instrumentschromesafari/harppowerbenderc.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1lowf").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harplowf.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1g").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpg.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1ab").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpab.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1a").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpa.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1bb").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpbb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1b").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1c").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpc.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1db").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpdb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1d").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpd.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1eb").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpeb.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1e").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpe.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1f").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpf.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1fs").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harpfs.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i1highg").click(function(){    $("#instrumentimg1").load("imgdiatonic.txt"); $("#instrument1").load("instrumentschromesafari/harphighg.txt", function( ) { attachAll("instrument1"); });  });});
+$(document).ready(function(){  $("#i2piano").click(function(){    $("#instrumentimg2").load("imgpiano.txt"); $("#instrument2").load("instrumentschromesafari/piano.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2chromatic12").click(function(){    $("#instrumentimg2").load("imgchromatic12.txt"); $("#instrument2").load("instrumentschromesafari/chromatic12.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2tenor12").click(function(){    $("#instrumentimg2").load("imgchromatic12.txt"); $("#instrument2").load("instrumentschromesafari/tenor12.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2lowf").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harplowf.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2g").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpg.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2ab").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpab.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2a").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpa.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2bb").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpbb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2b").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2c").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpc.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2db").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpdb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2d").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpd.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2eb").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpeb.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2e").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpe.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2f").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpf.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2fs").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harpfs.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i2highg").click(function(){    $("#instrumentimg2").load("imgdiatonic.txt"); $("#instrument2").load("instrumentschromesafari/harphighg.txt", function( ) { attachAll("instrument2"); });  });});
+$(document).ready(function(){  $("#i3guitar").click(function(){     $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitar.txt", function( ) { attachAll("instrument3"); }); }); });
+$(document).ready(function(){  $("#i3piano").click(function(){    $("#instrumentimg3").load("imgpiano.txt"); $("#instrument3").load("instrumentschromesafari/piano.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3chromatic12").click(function(){    $("#instrumentimg3").load("imgchromatic12.txt"); $("#instrument3").load("instrumentschromesafari/chromatic12.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3tenor12").click(function(){    $("#instrumentimg3").load("imgchromatic12.txt"); $("#instrument3").load("instrumentschromesafari/tenor12.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3chromatic16").click(function(){    $("#instrumentimg3").load("imgchromatic16.txt"); $("#instrument3").load("instrumentschromesafari/chromatic16.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3lowf").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harplowf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3g").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpg.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3ab").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpab.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3a").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpa.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3bb").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpbb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3b").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpc.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3db").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpdb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3eb").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpeb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpe.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3f").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3fs").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harpfs.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3highg").click(function(){    $("#instrumentimg3").load("imgdiatonic.txt"); $("#instrument3").load("instrumentschromesafari/harphighg.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2a2c3se3a3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropena.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3b2f3sb3f4sb4d5s").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropenb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c2g2c3g3c4e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropenc.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3f3sa3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropend.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2b2e3g3sb3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropene.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3f2a2c3f3c4f4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropenf.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2g2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitaropeng.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3g2b2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitardobro.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3e2a2d3g3c4f4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitarallfourth.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3a3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitardadgad.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2g2c3f3a3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitarlowd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3b3e4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitardropd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2sg2sc3sf3sa3sd4s").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitareb.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3d2a2d3g3b3d4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitardoulbedropd.txt", function( ) { attachAll("instrument3"); });  });});
+$(document).ready(function(){  $("#i3c2g2c3f3g3c4").click(function(){    $("#instrumentimg3").load("imgguitar.txt"); $("#instrument3").load("instrumentschromesafari/guitardadgaddropc.txt", function( ) { attachAll("instrument3"); });  });});
+</script>
+
+</head>
+
+<body>
+
+<script type="text/javascript" src="webaudio_tools.js"> </script>
+<script type="text/javascript" src="tone.js"></script>
+
+<font size="+1">&nbsp <a href="help.html">Help</a> | <a href="dviicecompatibility-v2.html">I'm not using Chrome or Safari</a> | <a href="v3/dviice.html">Use V3, the latest version!</a></font>
+
+<div class="instrumentimg1" id="instrumentimg1"><img src="diatonic.png"></div>
+<table class="instrument1" id="instrument1">
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onmousedown="startTone(1864.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onmousedown="startTone(932.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onmousedown="startTone(1244.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onmousedown="startTone(1479.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onmousedown="startTone(1975.53)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onmousedown="startTone(1046.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onmousedown="startTone(1318.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onmousedown="startTone(1567.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7" onmousedown="startTone(2093)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onmousedown="startTone(987.77)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onmousedown="startTone(1174.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onmousedown="startTone(1396.91)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onmousedown="startTone(1760)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onmousedown="startTone(1108.73)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onmousedown="startTone(1396.91)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onmousedown="startTone(1661.22)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onmousedown="startTone(2217.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose1">
+<tr>
+<td><button id="i1powerbenderc">Powerbender C</button></td>
+</tr>
+<tr>
+<td><button id="i1lowf">Lo F</button></td>
+</tr>
+<tr>
+<td><button id="i1g">G</button></td>
+</tr>
+<tr>
+<td><button id="i1ab">Ab</button></td>
+</tr>
+<tr>
+<td><button id="i1a">A</button></td>
+</tr>
+<tr>
+<td><button id="i1bb">Bb</button></td>
+</tr>
+<tr>
+<td><button id="i1b">B</button></td>
+</tr>
+<tr>
+<td><button id="i1c">C</button></td>
+</tr>
+<tr>
+<td><button id="i1db">Db</button></td>
+</tr>
+<tr>
+<td><button id="i1d">D</button></td>
+</tr>
+<tr>
+<td><button id="i1eb">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i1e">E</button></td>
+</tr>
+<tr>
+<td><button id="i1f">F</button></td>
+</tr>
+<tr>
+<td><button id="i1fs">F#</button></td>
+</tr>
+<tr>
+<td><button id="i1highg">Hi G</button></td>
+</tr>
+</table>
+<div class="instrumentimg2" id="instrumentimg2"><img src="piano.png"></div>
+<table class="instrument2" id="instrument2">
+<tr>
+<td><img name="C1" onmousedown="startTone(32.7)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C1s" onmousedown="startTone(34.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D1" onmousedown="startTone(36.71)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D1s" onmousedown="startTone(38.89)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E1" onmousedown="startTone(41.2)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F1" onmousedown="startTone(43.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F1s" onmousedown="startTone(46.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G1" onmousedown="startTone(49)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G1s" onmousedown="startTone(51.91)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A1" onmousedown="startTone(55)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A1s" onmousedown="startTone(58.27)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B1" onmousedown="startTone(61.74)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C2" onmousedown="startTone(65.41)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C2s" onmousedown="startTone(69.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D2" onmousedown="startTone(73.42)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D2s" onmousedown="startTone(77.78)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E2" onmousedown="startTone(82.41)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2" onmousedown="startTone(87.31)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2s" onmousedown="startTone(92.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2" onmousedown="startTone(98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2s" onmousedown="startTone(103.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2" onmousedown="startTone(110)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onmousedown="startTone(116.54)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onmousedown="startTone(123.47)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C3" onmousedown="startTone(130.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onmousedown="startTone(138.59)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onmousedown="startTone(146.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onmousedown="startTone(155.56)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onmousedown="startTone(164.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onmousedown="startTone(174.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onmousedown="startTone(185)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onmousedown="startTone(932.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onmousedown="startTone(987.77)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C6" onmousedown="startTone(1046.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onmousedown="startTone(1108.73)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onmousedown="startTone(1174.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onmousedown="startTone(1244.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onmousedown="startTone(1318.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onmousedown="startTone(1396.91)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onmousedown="startTone(1479.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onmousedown="startTone(1567.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onmousedown="startTone(1661.22)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onmousedown="startTone(1760)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onmousedown="startTone(1864.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onmousedown="startTone(1975.53)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="C7" onmousedown="startTone(2093)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onmousedown="startTone(2217.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7" onmousedown="startTone(2349.32)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7s" onmousedown="startTone(2489.02)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E7" onmousedown="startTone(2637.02)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7" onmousedown="startTone(2793.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7s" onmousedown="startTone(2959.96)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7" onmousedown="startTone(3135.96)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7s" onmousedown="startTone(3322.44)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A7" onmousedown="startTone(3520)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A7s" onmousedown="startTone(3729.31)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B7" onmousedown="startTone(3951.07)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose2">
+<tr>
+<td><button id="i2piano">Piano</button></td>
+</tr>
+<tr>
+<td><button id="i2chromatic12">C4 Chromatic</button></td>
+</tr>
+<tr>
+<td><button id="i2tenor12">Tenor Chromatic</button></td>
+</tr>
+<tr>
+<td><button id="i2lowf">Lo F</button></td>
+</tr>
+<tr>
+<td><button id="i2g">G</button></td>
+</tr>
+<tr>
+<td><button id="i2ab">Ab</button></td>
+</tr>
+<tr>
+<td><button id="i2a">A</button></td>
+</tr>
+<tr>
+<td><button id="i2bb">Bb</button></td>
+</tr>
+<tr>
+<td><button id="i2b">B</button></td>
+</tr>
+<tr>
+<td><button id="i2c">C</button></td>
+</tr>
+<tr>
+<td><button id="i2db">Db</button></td>
+</tr>
+<tr>
+<td><button id="i2d">D</button></td>
+</tr>
+<tr>
+<td><button id="i2eb">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i2e">E</button></td>
+</tr>
+<tr>
+<td><button id="i2f">F</button></td>
+</tr>
+<tr>
+<td><button id="i2fs">F#</button></td>
+</tr>
+<tr>
+<td><button id="i2highg">Hi G</button></td>
+</tr>
+</table>
+<div class="instrumentimg3" id="instrumentimg3"><img src="guitar.png"></div>
+<table class="instrument3" id="instrument3">
+<tr>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onmousedown="startTone(932.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onmousedown="startTone(987.77)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onmousedown="startTone(1046.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onmousedown="startTone(1108.73)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onmousedown="startTone(1174.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="D3" onmousedown="startTone(146.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onmousedown="startTone(155.56)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onmousedown="startTone(164.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onmousedown="startTone(174.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onmousedown="startTone(185)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="A2" onmousedown="startTone(110)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onmousedown="startTone(116.54)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onmousedown="startTone(123.47)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3" onmousedown="startTone(130.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onmousedown="startTone(138.59)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onmousedown="startTone(146.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onmousedown="startTone(155.56)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onmousedown="startTone(164.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onmousedown="startTone(174.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onmousedown="startTone(185)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="E2" onmousedown="startTone(82.41)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2" onmousedown="startTone(87.31)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F2s" onmousedown="startTone(92.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2" onmousedown="startTone(98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G2s" onmousedown="startTone(103.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2" onmousedown="startTone(110)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A2s" onmousedown="startTone(116.54)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B2" onmousedown="startTone(123.47)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3" onmousedown="startTone(130.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C3s" onmousedown="startTone(138.59)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3" onmousedown="startTone(146.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D3s" onmousedown="startTone(155.56)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E3" onmousedown="startTone(164.81)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3" onmousedown="startTone(174.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F3s" onmousedown="startTone(185)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+</table>
+<table class="choose3">
+<tr>
+<td><button id="i3guitar">Guitar</button></td>
+<td><button id="i3piano">Piano</button></td>
+<td><button id="i3chromatic12">C4 Chromatic</button></td>
+<td><button id="i3tenor12">Tenor Chromatic</button></td>
+<td><button id="i3chromatic16">Chromatic 16</button></td>
+<td><button id="i3lowf">Low F</button></td>
+<td><button id="i3g">G</button></td>
+<td><button id="i3ab">Ab</button></td>
+<td><button id="i3a">A</button></td>
+<td><button id="i3bb">Bb</button></td>
+<td><button id="i3b">B</button></td>
+<td><button id="i3c">C</button></td>
+<td><button id="i3db">Db</button></td>
+<td><button id="i3d">D</button></td>
+<td><button id="i3eb">Eb</button></td>
+<td><button id="i3e">E</button></td>
+<td><button id="i3f">F</button></td>
+<td><button id="i3fs">F#</button></td>
+<td><button id="i3highg">Hi G</button></td>
+</tr>
+</table>
+<table class="treble1" id="treble1">
+<tr>
+<td><img name="A7" onmousedown="startTone(3520)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="F7" onmousedown="startTone(2793.83)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="D7" onmousedown="startTone(2349.32)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B6" onmousedown="startTone(1975.53)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G6" onmousedown="startTone(1567.98)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E6" onmousedown="startTone(1318.51)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="C6" onmousedown="startTone(1046.5)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E4" onmousedown="startTone(329.63)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+</table>
+<table class="treble2" id="treble2">
+<tr>
+<td><img name="B7" onmousedown="startTone(3951.07)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="G7" onmousedown="startTone(3135.96)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E7" onmousedown="startTone(2637.02)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C7" onmousedown="startTone(2093)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A6" onmousedown="startTone(1760)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F6" onmousedown="startTone(1396.91)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D6" onmousedown="startTone(1174.66)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="B5" onmousedown="startTone(987.77)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F4" onmousedown="startTone(349.23)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D4" onmousedown="startTone(293.66)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="treble3" id="treble3">
+<tr>
+<td><img name="A7s" onmousedown="startTone(3729.31)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F7s" onmousedown="startTone(2959.96)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C7s" onmousedown="startTone(2217.46)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A6s" onmousedown="startTone(1864.66)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F6s" onmousedown="startTone(1479.98)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C6s" onmousedown="startTone(1108.73)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A5s" onmousedown="startTone(932.33)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F4s" onmousedown="startTone(369.99)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table
+
+</table>
+<table class="treble4" id="treble4">
+<tr>
+<td><img name="G7s" onmousedown="startTone(3322.44)" onmouseup="stopTone()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="19"></td>
+</tr>
+<tr>
+<td><img name="D7s" onmousedown="startTone(2489.02)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img name="G6s" onmousedown="startTone(1661.22)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="22"></td>
+</tr>
+<tr>
+<td><img name="D6s" onmousedown="startTone(1244.51)" onmouseup="stopTone()" src="blank.png" width="27" height="25"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="27" height="27"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="27" height="24"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="37"></td>
+</tr>
+<tr>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="D4s" onmousedown="startTone(311.13)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+<table class="bass1" id="bass1">
+<tr>
+<td><img name="C4" onmousedown="startTone(261.63)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A3" onmousedown="startTone(220)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F3" onmousedown="startTone(174.61)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D3" onmousedown="startTone(146.83)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="B2" onmousedown="startTone(123.47)" onmouseup="stopTone()" src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G2" onmousedown="startTone(98)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E2" onmousedown="startTone(82.41)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C2" onmousedown="startTone(65.41)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A1" onmousedown="startTone(55)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="F1" onmousedown="startTone(43.65)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="D1" onmousedown="startTone(36.71)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass2" id="bass2">
+<tr>
+<td><img name="B3" onmousedown="startTone(246.94)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="G3" onmousedown="startTone(196)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="E3" onmousedown="startTone(164.81)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C3" onmousedown="startTone(130.81)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="A2" onmouseover="A2on()"
+onmouseout="A2off()" onmousedown="startTone(110)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F2" onmousedown="startTone(87.31)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="D2" onmousedown="startTone(73.42)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="B1" onmousedown="startTone(61.74)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="G1" onmousedown="startTone(49)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="E1" onmousedown="startTone(41.2)" onmouseup="stopTone()" src="blank.png" width="27" height="31"></td>
+</tr>
+<tr>
+<td><img name="C1" onmousedown="startTone(32.7)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass3" id="bass3">
+<tr>
+<td><img name="C4s" onmousedown="startTone(277.18)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="A3s" onmousedown="startTone(233.08)" onmouseup="stopTone()" src="blank.png" width="27" height="30"></td>
+</tr>
+<tr>
+<td><img name="F3s" onmousedown="startTone(185)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C3s" onmousedown="startTone(138.59)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A2s" onmousedown="startTone(116.54)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F2s" onmousedown="startTone(92.5)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C2s" onmousedown="startTone(69.3)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="A1s" onmousedown="startTone(58.27)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img name="F1s" onmousedown="startTone(46.25)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="20"></td>
+</tr>
+<tr>
+<td><img name="C1s" onmousedown="startTone(34.65)" onmouseup="stopTone()" src="blank.png" width="27" height="29"></td>
+</tr>
+</table>
+<table class="bass4" id="bass4">
+<tr>
+<td><img name="G3s" onmousedown="startTone(207.65)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img name="D3s" onmousedown="startTone(155.56)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="35"></td>
+</tr>
+<tr>
+<td><img name="G2s" onmousedown="startTone(103.83)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="23"></td>
+</tr>
+<tr>
+<td><img name="D2s" onmousedown="startTone(77.78)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="33"></td>
+</tr>
+<tr>
+<td><img name="G1s" onmousedown="startTone(51.91)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="27" height="21"></td>
+</tr>
+<tr>
+<td><img name="D1s" onmousedown="startTone(38.89)" onmouseup="stopTone()" src="blank.png" width="27" height="26"></td>
+</tr>
+</table>
+<table class="guitartuning">
+<tr>
+<td>Guitar tunings:</td>
+</tr>
+<tr>
+<td><button id="i3e2a2c3se3a3e4">Open A</button></td>
+</tr>
+<tr>
+<td><button id="i3b2f3sb3f4sb4d5s">Open B</button></td>
+</tr>
+<tr>
+<td><button id="i3c2g2c3g3c4e4">Open C</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3f3sa3d4">Open D</button></td>
+</tr>
+<tr>
+<td><button id="i3e2b2e3g3sb3e4">Open E</button></td>
+</tr>
+<tr>
+<td><button id="i3f2a2c3f3c4f4">Open F</button></td>
+</tr>
+<tr>
+<td><button id="i3d2g2d3g3b3d4">Open G</button></td>
+</tr>
+<tr>
+<td><button id="i3g2b2d3g3b3d4">Dobro</button></td>
+</tr>
+<tr>
+<td><button id="i3e2a2d3g3c4f4">All Fourths</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3a3d4">DADGAD</button></td>
+</tr>
+<tr>
+<td><button id="i3d2g2c3f3a3d4">Low D</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3b3e4">Drop D</button></td>
+</tr>
+<tr>
+<td><button id="i3d2sg2sc3sf3sa3sd4s">Eb</button></td>
+</tr>
+<tr>
+<td><button id="i3d2a2d3g3b3d4">Double Drop D</button></td>
+</tr>
+<tr>
+<td><button id="i3c2g2c3f3g3c4">DADGAD Drop C</button></td>
+</tr>
+</table>
+<script type="text/javascript">
+      function attachAll( inTable )
+      {
+          var pix = document.getElementById(inTable).getElementsByTagName("img");
+          for ( var p = 0; p < pix.length; ++p ) 
+          { 
+              var pic = pix[p];
+              pic.onmouseover = doMouseOver;
+              pic.onmouseout  = doMouseOut;
+              pic.setAttribute("originalSrc",pic.src);
+          }
+      }
+      attachAll("instrument1");
+      attachAll("instrument2");
+      attachAll("instrument3");
+      attachAll("treble1");
+      attachAll("treble2");
+      attachAll("treble3");
+      attachAll("treble4");
+      attachAll("bass1");
+      attachAll("bass2");
+      attachAll("bass3");
+      attachAll("bass4");
+      
+      function doMouseOver( )
+      {
+          var pix = document.getElementsByName(this.name);
+          for ( var p = 0; p < pix.length; ++p )
+          {
+              pix[p].src = "blue.png";
+          }
+      }
+      function doMouseOut( )
+      {
+          var pix = document.getElementsByName(this.name);
+          for ( var p = 0; p < pix.length; ++p )
+          {
+              pix[p].src = pix[p].getAttribute("originalSrc");
+          }
+      }
+</script>
+</body>
+</html>

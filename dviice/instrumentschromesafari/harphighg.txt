@@ -1,0 +1,84 @@
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="F7" onmousedown="startTone(2793.83)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="A4s" onmousedown="startTone(466.16)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5s" onmousedown="startTone(932.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6s" onmousedown="startTone(1108.73)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6" onmousedown="startTone(1396.91)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="A6s" onmousedown="startTone(1864.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7s" onmousedown="startTone(2217.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F7s" onmousedown="startTone(2959.96)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="G4" onmousedown="startTone(392)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B4" onmousedown="startTone(493.88)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5" onmousedown="startTone(783.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B5" onmousedown="startTone(987.77)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D6" onmousedown="startTone(1174.66)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6" onmousedown="startTone(1567.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="B6" onmousedown="startTone(1975.53)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7" onmousedown="startTone(2349.32)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7" onmousedown="startTone(3135.96)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="A4" onmousedown="startTone(440)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D5" onmousedown="startTone(587.33)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5s" onmousedown="startTone(739.99)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A5" onmousedown="startTone(880)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C6" onmousedown="startTone(1046.5)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E6" onmousedown="startTone(1318.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F6s" onmousedown="startTone(1479.98)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="A6" onmousedown="startTone(1760)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7" onmousedown="startTone(2093)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E7" onmousedown="startTone(2637.02)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img name="G4s" onmousedown="startTone(415.3)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C5s" onmousedown="startTone(554.37)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="F5" onmousedown="startTone(698.46)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G5s" onmousedown="startTone(830.61)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="D6s" onmousedown="startTone(1244.51)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G6s" onmousedown="startTone(1661.22)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="C7" onmousedown="startTone(2093)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="D7s" onmousedown="startTone(2489.02)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="G7s" onmousedown="startTone(3322.44)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="C5" onmousedown="startTone(523.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img name="E5" onmousedown="startTone(659.26)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
+<tr>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img name="D5s" onmousedown="startTone(622.25)" onmouseup="stopTone()" src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+<td><img src="blank.png" width="63" height="63"></td>
+</tr>
