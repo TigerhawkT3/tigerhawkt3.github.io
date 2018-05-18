@@ -147,7 +147,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('#go').click(function (){
             // Load the instrument image.
-            $("#img" + $("#zoneMenu").val()).html(img[$("#instrumentMenu").val()]);
+            $("#instrumentimg" + $("#zoneMenu").val()).html(img[$("#instrumentMenu").val()]);
             // Load the instrument.
             $("#instrument" + $("#zoneMenu").val()).html(instrument[$("#instrumentMenu").val() + $("#tuneMenu").val()]);
             attachAll("instrument" + $("#zoneMenu").val());
