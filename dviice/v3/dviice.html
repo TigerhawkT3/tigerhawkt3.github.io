@@ -178,19 +178,9 @@ $(document).ready(function(){
                               'Switch to compatibility version<br/>(Currently in desktop version)')
     $('#version').attr('desktop', !desktop||null)
   });
-// when sweep button is clicked, if it's in sweep mode, switches itself
-// to click mode, and changes text. in click, switches
-// itself to sweep, changes text.
-
-  $('#sweep').click(function(){
-    let sweep = $('#sweep').attr('sweep')
-    $('#sweep').text(sweep?'Sweep':'Click')
-    $('#sweep').attr('sweep', !sweep||null)
-  });
 });
 </script>
 
-<button id='sweep' class='swp'>Sweep</button>
 <button id='version' class='ver'>Switch to desktop version<br/>(Currently in compatibility version)</button>
 
 <table class='chooser'>
@@ -234,23 +224,23 @@ $(document).ready(function(){
 </table>
 <font size="+1">&nbsp; Welcome to the DVIICE! Need help? <a href="help.html">Click here.</a></font>
 
-<div class="instrumentimg1" id="instrumentimg1"><img src="diatonic.png"></div>
-<table class="instrument1" id="instrument1"></table>
+<div class="instrumentimg1" id="instrumentimg1" ondragstart='return false;' ondrop='return false;'><img src="diatonic.png"></div>
+<table class="instrument1" id="instrument1" ondragstart='return false;' ondrop='return false;'></table>
 
-<div class="instrumentimg2" id="instrumentimg2"><img src="piano.png"></div>
-<table class="instrument2" id="instrument2"></table>
+<div class="instrumentimg2" id="instrumentimg2" ondragstart='return false;' ondrop='return false;'><img src="piano.png"></div>
+<table class="instrument2" id="instrument2" ondragstart='return false;' ondrop='return false;'></table>
 
-<div class="instrumentimg3" id="instrumentimg3"><img src="guitar.png"></div>
-<table class="instrument3" id="instrument3"></table>
+<div class="instrumentimg3" id="instrumentimg3" ondragstart='return false;' ondrop='return false;'><img src="guitar.png"></div>
+<table class="instrument3" id="instrument3" ondragstart='return false;' ondrop='return false;'></table>
 
-<table class="treble1" id="treble1"></table>
-<table class="treble2" id="treble2"></table>
-<table class="treble3" id="treble3"></table>
-<table class="treble4" id="treble4"></table>
-<table class="bass1" id="bass1"></table>
-<table class="bass2" id="bass2"></table>
-<table class="bass3" id="bass3"></table>
-<table class="bass4" id="bass4"></table>
+<table class="treble1" id="treble1" ondragstart='return false;' ondrop='return false;'></table>
+<table class="treble2" id="treble2" ondragstart='return false;' ondrop='return false;'></table>
+<table class="treble3" id="treble3" ondragstart='return false;' ondrop='return false;'></table>
+<table class="treble4" id="treble4" ondragstart='return false;' ondrop='return false;'></table>
+<table class="bass1" id="bass1" ondragstart='return false;' ondrop='return false;'></table>
+<table class="bass2" id="bass2" ondragstart='return false;' ondrop='return false;'></table>
+<table class="bass3" id="bass3" ondragstart='return false;' ondrop='return false;'></table>
+<table class="bass4" id="bass4" ondragstart='return false;' ondrop='return false;'></table>
 
 <textarea
 placeholder="Type notes in this text box for an easy record! For example, type the following for &quot;The Minstrel Boy&quot; (180BPM):
@@ -263,6 +253,7 @@ autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
 <button onclick="playback()" class="player">Play!</button>
 
 <script type="text/javascript">
+let sweep;
 // IE and Edge can't iterate over iterator objects in a for-each loop like Chrome
 // and Firefox can, so those objects are converted to arrays with Array.from()
 function attachAll( inTable ) {
@@ -270,8 +261,7 @@ function attachAll( inTable ) {
         p.onmouseover = doMouseOver;
         p.onmouseout  = doMouseOut;
         p.onmousedown = doMouseDown;
-        p.onmouseup   = stopTone;
-        p.onclick     = doClick;
+        p.onmouseup   = doMouseUp;
         p.setAttribute("originalSrc",p.src);
     }
 }
@@ -283,21 +273,23 @@ function sleep(ms) {
 }
 function doMouseOver() {
     for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
-    if ($('#sweep').attr('sweep') && $(this).attr('name')) {
-        $('#version').attr('desktop')?
-            startTone(parseFloat($(this).attr('tone')))
-            :document.getElementById($(this).attr('name')).play();
-    }
+    if (sweep) playElement(this);
 }
 function doMouseOut() {
     for (var p of Array.from(document.getElementsByName(this.name))) p.src = p.getAttribute("originalSrc");
-    if ($('#sweep').attr('sweep')) stopTone();
+    stopTone();
 }
 function doMouseDown() {
-    if ($('#version').attr('desktop') && $(this).attr('name')) startTone(parseFloat($(this).attr('tone')))
+    if (!$(this).attr('name')) return;
+    sweep = true;
+    playElement(this);
 }
-function doClick() {
-    if (!$('#version').attr('desktop') && $(this).attr('name')) document.getElementById($(this).attr('name')).play()
+function doMouseUp() {
+    sweep = false;
+    stopTone();
+}
+function playElement(element) {
+    $('#version').attr('desktop')?startTone(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
 }
 // keyboard controls
 var pitches = {"V":32.7, "G":34.65, "B":36.71, "H":38.89, "N":41.2,
