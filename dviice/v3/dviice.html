@@ -173,21 +173,25 @@ $(document).ready(function(){
 $(document).ready(function(){
 
   $('#version').click(function(){
-    if ($('#version').attr('mode') == 'chrome') {
-      $('#version').attr('mode', 'compatibility')
-      $('#version').html("Switch to desktop version<br/>(Currently in compatibility version)")
-    }
+    let desktop = $('#version').attr('desktop')
+    $('#version').html(desktop?'Switch to desktop version<br/>(Currently in compatibility version)':
+                              'Switch to compatibility version<br/>(Currently in desktop version)')
+    $('#version').attr('desktop', !desktop||null)
+  });
+// when sweep button is clicked, if it's in sweep mode, switches itself
+// to click mode, and changes text. in click, switches
+// itself to sweep, changes text.
 
-    else {
-      $('#version').attr('mode', 'chrome')
-      $('#version').html("Switch to compatibility version<br/>(Currently in desktop version)")
-    }
-
+  $('#sweep').click(function(){
+    let sweep = $('#sweep').attr('sweep')
+    $('#sweep').text(sweep?'Sweep':'Click')
+    $('#sweep').attr('sweep', !sweep||null)
   });
 });
 </script>
 
-<button id='version' class='ver' mode='compatibility'>Switch to desktop version<br/>(Currently in compatibility version)</button>
+<button id='sweep' class='swp'>Sweep</button>
+<button id='version' class='ver'>Switch to desktop version<br/>(Currently in compatibility version)</button>
 
 <table class='chooser'>
 <tr>
@@ -266,7 +270,7 @@ function attachAll( inTable ) {
         p.onmouseover = doMouseOver;
         p.onmouseout  = doMouseOut;
         p.onmousedown = doMouseDown;
-        p.onmouseup   = doMouseUp;
+        p.onmouseup   = stopTone;
         p.onclick     = doClick;
         p.setAttribute("originalSrc",p.src);
     }
@@ -279,18 +283,21 @@ function sleep(ms) {
 }
 function doMouseOver() {
     for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
+    if ($('#sweep').attr('sweep') && $(this).attr('name')) {
+        $('#version').attr('desktop')?
+            startTone(parseFloat($(this).attr('tone')))
+            :document.getElementById($(this).attr('name')).play();
+    }
 }
 function doMouseOut() {
     for (var p of Array.from(document.getElementsByName(this.name))) p.src = p.getAttribute("originalSrc");
+    if ($('#sweep').attr('sweep')) stopTone();
 }
 function doMouseDown() {
-    if ($('#version').attr('mode') == 'chrome') startTone(parseFloat($(this).attr('tone')))
-}
-function doMouseUp() {
-    if ($('#version').attr('mode') == 'chrome') stopTone()
+    if ($('#version').attr('desktop') && $(this).attr('name')) startTone(parseFloat($(this).attr('tone')))
 }
 function doClick() {
-    if ($('#version').attr('mode') == 'compatibility') document.getElementById($(this).attr('name')).play()
+    if (!$('#version').attr('desktop') && $(this).attr('name')) document.getElementById($(this).attr('name')).play()
 }
 // keyboard controls
 var pitches = {"V":32.7, "G":34.65, "B":36.71, "H":38.89, "N":41.2,
@@ -315,12 +322,12 @@ function press(event) {
     else if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
         var additional = 'T6Y7UI9O0P-['.includes(event)
         var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
-        if ($('#version').attr('mode') == 'chrome' ) {
+        if ($('#version').attr('desktop')) {
             if (playing == event) return;
             playing = event;
             startTone(pitches[event] * (2**multiplier))
         }
-        else if ($('#version').attr('mode') == 'compatibility') document.getElementById(note_name).play()
+        else document.getElementById(note_name).play()
         for (var p of Array.from(document.getElementsByName(note_name))) p.src = "blue.png"
     }
 }
@@ -328,7 +335,7 @@ function release(event) {
     var event = event.key.toUpperCase()
     if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
         playing = null;
-        if ($('#version').attr('mode') == 'chrome' ) stopTone()
+        if ($('#version').attr('desktop')) stopTone()
         var additional = 'T6Y7UI9O0P-['.includes(event)
         var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
         for (var p of Array.from(document.getElementsByName(note_name))) p.src = p.getAttribute("originalSrc");
