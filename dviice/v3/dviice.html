@@ -362,12 +362,7 @@ async function playback() {
         if (!(c in note_names)) continue;
         let additional = 'T6Y7UI9O0P-['.includes(c)
         let note_name = note_names[c][0] + (multiplier+additional+1) + note_names[c].slice(1,2)
-        if ($('#version').attr('mode') == 'chrome' ) {
-            startTone(pitches[c] * (2**multiplier))
-        }
-        else if ($('#version').attr('mode') == 'compatibility') {
-            document.getElementById(note_name).play()
-        }
+        $('#version').attr('desktop')?startTone(pitches[c] * (2**multiplier)):$('#'+note_name)[0].play()
         var pix = Array.from(document.getElementsByName(note_name));
         for (p of pix) p.src = 'blue.png'
         await sleep(tempo)
