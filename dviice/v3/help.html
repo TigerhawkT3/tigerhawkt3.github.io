@@ -10,6 +10,13 @@
  help, instructions, readme, manual">
 <meta name="author" content="David 'TigerhawkT3' 'Farranor' Muller">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style>
+code {
+    font-family: Consolas, Lucida Console, Courier;
+    font-size: 9;
+    background-color: #EEEEEE;
+}
+</style>
 </head>
 
 <body>
@@ -20,9 +27,11 @@
         <p align="justify">Welcome to the DVIICE instructional page. Here, you'll learn the features of the <a href="dviice.html">DVIICE</a>, along with some tips.</p>
         <p align="justify">The button below Instrument 1 switches between compatibility mode and desktop mode (see <a href="#modes">modes</a>, below). Simply click it to switch.</p>
         <p align="justify">Mouse over a note to see all enharmonic (equivalent) notes. Mousing over middle C on the piano, for example, will highlight every middle C in all displayed instruments. It will not, however, highlight all C notes on every octave. Click a note to play it (see <a href="#modes">modes</a>, below).</p>
-        <p align="justify">You can also play the DVIICE with the keyboard. "V" through "/" play C through B, with sharps on "G" through ";". "T" through "[" will play one octave higher, with sharps on "6" through "-". Switch octaves by pressing "Z", "X", "C", "A", "S", and "D", corresponding to ascending octave pairs in that order. For example, tapping "A" will make octaves 4 and 5 available, with C4 on "V" and C5 on "T".</p>
-        <p align="justify">Switch to a sine wave (default) with Q, a triangle wave with W, a square wave with E, or a sawtooth wave with R. You can also apply vibrato: press 1 through 5 for slight to strong vibrato, or turn it off with the backtick ("`", above the tab key with "~").</p>
-        <p align="justify">If you play notes with the keyboard while the text area at the bottom of the page has focus, you will also type those keys into the box. You can then set a BPM (default 120) with the box to the right of the notes, and play back your work at that BPM with the "Play!" button below it. This works best in desktop mode, as it's better at handling repeated notes and custom tempos.</p>
+        <p align="justify">You can also play the DVIICE with the keyboard. <code>V</code> through <code>/</code> play C through B, with sharps on <code>G</code> through <code>;</code>. <code>T</code> through <code>[</code> will play one octave higher, with sharps on <code>6</code> through <code>-</code>. Switch octaves by pressing <code>Z</code>, <code>X</code>, <code>C</code>, <code>A</code>, <code>S</code>, and <code>D</code>, corresponding to ascending octave pairs in that order. For example, tapping <code>A</code> will make octaves 4 and 5 available, with C4 on <code>V</code> and C5 on <code>T</code>.</p>
+        <p align="justify">Switch to a sine wave (default) with <code>Q</code>, a triangle wave with <code>W</code>, a square wave with <code>E</code>, or a sawtooth wave with <code>R</code>. You can also apply vibrato: press <code>1</code> through <code>5</code> for slight to strong vibrato, or turn it off with the backtick (<code>`</code>, above the tab key with <code>~</code>).</p>
+        <p align="justify">If you play notes with the keyboard while the text area at the bottom of the page has focus, you will also type those keys into the box. You can then set a BPM (default 120) with the box to the right of the notes, and play back your work at that BPM with the "Play!" button below it. This works best in desktop mode, as it's better at handling repeated notes, custom tempos, and more.</p>
+        <p align="justify">You can now play chords with the text area's playback feature. Just put all the keys that should be pressed together (up to eight) inside parentheses, like <code>(vn,)</code> for a basic C-E-G chord. To play a beat with middle C, then a beat with C-E, then three beats with C-E-G (with vibrato) would be <code>`v(vn)2(vn,)(vn,)(vn,)</code>. This works in desktop mode or compatibility mode, but, even in desktop mode, all notes in a chord will play with the same vibrato, waveform, and octave settings, so if you want something more complex (vibrato on only the highest note, a low chord while a high melody plays, etc.), you'll have to write out fully-specified chords and use desktop mode.</p>
+        <p align="justify">A fully-specified chord consists of the chord's duration in beats, then a colon, then a sequence of up to eight fully-specified notes, all within parentheses. A fully-specified note is a vibrato setting, a waveform setting, an octave pair setting, and finally the note (the keyboard key you would press to play the note). Some of these settings only have an effect in desktop mode, but they must all be present. For example, to play a beat with middle C, then a beat with C-E, then three beats with C-E-G (with a bit of vibrato on the G) would be <code>`wav(1:`wav`wan) (3:`wav`wan1wa,)</code>. Fully-specified chords do not interrupt the music, so if you want to delay subsequent notes, add rests after the chord.</p>
       </div>
         <div align="center">
           <p align="justify">To select a new instrument, select the desired instrument zone from the left-most menu in the center of the page, then the instrument from the middle menu, then the tuning from the last menu. Finally, click the &quot;Go!&quot; button. Instrument 1 is limited to diatonic 10-hole harmonicas. Instrument 2 is limited to the piano, diatonic 10-hole harmonicas, 12-hole chromatic harmonicas, and the ukulele. Instrument 3 can handle any instrument (guitar, piano, ukulele, and harmonicas with 10, 12, or 16 holes).</p>
@@ -144,7 +153,7 @@ C-G-c-f-g-c'      </p>      </td>
       <td width="45%"><div align="center">
         <p align="justify"><a name="modes"></a>The compatibility mode can be used on any modern browser, including on mobile devices with a touch interface. Notes are played using audio clips half a second long, or one beat, as soon as you click.</p>
         </div>
-      <div align="justify">The compatibility mode plays audio with HTML5, using pre-recorded clips created with <a href="http://audacity.sourceforge.net/">Audacity</a>'s tone generator.<br />
+      <div align="justify">The compatibility mode plays audio with HTML5, using pre-recorded clips created with <a href="https://www.audacityteam.org/">Audacity</a>'s tone generator.<br />
           <br />
         </div></td>
       <td width="10%">&nbsp;</td>

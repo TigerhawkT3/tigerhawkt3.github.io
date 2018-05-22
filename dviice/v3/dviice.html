@@ -16,8 +16,8 @@
     Many, many thanks to "Old Pedant" at
     www.codingforums.com for the original streamlined
     highlighting function and extensive troubleshooting
-    help. Thanks to www.softsynth.com for the Web Audio API
-    file and the tone-generating javascript code.
+    help. Thanks to www.softsynth.com for the original
+    Web Audio API file and tone-generating javascript code.
     Additional thanks for keeping it up to date when
     Google changes things. :)
 -->
@@ -266,32 +266,6 @@ function attachAll( inTable ) {
     }
 }
 
-function sleep(ms) {
-    // a sleep function. usage:
-    // async func() { await sleep(1000) }
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-function doMouseOver() {
-    for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
-    if (sweep) playElement(this);
-}
-function doMouseOut() {
-    for (var p of Array.from(document.getElementsByName(this.name))) p.src = p.getAttribute("originalSrc");
-    stopTone();
-}
-function doMouseDown() {
-    if (!$(this).attr('name')) return;
-    sweep = true;
-    playElement(this);
-}
-function doMouseUp() {
-    sweep = false;
-    stopTone();
-}
-function playElement(element) {
-    $('#version').attr('desktop')?startTone(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
-}
-// keyboard controls
 var pitches = {"V":32.7, "G":34.65, "B":36.71, "H":38.89, "N":41.2,
                  "M":43.65, "K":46.25, ",":49, "L":51.91, ".":55,
                  ";":58.27, "/":61.74, "T":65.41, "6":69.3, "Y":73.42,
@@ -303,71 +277,151 @@ var note_names = {"V":"C", "G":"Cs", "B":"D", "H":"Ds", "N":"E",
                   "7":"Ds", "U":"E", "I":"F", "9":"Fs", "O":"G",
                   "0":"Gs", "P":"A", "-":"As", "[":"B"}
 var multipliers = {"Z":0, "X":1, "C":2, "A":3, "S":4, "D":5}
-var multiplier = 3
-var playing = null;
-function press(event) {
+var multiplier = 3;
+let highlighting = {};
+function sleep(ms) {
+    // a sleep function. usage:
+    // async func() { await sleep(1000) }
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+function doMouseOver() {
+    for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
+    if (sweep) playElement(this);
+}
+function doMouseOut() {
+    for (var p of Array.from(document.getElementsByName(this.name))) p.src = p.getAttribute("originalSrc");
+    clickVoice.stop();
+}
+function doMouseDown() {
+    if (!$(this).attr('name')) return;
+    sweep = true;
+    playElement(this);
+}
+function doMouseUp() {
+    sweep = false;
+    clickVoice.stop();
+}
+function playElement(element) {
+    $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
+}
+// keyboard controls
+function press(event, size=1) {
     var event = event.key.toUpperCase()
-    if (event == '`') modulatorGain.gain.value = 0;
-    else if ('12345'.includes(event)) modulatorGain.gain.value = event * 5;
-    else if ("ZXCASD".includes(event)) multiplier = multipliers[event]
-    else if ('QWER'.includes(event)) oscillator.type = {Q: 'sine', W: 'triangle', E: 'square', R: 'sawtooth'}[event]
-    else if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
-        var additional = 'T6Y7UI9O0P-['.includes(event)
-        var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
-        if ($('#version').attr('desktop')) {
-            if (playing == event) return;
-            playing = event;
-            startTone(pitches[event] * (2**multiplier))
-        }
-        else document.getElementById(note_name).play()
-        for (var p of Array.from(document.getElementsByName(note_name))) p.src = "blue.png"
+    if ('`12345'.includes(event)) {
+        clickVoice.vibrato(event)
+        for (let channel of channels)
+            channel.vibrato(event)
     }
+    else if ("ZXCASD".includes(event))
+        multiplier = multipliers[event]
+    else if ('QWER'.includes(event)) {
+        clickVoice.waveform(event)
+        for (let channel of channels)
+            channel.waveform(event)
+    }
+    if (!(event in note_names)) return;
+    for (let channel of channels) if (channel.note == event) return;
+    let chan;
+    let found = false;
+    for (let channel of channels)
+        if (!channel.note) {
+            chan = channel;
+            found = true;
+            break
+        }
+    if (!found) {
+        chan = channels.shift()
+        channels.push(chan)
+    }
+    var additional = 'T6Y7UI9O0P-['.includes(event)
+    var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
+    if ($('#version').attr('desktop')) {
+        chan.start(pitches[event] * (2**multiplier), size)
+    }
+    else document.getElementById(note_name).play()
+    chan.note = event
+    highlighting[event] = Array.from(document.getElementsByName(note_name))
+    for (var p of highlighting[event]) p.src = "blue.png"
 }
 function release(event) {
     var event = event.key.toUpperCase()
     if ("VGBHNMK,L.;/T6Y7UI9O0P-[".includes(event)) {
-        playing = null;
-        if ($('#version').attr('desktop')) stopTone()
-        var additional = 'T6Y7UI9O0P-['.includes(event)
-        var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
-        for (var p of Array.from(document.getElementsByName(note_name))) p.src = p.getAttribute("originalSrc");
+        let chan;
+        for (let channel of channels)
+            if (channel.note == event) {
+                channel.note = null;
+                channel.stop()
+                for (var p of highlighting[event]) p.src = p.getAttribute("originalSrc");
+                return;
+            }
     }
 }
 document.onkeydown = press;
 document.onkeyup = release;
 // end of keyboard controls
 async function playback() {
+    let chord = null;
+    let tempo = (60000/parseInt(document.getElementById('tempo').value)) || 500
     for (c of document.getElementById('textlog').value.toUpperCase()) {
-        let tempo = (60000/parseInt(document.getElementById('tempo').value)) || 500
-        if (c == '`') {
-            modulatorGain.gain.value = 0
-            continue
+        if (c == '(') chord = [];
+        else if (c == ')') {
+            if (chord.includes(':')) {
+                // chord should be "<<beats>:[<vibrato><waveform><octave><key>][<vibrato>...]>"
+                let splt = chord.indexOf(':')
+                let duration = tempo * chord.slice(0, splt)
+                let notes = chord.slice(splt+1)
+                playChord(duration, notes)
+                chord = null;
+            }
+            else {
+                // chord should be ([<note>][<note>]...)
+                for (let e of chord) press({key:e}, chord.length)
+                await sleep(tempo)
+                for (let e of chord) release({key:e})
+                chord = null;
+            }
         }
-        if ('12345'.includes(c)) {
-            modulatorGain.gain.value = c * 5
-            continue
-        }
-        if (c == ' ') {
+        else if (chord != null) chord.push(c)
+        else if (c == ' ' || c in note_names) {
+            press({key:c})
             await sleep(tempo)
-            continue
+            release({key:c})
         }
-        if ('QWER'.includes(c)) {
-            oscillator.type = {Q: 'sine', W: 'triangle', E: 'square', R: 'sawtooth'}[c]
-            continue
-        }
-        if ("ZXCASD".includes(c)) {
-            multiplier = multipliers[c]
-            continue
-        }
-        if (!(c in note_names)) continue;
-        let additional = 'T6Y7UI9O0P-['.includes(c)
-        let note_name = note_names[c][0] + (multiplier+additional+1) + note_names[c].slice(1,2)
-        $('#version').attr('desktop')?startTone(pitches[c] * (2**multiplier)):$('#'+note_name)[0].play()
-        var pix = Array.from(document.getElementsByName(note_name));
-        for (p of pix) p.src = 'blue.png'
-        await sleep(tempo)
-        for (p of pix) p.src = p.getAttribute('originalSrc')
-        stopTone()
+        else press({key:c})
+    }
+}
+// <4:`qat3wau> `aeb  <4:`qab`qak1qa.>    n,
+// chord with vib0 sine wave and vib3 tri wave with square note,
+// accompanied by square note,
+// followed by chord with vib0 sine, vib0 sine, and vib0 sine,
+// followed by 2 square notes
+// remember to follow a chord with spaces for rests if you don't want simultaneous play
+// simple C-E-G chord:
+// `wav<1:`wav`wan> <3:`wav`wan1wa,>
+// this function is only for fully-specified chords with mixed instruments,
+// vibrato levels, and octave pairs! simply do e.g. (vn,) for basic/uniform chords
+async function playChord(duration, notes) {
+    let groups = [];
+    let pix = [];
+    while (notes.length) groups.push(notes.splice(0, 4))
+    for (let i=0; i<groups.length; ++i) {
+        [vib, wave, oct, key] = groups[i]
+        let voice = voices[i]
+        let multiplier = multipliers[oct]
+        let additional = 'T6Y7UI9O0P-['.includes(key)
+        let note_name = note_names[key][0] + (multiplier+additional+1) + note_names[key].slice(1,2)
+        pix.push(Array.from(document.getElementsByName(note_name)));
+        for (p of pix[pix.length-1]) p.src = 'blue.png'
+        voice.vibrato(vib)
+        voice.waveform(wave)
+        voice.start(pitches[key] * (2**multiplier), groups.length)
+    }
+    await sleep(duration)
+    for (let voice of voices) {
+        voice.stop()
+    }
+    for (let px of pix) {
+        for (let p of px) p.src = p.getAttribute('originalSrc')
     }
 }
 </script>
