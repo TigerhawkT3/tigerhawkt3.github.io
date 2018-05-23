@@ -161,6 +161,7 @@ $(document).ready(function(){
     attachAll('instrument1');
     attachAll('instrument2');
     attachAll('instrument3');
+    $(this).on('mouseup', stopBend)
     for (let clef of ['treble1', 'treble2', 'treble3', 'treble4', 'bass1', 'bass2', 'bass3', 'bass4']) {
         $("#" + clef).html(instrument[clef])
         attachAll(clef); 
@@ -251,9 +252,11 @@ autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
 </textarea>
 <textarea placeholder="bpm" rows="1" cols="3" class="tempo" id="tempo"></textarea>
 <button onclick="playback()" class="player">Play!</button>
+<canvas id='pitchwheel' width="135" height="855" onmousedown="startBend(event)"></canvas>
 
 <script type="text/javascript">
 let sweep;
+let bend_origin;
 // IE and Edge can't iterate over iterator objects in a for-each loop like Chrome
 // and Firefox can, so those objects are converted to arrays with Array.from()
 function attachAll( inTable ) {
@@ -279,6 +282,9 @@ var note_names = {"V":"C", "G":"Cs", "B":"D", "H":"Ds", "N":"E",
 var multipliers = {"Z":0, "X":1, "C":2, "A":3, "S":4, "D":5}
 var multiplier = 3;
 let highlighting = {};
+var canvas = $('#pitchwheel')[0]
+var context = canvas.getContext('2d');
+context.font = '12px Arial';
 function sleep(ms) {
     // a sleep function. usage:
     // async func() { await sleep(1000) }
@@ -303,6 +309,38 @@ function doMouseUp() {
 }
 function playElement(element) {
     $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
+}
+function startBend(event) {
+    bend_origin = event.clientY;
+    var box = canvas.getBoundingClientRect()
+    var top = bend_origin-box.top
+    $('#pitchwheel').on('mousemove', doBend);
+    // canvas x1,y1,x2,y2 is 1480,26,1480+135,26+855, semitone every 100px
+    for (let i=(top)%100; i<box.height; i+=100) {
+        context.beginPath();
+        context.moveTo(0, i);
+        context.lineTo(box.width, i);
+        context.closePath();
+        context.stroke();
+        let below = i > top
+        if (i!=top) context.fillText(  (below?'':'+')
+                                     + -parseInt((i-top)/100)
+                                     + ' semitone', 5, i-(i<50?-15:5)) // put top label below line
+        else context.fillText('origin', 5, i-5)
+    }
+}
+function doBend(event) {
+    let value = (bend_origin - event.clientY)/100;
+    for (let voice of voices) voice.changeBend(value)
+    for (let channel of channels) channel.changeBend(value)
+}
+function stopBend() {
+    for (let voice of voices) voice.stopBend()
+    for (let channel of channels) channel.stopBend()
+    $('#pitchwheel').off('mousemove', doBend);
+    // canvas x1,y1,x2,y2 is 1480,26,1480+135,26+855, semitone every 100px
+    var box = canvas.getBoundingClientRect()
+    context.clearRect(0,0,box.width,box.height)
 }
 // keyboard controls
 function press(event, size=1) {

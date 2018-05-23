@@ -48,7 +48,15 @@ table {
 	border-spacing: 0;
 }
 /* end of reset tool */
-
+canvas
+{
+    position: absolute;
+    left: 1480px;
+    top: 26px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    z-index: -1;
+}
 img
 {
 display: block;
