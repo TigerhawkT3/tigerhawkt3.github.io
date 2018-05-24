@@ -311,6 +311,7 @@ function playElement(element) {
     $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
 }
 function startBend(event) {
+    event.preventDefault();
     bend_origin = event.clientY;
     var box = canvas.getBoundingClientRect()
     var top = bend_origin-box.top
