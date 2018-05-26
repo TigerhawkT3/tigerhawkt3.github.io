@@ -404,21 +404,21 @@ async function playback() {
     for (c of document.getElementById('textlog').value.toUpperCase()) {
         if (c == '(') chord = [];
         else if (c == ')') {
-            if (chord.includes(':')) {
-                // chord should be "<<beats>:[<vibrato><waveform><octave><key>][<vibrato>...]>"
+            if (chord[0] == ':') tempo = 60000/parseInt(chord.slice(1).join('')) // e.g. (:120)
+            else if (chord.includes(':')) {
+                // chord should be "(<beats>:[<vibrato><waveform><octave><key>][<vibrato>...])"
                 let splt = chord.indexOf(':')
                 let duration = tempo * chord.slice(0, splt)
                 let notes = chord.slice(splt+1)
                 playChord(duration, notes)
-                chord = null;
             }
             else {
                 // chord should be ([<note>][<note>]...)
                 for (let e of chord) press({key:e}, chord.length)
                 await sleep(tempo)
                 for (let e of chord) release({key:e})
-                chord = null;
             }
+            chord = null;
         }
         else if (chord != null) chord.push(c)
         else if (c == ' ' || c in note_names) {
