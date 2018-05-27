@@ -250,7 +250,7 @@ Click outside this box if you don't want played notes to show up. Use spaces for
 Enter a BPM in the box to the right (default 120) and hit the play button below it to play back your song."
 autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
 </textarea>
-<textarea placeholder="bpm" rows="1" cols="3" class="tempo" id="tempo"></textarea>
+<textarea placeholder="BPM" rows="1" cols="3" class="tempo" id="tempo"></textarea>
 <button onclick="playback()" class="player">Play!</button>
 <canvas id='pitchwheel' width="135" height="855" onmousedown="startBend(event)"></canvas>
 
@@ -401,7 +401,8 @@ document.onkeyup = release;
 async function playback() {
     let chord = null;
     let tempo = (60000/parseInt(document.getElementById('tempo').value)) || 500
-    for (c of document.getElementById('textlog').value.toUpperCase()) {
+    var text = document.getElementById('textlog')
+    for (let c of (text.value.slice(text.selectionStart, text.selectionEnd) || text.value).toUpperCase()) {
         if (c == '(') chord = [];
         else if (c == ')') {
             if (chord[0] == ':') tempo = 60000/parseInt(chord.slice(1).join('')) // e.g. (:120)
