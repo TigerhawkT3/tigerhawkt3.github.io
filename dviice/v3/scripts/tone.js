@@ -41,18 +41,28 @@ function Voice() {
     this.mamp.connect(this.osc.frequency);
     // start the modulator oscillator
     this.mosc.start();
-    this.start = function(frequency, size=1) {
+    this.start = function(frequency, size=1, pluck=false) {
         var now = audioContext.currentTime;
         this.frequency = frequency;
         this.osc.frequency.value = this.frequency * bend;
         this.amp.gain.cancelScheduledValues(now);
         this.amp.gain.setValueAtTime(this.amp.gain.value, now);
-        this.amp.gain.linearRampToValueAtTime(0.6/(size+1), now + 0.1);
+        if (pluck) {
+            let base = 0.6/(size+1)
+            this.amp.gain.setValueCurveAtTime(Float32Array.from([this.amp.gain.value, base*0.5, base, base*1.2, base*1.5, base]), now, 0.05)
+        }
+        else this.amp.gain.linearRampToValueAtTime(0.6/(size+1), now + 0.1);
     }
     this.stop = function() {
         var now = audioContext.currentTime;
-        this.amp.gain.cancelScheduledValues(now);
-        this.amp.gain.setValueAtTime(this.amp.gain.value, now);
+        this.amp.gain.cancelScheduledValues(0);
+        while (true) {
+            try { // setValueAtTime sometimes doesn't play well with setValueCurveAtTime, even with the cancel(0) above
+                this.amp.gain.setValueAtTime(this.amp.gain.value, now);
+                break;
+            }
+            catch(e){}
+        }
         this.amp.gain.linearRampToValueAtTime(0.0, now + 1.0);
     }
     this.changeBend = function(value) {

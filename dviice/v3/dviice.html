@@ -282,6 +282,7 @@ var note_names = {"V":"C", "G":"Cs", "B":"D", "H":"Ds", "N":"E",
 var multipliers = {"Z":0, "X":1, "C":2, "A":3, "S":4, "D":5}
 var multiplier = 3;
 let highlighting = {};
+let pluck = false;
 var canvas = $('#pitchwheel')[0]
 var context = canvas.getContext('2d');
 context.font = '12px Arial';
@@ -308,7 +309,7 @@ function doMouseUp() {
     clickVoice.stop();
 }
 function playElement(element) {
-    $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone'))):$('#'+$(element).attr('name'))[0].play()
+    $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone')), 1, pluck):$('#'+$(element).attr('name'))[0].play()
 }
 function startBend(event) {
     event.preventDefault();
@@ -358,6 +359,8 @@ function press(event, size=1) {
         for (let channel of channels)
             channel.waveform(event)
     }
+    else if (event == '<') pluck = true;
+    else if (event == '>') pluck = false;
     if (!(event in note_names)) return;
     for (let channel of channels) if (channel.note == event) return;
     let chan;
@@ -375,7 +378,7 @@ function press(event, size=1) {
     var additional = 'T6Y7UI9O0P-['.includes(event)
     var note_name = note_names[event][0] + (multiplier+additional+1) + note_names[event].slice(1,2)
     if ($('#version').attr('desktop')) {
-        chan.start(pitches[event] * (2**multiplier), size)
+        chan.start(pitches[event] * (2**multiplier), size, pluck)
     }
     else document.getElementById(note_name).play()
     chan.note = event
@@ -422,7 +425,7 @@ async function playback() {
             chord = null;
         }
         else if (chord != null) chord.push(c)
-        else if (c == ' ' || c in note_names) {
+        else if (c == ' ' || c == '_' || c in note_names) {
             press({key:c})
             await sleep(tempo)
             release({key:c})
@@ -454,7 +457,7 @@ async function playChord(duration, notes) {
         for (p of pix[pix.length-1]) p.src = 'blue.png'
         voice.vibrato(vib)
         voice.waveform(wave)
-        voice.start(pitches[key] * (2**multiplier), groups.length)
+        voice.start(pitches[key] * (2**multiplier), groups.length, pluck)
     }
     await sleep(duration)
     for (let voice of voices) {
