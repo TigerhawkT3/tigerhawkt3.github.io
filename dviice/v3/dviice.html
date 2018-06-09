@@ -161,7 +161,7 @@ $(document).ready(function(){
     attachAll('instrument1');
     attachAll('instrument2');
     attachAll('instrument3');
-    $(this).on('mouseup', stopBend)
+    $(this).on('mouseup', mouseUp)
     for (let clef of ['treble1', 'treble2', 'treble3', 'treble4', 'bass1', 'bass2', 'bass3', 'bass4']) {
         $("#" + clef).html(instrument[clef])
         attachAll(clef); 
@@ -264,7 +264,6 @@ function attachAll( inTable ) {
         p.onmouseover = doMouseOver;
         p.onmouseout  = doMouseOut;
         p.onmousedown = doMouseDown;
-        p.onmouseup   = doMouseUp;
         p.setAttribute("originalSrc",p.src);
     }
 }
@@ -282,7 +281,7 @@ var note_names = {"V":"C", "G":"Cs", "B":"D", "H":"Ds", "N":"E",
 var multipliers = {"Z":0, "X":1, "C":2, "A":3, "S":4, "D":5}
 var multiplier = 3;
 let highlighting = {};
-let pluck = false;
+let pluck = true;
 var canvas = $('#pitchwheel')[0]
 var context = canvas.getContext('2d');
 context.font = '12px Arial';
@@ -303,10 +302,6 @@ function doMouseDown() {
     if (!$(this).attr('name')) return;
     sweep = true;
     playElement(this);
-}
-function doMouseUp() {
-    sweep = false;
-    clickVoice.stop();
 }
 function playElement(element) {
     $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone')), 1, pluck):$('#'+$(element).attr('name'))[0].play()
@@ -336,13 +331,17 @@ function doBend(event) {
     for (let voice of voices) voice.changeBend(value)
     for (let channel of channels) channel.changeBend(value)
 }
-function stopBend() {
+function mouseUp() {
+    // stop bending
     for (let voice of voices) voice.stopBend()
     for (let channel of channels) channel.stopBend()
     $('#pitchwheel').off('mousemove', doBend);
     // canvas x1,y1,x2,y2 is 1480,26,1480+135,26+855, semitone every 100px
     var box = canvas.getBoundingClientRect()
     context.clearRect(0,0,box.width,box.height)
+    // and stop playing
+    sweep = false;
+    clickVoice.stop();
 }
 // keyboard controls
 function press(event, size=1) {
@@ -359,8 +358,8 @@ function press(event, size=1) {
         for (let channel of channels)
             channel.waveform(event)
     }
-    else if (event == '<') pluck = true;
-    else if (event == '>') pluck = false;
+    else if (event == '<') pluck = false;
+    else if (event == '>') pluck = true;
     if (!(event in note_names)) return;
     for (let channel of channels) if (channel.note == event) return;
     let chan;

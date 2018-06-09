@@ -39,8 +39,9 @@ function createAudioContext()
 // Start off by initializing a new audioContext.
 var audioContext =  createAudioContext();
 // resume this after user clicks the window due to autoplay policy update
+// make it conditional to avoid FireFox problems - thanks to https://github.com/TheGoddessInari
 window.addEventListener('click', function() {
-  audioContext.resume();
+    if (audioContext.state !== "running") audioContext.resume();
 });
 
 // shim layer with setTimeout fallback

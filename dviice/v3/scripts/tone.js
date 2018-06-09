@@ -45,25 +45,25 @@ function Voice() {
         var now = audioContext.currentTime;
         this.frequency = frequency;
         this.osc.frequency.value = this.frequency * bend;
-        this.amp.gain.cancelScheduledValues(now);
-        this.amp.gain.setValueAtTime(this.amp.gain.value, now);
         if (pluck) {
             let base = 0.6/(size+1)
             this.amp.gain.setValueCurveAtTime(Float32Array.from([this.amp.gain.value, base*0.5, base, base*1.2, base*1.5, base]), now, 0.05)
         }
-        else this.amp.gain.linearRampToValueAtTime(0.6/(size+1), now + 0.1);
+        // use setTargetAtTime instead of linearRampToValueAtTime so that
+        // FireFox's non-updated Web Audio API can actually do it -
+        // thanks to https://github.com/TheGoddessInari
+        else this.amp.gain.setTargetAtTime(0.6/(size+1), now, 0.1);
     }
     this.stop = function() {
         var now = audioContext.currentTime;
         this.amp.gain.cancelScheduledValues(0);
         while (true) {
-            try { // setValueAtTime sometimes doesn't play well with setValueCurveAtTime, even with the cancel(0) above
-                this.amp.gain.setValueAtTime(this.amp.gain.value, now);
+            try {
+                this.amp.gain.setTargetAtTime(0.0, now, 0.3);
                 break;
             }
-            catch(e){}
+            catch (e) {}
         }
-        this.amp.gain.linearRampToValueAtTime(0.0, now + 1.0);
     }
     this.changeBend = function(value) {
         bend = 2**(value/12) // https://en.wikipedia.org/wiki/Scientific_pitch_notation#Table_of_note_frequencies
