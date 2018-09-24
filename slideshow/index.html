@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Slideshow</title>
+<style>
+body {
+    background-color: #000000;
+    overflow: hidden;
+}
+.bg {
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+}
+.frame {
+    display: grid;
+    height: 100%;
+}
+img {
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    opacity: 1;
+    transition: all 2s linear, z-index 0s;
+    shape-inside: inset(0% 0% 0% 0%);
+    clip-path: inset(0% 0% 0% 0%);
+    z-index: 2;
+}
+img.fade {
+    opacity: 0;
+    z-index: 1;
+}
+img.right {
+    left: 105vw;
+    z-index: 1;
+}
+img.bottom {
+    top: 200vh;
+    z-index: 1;
+}
+img.left {
+    right: 100%;
+    transform: translateX(-100%);
+    z-index: 1;
+}
+img.top {
+    bottom: 200vh;
+    z-index: 1;
+}
+img.zoom {
+    transform: scale(0);
+    z-index: 1;
+}
+img.zoomx {
+    transform: scaleX(0);
+    z-index: 1;
+}
+img.zoomy {
+    transform: scaleY(0);
+    z-index: 1;
+}
+img.spinleft {
+    transform: rotate(-90deg);
+    opacity: 0;
+    z-index: 1;
+}
+img.spinright {
+    transform: rotate(90deg);
+    opacity: 0;
+    z-index: 1;
+}
+img.box {
+    shape-inside: inset(50% 50% 50% 50%);
+    clip-path: inset(50% 50% 50% 50%);
+    z-index: 1;
+}
+img.rollbottom {
+    shape-inside: inset(100% 0% 0% 0%);
+    clip-path: inset(100% 0% 0% 0%);
+    z-index: 1;
+}
+img.rollleft {
+    shape-inside: inset(0% 100% 0% 0%);
+    clip-path: inset(0% 100% 0% 0%);
+    z-index: 1;
+}
+img.rolltop {
+    shape-inside: inset(0% 0% 100% 0%);
+    clip-path: inset(0% 0% 100% 0%);
+    z-index: 1;
+}
+img.rollright {
+    shape-inside: inset(0% 0% 0% 100%);
+    clip-path: inset(0% 0% 0% 100%);
+    z-index: 1;
+}
+img.cut {
+    display: none;
+    transition: none;
+    z-index: 1;
+}
+img.bury {
+    z-index: -1;
+}
+</style>
+</head>
+<body>
+<div class="frame">
+<img id='bg' class='bg' src='bg.png'>
+<img id="a">
+<img id="b">
+</div>
+<script>
+var frames = [document.getElementById('b'), document.getElementById('a')];
+var num = location.search.match(/\d+/) // index.html?num30
+num = parseInt(num && num[0] || prompt('Number of photos?', '30')); // should be e.g. 1.jpg to 30.jpg
+var style = location.search.match(/[a-z]+/)
+var i = 0
+var scheduler = [null, null];
+var running = true;
+style = style && style[0] || 'fade'
+var inout = {'spinback':['spinleft', 'spinright'],
+             'spinforward':['spinright', 'spinleft'],
+             'ltr':['right', 'left'],
+             'rtl':['left', 'right'],
+             'ttb':['bottom', 'top'],
+             'btt':['top', 'bottom'],
+             'zoomxy':['zoomy', 'zoomx'],
+             'zoomyx':['zoomx', 'zoomy'],
+             'boxzoom':['zoom', 'box'],
+             'zoombox':['box', 'zoom'],
+             'rollleftright':['rollright', 'rollleft'],
+             'rollrightleft':['rollleft', 'rollright'],
+             'rolltopbottom':['rollbottom', 'rolltop'],
+             'rollbottomtop':['rolltop', 'rollbottom'],}
+function press(event) {
+    let e = event.key.toUpperCase();
+    if (e === '1') style = 'fade';
+    else if (e === '2') style = 'box';
+    else if (e === 'Z') style = 'zoom';
+    else if (e === 'C') style = 'cut';
+    else if (e === 'W') style = 'top';
+    else if (e === 'A') style = 'left';
+    else if (e === 'S') style = 'bottom';
+    else if (e === 'D') style = 'right';
+    else if (e === 'Q') style = 'zoomx';
+    else if (e === 'E') style = 'zoomy';
+    else if (e === '[') style = 'spinleft';
+    else if (e === ']') style = 'spinright';
+    else if (e === 'O') style = 'rolltop';
+    else if (e === 'K') style = 'rollleft';
+    else if (e === 'L') style = 'rollbottom';
+    else if (e === ';') style = 'rollright';
+    else if (e === '{') style = 'spinback';
+    else if (e === '}') style = 'spinforward';
+    else if (e === '4') style = 'ltr';
+    else if (e === '5') style = 'rtl';
+    else if (e === '6') style = 'ttb';
+    else if (e === '7') style = 'btt';
+    else if (e === 'R') style = 'zoomxy';
+    else if (e === 'T') style = 'zoomyx';
+    else if (e === 'Y') style = 'boxzoom';
+    else if (e === 'U') style = 'zoombox';
+    else if (e === 'F') style = 'rollleftright';
+    else if (e === 'G') style = 'rollrightleft';
+    else if (e === 'H') style = 'rolltopbottom';
+    else if (e === 'J') style = 'rollbottomtop';
+    else if (e === 'ARROWLEFT') {
+        for (let s of scheduler) clearTimeout(s);
+        i -= 3;
+        if (i<0) i += num;
+        frames.reverse();
+        swap(100);
+    }
+    else if (e === 'ARROWRIGHT') {
+        for (let s of scheduler) clearTimeout(s);
+        i--;
+        frames.reverse();
+        swap(100);
+    }
+    else if (e === ' ') {
+        if (running) for (let s of scheduler) clearTimeout(s);
+        else swap(100);
+        running = !running;
+    }
+}
+function swap(t=5000) { // 5000 is 5 seconds between slides
+    running = true;
+    let [which, other] = frames;
+    frames.reverse();
+    which.className = ''
+    other.className = (style in inout)?inout[style][0]:style;
+    i = (i % num) + 1;
+    // 2000 is the 2s transition time
+    scheduler[0] = setTimeout(function() { load(which, other, i) }, 2000);
+    scheduler[1] = setTimeout(swap, t);
+}
+function load(which, other, i) {
+    other.src = 'images/' + i + '.jpg';
+    if (style in inout) {
+        if (other.className === inout[style][0])
+            other.className = inout[style][1];
+        else
+            other.className = inout[style][0];
+    }
+    other.className += ' bury'
+}
+swap(); // allow full interval for correct inout animation
+// hide layout until ready
+setTimeout(function() { document.getElementById('bg').style['z-index'] = 0 }, 5000)
+document.onkeydown = press;
+</script>
+</body>
+</html>
