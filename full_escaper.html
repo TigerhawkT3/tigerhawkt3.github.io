@@ -2,36 +2,61 @@
 <html>
 <head><title>Full escaper</title></head>
 <body>
-<button id='copy' onclick='copy()'>Escape all to clipboard</button>
-<button id='replace' onclick='replace()'>Escape selection</button>
-<button id='reverse' onclick='replace(true)'>Unescape selection</button><br />
-<textarea autofocus="true" rows="30" cols="60" class="in" id="in"
+<style>
+div {
+    text-align: center;
+}
+button {
+    width: 45vw;
+    max-width: 250px;
+    height: 10vh;
+    min-height: 30px;
+}
+textarea {
+    width: 90vw;
+    max-width: 500px;
+    height: 70vh;
+}
+</style>
+<div><tr><td>
+<button onclick='copy()'>Full escape all to clipboard</button>
+<button onclick='replace("full")'>Full escape selection</button><br />
+<button onclick='replace("partial")'>Partial escape selection</button>
+<button onclick='replace("unescape")'>Unescape selection</button><br />
+<textarea autofocus="true" id="in"
 placeholder="Enter text
 Escape and copy the whole thing to the clipboard
-Or select a segment and un/escape the selection in-place"></textarea>
+Or fully escape a selection in-place
+Or partially escape a selection in-place
+Or unescape a selection in-place"></textarea></td></tr></div>
 <script type="text/javascript">
 parser = new DOMParser;
 function convert(text) {
     return Array.from(text || document.getElementById('in').value).map(
-                    x => x==='\n' ? x : `&#${x.charCodeAt(0)};`).join('')
-}
+                    x => x==='\n' ? x : `&#${x.charCodeAt(0)};`).join('');
+};
 function copy() {
     navigator.clipboard.writeText(convert());
-    document.getElementById('in').focus()
+    document.getElementById('in').focus();
 };
-function replace(reverse) {
-    let text = document.getElementById('in')
-    text.focus()
-    let start = text.selectionStart
-    let end = text.selectionEnd
+function replace(flag) {
+    let text = document.getElementById('in');
+    text.focus();
+    let start = text.selectionStart;
+    let end = text.selectionEnd;
     if (start === end) return;
     let before = text.value.slice(0, start);
-    let segment = text.value.slice(start, end)
-    if (!reverse) segment = convert(segment)
-    else segment = parser.parseFromString(segment, 'text/html').body.textContent
-    let after = text.value.slice(end)
+    let segment = text.value.slice(start, end);
+    if (flag==='full') segment = convert(segment);
+    else if (flag==='unescape') segment = parser.parseFromString(segment, 'text/html').body.textContent;
+    else if (flag==='partial') {
+        text.textContent = segment;
+        segment = text.innerHTML;
+        text.textContent = '';
+    }
+    let after = text.value.slice(end);
     text.value = before + segment + after;
-    text.setSelectionRange(start, start+segment.length)
+    text.setSelectionRange(start, start+segment.length);
 };
 </script>
 </body>
