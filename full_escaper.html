@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head><title>Full escaper</title></head>
+<head><title>Full escaper</title><meta name='viewport'></head>
 <body>
 <style>
 div {
     text-align: center;
 }
 button {
-    width: 45vw;
-    max-width: 250px;
-    height: 10vh;
-    min-height: 30px;
+    width: 250px;
+    height: 50px;
 }
 textarea {
-    width: 90vw;
-    max-width: 500px;
-    height: 60vh;
+    width: 500px;
+    height: 80vh;
 }
 </style>
-<div><tr><td>
-<button onclick='copy()'>Full escape all to clipboard</button>
-<button onclick='replace("full")'>Full escape selection</button><br />
-<button onclick='replace("partial")'>Partial escape selection</button>
-<button onclick='replace("unescape")'>Unescape selection</button><br />
+<div><button id="b1" onclick='copy()'>Full escape all to clipboard</button>
+<button id="b2" onclick='replace("full")'>Full escape selection</button><br />
+<button id="b3" onclick='replace("partial")'>Partial escape selection</button>
+<button id="b4" onclick='replace("unescape")'>Unescape selection</button><br />
 <textarea autofocus="true" id="in"
 placeholder="Enter text
 Escape and copy the whole thing to the clipboard
 Or fully escape a selection in-place
 Or partially escape a selection in-place
-Or unescape a selection in-place"></textarea></td></tr></div>
+Or unescape a selection in-place"></textarea></div>
 <script type="text/javascript">
 parser = new DOMParser;
+if (navigator.maxTouchPoints) {
+    let text = document.getElementById('in')
+    let buttons = ['b1', 'b2', 'b3', 'b4'].map(x => document.getElementById(x))
+    for (let button of buttons) {
+        button.style.width = '41vw'
+        button.style.height = '10vh'
+    }
+    text.style.width = '82vw'
+    text.style.height = '60vh'
+    viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1, maximum-scale=1');
+}
 function convert(text) {
     return Array.from(text || document.getElementById('in').value).map(
                     x => x==='\n' ? x : `&#${x.charCodeAt(0)};`).join('');
