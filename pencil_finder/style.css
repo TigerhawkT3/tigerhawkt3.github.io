@@ -1,0 +1,50 @@
+div.NW {
+    font-size: 20px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    border: 3px solid black;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+}
+div.NE {
+    font-size: 20px;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    border: 3px solid black;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+}
+div.SE {
+    font-size: 20px;
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    border: 3px solid black;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+}
+div.SW {
+    font-size: 20px;
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+    border: 3px solid black;
+    border-radius: 20px;
+    background: white;
+    padding: 10px;
+}
+input.flee {
+    font-size: 20px;
+    left: 0%;
+    bottom: 0%;
+}
+input.chooser {
+    font-size: 20px;
+    left: 0%;
+    top: 0%;
+}
