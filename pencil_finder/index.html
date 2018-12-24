@@ -2,12 +2,12 @@
 <body>
 <link rel='stylesheet' href='style.css'>
 <canvas id='canvas'></canvas><br />
-<div id='result' class='SW'>
+<div id='result' class='shown'>
 <input class='chooser' type='file' id='chooser' name='chooser' accept='image/*' />
-<label for='chooser'>then click (or drag a rectangle)</label><br />
+<input class='hide' type='button' id='hide' value='X'></button><br />
+<label for='chooser'>then click (or drag a rectangle)</label>
 <div id='suggestion'></div><br />
 <canvas id='comparison' width='300' height='100'></canvas><br />
-<input class='flee' type='button' id='flee' value='Switch corners'></button>
 </div>
 <script src='colortable.js'></script>
 <script src='color_match.js'></script>

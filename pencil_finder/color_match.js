@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');                    // context for photo can
 const image = new Image();                              // chosen image
 const compare = document.getElementById('comparison');  // canvas for comparison
 const compare_ctx = compare.getContext('2d');           // context for comparison canvas
-const flee_button = document.getElementById('flee');    // button to switch result location
+const hide_button = document.getElementById('hide');    // button to hide result location
 const result = document.getElementById('result')        // result div
 var start_x = 0;                                        // x-coordinate where color selection box begins
 var start_y = 0;                                        // y-coordinate for same
@@ -43,8 +43,8 @@ canvas.onmousedown = function(evt) {
     [start_x, start_y] = [coords.x, coords.y]; // set starting x,y coordinates
     canvas.onmouseup = onmouseup;
 }
-flee_button.onclick = function(evt) {
-    result.className = {NW: 'NE', NE:'SE', SE:'SW', SW:'NW'}[result.className]
+hide_button.onclick = function(evt) {
+    result.className = 'hidden';
 }
 function find_match(group) { // find closest match to a group of 3 color channels (in RGB)
     let [red, green, blue] = group;
@@ -106,6 +106,7 @@ function onmouseup(evt) {
                   `<br /><strong>${Math.round(color_score*10)/10}%</strong> color match (left) compared to original ` +
                   `sample (middle) and <strong>${Math.round(complement_score*10)/10}%</strong> complement match (right).`;
     document.getElementById('suggestion').innerHTML = message;      // suggest a color
+    result.className = 'shown';
     canvas.onmouseup = null;
 }
 document.getElementById('chooser').addEventListener('change', handleFileSelect, false);
