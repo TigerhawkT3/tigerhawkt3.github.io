@@ -38,6 +38,11 @@ function handleFileSelect(evt) {
     document.getElementById('suggestion').innerHTML = '';       // clear the suggestion area
     compare_ctx.clearRect(0, 0, compare.width, compare.height); // clear the comparison canvas
 }
+function resize_result(evt) {
+    let scale = evt.target.valueAsNumber / 100
+    let translate = 50 * (1-scale) / scale
+    result.style.transform = `scale(${scale}) translateX(${translate}%) translateY(${-translate}%)`
+}
 canvas.onmousedown = function(evt) {
     let coords = realMousePos(canvas, evt);
     [start_x, start_y] = [coords.x, coords.y]; // set starting x,y coordinates
@@ -110,3 +115,4 @@ function onmouseup(evt) {
     canvas.onmouseup = null;
 }
 document.getElementById('chooser').addEventListener('change', handleFileSelect, false);
+document.getElementById('sizer').addEventListener('change', resize_result, false);

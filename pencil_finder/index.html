@@ -3,9 +3,14 @@
 <link rel='stylesheet' href='style.css'>
 <canvas id='canvas'></canvas><br />
 <div id='result' class='shown'>
-<input class='chooser' type='file' id='chooser' name='chooser' accept='image/*' />
-<input class='hide' type='button' id='hide' value='X'></button><br />
-<label for='chooser'>then click (or drag a rectangle)</label>
+<ol>
+    <li><input class='chooser' type='file' id='chooser' name='chooser' accept='image/*' />
+        <input class='hide' type='button' id='hide' value='X'></button><br /></li>
+    <li><label for='chooser'>then click a pixel (or drag a rectangle).</label></li>
+    <li><div>Scale of this box:<input class='sizer' id='sizer' type='range' min='5'
+        max='500' value='150' width='2' /></div></li>
+</ol>
+
 <div id='suggestion'></div><br />
 <canvas id='comparison' width='300' height='100'></canvas><br />
 </div>
