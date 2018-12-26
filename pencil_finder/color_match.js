@@ -111,7 +111,15 @@ function onmouseup(evt) {
                   `<br /><strong>${Math.round(color_score*10)/10}%</strong> color match (left) compared to original ` +
                   `sample (middle) and <strong>${Math.round(complement_score*10)/10}%</strong> complement match (right).`;
     document.getElementById('suggestion').innerHTML = message;      // suggest a color
-    result.className = 'shown';
+    if (navigator.maxTouchPoints) {
+        result.className = 'hidden';
+        while (message.includes('<strong>')) message = message.replace('<strong>', '');
+        while (message.includes('</strong>')) message = message.replace('</strong>', '');
+        while (message.includes('<br />')) message = message.replace('<br />', '\n');
+        for (let no of ['(left) ', '(middle) ', ' (right)']) message = message.replace(no, '');
+        alert(message);
+    }
+    else result.className = 'shown';
     canvas.onmouseup = null;
 }
 document.getElementById('chooser').addEventListener('change', handleFileSelect, false);
