@@ -115,10 +115,8 @@
 <script>
 // speed bump for iframe content thieves
 // https://stackoverflow.com/a/2896882
-if (top!=self){
-    top.location.replace(document.location);
-    alert("For security reasons, framing is not allowed; click OK to remove the frames.")
-}
+if (top!=self) top.location.replace(document.location);
+
 // zoneMenu to change instrumentMenu and tuneMenu
 $(document).ready(function(){
     $('#zoneMenu').change(function(){
@@ -466,6 +464,7 @@ async function playChord(duration, notes) {
         for (let p of px) p.src = p.getAttribute('originalSrc')
     }
 }
+while (top!=self) alert("For security reasons, framing is not allowed.");
 </script>
 </body>
 </html>
