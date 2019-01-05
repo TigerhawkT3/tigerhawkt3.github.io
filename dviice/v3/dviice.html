@@ -248,13 +248,16 @@ Click outside this box if you don't want played notes to show up. Use spaces for
 Enter a BPM in the box to the right (default 120) and hit the play button below it to play back your song."
 autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
 </textarea>
-<textarea placeholder="BPM" rows="1" cols="3" class="tempo" id="tempo"></textarea>
+<input type='number' placeholder="BPM" min='0' max='60000' class="tempo" id="tempo"></input>
 <button onclick="playback()" class="player">Play!</button>
 <canvas id='pitchwheel' width="135" height="855" onmousedown="startBend(event)"></canvas>
 
 <script type="text/javascript">
 let sweep;
 let bend_origin;
+let tempo = 500;
+let tempo_wheel = document.getElementById('tempo')
+tempo_wheel.addEventListener('change', function(evt) { tempo = 60000/tempo_wheel.valueAsNumber || 500 }, false);
 // IE and Edge can't iterate over iterator objects in a for-each loop like Chrome
 // and Firefox can, so those objects are converted to arrays with Array.from()
 function attachAll( inTable ) {
@@ -400,7 +403,6 @@ document.onkeyup = release;
 // end of keyboard controls
 async function playback() {
     let chord = null;
-    let tempo = (60000/parseInt(document.getElementById('tempo').value)) || 500
     var text = document.getElementById('textlog')
     for (let c of (text.value.slice(text.selectionStart, text.selectionEnd) || text.value).toUpperCase()) {
         if (c == '(') chord = [];
