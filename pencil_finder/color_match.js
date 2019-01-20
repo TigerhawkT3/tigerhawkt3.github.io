@@ -92,6 +92,10 @@ function onmouseup(evt) {
         for (let x of channels[i]) sum += x;
         channels[i] = sum/channels[i].length;
     }
+    let table = {//'prisma':prismacolors,
+                 //'poly':polychromos,
+                 //'both':combined,
+                 'prisma132':colors}['prisma132']//[document.forms.tables.table.value]
     let complement = channels.map(x => 255-x);                      // find color complement
     let [color_key, color_score] = find_match(channels);            // find pencils and score for color
     let [complement_key, complement_score] = find_match(complement);// find pencils and score for complement
@@ -99,17 +103,21 @@ function onmouseup(evt) {
     document.getElementById('suggestion').innerHTML = '';           // clear suggestion area
     let [r1, g1, b1] = color_key.split('-').map(x => parseInt(x));  // get rgb values from key
     let [r2, g2, b2] = channels;                                    // get rgb values from previewed color
-    let [r3, g3, b3] = complement;                                  // get rgb values from complement
+    let [r4, g4, b4] = complement;                                  // get rgb values from complement
     compare_ctx.fillStyle = `rgb(${r1}, ${g1}, ${b1})`;             // set best match color
     compare_ctx.fillRect(0, 0, compare.width/3, compare.height);    // fill first third of the comparison canvas
     compare_ctx.fillStyle = `rgb(${r2}, ${g2}, ${b2})`;             // set desired color
     compare_ctx.fillRect(compare.width/3, 0, compare.width*2/3, compare.height); // fill second third of the comparison canvas
-    compare_ctx.fillStyle = `rgb(${r3}, ${g3}, ${b3})`;             // set complement color
+    compare_ctx.fillStyle = `rgb(${r4}, ${g4}, ${b4})`;             // set complement color
     compare_ctx.fillRect(compare.width*2/3, 0, compare.width, compare.height); // fill last third of the comparison canvas
-    let message = '<strong>Suggested pencils:</strong><br />' + colors[color_key] +
-                  '<br /><strong>Complement pencils:</strong><br />' + colors[complement_key] +
+    let message = '<strong>Suggested pencils:</strong><br />' + table[color_key] +
+                  '<br /><strong>Complement pencils:</strong><br />' + table[complement_key] +
                   `<br /><strong>${Math.round(color_score*10)/10}%</strong> color match (left) compared to original ` +
-                  `sample (middle) and <strong>${Math.round(complement_score*10)/10}%</strong> complement match (right).`;
+                  `sample (middle) and <strong>${Math.round(complement_score*10)/10}%</strong> complement match (right).` +
+                  `<br />Original RGB: ${r2}-${g2}-${b2}` +
+                  `<br />Original match RGB: ${color_key}` +
+                  `<br />Complement RGB: ${r4}-${g4}-${b4}` +
+                  `<br />Complement match RGB: ${complement_key}`;
     document.getElementById('suggestion').innerHTML = message;      // suggest a color
     if (navigator.maxTouchPoints) {
         result.className = 'hidden';
