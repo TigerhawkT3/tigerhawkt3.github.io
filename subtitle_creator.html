@@ -1,0 +1,202 @@
+<html>
+<head><title>Subtitle Creator by TigerhawkT3</title></head>
+<body>
+<style>
+video::cue {
+    font-size: 150%
+}
+</style>
+<div style='text-align:center; width: 100%;'>
+<video id='vid' style='width: 80%; max-width: 800px;' preload="metadata" controls></video><br />
+<input type='file' id='chooser' accept='video/*' /><br />
+<textarea placeholder='No active cue.' id="source" style='height: 200px; width: 80%; max-width: 800px;'></textarea><br />
+<input type='button' value='Mark in' onclick='mark_in()' /><input type='button' value='Mark out' onclick='mark_out()' />
+<input type='button' value='Create cue from in to out' onclick='create_cue()' />
+<input type='button' value='Commit text to active cue' onclick='commit_text()' />
+<br />
+<input type='button' value='Find and select cue nearest to current time' onclick='edit()' />
+<input type='button' value='Remove active cue' onclick='remove()' />
+<br />
+<input type='button' value='Apply subtitles' onclick='load_sub()' />
+<input type='button' value='Export to text area' onclick='export_string()' />
+<input type='button' value='Import from text area' onclick='import_vtt()' />
+<br />
+<div id='info'></div>
+</div>
+<script>
+
+txt = document.getElementById('source');
+vid = document.getElementById('vid');
+info = document.getElementById('info');
+track = document.createElement("track");
+track.label = "Main";
+vid.appendChild(track);
+vid.textTracks[0].mode = 'showing';
+point_in = 0;
+point_out = 0;
+active_cue = null;
+sequence = new Sequence();
+update_status();
+
+function Cue(start, end) {
+    this.start = start;
+    this.end = end;
+    this.text = ''
+    this.out = '';
+    
+    this.startstamp = secondsToStamp(this.start);
+    this.endstamp = secondsToStamp(this.end);
+    this.addText = function(text) {
+        this.text = text;
+        this.out = `${this.startstamp} --> ${this.endstamp}\n${text}`;
+    }
+    this.toString = function() { return this.out }
+}
+function Sequence() {
+    this.list = [];
+    this.add = function(cue) {
+        if (this.list.length === 0) {
+            this.list.push(cue);
+            return;
+        }
+        for (let idx = 0; idx < this.list.length; ++idx) {
+            if (this.list[idx].start > cue.start) {
+                this.list.splice(idx, 0, cue);
+                return;
+            }
+        }
+        this.list.push(cue);
+    }
+    this.find = function(time) {
+        for (let idx = 0; idx < this.list.length; ++idx) if (
+                                        (idx === this.list.length - 1) || // last one
+                                        (this.list[idx].start <= time && time <= this.list[idx].end) || // exact
+                                        (Math.abs(this.list[idx].start - time) < Math.abs(this.list[idx+1].start - time)) // near
+                                      ) return this.list[idx];
+        return null;
+    }
+    this.remove = function(cue) {
+        for (let idx in this.list) {
+            if (cue.start === this.list[idx].start && cue.end === this.list[idx].end) {
+                this.list.splice(idx, 1);
+                break;
+            }
+        }
+    }
+    this.load_list = function(newlist) {
+        this.list = newlist;
+    }
+    this.length = function() {
+        return this.list.length;
+    }
+    this.assemble = function() {
+        return 'WEBVTT\n\n' + this.list.map(x => x.out).join('\n\n');
+    }
+    this.index = function(cue) {
+        return this.list.indexOf(cue) + 1;
+    }
+}
+
+function secondsToStamp(num) {
+        let h = `${Math.floor(num/3600)}`.padStart(2, '0');
+        let remainder = num%3600;
+        let m = `${Math.floor(remainder/60)}`.padStart(2, '0');
+        let s = `${Math.floor(remainder%60)}`.padStart(2, '0');
+        let ms = `${Math.floor((num - Math.floor(num))*1000)}`.padEnd(3, '0');
+        return `${h}:${m}:${s}.${ms}`
+    }
+function play_file(event) {
+    let file = this.files[0];
+    if (!file) return;
+    if (vid.canPlayType(file.type) === 'no') return;
+    vid.src = URL.createObjectURL(file);
+}
+function load_sub(event) {
+    track.src = URL.createObjectURL(new Blob([sequence.assemble()]));
+}
+function mark_in() {
+    point_in = vid.currentTime;
+    update_status();
+    return point_in;
+}
+function mark_out() {
+    point_out = vid.currentTime;
+    update_status();
+    return point_out;
+}
+function create_cue() {
+    cue = new Cue(point_in, point_out);
+    sequence.add(cue);
+    txt.value = '';
+    edit(cue);
+    update_status();
+}
+function edit(cue=null) {
+    if (cue === null) {
+        active_cue = sequence.find(vid.currentTime);
+        if (active_cue === null) {
+            txt.value = '';
+            txt.placeholder = `No cue found at time ${vid.currentTime}.`;
+            return;
+        }
+    }
+    else active_cue = cue;
+    txt.value = active_cue.text;
+    txt.placeholder = `Enter text for ${active_cue.start} to ${active_cue.end}...`
+    update_status();
+}
+function commit_text() {
+    if (active_cue === null) {
+        txt.value = '';
+        txt.placeholder = 'No active cue.';
+        return;
+    }
+    active_cue.addText(txt.value);
+    active_cue = null;
+    txt.value = '';
+    txt.placeholder = 'Text committed. Active cue cleared.';
+    update_status();
+}
+function remove() {
+    if (active_cue === null) {
+        txt.value = '';
+        txt.placeholder = 'No active cue.';
+        return;
+    }
+    sequence.remove(active_cue);
+    active_cue = null;
+    txt.value = '';
+    txt.placeholder = 'Cue removed. Active cue cleared.';
+    update_status();
+}
+function export_string() {
+    txt.value = sequence.assemble();
+}
+function update_status() {
+    info.innerText = `Cues: ${sequence.length()} - In: ${secondsToStamp(point_in)} - Out: ${secondsToStamp(point_out)}\nCurrent cue: ` +
+    `${active_cue===null?'(no cue)':sequence.index(active_cue) + '\n' + active_cue.toString()}`;
+}
+function import_vtt() {
+    cues = txt.value.slice(txt.value.indexOf('\n')+1).trim().split('\n\n');
+    let temp = [];
+    for (let cue of cues) {
+        idx = cue.indexOf('\n');
+        let [start, end] = cue.slice(0, idx).trim().split(' --> ').map(x => x.split(':'));
+        start = 3600*(start[0]) + 60*(start[1]) + parseFloat(start[2]);
+        end = 3600*(end[0]) + 60*(end[1]) + parseFloat(end[2]);
+        text = cue.slice(idx+1);
+        cue = new Cue(start, end);
+        cue.addText(text);
+        temp.push(cue);
+    }
+    sequence.load_list(temp);
+    active_cue = null;
+    txt.value = '';
+    txt.placeholder = 'Subtitles saved.';
+    load_sub();
+    update_status();
+}
+document.getElementById('chooser').addEventListener('change', play_file, false);
+</script>
+</body> 
+</html>
