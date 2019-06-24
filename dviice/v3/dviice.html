@@ -293,6 +293,7 @@ function sleep(ms) {
 }
 function doMouseOver() {
     for (var p of Array.from(document.getElementsByName(this.name))) p.src = "blue.png";
+    if (!this.name) return;
     if (sweep) playElement(this);
 }
 function doMouseOut() {
@@ -300,12 +301,12 @@ function doMouseOut() {
     clickVoice.stop();
 }
 function doMouseDown() {
-    if (!$(this).attr('name')) return;
+    if (!this.name) return;
     sweep = true;
     playElement(this);
 }
 function playElement(element) {
-    $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone')), 1, pluck):$('#'+$(element).attr('name'))[0].play()
+    $('#version').attr('desktop')?clickVoice.start(parseFloat($(element).attr('tone')), 1, pluck):$('#'+element.name)[0].play()
 }
 function startBend(event) {
     event.preventDefault();
