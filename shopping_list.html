@@ -55,7 +55,7 @@ function up(e) { list.insertBefore(e.parentNode, e.parentNode.previousElementSib
 function to_clip() {
     let items = Array.from(list.getElementsByTagName('div'));
     let result = location.origin + location.pathname + '?' + items.map(e => encodeURIComponent(e.children[3].value)).join('&');
-    if (true) document.getElementById('ios').innerHTML = "<a href='" + result + "'>Copy me!</a>"
+    if (navigator.userAgent.match(/ipad|iphone/i)) document.getElementById('ios').innerHTML = "<a href='" + result + "'>Copy me!</a>"
     else navigator.clipboard.writeText(result);
 }
 if (location.search === '') {
