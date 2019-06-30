@@ -1,0 +1,47 @@
+<html>
+<head><title>Shopping List by TigerhawkT3</title></head>
+<body>
+
+<div id='list' align='center'></div><br />
+<div align='center'><button type='button' onclick='to_clip()'>Export to clipboard</button></div>
+
+<script>
+let list = document.getElementById('list');
+function new_item() {
+    newElement = document.createElement('div');
+    newElement.style = 'padding: 3px;'
+    newElement.innerHTML = "<button type='button' onclick='insert(this)'>+</button>\n" +
+        "<button onclick='remove(this)'>-</button>\n" +
+        "<button onclick='up(this)'>^</button>\n" +
+        "<textarea style='vertical-align:bottom;' placeholder='enter item...' rows=1 cols=40></textarea>\n";
+    return newElement;
+}
+function insert(e) {
+    newElement = new_item();
+    list.insertBefore(newElement, e.parentNode);
+    newElement.children[3].focus();
+}
+function remove(e) { list.removeChild(e.parentNode); }
+function up(e) { list.insertBefore(e.parentNode, e.parentNode.previousElementSibling); }
+function to_clip() {
+    let items = Array.from(list.getElementsByTagName('div'));
+    let result = items.map(e => encodeURIComponent(e.children[3].value)).join('&');
+    navigator.clipboard.writeText(location.origin + location.pathname + '?' + result);
+}
+if (location.search === '') {
+    newElement = new_item();
+    list.appendChild(newElement);
+    newElement.focus();
+}
+else {
+    let items = location.search.slice(1).split('&');
+    for (let item of items) {
+        let e = new_item();
+        e.children[3].value = decodeURIComponent(item);
+        list.appendChild(e);
+    }
+}
+</script>
+
+</body>
+</html>
