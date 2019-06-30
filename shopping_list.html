@@ -1,19 +1,43 @@
 <html>
 <head><title>Shopping List by TigerhawkT3</title></head>
 <body>
-
 <div id='list' align='center'></div><br />
-<div align='center'><button type='button' onclick='to_clip()'>Export to clipboard</button></div>
-
+<div align='center'><button type='button' class='export' onclick='to_clip()'>Export to clipboard</button></div>
+<style>
+button.list {
+    vertical-align: bottom;
+    font-size: calc(20px + 2vw);
+    width: 9vw;
+    height: 9vw;
+    max-height: 12vh;
+    max-width: 12vh;
+    min-height: 6vw;
+    min-width: 6vw;
+}
+button.export {
+    height: 9vw;
+    max-height: 12vh;
+    font-size: calc(20px + 1vw);
+}
+textarea.list {
+    vertical-align: bottom;
+    width: 60vw;
+    height: 9vw;
+    font-size: calc(20px + 2vw);
+    max-height: 12vh;
+    min-height: 6vw;
+}
+</style>
 <script>
 let list = document.getElementById('list');
+let tall = window.innerHeight > window.innerWidth;
 function new_item() {
     newElement = document.createElement('div');
     newElement.style = 'padding: 3px;'
-    newElement.innerHTML = "<button type='button' onclick='insert(this)'>+</button>\n" +
-        "<button onclick='remove(this)'>-</button>\n" +
-        "<button onclick='up(this)'>^</button>\n" +
-        "<textarea style='vertical-align:bottom;' placeholder='enter item...' rows=1 cols=40></textarea>\n";
+    newElement.innerHTML = "<button class='list' type='button' onclick='insert(this)'>+</button>\n" +
+        "<button class='list' onclick='remove(this)'>-</button>\n" +
+        "<button class='list' onclick='up(this)'>^</button>\n" +
+        "<textarea class='list' placeholder='Enter item...' rows=1 cols=40></textarea>\n";
     return newElement;
 }
 function insert(e) {
