@@ -3,7 +3,7 @@
 <body>
 <div id='list' align='center'></div><br />
 <div align='center'><button type='button' class='export' onclick='to_clip()'>Export</button></div>
-<div align='center' id='ios'></div>
+<div class='result' align='center' id='ios'></div>
 <style>
 button.list {
     vertical-align: bottom;
@@ -29,6 +29,9 @@ textarea.list {
     max-height: 12vh;
     min-height: 6vw;
 }
+div.result {
+    font-size: 10vw;
+}
 </style>
 <script>
 let list = document.getElementById('list');
@@ -52,7 +55,7 @@ function up(e) { list.insertBefore(e.parentNode, e.parentNode.previousElementSib
 function to_clip() {
     let items = Array.from(list.getElementsByTagName('div'));
     let result = location.origin + location.pathname + '?' + items.map(e => encodeURIComponent(e.children[3].value)).join('&');
-    if (navigator.userAgent.match(/ipad|iphone/i)) document.getElementById('ios').innerText = result
+    if (true) document.getElementById('ios').innerHTML = "<a href='" + result + "'>Copy me!</a>"
     else navigator.clipboard.writeText(result);
 }
 if (location.search === '') {
