@@ -8,18 +8,27 @@ video::cue {
 </style>
 <div style='text-align:center; width: 100%;'>
 <video id='vid' style='width: 80%; max-width: 800px;' preload="metadata" controls></video><br />
-<input type='file' id='chooser' accept='video/*' /><br />
-<textarea placeholder='No active cue.' id="source" style='height: 200px; width: 80%; max-width: 800px;'></textarea><br />
+ <input type='file' id='chooser' accept='video/*' />
+ <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='step size in seconds' />
+ <input type='button' value='<' onclick='jump_seconds(-1)' title='seek backward by step size' />
+ <input type='button' value='>' onclick='jump_seconds(1)' title='seek forward by step size' />
+ <input type='button' id='loop_button' value='Loop in-out' onclick='loop_inout()' title='loop from in to out points' />
+<br />
+<textarea placeholder='No active cue.' id="source" style='height: 100px; width: 80%; max-width: 800px;'></textarea><br />
 <input type='button' value='Mark in' onclick='mark_in()' /><input type='button' value='Mark out' onclick='mark_out()' />
-<input type='button' value='Create cue from in to out' onclick='create_cue()' />
-<input type='button' value='Commit text to active cue' onclick='commit_text()' />
+<input type='button' value='Create cue' onclick='create_cue()' title='Create cue from in to out points' />
+<input type='button' value='Commit text' onclick='commit_text()' title='commit text to active cue' />
 <br />
-<input type='button' value='Find and select cue nearest to current time' onclick='edit()' />
-<input type='button' value='Remove active cue' onclick='remove()' />
+<input type='button' value='<' onclick='nudge("start", -1)' title='decrease start time of active cue by step size' />
+<input type='button' value='>' onclick='nudge("start", 1)' title='increase start time of active cue by step size' />
+<input type='button' value='Get cue' onclick='edit()' title='find and select cue nearest to current time' />
+<input type='button' value='<' onclick='nudge("end", -1)' title='decrease end time of active cue by step size' />
+<input type='button' value='>' onclick='nudge("end", 1)' title='increase end time of active cue by step size' />
+<input type='button' value='Remove cue' onclick='remove()' title='remove the active cue from the list of cues' />
 <br />
-<input type='button' value='Apply subtitles' onclick='load_sub()' />
-<input type='button' value='Export to text area' onclick='export_string()' />
-<input type='button' value='Import from text area' onclick='import_vtt()' />
+<input type='button' value='Apply' onclick='load_sub()' title='apply saved cues as subtitles to current video' />
+<input type='button' value='Export' onclick='export_string()' title='export saved cues in WebVTT format into the text area' />
+<input type='button' value='Import' onclick='import_vtt()' title='import a WebVTT file from the text area into a list of cues' />
 <br />
 <div id='info'></div>
 </div>
@@ -28,6 +37,8 @@ video::cue {
 txt = document.getElementById('source');
 vid = document.getElementById('vid');
 info = document.getElementById('info');
+loop_button = document.getElementById('loop_button');
+step_size = document.getElementById('step_size');
 track = document.createElement("track");
 track.label = "Main";
 vid.appendChild(track);
@@ -35,6 +46,7 @@ vid.textTracks[0].mode = 'showing';
 point_in = 0;
 point_out = 0;
 active_cue = null;
+looping = null;
 sequence = new Sequence();
 update_status();
 
@@ -44,13 +56,18 @@ function Cue(start, end) {
     this.text = ''
     this.out = '';
     
-    this.startstamp = secondsToStamp(this.start);
-    this.endstamp = secondsToStamp(this.end);
     this.addText = function(text) {
         this.text = text;
-        this.out = `${this.startstamp} --> ${this.endstamp}\n${text}`;
+        this.update_cue();
+    }
+    this.update_cue = function() {
+        this.startstamp = secondsToStamp(this.start);
+        this.endstamp = secondsToStamp(this.end);
+        this.out = `${this.startstamp} --> ${this.endstamp}\n${this.text}`;
     }
     this.toString = function() { return this.out }
+    
+    this.update_cue();
 }
 function Sequence() {
     this.list = [];
@@ -97,12 +114,36 @@ function Sequence() {
     }
 }
 
+function jump_seconds(direction) {
+    vid.currentTime += direction * step_size.valueAsNumber || 0;
+}
+function loop_inout() {
+    if (looping === null) {
+        loop_schedule();
+        loop_button.value = 'Looping...'
+    }
+    else {
+        clearTimeout(looping);
+        looping = null;
+        loop_button.value = 'Loop in-out'
+    }
+}
+function loop_schedule() {
+    vid.currentTime = point_in;
+    looping = setTimeout(loop_schedule, Math.abs((point_out-point_in)*1000));
+}
+function nudge(which, direction) {
+    if (active_cue === null) return;
+    active_cue[which] += direction * step_size.valueAsNumber || 0;
+    active_cue.update_cue();
+    update_status();
+}
 function secondsToStamp(num) {
         let h = `${Math.floor(num/3600)}`.padStart(2, '0');
         let remainder = num%3600;
         let m = `${Math.floor(remainder/60)}`.padStart(2, '0');
         let s = `${Math.floor(remainder%60)}`.padStart(2, '0');
-        let ms = `${Math.floor((num - Math.floor(num))*1000)}`.padEnd(3, '0');
+        let ms = num.toFixed(3).split('.')[1];
         return `${h}:${m}:${s}.${ms}`
     }
 function play_file(event) {
