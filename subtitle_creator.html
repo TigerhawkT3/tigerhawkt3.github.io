@@ -6,11 +6,10 @@ video::cue {
     font-size: 150%
 }
 div.list {
-    position: fixed;
+    position: absolute;
     right: 5px;
-    width: 49%;
+    width: 44%;
     height: 98%;
-    overflow-y: scroll;
 }
 td > textarea.time {
     height: 1.5em;
@@ -28,9 +27,21 @@ td > input {
     min-height: 1.5em;
     vertical-align: top;
 }
+table > tr.show {
+    display: auto;
+}
+table > tr.hide {
+    display: none;
+}
 </style>
-<div class='list'><table border='1' id='list' width='100%'></table></div>
-<div style='text-align:right; width: 50%'>
+<div class='list'>
+ <table align='center'><tr>
+ <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number' onchange='pagego()'></textarea></td>
+ <td>/</td>
+ <td id='pagecount'>1</td>
+ </tr></table>
+ <table style='border-collapse:collapse;' border='1' id='list' width='100%'></table></div>
+<div style='text-align:right; width: 55%'>
 <video id='vid' style='max-width: 100%;' preload="metadata" controls></video><br />
  <input type='file' id='chooser' accept='video/*' />
  <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
@@ -58,18 +69,39 @@ step_size = document.getElementById('step_size');
 list = document.getElementById('list');
 inbutton = document.getElementById('inbutton');
 outbutton = document.getElementById('outbutton');
+pagecount = document.getElementById('pagecount');
 track = document.createElement("track");
 track.label = "Main";
 vid.appendChild(track);
 vid.textTracks[0].mode = 'showing';
+PAGE_LENGTH = 10;
 point_in = 0;
 point_out = 0;
-active_cue = null;
 looping = null;
 list.appendChild(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''));
 
+function pagego() {
+    let destination = Math.floor(page.valueAsNumber);
+    if (list.children.length <= PAGE_LENGTH || destination < 1 || destination > total_pages()) {
+        destination = Math.max(1, Math.min(destination, total_pages()));
+        page.value = destination;
+    }
+    for (let row of Array.from(list.getElementsByClassName('show'))) row.className = 'hide';
+    for (let i = (destination-1)*10; i < Math.min((destination-1)*10+10, list.children.length); ++i) list.children[i].className = 'show';
+    pagecount.innerText = total_pages();
+}
+function wheel(e) {
+    e.preventDefault();
+    let current = Math.floor(page.valueAsNumber);
+    page.valueAsNumber = Math.min(total_pages(), Math.max(current + (e.deltaY>0?1:-1), 1));
+    pagego();
+}
+function total_pages() {
+    return Math.ceil(list.children.length/PAGE_LENGTH);
+}
 function make_row(i, o, t) {
     let row = document.createElement('tr');
+    row.className = 'show';
     row.innerHTML = '<td><input type="button" value="-" title="Remove this cue" onclick="remove(this)"/></td>' +
         '<td><input type="button" value="+" title="Add a cue above this" onclick="insert(this)"/></td>' +
         '<td><input type="button" value="^" title="Move this cue up" onclick="up(this)"/></td>' +
@@ -77,28 +109,30 @@ function make_row(i, o, t) {
         '<td><textarea class="time" rows=1 title="Cue start time">'+i+'</textarea></td>' +
         '<td><input type="button" title="Set from out point"value="o" onclick="new_point(this, \'out\')" /></td>' +
         '<td><textarea class="time" rows=1 title="Cue end time">'+o+'</textarea></td>' +
-        '<td><textarea class="text" rows=1 cols=60 title="Cue text">'+t+'</textarea></td>';
+        '<td><textarea class="text" rows=2 cols=60 title="Cue text">'+t+'</textarea></td>';
     return row;
 }
 function remove(e) {
     if (list.children.length === 1) return;
     list.removeChild(e.parentNode.parentNode);
+    pagego();
 }
 function insert(e) {
     list.insertBefore(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''), e.parentNode.parentNode);
+    pagego();
 }
 function up(e) {
     list.insertBefore(e.parentNode.parentNode, e.parentNode.parentNode.previousElementSibling);
+    pagego();
 }
 function assemble() {
     return 'WEBVTT\n\n' + Array.from(list.children).map(x => 
-        `${x.children[4].value} --> ` +
-        `${x.children[6].value}\n` + 
-        `${x.children[7].value}`).join('\n\n');
+        `${x.children[4].children[0].value} --> ` +
+        `${x.children[6].children[0].value}\n` + 
+        `${x.children[7].children[0].value}`).join('\n\n');
 }
-
 function new_point(e, which) {
-    e.nextElementSibling.value = secondsToStamp(which==='in'?point_in:point_out)
+    e.parentNode.nextElementSibling.children[0].value = secondsToStamp(which==='in'?point_in:point_out)
 }
 function jump_seconds(direction) {
     vid.currentTime += direction * step_size.valueAsNumber || 0;
@@ -151,9 +185,13 @@ function import_vtt() {
         start = 3600*(start[0]) + 60*(start[1]) + parseFloat(start[2]);
         end = 3600*(end[0]) + 60*(end[1]) + parseFloat(end[2]);
         text = cue.slice(idx+1);
-        list.appendChild(make_row(secondsToStamp(start), secondsToStamp(end), text));// add stuff here
+        row = make_row(secondsToStamp(start), secondsToStamp(end), text);
+        if (list.children.length >= PAGE_LENGTH) row.className = 'hide';
+        list.appendChild(row);
     }
+    pagecount.innerText = Math.ceil(list.children.length/PAGE_LENGTH);
     load_sub();
+    txt.value = '';
 }
 function sort() {
     let temp = Array.from(list.children);
@@ -168,6 +206,7 @@ function play_file(event) {
     vid.src = URL.createObjectURL(file);
 }
 document.getElementById('chooser').addEventListener('change', play_file, false);
+list.addEventListener('wheel', wheel, true);
 </script>
 </body> 
 </html>
