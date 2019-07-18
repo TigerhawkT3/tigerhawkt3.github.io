@@ -1,36 +1,52 @@
 <html>
-<head><title>Subtitle Creator by TigerhawkT3</title></head>
+<head><title>TigerhawkT3's Timed Text</title></head>
 <body>
 <style>
 video::cue {
     font-size: 150%
 }
+div.list {
+    position: fixed;
+    right: 5px;
+    width: 49%;
+    height: 98%;
+    overflow-y: scroll;
+}
+td > textarea.time {
+    height: 1.5em;
+    width: 8em;
+    vertical-align: bottom;
+    resize: none;
+}
+td > textarea.text {
+    min-height: 1.5em;
+    vertical-align: bottom;
+    width:100%;
+    resize: vertical;
+}
+td > input {
+    min-height: 1.5em;
+    vertical-align: top;
+}
 </style>
-<div style='text-align:center; width: 100%;'>
-<video id='vid' style='width: 80%; max-width: 800px;' preload="metadata" controls></video><br />
+<div class='list'><table border='1' id='list' width='100%'></table></div>
+<div style='text-align:right; width: 50%'>
+<video id='vid' style='max-width: 100%;' preload="metadata" controls></video><br />
  <input type='file' id='chooser' accept='video/*' />
- <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='step size in seconds' />
- <input type='button' value='<' onclick='jump_seconds(-1)' title='seek backward by step size' />
- <input type='button' value='>' onclick='jump_seconds(1)' title='seek forward by step size' />
- <input type='button' id='loop_button' value='Loop in-out' onclick='loop_inout()' title='loop from in to out points' />
+ <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
+ <input type='button' value='<' onclick='jump_seconds(-1)' title='Seek backward by step size' />
+ <input type='button' value='>' onclick='jump_seconds(1)' title='Seek forward by step size' />
+ <input type='button' id='loop_button' value='Loop in-out' onclick='loop_inout()' title='Loop from in to out points' />
 <br />
-<textarea placeholder='No active cue.' id="source" style='height: 100px; width: 80%; max-width: 800px;'></textarea><br />
-<input type='button' value='Mark in' onclick='mark_in()' /><input type='button' value='Mark out' onclick='mark_out()' />
-<input type='button' value='Create cue' onclick='create_cue()' title='Create cue from in to out points' />
-<input type='button' value='Commit text' onclick='commit_text()' title='commit text to active cue' />
+<textarea id="source" style='height: 100px; width: 100%; max-width: 800px;'></textarea><br />
+<input type='button' id='inbutton' value='00:00:00.000' onclick='mark_in()' title='(Set new) in point' />-->
+<input type='button' id='outbutton' value='00:00:00.000' onclick='mark_out()' title='(Set new) out point' />
 <br />
-<input type='button' value='<' onclick='nudge("start", -1)' title='decrease start time of active cue by step size' />
-<input type='button' value='>' onclick='nudge("start", 1)' title='increase start time of active cue by step size' />
-<input type='button' value='Get cue' onclick='edit()' title='find and select cue nearest to current time' />
-<input type='button' value='<' onclick='nudge("end", -1)' title='decrease end time of active cue by step size' />
-<input type='button' value='>' onclick='nudge("end", 1)' title='increase end time of active cue by step size' />
-<input type='button' value='Remove cue' onclick='remove()' title='remove the active cue from the list of cues' />
+<input type='button' value='Apply' onclick='load_sub()' title='Apply saved cues as subtitles to current video' />
+<input type='button' value='Export' onclick='export_string()' title='Export saved cues in WebVTT format into the text area' />
+<input type='button' value='Import' onclick='import_vtt()' title='Import a WebVTT file from the text area into a list of cues' />
+<input type='button' value='Sort' onclick='sort()' title='Sort the list of cues' />
 <br />
-<input type='button' value='Apply' onclick='load_sub()' title='apply saved cues as subtitles to current video' />
-<input type='button' value='Export' onclick='export_string()' title='export saved cues in WebVTT format into the text area' />
-<input type='button' value='Import' onclick='import_vtt()' title='import a WebVTT file from the text area into a list of cues' />
-<br />
-<div id='info'></div>
 </div>
 <script>
 
@@ -39,6 +55,9 @@ vid = document.getElementById('vid');
 info = document.getElementById('info');
 loop_button = document.getElementById('loop_button');
 step_size = document.getElementById('step_size');
+list = document.getElementById('list');
+inbutton = document.getElementById('inbutton');
+outbutton = document.getElementById('outbutton');
 track = document.createElement("track");
 track.label = "Main";
 vid.appendChild(track);
@@ -47,96 +66,57 @@ point_in = 0;
 point_out = 0;
 active_cue = null;
 looping = null;
-sequence = new Sequence();
-update_status();
+list.appendChild(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''));
 
-function Cue(start, end) {
-    this.start = start;
-    this.end = end;
-    this.text = ''
-    this.out = '';
-    
-    this.addText = function(text) {
-        this.text = text;
-        this.update_cue();
-    }
-    this.update_cue = function() {
-        this.startstamp = secondsToStamp(this.start);
-        this.endstamp = secondsToStamp(this.end);
-        this.out = `${this.startstamp} --> ${this.endstamp}\n${this.text}`;
-    }
-    this.toString = function() { return this.out }
-    
-    this.update_cue();
+function make_row(i, o, t) {
+    let row = document.createElement('tr');
+    row.innerHTML = '<td><input type="button" value="-" title="Remove this cue" onclick="remove(this)"/></td>' +
+        '<td><input type="button" value="+" title="Add a cue above this" onclick="insert(this)"/></td>' +
+        '<td><input type="button" value="^" title="Move this cue up" onclick="up(this)"/></td>' +
+        '<td><input type="button" value="i" title="Set from in point" onclick="new_point(this, \'in\')"/></td>' +
+        '<td><textarea class="time" rows=1 title="Cue start time">'+i+'</textarea></td>' +
+        '<td><input type="button" title="Set from out point"value="o" onclick="new_point(this, \'out\')" /></td>' +
+        '<td><textarea class="time" rows=1 title="Cue end time">'+o+'</textarea></td>' +
+        '<td><textarea class="text" rows=1 cols=60 title="Cue text">'+t+'</textarea></td>';
+    return row;
 }
-function Sequence() {
-    this.list = [];
-    this.add = function(cue) {
-        if (this.list.length === 0) {
-            this.list.push(cue);
-            return;
-        }
-        for (let idx = 0; idx < this.list.length; ++idx) {
-            if (this.list[idx].start > cue.start) {
-                this.list.splice(idx, 0, cue);
-                return;
-            }
-        }
-        this.list.push(cue);
-    }
-    this.find = function(time) {
-        for (let idx = 0; idx < this.list.length; ++idx) if (
-                                        (idx === this.list.length - 1) || // last one
-                                        (this.list[idx].start <= time && time <= this.list[idx].end) || // exact
-                                        (Math.abs(this.list[idx].start - time) < Math.abs(this.list[idx+1].start - time)) // near
-                                      ) return this.list[idx];
-        return null;
-    }
-    this.remove = function(cue) {
-        for (let idx in this.list) {
-            if (cue.start === this.list[idx].start && cue.end === this.list[idx].end) {
-                this.list.splice(idx, 1);
-                break;
-            }
-        }
-    }
-    this.load_list = function(newlist) {
-        this.list = newlist;
-    }
-    this.length = function() {
-        return this.list.length;
-    }
-    this.assemble = function() {
-        return 'WEBVTT\n\n' + this.list.map(x => x.out).join('\n\n');
-    }
-    this.index = function(cue) {
-        return this.list.indexOf(cue) + 1;
-    }
+function remove(e) {
+    if (list.children.length === 1) return;
+    list.removeChild(e.parentNode.parentNode);
+}
+function insert(e) {
+    list.insertBefore(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''), e.parentNode.parentNode);
+}
+function up(e) {
+    list.insertBefore(e.parentNode.parentNode, e.parentNode.parentNode.previousElementSibling);
+}
+function assemble() {
+    return 'WEBVTT\n\n' + Array.from(list.children).map(x => 
+        `${x.children[4].value} --> ` +
+        `${x.children[6].value}\n` + 
+        `${x.children[7].value}`).join('\n\n');
 }
 
+function new_point(e, which) {
+    e.nextElementSibling.value = secondsToStamp(which==='in'?point_in:point_out)
+}
 function jump_seconds(direction) {
     vid.currentTime += direction * step_size.valueAsNumber || 0;
 }
 function loop_inout() {
     if (looping === null) {
         loop_schedule();
-        loop_button.value = 'Looping...'
+        loop_button.value = 'Looping...';
     }
     else {
         clearTimeout(looping);
         looping = null;
-        loop_button.value = 'Loop in-out'
+        loop_button.value = 'Loop in-out';
     }
 }
 function loop_schedule() {
     vid.currentTime = point_in;
     looping = setTimeout(loop_schedule, Math.abs((point_out-point_in)*1000));
-}
-function nudge(which, direction) {
-    if (active_cue === null) return;
-    active_cue[which] += direction * step_size.valueAsNumber || 0;
-    active_cue.update_cue();
-    update_status();
 }
 function secondsToStamp(num) {
         let h = `${Math.floor(num/3600)}`.padStart(2, '0');
@@ -144,98 +124,48 @@ function secondsToStamp(num) {
         let m = `${Math.floor(remainder/60)}`.padStart(2, '0');
         let s = `${Math.floor(remainder%60)}`.padStart(2, '0');
         let ms = num.toFixed(3).split('.')[1];
-        return `${h}:${m}:${s}.${ms}`
-    }
-function play_file(event) {
-    let file = this.files[0];
-    if (!file) return;
-    if (vid.canPlayType(file.type) === 'no') return;
-    vid.src = URL.createObjectURL(file);
+        return `${h}:${m}:${s}.${ms}`;
 }
 function load_sub(event) {
-    track.src = URL.createObjectURL(new Blob([sequence.assemble()]));
+    track.src = URL.createObjectURL(new Blob([assemble()]));
 }
 function mark_in() {
     point_in = vid.currentTime;
-    update_status();
+    inbutton.value = secondsToStamp(point_in);
     return point_in;
 }
 function mark_out() {
     point_out = vid.currentTime;
-    update_status();
+    outbutton.value = secondsToStamp(point_out);
     return point_out;
 }
-function create_cue() {
-    cue = new Cue(point_in, point_out);
-    sequence.add(cue);
-    txt.value = '';
-    edit(cue);
-    update_status();
-}
-function edit(cue=null) {
-    if (cue === null) {
-        active_cue = sequence.find(vid.currentTime);
-        if (active_cue === null) {
-            txt.value = '';
-            txt.placeholder = `No cue found at time ${vid.currentTime}.`;
-            return;
-        }
-    }
-    else active_cue = cue;
-    txt.value = active_cue.text;
-    txt.placeholder = `Enter text for ${active_cue.start} to ${active_cue.end}...`
-    update_status();
-}
-function commit_text() {
-    if (active_cue === null) {
-        txt.value = '';
-        txt.placeholder = 'No active cue.';
-        return;
-    }
-    active_cue.addText(txt.value);
-    active_cue = null;
-    txt.value = '';
-    txt.placeholder = 'Text committed. Active cue cleared.';
-    update_status();
-}
-function remove() {
-    if (active_cue === null) {
-        txt.value = '';
-        txt.placeholder = 'No active cue.';
-        return;
-    }
-    sequence.remove(active_cue);
-    active_cue = null;
-    txt.value = '';
-    txt.placeholder = 'Cue removed. Active cue cleared.';
-    update_status();
-}
 function export_string() {
-    txt.value = sequence.assemble();
-}
-function update_status() {
-    info.innerText = `Cues: ${sequence.length()} - In: ${secondsToStamp(point_in)} - Out: ${secondsToStamp(point_out)}\nCurrent cue: ` +
-    `${active_cue===null?'(no cue)':sequence.index(active_cue) + '\n' + active_cue.toString()}`;
+    txt.value = assemble();
 }
 function import_vtt() {
     cues = txt.value.slice(txt.value.indexOf('\n')+1).trim().split('\n\n');
-    let temp = [];
+    list.innerHTML = '';
     for (let cue of cues) {
         idx = cue.indexOf('\n');
         let [start, end] = cue.slice(0, idx).trim().split(' --> ').map(x => x.split(':'));
         start = 3600*(start[0]) + 60*(start[1]) + parseFloat(start[2]);
         end = 3600*(end[0]) + 60*(end[1]) + parseFloat(end[2]);
         text = cue.slice(idx+1);
-        cue = new Cue(start, end);
-        cue.addText(text);
-        temp.push(cue);
+        list.appendChild(make_row(secondsToStamp(start), secondsToStamp(end), text));// add stuff here
     }
-    sequence.load_list(temp);
-    active_cue = null;
-    txt.value = '';
-    txt.placeholder = 'Subtitles saved.';
     load_sub();
-    update_status();
+}
+function sort() {
+    let temp = Array.from(list.children);
+    temp.sort((a, b) => a.children[4].children[0].value.localeCompare(b.children[4].children[0].value));
+    list.innerHTML = '';
+    for (let e of temp) list.appendChild(e);
+}
+function play_file(event) {
+    let file = this.files[0];
+    if (!file) return;
+    if (vid.canPlayType(file.type) === 'no') return;
+    vid.src = URL.createObjectURL(file);
 }
 document.getElementById('chooser').addEventListener('change', play_file, false);
 </script>
