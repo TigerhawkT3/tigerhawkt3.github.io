@@ -16,131 +16,150 @@ p {
     text-align: justify;
 }
 code {
+    font-family: Consolas, Lucida Console, Courier New, Courier, monospace;
+    font-size: 0.9em;
+    background-color: #333333;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-radius: 0.25em;
+}
+body {
+    color: white;
+    background: black;
+}
+:link {
+    color: #5555FF;
+}
+:visited {
+    color: purple;
+}
+:hover {
+    color: #7777FF;
+}
+.btn-group .button {
+	float: left;
+}
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    position: relative;
+    background-color: #1111DD;
+    border: none;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     font-family: Consolas, monospace;
+    font-weight: Bold;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button.current {
+    background-color: #EE2222;
+}
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
 }
 </style>
 </head>
 <body>
-<heading><computer>Why Windows?</computer></heading>
+<table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td>
+<div class="btn-group">
+<a href="index.html" class="button"><span>Home</span></a>
+  <a href="programming.html" class="button"><span>Programming</span></a>
+  <a href="music.html" class="button"><span>Music</span></a>
+</div></td></tr><tr><td>
+<div class="btn-group">
+  <a href="articles.html" class="button"><span>Articles</span></a>
+  <a href="other.html" class="button"><span>Other</span></a>
+  <a href="https://www.paypal.me/TigerhawkT3" class="button"><span>Donate</span></a>
+</div></td></tr></table>
+    <computer>Why Windows?</computer>
 <table width=600 align=center>
 <tr height=50px>
 </tr>
 <tr>
 <td>
 <h1>Early years</h1>
-<p>The first computer we had at home when I was growing up was a Macintosh Classic II. I have fond memories of that machine. 
-Its use mostly involved word processing and educational games like <em>Math Blaster</em> and <em>Number Maze</em>.</p>
-<p>Then we got a huge PC tower capable of a whopping 33MHz (if you pressed the Turbo button - we never turned off Turbo
-except to briefly marvel at how slow the 8MHz mode was). We could actually play games that other people played! Granted,
-they were DOS shareware games, most stopping after a few levels, but we knew those levels well.</p>
-<p>At this point, "Windows" was some shiny thing that you ran not by turning on the PC and logging in, but by typing
-"win" into the DOS prompt. We mostly ran our games from DOS at that time (we got really good at typing
-<code>cd games</code>, although I didn't quite understand directory structures yet).</p>
+<p>The first computer we had at home when I was growing up was a Macintosh Classic II. I have fond memories of that machine. Its use mostly involved word processing and educational games like <em>Math Blaster</em> and <em>Number Maze</em>.</p>
+<p>Then we got a huge PC tower capable of a whopping 33MHz (if you pressed the Turbo button - we never turned off Turbo except to briefly marvel at how slow the 8MHz mode was). We could actually play games that other people played! Granted, they were DOS shareware games, most stopping after a few levels, but we knew those levels well.</p>
+<p>At this point, "Windows" was some shiny thing that you ran not by turning on the PC and logging in, but by typing "win" into the DOS prompt. We mostly ran our games from DOS at that time (we got really good at typing <code>cd games</code>, although I didn't quite understand directory structures yet).</p>
 <h1>The computer lab</h1>
-<p>Years later, my middle school got a bunch of iMacs for the computer lab (I know, I know, why call it a "computer" lab
-if they didn't put any actual computers in it). I hated those things. They seemed so limited compared to the PCs I was used to at that point,
-and they crashed all the time, to the point that it was difficult to actually get anything done. I think Windows 2000 was coming
-out at about that time, and that's one OS that will certainly spoil you.</p>
+<p>Years later, my middle school got a bunch of iMacs for the computer lab (I know, I know, why call it a "computer" lab if they didn't put any actual computers in it). I hated those things. They seemed so limited compared to the PCs I was used to at that point, and they crashed all the time, to the point that it was difficult to actually get anything done. I think Windows 2000 was coming out at about that time, and that's one OS that will certainly spoil you.</p>
 <p>Needless to say, this experience soured me on Macs.</p>
 <h1>Unix</h1>
-<p>I took a Unix course at the local junior college while in high school. I remember enjoying it, and I remember getting an A
-in the class, but I don't remember anything it taught me about how to use Unix. This is not surprising, because after the class
-finished I didn't use Unix at all for about ten years. I didn't have a Unix machine, and I didn't know anyone with one. No practice, no retention.
-However, I didn't forget what the environment <em>felt like</em>: whatever odd task you wanted to do, there was always an
-elegant way to do it, piping your original content from one utility to another until you magically arrived at the exact desired result.
-I assumed that since this worked so well on the artificial assignments we were given, it would work on whatever I might throw at it,
-if I ever threw anything at it.</p>
+<p>I took a Unix course at the local junior college while in high school. I remember enjoying it, and I remember getting an A in the class, but I don't remember anything it taught me about how to use Unix. This is not surprising, because after the class finished I didn't use Unix at all for about ten years. I didn't have a Unix machine, and I didn't know anyone with one. No practice, no retention. However, I didn't forget what the environment <em>felt like</em>: whatever odd task you wanted to do, there was always an elegant way to do it, piping your original content from one utility to another until you magically arrived at the exact desired result. I assumed that since this worked so well on the artificial assignments we were given, it would work on whatever I might throw at it, if I ever threw anything at it.</p>
 <h1>Apple today</h1>
-<p>My recent experiences with the Apple environment have been, understandably, focused on iOS. It seems like everyone wants
-an iPhone - after all, nobody makes rectangles like Apple does. They invented that shape, and they hold the patent to prove it! For larger
-devices, the iPad reigns. Again, Apple users value the creativity, originality, and innovation that goes into copying something that
-Microsoft released years earlier (the <a href="http://en.wikipedia.org/wiki/Microsoft_Tablet_PC">Tablet PC</a>), and <em>Star Trek:
-The Next Generation</em> designed years before that (the <a href="http://en.memory-alpha.org/wiki/PADD">PADD</a>).</p>
-<p>And what developer doesn't like paying a hundred bucks to be on the Apple Store, even if all they want to do is poke around in the environment?
-Not to mention the fun of learning a language that won't be useful for anything else (Objective-C) and the excitement of needing
-to buy a Mac if you want to compile your program. All those dozens of languages and ecosystems with no licensing fees and permissive
-hardware requirements are for peasants who can't afford black turtlenecks.</p>
-<p>Anyway, sarcasm aside, what I don't like about using Apple stuff these days is that you're locked in to what they want you to do.
-If you're toeing the line, you'll have an easy time (assuming you're reasonably familiar with the Apple environment). But if you want
-to do something that the folks at Apple had in mind only as "I guess we should include that option, if someone REALLY wants it,"
-prepare to battle your way through a maze of menus and options that seem to take a sort of malicious glee in leading you astray.
-The supposed intuitive interface and "it just works" style evaporates instantly. Have you seen someone try to configure their iPhone
-to grab email from their POP3 server and sync it with their spouse's iPhone? It's not pretty.</p>
+<p>My recent experiences with the Apple environment have been, understandably, focused on iOS. It seems like everyone wants an iPhone - after all, nobody makes rectangles like Apple does. They invented that shape, and they hold the patent to prove it! For larger devices, the iPad reigns. Again, Apple users value the creativity, originality, and innovation that goes into copying something that Microsoft released years earlier (the <a href="http://en.wikipedia.org/wiki/Microsoft_Tablet_PC">Tablet PC</a>), and <em>Star Trek: The Next Generation</em> designed years before that (the <a href="http://en.memory-alpha.org/wiki/PADD">PADD</a>).</p>
+<p>And what developer doesn't like paying a hundred bucks to be on the Apple Store, even if all they want to do is poke around in the environment? Not to mention the fun of learning a language that won't be useful for anything else (Objective-C) and the excitement of needing to buy a Mac if you want to compile your program. All those dozens of languages and ecosystems with no licensing fees and permissive hardware requirements are for peasants who can't afford black turtlenecks.</p>
+<p>Anyway, sarcasm aside, what I don't like about using Apple stuff these days is that you're locked in to what they want you to do. If you're toeing the line, you'll have an easy time (assuming you're reasonably familiar with the Apple environment). But if you want to do something that the folks at Apple had in mind only as "I guess we should include that option, if someone REALLY wants it," prepare to battle your way through a maze of menus and options that seem to take a sort of malicious glee in leading you astray. The supposed intuitive interface and "it just works" style evaporates instantly. Have you seen someone try to configure their iPhone to grab email from their POP3 server and sync it with their spouse's iPhone? It's not pretty.</p>
 <h1>Returning to Linux</h1>
-<p>I have lately had reason to do things in Unix again (Linux, specifically). Firstly, my workplace uses Linux servers for some internal
-development, and our software runs on Windows and Linux, so l33t terminal haxxoring is occasionally necessary. Secondly, freezing
-a Python program on Linux means that Linux users can simply run the frozen package without worrying about libraries.</p>
+<p>I have lately had reason to do things in Unix again (Linux, specifically). Firstly, my workplace uses Linux servers for some internal development, and our software runs on Windows and Linux, so l33t terminal haxxoring is occasionally necessary. Secondly, freezing a Python program on Linux means that Linux users can simply run the frozen package without worrying about libraries.</p>
 <p>I ran into the same kind of problems with both scenarios: completing a given task depends on completing another task, ad absurdum.</p>
-<p>Run this Perl script that the dev team created? Sure! Wait, it doesn't run for some reason, even though I'm following their
-directions to the letter. Oh, I guess you have to set those environment variables every time you log in - okay, I guess that's not
-too bad. Now I have to... source .cshrc? Is that a procedure I need to carry out, or the command I have to type?
-It's a command? Okay. <code>source .cshrc</code> then. Error message. Well, maybe the .cshrc is an argument? Let's look for that
-in my directory... Ah! There's a file with that extension, so I'll write the whole filename. Still doesn't work? Let's ask the developers.
-They say I have to add the commands to set those environment variables... I did that, then immediately used the <code>source</code>
-command, and nothing doing. Oh, I have to actually edit that .cshrc file in a text editor? That is good information to have. Now...
-how in the world do I, a Windows guy, do that? Well, I've been reading about Unix online, and there are apparently a few built-in text editors,
-so I'll use the basic editor vi, and... um... what now? My results look just like the old vi joke ("how do you generate a random string?
-put a Windows user in front of a vi terminal and tell him to quit"). Now I see where that comes from. Fortunately, I know the path
-to our Linux server, so I go there with Windows Explorer, open the file with Notepad++, edit it, and save it. Cool.</p>
-<p>And now I get a workarea. What's that? After finding out from IT (and getting a workarea made for me - yeah, not mentioned in the
-documentation), I populate my workarea with a simple command. Simple is nice! But all it's doing is spamming the console with
-messages about what file is now being transferred to my work area, and it doesn't seem to be stopping. There's no progress bar
-(it's a terminal, of course), no percentage display, no "x of y files transferred," nothing.
-Eventually I ask the developer and they inform me that this little step takes about 24 hours. Again, good information to have. You'd
-think it would've been mentioned at some point, but Linux users must really love it when their friends ask them to help them run something
-with documentation that basically says "to run the program, run the program, ensuring that everything is correct" and they can use
-their hard-earned secret knowledge to get the thing to run. Those Linux folks sure are wizards! All I know is Windoze. If I were
-smart, I would be able to use Linux.</p>
-<p>Same thing with trying to run my Python apps on Linux. All I wanted to do was run a simple Python app with a couple extra libraries on
-Linux. Easy, right? Python is even built into Ubuntu, right?</p>
+<p>Run this Perl script that the dev team created? Sure! Wait, it doesn't run for some reason, even though I'm following their directions to the letter. Oh, I guess you have to set those environment variables every time you log in - okay, I guess that's not too bad. Now I have to... source .cshrc? Is that a procedure I need to carry out, or the command I have to type? It's a command? Okay. <code>source .cshrc</code> then. Error message. Well, maybe the .cshrc is an argument? Let's look for that in my directory... Ah! There's a file with that extension, so I'll write the whole filename. Still doesn't work? Let's ask the developers. They say I have to add the commands to set those environment variables... I did that, then immediately used the <code>source</code> command, and nothing doing. Oh, I have to actually edit that .cshrc file in a text editor? That is good information to have. Now... how in the world do I, a Windows guy, do that? Well, I've been reading about Unix online, and there are apparently a few built-in text editors, so I'll use the basic editor vi, and... um... what now? My results look just like the old vi joke ("how do you generate a random string? put a Windows user in front of a vi terminal and tell him to quit"). Now I see where that comes from. Fortunately, I know the path to our Linux server, so I go there with Windows Explorer, open the file with Notepad++, edit it, and save it. Cool.</p>
+<p>And now I get a workarea. What's that? After finding out from IT (and getting a workarea made for me - yeah, not mentioned in the documentation), I populate my workarea with a simple command. Simple is nice! But all it's doing is spamming the console with messages about what file is now being transferred to my work area, and it doesn't seem to be stopping. There's no progress bar (it's a terminal, of course), no percentage display, no "x of y files transferred," nothing. Eventually I ask the developer and they inform me that this little step takes about 24 hours. Again, good information to have. You'd think it would've been mentioned at some point, but Linux users must really love it when their friends ask them to help them run something with documentation that basically says "to run the program, run the program, ensuring that everything is correct" and they can use their hard-earned secret knowledge to get the thing to run. Those Linux folks sure are wizards! All I know is Windoze. If I were smart, I would be able to use Linux.</p>
+<p>Same thing with trying to run my Python apps on Linux. All I wanted to do was run a simple Python app with a couple extra libraries on Linux. Easy, right? Python is even built into Ubuntu, right?</p>
 <p>Excuse me while I chortle.</p>
-<p>First, I'll want a console window so I can invoke my app with various command line switches, right? Yeah. Okay, that's
-probably somewhere here... uh... somewhere... maybe Google knows. Oh, Control-Shift-T for Terminal! Of course. Now, I'll just invoke
-my Python app, and... it failed. It didn't find tkinter? The GUI toolkit that's popular because it's included with Python? I guess
-it's not included with every build. Now, how to install it? I can use the standard command line installer, of course. The only problem
-is that, well, no I can't. There's no tkinter library in the database, and the Internet assumes that it's already installed, because
-what kind of Python build doesn't include tkinter?</p>
-<p>Anyway, I found that every time I wanted to do something in Linux, there was a dependency. And that dependency counts as doing something,
-so it has its own dependency. I didn't want to find out how deep the rabbit hole went, so I bailed out. If someone wants to run
-my Python apps on Linux, I leave it to them. They knew what they were in for when they invited the penguin into their workstation.</p>
+<p>First, I'll want a console window so I can invoke my app with various command line switches, right? Yeah. Okay, that's probably somewhere here... uh... somewhere... maybe Google knows. Oh, Control-Shift-T for Terminal! Of course. Now, I'll just invoke my Python app, and... it failed. It didn't find tkinter? The GUI toolkit that's popular because it's included with Python? I guess it's not included with every build. Now, how to install it? I can use the standard command line installer, of course. The only problem is that, well, no I can't. There's no tkinter library in the database, and the Internet assumes that it's already installed, because what kind of Python build doesn't include tkinter?</p>
+<p>Anyway, I found that every time I wanted to do something in Linux, there was a dependency. And that dependency counts as doing something, so it has its own dependency. I didn't want to find out how deep the rabbit hole went, so I bailed out. If someone wants to run my Python apps on Linux, I leave it to them. They knew what they were in for when they invited the penguin into their workstation.</p>
 <h1>Validation</h1>
-<p>Do you know where you can find an opinion similar to my own regarding Apple? Steve Wozniak, the guy behind Apple, had
-<a href="http://apple2history.org/museum/articles/byte8501/">this to say</a>:</p>
-<blockquote style="text-align:justify">Unfortunately, we made it very difficult for anyone to get access to the insides of the machine.
-We had hired some very bright people who figured, "This is the right way it should be done. So we'll give out enough information to do
-this and we won't give them any more, because they might try to do something they're not supposed to do." The right way for one person
-is not the right way for another. We closed that machine up to where somebody could have a very difficult time finding out how to add
-their own I/O drivers. We did not make it easy for the outside world. We thought we wanted all of the markets for ourselves.<br /><br />
-You have to let the end users develop their own standards. You've got to give them the freedom to discover how they're going to use
-an operating system, what sort of things they're going to buy. And if you're really right and have provided a good solution, that's where
-they're going to settle. The thinking on the III was very much like a religion in that it could only be done one way - our way. We made
-it very difficult for outside developers, instead of providing all the information as we did with the Apple II.<br /><br />
-[Interviewer: "Has that attitude changed now?"]<br /><br />
-No. It's still the most negative thing in our whole company, and it will be for years.
-<div style="text-align:right">-Steve Wozniak</div></blockquote>
+<p>Do you know where you can find an opinion similar to my own regarding Apple? Steve Wozniak, the guy behind Apple, had <a href="http://apple2history.org/museum/articles/byte8501/">this to say</a>:</p>
+<blockquote><p>Unfortunately, we made it very difficult for anyone to get access to the insides of the machine. We had hired some very bright people who figured, "This is the right way it should be done. So we'll give out enough information to do this and we won't give them any more, because they might try to do something they're not supposed to do." The right way for one person is not the right way for another. We closed that machine up to where somebody could have a very difficult time finding out how to add their own I/O drivers. We did not make it easy for the outside world. We thought we wanted all of the markets for ourselves.</p>
+<p>You have to let the end users develop their own standards. You've got to give them the freedom to discover how they're going to use an operating system, what sort of things they're going to buy. And if you're really right and have provided a good solution, that's where they're going to settle. The thinking on the III was very much like a religion in that it could only be done one way - our way. We made it very difficult for outside developers, instead of providing all the information as we did with the Apple II.</p>
+<p>[Interviewer: "Has that attitude changed now?"]</p>
+<p>No. It's still the most negative thing in our whole company, and it will be for years.</p>
+<figcaption>&mdash; Steve Wozniak</figcaption></blockquote>
 <p>He knows.</p>
-<p>How about Linux? Are there any Linux fans who find that they're unable to do the simplest tasks because every task requires that
-you first complete another task, which may or may not be secret? As it turns out, Eric Raymond himself
-<a href="http://www.catb.org/esr/writings/cups-horror.html">has had</a>...
-<a href="http://www.catb.org/esr/writings/luxury-part-deux.html">difficulties</a> when trying to complete the simple task
-of printing on a shared printer in Linux:</p>
-<blockquote style="text-align:justify">What a truly lovely, classic blunder this is. That they turned off the autoconfiguration
-support is understandable from a security-engineering point of view. But failing to mention this in the Administrator's Guide, and
-failing to warn the user during the configuration-wizard dialogue that operating printers may not be visible unless your site admin
-has performed the appropriate ritual on the printers' host machines... that is moronically thoughtless.<br /><br />
-This kind of crap is exactly why Linux has had such trouble gaining traction among nontechnical users - and it becomes less forgivable,
-not more, when it's surrounded by a boatload of GUI cotton candy that adds complexity without actually delivering friendliness to the user.<br /><br />
-...<br /><br />
-Eventually I notice the Listen directive in the /etc/cups/cupsd.conf file. "Aha!" says I to myself, "Maybe this is like sendmail,
-where you have to tell it explicitly to listen on the server's IP address." I add "Listen 192.168.1.21", the latter being minx's
-IP address, restarts cupsd... and lo and behold my test job comes tumbling out of the printer.<br /><br />
-...<br /><br />
-It's been twenty years since the GNU Manifesto and nearly seven since The Cathedral and the Bazaar. I think it's time we stopped
-congratulating ourselves quite so much on our dedication to freedom and our ability to write technically superior code, and began
-more often to ask "What are we doing to serve the real users?"
-<div style="text-align:right">-Eric Raymond</div></blockquote>
-<p>Note: the "hilarious screed" Raymond mentions near the end of part 2 is a dead link, but you can put the linked address
-into www.archive.org and read a hefty complaint about trying to run Linux from a Live CD in order to back up a defunct machine.</p>
+<p>How about Linux? Are there any Linux fans who find that they're unable to do the simplest tasks because every task requires that you first complete another task, which may or may not be secret? As it turns out, Eric Raymond himself <a href="http://www.catb.org/esr/writings/cups-horror.html">has had</a>... <a href="http://www.catb.org/esr/writings/luxury-part-deux.html">difficulties</a> when trying to complete the simple task of printing on a shared printer in Linux:</p>
+<blockquote><p>What a truly lovely, classic blunder this is. That they turned off the autoconfiguration support is understandable from a security-engineering point of view. But failing to mention this in the Administrator's Guide, and failing to warn the user during the configuration-wizard dialogue that operating printers may not be visible unless your site admin has performed the appropriate ritual on the printers' host machines... that is moronically thoughtless.</p>
+<p>This kind of crap is exactly why Linux has had such trouble gaining traction among nontechnical users - and it becomes less forgivable, not more, when it's surrounded by a boatload of GUI cotton candy that adds complexity without actually delivering friendliness to the user.</p>
+<p>...</p>
+<p>Eventually I notice the Listen directive in the /etc/cups/cupsd.conf file. "Aha!" says I to myself, "Maybe this is like sendmail, where you have to tell it explicitly to listen on the server's IP address." I add "Listen 192.168.1.21", the latter being minx's IP address, restarts cupsd... and lo and behold my test job comes tumbling out of the printer.</p>
+<p>...</p>
+<p>It's been twenty years since the GNU Manifesto and nearly seven since The Cathedral and the Bazaar. I think it's time we stopped congratulating ourselves quite so much on our dedication to freedom and our ability to write technically superior code, and began more often to ask "What are we doing to serve the real users?"</p>
+<figcaption>&mdash; Eric Raymond</figcaption></blockquote>
+<p>Note: the "hilarious screed" Raymond mentions near the end of part 2 is a dead link, but you can put the linked address into www.archive.org and read a hefty complaint about trying to run Linux from a Live CD in order to back up a defunct machine.</p>
 <p>If you'd like a brief summary of this wall of text, here it is:</p>
 <ul><li>Apple doesn't let you do things.</li>
 <li>Unix lets you do things, but doesn't lift a finger to help you.</li>

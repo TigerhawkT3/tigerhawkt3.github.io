@@ -1,0 +1,257 @@
+<html>
+<head>
+<title>Rich Web, Poor Web</title>
+<style>
+@font-face {
+    font-family: computer;
+    src: url("fonts/COMPUTERRobot.ttf");
+}
+computer {
+    font-family: computer;
+    font-size: 6em;
+    display: block;
+    text-align: center;
+}
+p {
+    text-align: justify;
+}
+code {
+    font-family: Consolas, Lucida Console, Courier New, Courier, monospace;
+    font-size: 0.9em;
+    background-color: #333333;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-radius: 0.25em;
+}
+body {
+    color: white;
+    background: black;
+}
+:link {
+    color: #5555FF;
+}
+:visited {
+    color: purple;
+}
+:hover {
+    color: #7777FF;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.row {
+    display: inline;
+}
+.btn-group .button {
+	float: left;
+}
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    position: relative;
+    background-color: #1111DD;
+    border: none;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    font-family: Consolas, monospace;
+    font-weight: Bold;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button.current {
+    background-color: #EE2222;
+}
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+</style>
+</head>
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td>
+<div class="btn-group">
+<a href="index.html" class="button"><span>Home</span></a>
+  <a href="programming.html" class="button"><span>Programming</span></a>
+  <a href="music.html" class="button"><span>Music</span></a>
+</div></td></tr><tr><td>
+<div class="btn-group">
+  <a href="articles.html" class="button"><span>Articles</span></a>
+  <a href="other.html" class="button"><span>Other</span></a>
+  <a href="https://www.paypal.me/TigerhawkT3" class="button"><span>Donate</span></a>
+</div></td></tr></table>
+<computer>Rich Web<br />Poor Web</computer>
+<table width=600 align=center>
+<tr height=50px></tr>
+<tr><td>
+<h1>In the beginning was the word</h1>
+<p><span style="font-size: 3em;">&#x1D577;&#x1D57A;</span></p> <!-- LO -->
+<p>Quite literally, in fact. <code>LO</code> was <a href="https://www.lamag.com/citythinkblog/internet-50-years/">the first message</a> sent over ARPANET, DARPA&rsquo;s precursor to the Internet, on October 29, 1969. The intended message was <code>LOGIN</code>, to log into the remote system, but the network crashed after transmitting just those first two letters. :)</p>
+<p>Those two <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters, though, were able to convey 40% of a message requesting the server to start the login process. This concision, this economy of transmission, would be the entire lifeblood of the Internet for years to come. Not only did messages between connected machines have to be utterly sparse due to network capabilities that would be inconceivably slow to today&rsquo;s youngsters, the local facilities for handling these data were equally frugal. Anyone with a modicum of programming expertise or even mere exposure has likely seen some language&rsquo;s version of a command to output text, which usually involves the word <code>print</code>: it prints to the standard output, nowadays almost always set to a terminal emulator displayed on screen. Several decades ago, the terminal wasn&rsquo;t emulated, and the printing often happened on an actual printer. Load it up with a blank medium like <a href="https://en.wikipedia.org/wiki/Continuous_stationery">form-feed paper</a> (one continuous sheet of paper accordioned into a ream, each edge girded by a series of holes for the printer&rsquo;s mechanism to grab onto), ask it to print the result of your work, and you&rsquo;d eventually get a hard copy. It wouldn&rsquo;t look much better than <a href="https://en.wikipedia.org/wiki/Pin_Art">Pin Art</a> if you were using a <a href="https://en.wikipedia.org/wiki/Dot_matrix_printing">dot-matrix printer</a>, so named because of the visible grid pattern of dots they&rsquo;d produce, but function was everything in those days with form not even in the running. The early Internet was a serious new tool for research institutions and not a consumer item, so all it had to do was work, and that was difficult enough.</p>
+<h1>Compare and contrast</h1>
+<p>After a few decades, one thing has stayed the same: technical issues. The Internet started with a failed login command, and modern life still involves almost daily struggles with dropped packets, server issues, bad hops, weak WiFi signals, and more. As always, we do our best with what we&rsquo;ve got and hope it&rsquo;s enough, whether it&rsquo;s a teleconference, a game, or anything in between. Pushing boundaries and striving for more is an inextricable part of the human condition; it helps define what it means to be a person. We think outside the box so that we can always reach for a new, shinier box.</p>
+<p>Unfortunately, one thing has completely turned around, and that is that some people are simply <em>destroying all the boxes</em> until everything breaks. ARPANET&rsquo;s <code>LOGIN</code> connected two universities &ndash; UCLA and Stanford &ndash; for a huge leap forward in collaboration, but the command itself is absolutely spartan in an attempt to work within the constraints of the system&rsquo;s capabilities. Too many developers today have lost sight of this, overloading their projects with so much garbage that the whole thing is unusable or fails entirely. They <em>could</em> pull back a little bit and produce something good, but that&rsquo;s not the goal. The goal is more animations, more ads, more exit intent popups, more autoplaying videos, more sponsored content, more things that</p>
+<p>NO.</p>
+<p>ONE.</p>
+<p>WANTS.</p>
+<h1>Well that escalated slowly</h1>
+<p>For a long time between then and now, we did want the new things. As we gradually thought outside of and outgrew a dizzying series of boxes, the Internet went from hard copies of text, to digitally-displayed text, to text with proper formatting and styling, then images, sounds, animations, interactivity... the Internet&rsquo;s growth has been incredibly fruitful. I know that&rsquo;s blindingly obvious to the point of cliché, but this is my website and I&rsquo;m allowed to say obvious things on it if I so choose. Anyway, just as real-time text communication ushered in a new paradigm of teamwork and possibility, each new leap has been similarly transformative. We can not only share our reaction to a painting, we can share a photo of the painting itself. This was initially a big deal, and also a very slow deal, because image files are generally much bigger than text files: a single image captured by your phone&rsquo;s camera might easily occupy more storage space than hundreds or even thousand of pages of text. But that can be worth the wait, so wait we would, for minutes at a time, on connections that charged by the minute like a long-distance phone call. You could see a colleague&rsquo;s newest painting, or a photo of your favorite band in concert, or eventually an animated GIF (pronounced with a &ldquo;g&rdquo; as in &ldquo;gentle,&rdquo; not as in &ldquo;gone&rdquo;) of a clock&rsquo;s gears.</p>
+<p>Or a dancing baby.</p>
+<a href="images/dancingbaby.gif"><img src="images/dancingbaby.gif"/></a>
+<p>This was everywhere in the 90s. Everything was everywhere in the 90s; the Internet was a new toy for most people and the first thing you do with a new toy is push all the buttons. This was one of the things this toy can do, so we did it. Amateur web designers, which included everyone from entrepreneurs trying to put their company online to kids with Geocities accounts, figured &ldquo;why not?&rdquo; and there was no one within earshot to answer. Geocities went offline in 2009, but there&rsquo;s a tool called <a href="https://www.wonder-tonic.com/geocitiesizer/">The Geocities-izer</a> that reads in any web page of your choice and produces a version with horrible design decisions like you&rsquo;d see on a classic Geocities site, such as festooning it with the dancing baby pictured above.</p>
+<p>But these were aesthetic design decisions, and while they may have been <em>terrible</em> design decisions, they weren&rsquo;t malicious and they didn&rsquo;t actually break anything. The worst common problem you&rsquo;d see would be low-contrast text, and you can get around that by simply highlighting it to force white text on a blue background. Even the most atrocious sites could still load in a reasonable amount of time, convey their message (if any), and generally work for the most part, because the web is resilient enough to handle the irrelevant images and unclosed HTML tags that were pretty much the extent of an early amateur&rsquo;s escapades.</p>
+<h1>Handguns and tequila</h1>
+<blockquote>
+<span style="font-size: 1.1em;">A computer lets you make more mistakes faster than any invention in human history, with the possible exceptions of handguns and tequila.</span>
+<figcaption>&mdash; Mitch Ratcliffe, <cite>Technology Review</cite>, April 1992</figcaption>
+</blockquote>
+<p>Oddly, neither one of these pop-up ads urging me to subscribe actually convinced me to subscribe.</p>
+<a href="images/multiple_popups.png"><img src="images/multiple_popups.png" width="600"/></a>
+<p>And neither one of these buttons to skip the currently-playing video ad actually convinced me to hurry to the next queued video ad.</p>
+<a href="images/skip_ad_skip_ad_more_ads_playing_ads.png"><img src="images/skip_ad_skip_ad_more_ads_playing_ads.png"/></a>
+<p>Those were real web pages that I really saw in July and August of 2020. Long gone are the halcyon days of well-meaning folks spawning a page with a bright red background &ndash; and I mean real red, solid <code>#FF0000</code>, not some puny pastel gradient &ndash; with orange Comic Sans text and a dancing baby border. Now we&rsquo;ve got a stuffed accounting suit telling a stuffed marketing suit to get a stuffed management suit to gently erode a developer&rsquo;s soul with the task of implementing a second pop-up ad for a subscription. But, boss, we already have one. &ldquo;Make another one! These pop-ups have high subscriber conversion; we have the numbers.&rdquo; So like, since it&rsquo;s already there, and it&rsquo;s a waste of time to reinvent the wheel, can I just make this one pop up twice? &ldquo;NO YOU MAY NOT THAT IS LAZY AND PEOPLE WILL SCOFF AT US! Make it totally different. But also kind of the same, for consistency.&rdquo;</p>
+<p>Maybe this is what we get when we combine computers with tequila.</p>
+<p>I don&rsquo;t know what else to say about these. Just gaze at them in fear and wonder. Weep briefly, perhaps.</p>
+<h1>A new hope</h1>
+<p>&ldquo;New&rdquo;?</p>
+<h1>A decades-old hope</h1>
+<p>The <a href="https://lynx.invisible-island.net/">Lynx Browser</a> is a text-mode web browser, which is exactly what it sounds like. The beta was released July 22<sup>nd</sup>, 1992, ironically just four days after the World Wide Web <a href="https://en.wikipedia.org/wiki/Les_Horribles_Cernettes">hosted its first photo</a>. Of course, the existence of a single image didn&rsquo;t immediately make text obsolete and doom a text-based browser to oblivion before it even manifested: other than that single photo, the web was 100% text, so such a tool was still perfectly relevant. In fact, a large portion of web content today is text, from articles like this one to discussion forums to recipes for chocolate babka (have you ever had babka? It lies somewhere between &ndash; and significantly above &ndash; bread and cake). Predictably, it&rsquo;s vanishing in terms of bandwidth share as other media formats gain prevalence, especially video, but in terms of users spending time consuming and relaying information, it remains a cornerstone of the Internet due to its speed and efficiency for man as well as machine.</p>
+<ul><li>Uses little storage space</li>
+<li>Low bandwidth requirements</li>
+<li>Quick to process</li>
+<li>Trivially machine-searchable</li>
+<li>Easily rearranged and edited without artifacts</li>
+<li>Consumed at the user&rsquo;s own pace unlike e.g. a video</li>
+<li>Easy to visually scan for relevant information</li></ul>
+<p>If a media item can convey all of its content as text, then keeping it as such is the only sane choice. Of course, that doesn&rsquo;t stop people from turning scripts or interviews into videos rendered in the highest possible quality, because podcast.txt at 8KB just doesn&rsquo;t have the same zazz as podcast.opus at 6MB or podcast.mp4 at 310MB, even if it&rsquo;s two people sitting behind microphones and talking at each other. Those are not random numbers. They are the actual sizes of the text transcript, audio stream, and 4K video file of <a href="https://www.youtube.com/watch?v=piASB9xOADs">this video</a>, a six-minute discussion between two presenters about a change to YouTube&rsquo;s video quality selection options on its mobile app. Instead of simply selecting a resolution, this level of granularity is now buried one level deeper in this menu, which now offers <a href="https://support.google.com/youtube/answer/91449?hl=en">a few simpler choices at first</a>, reproduced below from the linked support page:</p>
+<ul><li><strong>Auto (recommended):</strong> Changes to give you the best experience for your conditions.</li>
+<li><strong>Higher picture quality:</strong> Uses more data so videos may take longer to start or may buffer more often.</li>
+<li><strong>Data saver:</strong> Lower picture quality, but videos may start faster.</li>
+<li><strong>Advanced:</strong> Set a specific quality resolution.</li></ul>
+<p>Note that you can still manually select a resolution. You just have to first specify that you&rsquo;d like to do that rather than relying on the more streamlined new options, at the cost of a single extra tap.</p>
+<p>This video is available in 4K. It&rsquo;s not a summer blockbuster movie with amazing special effects that should be viewed in as much detail as possible. If YouTube automatically selects something below 4K, the only practical result is that the video will load faster and use less bandwidth. In fact, any resolution is fine. Or, from another perspective, no resolution is fine, because it&rsquo;s video <em>of a podcast</em>. It is effectively behind-the-scenes footage of an audio-only format. The visuals cannot be allowed to matter.</p>
+<p>And what is a podcast? Effectively, a talk radio broadcast. But radio was invented in the early 20th century, far before the advent of the Internet&rsquo;s easy transmission of digital text. The modern equivalent of such a product would thus be... a written article. Indeed, commercial radio stations will often transcribe the interviews they conduct and publish the text on their website.</p>
+<p>A 4K video, which could have been a text file, complaining that mobile users need one extra tap to view the highest possible resolution of videos that could have been text files. On their phone with a six-inch screen.</p>
+<h1>Back to the raft</h1>
+<p>There are perhaps more popularly recognizable phrases denoting a return to a previous state, like &ldquo;the way we were&rdquo; or &ldquo;home sweet home,&rdquo; but this one will always resonate with me. <a href="https://en.wikipedia.org/wiki/Spelling_Jungle"><em>Spelling Jungle</em></a>, an educational computer game released in 1993, featured a series of simple spelling exercises, executed primarily in two ways. In one, you&rsquo;d control your character in a simple overhead view to gather each letter of that stage&rsquo;s hinted word in the correct order, avoiding hazards like darts and solving basic puzzles like finding a way to cross a river. In the other, your character would appear in a side view at one end of the screen, rowing down a river to the other side, propelled by the player typing each word displayed on the screen.</p>
+<a href="images/spelling_jungle.png"><img width=600 src="images/spelling_jungle.png"/></a>
+<p>Puzzle stages begin by arriving at the level on a raft. After completing the challenge, you must return to that point. This directive is announced by the game&rsquo;s NPC who guides you through your journey, a bald, elderly fellow wearing a magical bathrobe and wielding a spelling staff. We know it&rsquo;s a spelling staff because the ornament at the top consists of the letters &ldquo;ABC.&rdquo; This amicable chap, whose name is Yobi, raps the ground with his staff twice, and instructs you thusly:</p>
+<blockquote>
+<span style="font-size: 1.1em;">Back to the raft.</span>
+<figcaption>&mdash; Yobi, <cite>Spelling Jungle</cite></figcaption>
+</blockquote>
+<p>You dutifully swagger back to your aquatic conveyance, and the level is complete.</p>
+<p>In this metaphor, the raft is text content, the level is the myriad twists and turns of what the Internet has become over the years, Yobi is our inner selves beatifically reminding us of the simple elegance of returning whence we came at fruitful journey&rsquo;s end, the spelling staff is the enduring power of text, the parrot is a dancing baby except here it&rsquo;s okay because A) this is a game and B) it&rsquo;s thematically appropriate, the pause button is our ability to stop and reconsider our path, and the restart lever is major browsers sending us back in time with stripped-down websites so we can try the Internet again and do it right this time.</p>
+<h1>Back to the track</h1>
+<p>We filled the Internet with marvels and wonders, but, like a fling with <a href="https://www.youtube.com/watch?v=M0eWawTdt_w">Djoghurt</a> that has perhaps gone a bit too far, it&rsquo;s time to get <em>back to the track</em>. Every major browser besides Chrome (we&rsquo;ll get to that later) now has a feature that scours a web page clean of all the grime and filth that hobbled it, usually called something like reader mode or reader view to hearken back to when the Internet was for reading.</p>
+<p>Because it still is.</p>
+<p>Reader mode extracts a page&rsquo;s rendered text, attempting to identify the actual content while filtering out unrelated text like ad captions or sidebars. Basic elements like images and tables are also included: reader mode isn&rsquo;t attempting to emulate text-mode browsers, and these different elements and media aren&rsquo;t remotely problematic when they&rsquo;re part of a page&rsquo;s intended and desired content. After gathering all relevant data, reader mode will assemble them into a page following a standard template, usually very minimalist in appearance. Most implementations have a few unobtrusive extra features like the ability to adjust the size or font of text, <a href="https://en.wikipedia.org/wiki/Text-to-speech">read the page aloud with an artificial voice<a/>, and so on. Notably absent is anything that detracts from the page&rsquo;s content, from custom styling to ads and everything in between. Observe the difference when reader mode is applied to this article from <em>Wired</em>.</p>
+<a href="images/before_reader_view.png"><img width=600 src="images/before_reader_view.png"/></a>
+<p>Let&rsquo;s start at the top. First we have a nav bar, which I&rsquo;d say is perfectly fine. A large commercial site like <em>Wired</em> has a lot of content and features, and an unobtrusive widget like this allows users to navigate the site without eating up much real estate. Next, we have an ad. Ads aren&rsquo;t inherently negative, but they&rsquo;re obviously not inherently positive, either, and this one has some negative aspects: located at the top of the page, users must scroll past it to get to the content, as opposed to sidebar ads that usually occupy otherwise-fallow space due to most reading content not spanning the entire width of a widescreen monitor. It&rsquo;s also a moderately large ad. Following that, there&rsquo;s a gigantic image. I&rsquo;m not sure where this falls on the dancing baby scale, so let&rsquo;s take a quick look at it.</p>
+<a href="images/poker.webp"><img width=600 src="images/poker.webp"/></a>
+<p>This appears to be a photograph of a poker game. The page contains no caption for it other than credits for photographers Keirnan Monaghan and Theo Vamvounakis, so I can&rsquo;t be sure whether it&rsquo;s a photograph of the poker game described in the article&rsquo;s opening paragraph. It appears to be not just a photo but a screen capture of a camera&rsquo;s viewfinder image. The date at the bottom right is 9/21/19, which matches the aforementioned game. However, I suspect that this image started as just a generic &ldquo;it is the game of poker&rdquo; photo, and the HUD elements were added afterward to give the photo the apperance of a security camera at the relevant venue during the event in question. The chromatic abberation is artistic, to be sure, but inauthentic. As far as I can determine, I&rsquo;d say this photo doesn&rsquo;t actually impart any information and thus adds nothing of substance to the article.</p>
+<p>And yet, it&rsquo;s <em>huge!</em> If not for the other elements vying for the reader&rsquo;s attention, it would take up the entire screen.</p>
+<p>Let&rsquo;s move on to the next element: the ad to subscribe. Ha ha, no, you missed the CCPA notice at the right. <a href="https://en.wikipedia.org/wiki/California_Consumer_Privacy_Act">The CCPA</a> is a California law that, in a very small nutshell, requires companies to disclose to their websites&rsquo; visitors what kind of information they gather about said visitors, and allow those visitors to select what they&rsquo;d like to permit and what they&rsquo;d like to block. This is pretty much unavoidable for any site involved in modern advertising with its associated trappings of cookies, trackers, analytics, and so on. The only way to avoid dealing with that in this day and age is to run a site like mine with none of that stuff, which is why you didn&rsquo;t get a CCPA notice when you landed here even if accessing it from a California-based IP address. The CCPA is more or less comparable to Europe&rsquo;s more widely-known <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>.</p>
+<p>Finally, the subscription banner. There&rsquo;s a lot of empty space, and it&rsquo;s big, and if you avoid interacting with it entirely you&rsquo;ll be ceding it a huge chunk of your screen. They want you to see it, and ideally subscribe. Annoying, but fully understandable. However, once all is said and done, the article isn&rsquo;t even visible until you do a bunch of scrolling, and that&rsquo;s after you&rsquo;ve already navigated to the page. You&rsquo;d think that that action would be a clear enough indication that we&rsquo;d like to read the article and that perhaps that goal should be a little bit more at the forefront of the page&rsquo;s goals, but no. Navigation, ad, irrelevant photo, legal notice, ad. The content is pushed pretty far down; you have to dismiss a few things and scroll a while before you get actual content. And this is a legitimate, real website, not some fly-by-night scam.</p>
+<h1>There and back again</h1>
+<p>Enter Firefox&rsquo;s Reader View!</p>
+<a href="images/after_reader_view.png"><img width=600 src="images/after_reader_view.png"/></a>
+<p>:)</p>
+<p>Chrome used to have an experimental flag to enable a reader mode, but it was removed entirely a little while ago. I am, of course, totally unsurprised that Google, which gets most of its revenue from advertising, elected not to officially include in its web browser a way to absolutely slaughter every advertisement. Install an extension, use a competing browser, or suffer the ads, pop-ups, and other &ldquo;rich content&rdquo; that pollute the modern web and make it impossible to just keep a stupid web page open while you play a game or something because it&rsquo;s trying to play five videos at once and hogging all the CPU until you close it.</p>
+<p>I visited this article again to see if anything had changed since I first saw it 14 months ago. Here&rsquo;s what it looks like without reader mode:</p>
+<a href="images/before_reader_view_updated.png"><img width=600 src="images/before_reader_view_updated.png"/></a>
+<p><em>It got worse.</em></p>
+<p>The moderately large ad has been replaced with a new one literally four times the size (double the height and double the width), with a static left pane that advertises a movie and a right pane that autoplays a video of the movie&rsquo;s trailer. Yes, it did autoplay, with the icon in the address bar to the immediate left of the URL informing me that I had granted that site additional permissions (this is poorly-worded on Firefox&rsquo;s part, as allowing videos to autoplay while blocking audio is the default setting) and so videos will autoplay here. Yes, it did use 100% of my computer&rsquo;s CPU with its unoptimized, utterly careless playback widget: I say &ldquo;careless&rdquo; and I mean it quite literally. They don&rsquo;t care about the people who visit this website. They don&rsquo;t care that this isn&rsquo;t what people wanted or expected to see. They don&rsquo;t care that it hogs system resources. They don&rsquo;t care that, if anything, it makes me less willing to watch this movie, because I now associate it with a mannerless cretin of a web page. However, I have to give it credit where credit is due and admit that at least the video is muted by default even when I tell Firefox to allow both video and audio autoplay. At least it won&rsquo;t startle you with a blast of high-intensity action audio when all you wanted to do was read about how a man playing a card game might have cheated at the card game and people were cross with him.</p>
+<p>Would you look at that, Firefox&rsquo;s Reader View is still excellent:</p>
+<a href="images/after_reader_view_updated.png"><img width=600 src="images/after_reader_view_updated.png"/></a>
+<p>It also includes the poker photo. Perhaps the source page was adjusted in the intervening months, perhaps Firefox&rsquo;s Reader View updated the way it categorizes relevant content. I would say that including that image in the source was unjustified, but including it in reader mode is the right call &ndash; it&rsquo;s analyzing the page&rsquo;s structure, not the contents of each image per se. However, other images in the article are still excluded in Firefox&rsquo;s Reader View. Such a feature has to conduct a balancing act when determining how to transform a page, and it&rsquo;s not always clear what should go, what should stay, and what the result should look like. Most simple articles work fine, but even I have some sleuthing work ahead of me if I want to figure out why my earlier articles lose bits and pieces in the reader modes for various browsers and platforms &ndash; and I do intend to figure that out. Those pages are already clean and simple, but reader modes also provide consistent styling and extra features that justify their use even when not stripping out unwanted junk, so I want those pages to work properly in reader modes without dropping various paragraphs. Fortunately, getting everything to look as it ought to should be a simple matter of using fewer disparate elements. Reader modes have a very difficult time with more complex pages like game wikis, dropping entire charts and sections that are most certainly part of the content. It would be a major undertaking to ensure that such pages work correctly with reader modes, but the administrators of such sites wouldn&rsquo;t want that anyway because that would cut into ad revenue.</p>
+<p>Let&rsquo;s take a look at another site, this time in Chrome, Firefox, and Firefox with Reader View. Here&rsquo;s the site in Chrome.</p>
+<a href="images/medical_site_chrome.png"><img width=600 src="images/medical_site_chrome.png"/></a>
+<p>And here it is in Firefox. Notice how the newsletter pop-up has been repurposed to impugn the user&rsquo;s character and implore you to turn off the ad blocker (just Firefox&rsquo;s built-in one, no third-party extensions), which made the content easier to see and focus on. The pop-up to enable notifications for the site is also nowhere to be seen. Still, the CCPA notice and ad blocker pop-up get in the way, especially as their modal nature blocks the rest of the page.</p>
+<a href="images/medical_site_ff.png"><img width=600 src="images/medical_site_ff.png"/></a>
+<p>And then we turn on Firefox&rsquo;s Reader View.</p>
+<a href="images/medical_site_ff_reader.png"><img width=600 src="images/medical_site_ff_reader.png"/></a>
+<p>That&rsquo;s better. If the original page were like this it would drastically reduce load times, but at least we can still reap the benefits of improved usability and resource consumption.</p>
+<h1>It&rsquo;s funny because it&rsquo;s not</h1>
+<p>I occasionally see advertisements that are less obtrusive than usual and proudly announce that that was the goal of buying the ad space. You&rsquo;re welcome, Internet denizen! And that&rsquo;s great. But what&rsquo;s the point of taking out an ad that looks and feels exactly like any other ad and then boldly announcing that it isn&rsquo;t an ad?</p>
+<a href="images/impostor_ad.png"><img width=600 src="images/impostor_ad.png"/></a>
+<p>How can I have an ad-free day if I&rsquo;ve been served an ad for the Crispy Chicken Sandwich from McDonald&rsquo;s? It&rsquo;s like shouting &ldquo;<strong><em>QUIET!</em></strong>&rdquo; in a library.</p>
+<h1>Never give up on the old ways</h1>
+<p>Let&rsquo;s take a look at a couple more sites. Here&rsquo;s a Snopes page, and it&rsquo;s a giant mess of ads and nags and notices. I think another ad is struggling to exist at the bottom, as indicated by the telltale logo of Google AdChoices. I&rsquo;m guessing their ads were so annoying that people started using ad blockers for Snopes, so Snopes went after more revenue by slathering on more ads, and so on. I sometimes wonder if people with websites like this actually visit their own sites and think to themselves, &ldquo;this is fine.&rdquo;</p>
+<a href="images/too_many_popups.png"><img width=600 src="images/too_many_popups.png"/></a>
+<p>This one is TVTropes. There&rsquo;s an absolute ton of fantastic user-generated content on that site, but take a gander at what its administrators think is an acceptable ad.</p>
+<a href="images/tv_tropes_idea_of_reasonable_ads.png"><img width=600 src="images/tv_tropes_idea_of_reasonable_ads.png"/></a>
+<p>It&rsquo;s animated, too. Interested in "MK Walker" algorithms, named after the way that Mortal Kombat&rsquo;s computer opponents will walk perfectly to exactly match your movements and keep you at the precise distance that they want so they can engage you on their own terms? Well, here&rsquo;s a full-screen video presentation about pearl necklaces. Maybe the page should buy a pearl necklace so it can experience &ldquo;one&rsquo;s greatest freedom&rdquo; and &ldquo;express&rdquo; its content like we wanted it to, rather than being smothered to death by what is apparently the only way humankind has yet devised to monetize services with zero marginal cost delivered at no charge to the consumer.</p>
+<h1>It is broken here or there, it is broken anywhere</h1>
+<p>Thanks to the power of mobile computing, you can have a poor web experience on the go!</p>
+<blockquote>
+<span style="font-size: 1.1em;">How lucky you are! How wonderful for you!</span>
+<figcaption>&mdash; Captain Kirk, <cite>A Piece of the Action</cite></figcaption>
+</blockquote>
+<p>Just like <a href="https://www.youtube.com/watch?v=v77SF4TFUoM">alien gangsters learning Fizzbin</a>, anyone relying on the default mobile web browsing experience for major commercial sites will be frustrated and confused. Like Captain Kirk telling you that you don&rsquo;t want another jack but shouting the above quote when it happens, site operators would like you to experience one thing and believe another. The difference is that Kirk was making up Fizzbin as he went along, while websites often have actual content that we might like to read if possible. The significantly smaller screen size and touch-based interface make for a much different browsing experience, ads included. The current norm is to have no more than one junk element covering the content and tethered to a fixed location like the bottom of the screen, with other nuisances interspersed throughout the content like ersatz paragraphs that you&rsquo;ll see as you scroll through the page.</p>
+<p>Here&rsquo;s a fine example. We have the standard disclaimer, with a video ad visible beneath the disclaimer&rsquo;s semi-transparent background. This seems like it should feel better than the opaque empty space in the subscription plea that <em>Wired</em> uses, since it obscures content to a lesser degree, but it&rsquo;s still annoying enough that most people will either deal with the disclaimer or focus on the top half of the screen that isn&rsquo;t blocked at all.</p>
+<a href="images/venture_article.png"><img width=600 src="images/venture_article.png"/></a>
+<p>Next, here&rsquo;s a comparison of a <em>Bloomberg</em> article on mobile in Firefox&rsquo;s standard view on the left and Reader View on the right. I don&rsquo;t mind telling you that getting that to display properly in both the standard view and the Reader View was an epic journey. At one point I literally shouted &ldquo;<strong><em>WHAT</em></strong>&rdquo; at my monitor. I ended up resolving that but discovering other quirks affecting some other pages on my site, one of which (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1198731">this</a> bug where all <code>h1</code> elements get removed was fixed last year but it still removes the first one that matches the page title) I think I&rsquo;ll just accept for now.</p>
+<p>This dive into insanity is known as &ldquo;security through obscurity&rdquo;: if they don&rsquo;t explain how to make a site work well with Reader View, then shady developers can&rsquo;t use that information to make their site work <em>poorly</em> with Reader View and thus railroad users into using the standard view. No surprise that the adversity which prompted the feature&rsquo;s creation also holds it back.</p>
+<a href="images/bloomberg_article.png"><img class=row width=300 src="images/bloomberg_article.png"/></a><a href="images/bloomberg_article_reader.png"><img class=row width=300 src="images/bloomberg_article_reader.png"/></a>
+<p>Anyway, here&rsquo;s a <em>Guardian</em> article with a similar comparison.</p>
+<a href="images/guardian_article.png"><img class=row width=300 src="images/guardian_article.png"/></a><a href="images/guardian_article_reader.png"><img class=row width=300 src="images/guardian_article_reader.png"/></a>
+<p>There are <a href="https://xkcd.com/1053/">people who have never seen this</a> sort of disgrace before. Tap a link to an article, tell them you&rsquo;re about to show them how we consume modern news, and show them the default view. Where is the news? We&rsquo;ve got a warning telling them that something is running out, an invitation to share their contact information, an attempt to sell them something, a description of what categories of news are available, half a photo of the outdoors, and a legal notice for users in certain regions like California or the European Union. The closest any of that gets to relevance is the photo, which is mostly there to spice up the page rather than actually convey information. To get something that actually looks like the news we promised, we need the reader mode. Otherwise, we&rsquo;d need to fight our way past an assortment of digital assailants that beset us like a carnival ride&rsquo;s spring-loaded monsters.</p>
+<p>Chrome may not have a reader mode, but it does have a different interesting feature: detecting and removing page elements with unusually high resource consumption. Perhaps this was deemed acceptable because it only dings certain ads that have demonstrated their poor behavior a posteriori rather than clear-cutting entire web pages at once. Whatever the reason, here&rsquo;s what it looks like on mobile:</p>
+<a href="images/chrome_override_1.png"><img class=row width=300 src="images/chrome_override_1.png"/></a><a href="images/chrome_override_2.png"><img class=row width=300 src="images/chrome_override_2.png"/></a>
+<p>As you can see, it works not just in the Chrome browser proper but also in any app that leverages it internally to render documentation pages or what have you. Perhaps the next evolution of this technology will allow Chrome to correctly determine what is and isn&rsquo;t an ad, so that we can see the homepage for whatever section of whatever app we were trying to use. Maybe it has a legitimate reason for demanding all those resources. I mean, probably not, but it might. Potentially, anyway.</p>
+<h1>Conclusion</h1>
+<p>I suppose I need a conclusion. How about a brief summary: there are too many &ldquo;rich web&rdquo; ways to utterly screw up a web page these days, and the biggest industry leaders have become the biggest culprits rather than setting a good example for the rest, to the point that browsers now have built-in tools to improve those pages by forcing them back to the poor web of the 90s.</p>
+</td></tr>
+<tr height="300"></tr>
+<tr><td><h3>Image sources:</h3>
+<ul>
+<li><a href="https://www.wonder-tonic.com/geocitiesizer/images/dancingbaby.gif">Original dancing baby GIF</a></li>
+<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1502731396"><em>Spelling Jungle</em> screenshot</a></li>
+<li><a href="https://www.wired.com/story/stones-poker-cheating-scandal/"><em>Wired</em> article with poker image</li>
+</ul></td></tr></table>
+</body>
+</html>
