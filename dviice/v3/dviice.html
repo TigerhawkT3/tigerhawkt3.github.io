@@ -241,12 +241,12 @@ $(document).ready(function(){
 <table class="bass3" id="bass3" ondragstart='return false;' ondrop='return false;'></table>
 <table class="bass4" id="bass4" ondragstart='return false;' ondrop='return false;'></table>
 
-<textarea
+<textarea style="width: 1380px"
 placeholder="Type notes in this text box for an easy record! For example, type the following for &quot;The Minstrel Boy&quot; (180BPM):
 wa,sv  bmnbvn , 2t `/t2. , `bn,n4bbbbvv `a,s2vv `bmnbv2n , t `/t. , bn,n4bbb vvv `et / 2. `/t2/ . ,  `,2.  `n2n `n 4. / t  `wt2v  `bmnbv4nn,,t `/t2. , `bn,n4bbbbvv  `
 Click outside this box if you don't want played notes to show up. Use spaces for rests.
 Enter a BPM in the box to the right (default 120) and hit the play button below it to play back your song."
-autofocus="true" rows="5" cols="195" class="textlog" id="textlog">
+autofocus="true" rows="5" class="textlog" id="textlog">
 </textarea>
 <input type='number' placeholder="BPM" min='0' max='60000' class="tempo" id="tempo"></input>
 <button onclick="playback()" class="player">Play!</button>
