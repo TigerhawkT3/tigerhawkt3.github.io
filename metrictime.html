@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Metric Time</title>
+<style>
+@font-face {
+    font-family: computer;
+    src: url("fonts/EuroPlate.ttf");
+}
+computer {
+    font-family: computer;
+    font-size: 6em;
+    display: block;
+    text-align: center;
+}
+p {
+    text-align: justify;
+}
+code {
+    font-family: Consolas, monospace;
+}
+body {
+    color: white;
+    background: black;
+}
+:link {
+    color: #5555FF;
+}
+:visited {
+    color: purple;
+}
+:hover {
+    color: #7777FF;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-group .button {
+	float: left;
+}
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    position: relative;
+    background-color: #1111DD;
+    border: none;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    font-family: Consolas, monospace;
+    font-weight: Bold;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button.current {
+    background-color: #EE2222;
+}
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+</style>
+</head>
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td>
+<div class="btn-group">
+<a href="index.html" class="button"><span>Home</span></a>
+  <a href="programming.html" class="button"><span>Programming</span></a>
+  <a href="music.html" class="button"><span>Music</span></a>
+</div></td></tr><tr><td>
+<div class="btn-group">
+  <a href="articles.html" class="button"><span>Articles</span></a>
+  <a href="other.html" class="button"><span>Other</span></a>
+  <a href="https://www.paypal.me/TigerhawkT3" class="button"><span>Donate</span></a>
+</div></td></tr></table>
+<computer>Metric Time</computer>
+<table width=600 align=center>
+<tr height=50px>
+</tr><tr><td>
+<p><em>This originally appeared as <a href="https://www.reddit.com/r/therewasanattempt/comments/muez3s/to_get_a_meaningful_tattoo/gv6bofm/">a comment I made on Reddit in April of 2021</a>. I was responding to a joke about decimal time (that is to say, metric time), and it struck me that it was basically an article and thus belonged here.</em>
+<p>I&rsquo;ve given this way too much thought in the years since I saw <a href="https://www.youtube.com/watch?v=rP3nZ13AULs">The Simpsons&rsquo; joke about metric time</a> and I&rsquo;ve come to the conclusion that it simply doesn&rsquo;t make sense to measure that kind of &ldquo;time&rdquo; or date in that way. When we say things like &ldquo;it&rsquo;s 2 pm&rdquo; or &ldquo;that happens in February,&rdquo; all we&rsquo;re really talking about is whether it&rsquo;s light or dark, hot or cold.</p>
+<p>Consider the example you gave (&ldquo;9.426738894 pm&rdquo;): you&rsquo;ve standardized on two units at the same time, the day and the hour! I don&rsquo;t know your time zone, so I can&rsquo;t determine how many hours you&rsquo;ve set to your day, but it seems like it&rsquo;s at least 20 or perhaps still 24, neither of which plays well with metric. This timekeeping can&rsquo;t reasonably keep track of months or years in a regular but still metric way, because the Earth, Sun, and Moon give us daylight, moonlight, tides, and seasons in multiples that were never designed in multiples of ten. Trying to shoehorn all of it into something vaguely resembling metric just gives you a bunch of separate systems that should interact with each other &ndash; after all, time is time &ndash; but can&rsquo;t, because time of day isn&rsquo;t mathematically married to time of year, and that&rsquo;s what we care about. It all drifts slightly anyway, due to reality being a little messier than a model.</p>
+<p>When we ask &ldquo;what time is it?&rdquo;, no one asks &ldquo;of what?&rdquo; like they would if they were asked &ldquo;what is the volume&rdquo; or &ldquo;what is the length.&rdquo; It is simply The Time. That&rsquo;s nonsensical for a unit of measure, and real metric time is thus not The Time but rather just like any other unit of measure: it keeps track of how many of some standardized unit we&rsquo;ve got in front of us. The meter measures the distance between one point and another, the liter measures volume in a given space, and so on.</p>
+<p>Fortunately, the unit of time is already standardized as the second, so we&rsquo;ve got that taken care of. You&rsquo;ve surely heard of units like the millisecond and microsecond, but what do we call a thousand meters? A kilometer. So, what should we call a thousand seconds? A kilosecond, naturally. That&rsquo;s 16 minutes and 40 seconds in freedom units. A hundred kiloseconds is a little under three hours. A megasecond is about 11.5 days.</p>
+<p>Of course, none of this is useful for telling The Time. And it shouldn&rsquo;t be! But it&rsquo;s natural to still want to, because we&rsquo;d like to schedule meetings with a little more precision than &ldquo;the sun isn&rsquo;t quite overhead but it&rsquo;s getting close,&rdquo; and the sun is really what we&rsquo;re interested in most of the time. Well, fortunately once again, that also already exists! It&rsquo;s called a timestamp. The way it works is you pick an arbitrary point in time for a universal start point, and then you measure the duration in seconds (or milliseconds, microseconds, whatever precision you&rsquo;d like) between then and the time you&rsquo;re interested in. This point in time is called an epoch. It&rsquo;s an extension of year numbering: most Western cultures start with the birth of Jesus Christ. Popular epochs include midnight, January 1, 1970 (used in Unix-based systems); midnight, January 0, 1900 (yes, 0, it&rsquo;s used for Excel, which intentionally accommodates a bug in Lotus 1-2-3 for compatibility); January 1, 2000; January 0, 1 BC (MATLAB); January 1, 1 AD (.NET et al.); and more. For example, the Unix epoch based time right now is about 1618898569.023157. That&rsquo;s the time in seconds since January 1, 1970, with microsecond precision. UTC, of course. All this means that computers store time as a single number, which can be processed as needed to display a human-friendly result.</p>
+<p>Unfortunately, arbitrary epochs are arbitrary. Can there be not merely &ldquo;The Time&rdquo; but &ldquo;THE TIME&rdquo;? Well, kinda. You would simply choose the moment of the Big Bang as your epoch. That would be a pretty good one. Unfortunately, we only know that one to plus or minus 40 million years, which is a little imprecise when you&rsquo;re planning dinner.</p>
+<p>TL;DR: This took me nearly 5ks to write.</p>
+</td></tr>
+<tr height="200"></tr>
+</table>
+</body>
+</html>
