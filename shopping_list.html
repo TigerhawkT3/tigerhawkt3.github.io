@@ -2,12 +2,24 @@
 <head><title>Shopping List by TigerhawkT3</title></head>
 <body>
 <div id='list' align='center'></div><br />
-<div align='center'><button type='button' class='export' onclick='to_clip()'>Export</button></div>
-<div class='result' align='center' id='ios'></div>
+<div align='center'>
+<button style='float:left; margin-left: 9vw;'
+    type='button' class='export' onclick='add_button()'>Add item</button>
+<button style='float:right; margin-right: 9vw;'
+    type='button' class='export' onclick='update_url()'>Update URL</button>
+</div>
 <style>
 button.list {
     vertical-align: bottom;
     font-size: calc(20px + 2vw);
+    width: 9vw;
+    height: 9vw;
+    max-height: 12vh;
+    max-width: 12vh;
+    min-height: 6vw;
+    min-width: 6vw;
+}
+input.list {
     width: 9vw;
     height: 9vw;
     max-height: 12vh;
@@ -23,55 +35,82 @@ button.export {
 }
 textarea.list {
     vertical-align: bottom;
-    width: 60vw;
+    width: 70vw;
     height: 9vw;
     font-size: calc(20px + 2vw);
     max-height: 12vh;
     min-height: 6vw;
 }
-div.result {
-    font-size: 10vw;
-}
 </style>
 <script>
 let list = document.getElementById('list');
 let tall = window.innerHeight > window.innerWidth;
-function new_item() {
+let lifted = null;
+function new_item() { // create a new item
     newElement = document.createElement('div');
     newElement.style = 'padding: 3px;'
-    newElement.innerHTML = "<button class='list' type='button' onclick='insert(this)'>+</button>\n" +
-        "<button class='list' onclick='remove(this)'>-</button>\n" +
-        "<button class='list' onclick='up(this)'>^</button>\n" +
-        "<textarea class='list' placeholder='Enter item...' rows=1 cols=40></textarea>\n";
+    newElement.innerHTML = "<input class='list' type='color' value='#FFFFFF'>\n" +
+        "<button class='list' onclick='interact(this)'>&gt;</button>\n" +
+        "<textarea class='list' placeholder='Enter item...'></textarea>\n";
     return newElement;
 }
-function insert(e) {
+function insert(e) { // insert a new item above element e's parent
     newElement = new_item();
     list.insertBefore(newElement, e.parentNode);
-    newElement.children[3].focus();
+    newElement.children[2].focus();
 }
-function remove(e) { list.removeChild(e.parentNode); }
-function up(e) { list.insertBefore(e.parentNode, e.parentNode.previousElementSibling); }
-function to_clip() {
-    let items = Array.from(list.getElementsByTagName('div'));
-    let result = location.origin + location.pathname + '?' + items.map(e => encodeURIComponent(e.children[3].value)).join('&');
-    if (navigator.userAgent.match(/ipad|iphone/i)) document.getElementById('ios').innerHTML = "<a href='" + result + "'>Copy me!</a>"
-    else navigator.clipboard.writeText(result);
-}
-if (location.search === '') {
+function append() { // append a new item to the end of the list
     newElement = new_item();
     list.appendChild(newElement);
-    newElement.focus();
+    newElement.children[2].focus();
 }
-else {
+function add_button() { // handle the button to add/insert
+    if (!lifted) append();
+    else {
+        insert(lifted);
+        lifted.innerText = '>';
+        lifted = null;
+    }
+}
+function remove(e) { list.removeChild(e.parentNode); } // remove an item
+function interact(e) { // interact with an item
+    if (!lifted) { // choose an item to interact with
+        lifted = e;
+        e.innerText = '+/-';
+        return;
+    }
+    if (e === lifted) {
+        if (e.nextElementSibling.value != '') { // non-empty, toggle strikethrough
+            if (lifted.nextElementSibling.style['text-decoration'] === 'line-through')
+                lifted.nextElementSibling.style['text-decoration'] = 'none';
+            else lifted.nextElementSibling.style['text-decoration'] = 'line-through';
+        }
+        else remove(e); // empty, remove item
+    }
+    else { // move item
+    list.insertBefore(lifted.parentNode, e.parentNode);
+    }
+    lifted.innerText = '>';
+    lifted = null;
+}
+function update_url() { // create URL and navigate there
+    let items = Array.from(list.getElementsByTagName('div'));
+    let result = location.origin + location.pathname + '?' + items.map(
+        e => e.children[0].value.slice(1) + '_' + encodeURIComponent(e.children[2].value)
+        ).join('&');
+    window.location.href = result;
+}
+if (location.search === '') append(); // empty query string, just make one node
+else { // non-empty query string, import nodes
     let items = location.search.slice(1).split('&');
     for (let item of items) {
         let e = new_item();
-        e.children[3].value = decodeURIComponent(item);
+        content = decodeURIComponent(item);
+        e.children[0].value = '#' + content.slice(0, 6)
+        e.children[2].value = content.slice(7);
         list.appendChild(e);
     }
 }
 </script>
-
 </body>
 </html>
