@@ -1,5 +1,8 @@
 <html>
-<head><title>Shopping List by TigerhawkT3</title></head>
+<head>
+<title>Shopping List by TigerhawkT3</title>
+<meta name='viewport' content='width=device-width'>
+</head>
 <body>
 <div id='list' align='center'></div><br />
 <div align='center'>
@@ -10,8 +13,8 @@
 </div>
 <style>
 button.list {
-    vertical-align: bottom;
-    font-size: calc(20px + 2vw);
+    vertical-align: top;
+    font-size: calc(10px + 2vw);
     width: 9vw;
     height: 9vw;
     max-height: 12vh;
@@ -20,6 +23,7 @@ button.list {
     min-width: 6vw;
 }
 input.list {
+    vertical-align: top;
     width: 9vw;
     height: 9vw;
     max-height: 12vh;
@@ -31,13 +35,13 @@ button.export {
     height: 9vw;
     min-height: 6vw;
     max-height: 12vh;
-    font-size: calc(20px + 1vw);
+    font-size: calc(10px + 1vw);
 }
 textarea.list {
-    vertical-align: bottom;
+    vertical-align: top;
     width: 70vw;
     height: 9vw;
-    font-size: calc(20px + 2vw);
+    font-size: calc(10px + 2vw);
     max-height: 12vh;
     min-height: 6vw;
 }
@@ -76,7 +80,7 @@ function remove(e) { list.removeChild(e.parentNode); } // remove an item
 function interact(e) { // interact with an item
     if (!lifted) { // choose an item to interact with
         lifted = e;
-        e.innerText = '+/-';
+        e.innerText = '...';
         return;
     }
     if (e === lifted) {
