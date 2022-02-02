@@ -84,11 +84,8 @@ function interact(e) { // interact with an item
         return;
     }
     if (e === lifted) {
-        if (e.nextElementSibling.value != '') { // non-empty, toggle strikethrough
-            if (lifted.nextElementSibling.style['text-decoration'] === 'line-through')
-                lifted.nextElementSibling.style['text-decoration'] = 'none';
-            else lifted.nextElementSibling.style['text-decoration'] = 'line-through';
-        }
+        if (e.nextElementSibling.value != '') // non-empty, toggle strikethrough
+            toggle_strike(lifted.nextElementSibling);
         else remove(e); // empty, remove item
     }
     else { // move item
@@ -97,10 +94,19 @@ function interact(e) { // interact with an item
     lifted.innerText = '>';
     lifted = null;
 }
+function toggle_strike(e) {
+    if (e.style['text-decoration'] === 'line-through')
+        e.style['text-decoration'] = 'none';
+    else e.style['text-decoration'] = 'line-through';
+}
 function update_url() { // create URL and navigate there
     let items = Array.from(list.getElementsByTagName('div'));
     let result = location.origin + location.pathname + '?' + items.map(
-        e => e.children[0].value.slice(1) + '_' + encodeURIComponent(e.children[2].value)
+        e => (e.children[2].style['text-decoration']==='line-through' ? '1' : '0') +
+             '.' +
+             e.children[0].value.slice(1) +
+             '_' +
+             encodeURIComponent(e.children[2].value)
         ).join('&');
     window.location.href = result;
 }
@@ -110,8 +116,9 @@ else { // non-empty query string, import nodes
     for (let item of items) {
         let e = new_item();
         content = decodeURIComponent(item);
-        e.children[0].value = '#' + content.slice(0, 6)
-        e.children[2].value = content.slice(7);
+        e.children[0].value = '#' + content.slice(2, 8)
+        e.children[2].value = content.slice(9);
+        if (content.slice(0, 1) === '1') toggle_strike(e.children[2]);
         list.appendChild(e);
     }
 }
