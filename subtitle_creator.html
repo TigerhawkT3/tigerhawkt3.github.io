@@ -40,10 +40,14 @@ table > tr.hide {
  <td>/</td>
  <td id='pagecount'>1</td>
  </tr></table>
- <table style='border-collapse:collapse;' border='1' id='list' width='100%'></table></div>
+ <table style='border-collapse:collapse;' border='1' id='list' width='100%'></table>
+ <table align='center'><tr><td>
+  <input type='button' id='add_button' value='Add cue' onclick='add_cue()' title='Append new cue to end' />
+ </td></tr></table></div>
 <div style='text-align:right; width: 55%'>
 <video id='vid' style='max-width: 100%;' preload="metadata" controls></video><br />
  <input type='file' id='chooser' accept='video/*' />
+ <input type='number' placeholder='rate' onchange='set_rate()' id='rate' style='width: 4em;' min='0' max='16' step='0.25' title='Playback rate (1 is normal)' />
  <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
  <input type='button' value='<' onclick='jump_seconds(-1)' title='Seek backward by step size' />
  <input type='button' value='>' onclick='jump_seconds(1)' title='Seek forward by step size' />
@@ -61,26 +65,32 @@ table > tr.hide {
 </div>
 <script>
 
-txt = document.getElementById('source');
-vid = document.getElementById('vid');
-info = document.getElementById('info');
-loop_button = document.getElementById('loop_button');
-step_size = document.getElementById('step_size');
-list = document.getElementById('list');
-inbutton = document.getElementById('inbutton');
-outbutton = document.getElementById('outbutton');
-pagecount = document.getElementById('pagecount');
-track = document.createElement("track");
-track.label = "Main";
+let txt = document.getElementById('source');
+let vid = document.getElementById('vid');
+let info = document.getElementById('info');
+let loop_button = document.getElementById('loop_button');
+let step_size = document.getElementById('step_size');
+let list = document.getElementById('list');
+let inbutton = document.getElementById('inbutton');
+let outbutton = document.getElementById('outbutton');
+let add_button = document.getElementById('add_button');
+let pagecount = document.getElementById('pagecount');
+let page = document.getElementById('page');
+let rate = document.getElementById('rate');
+let track = document.createElement('track');
+let select_message = 'Select this cue';
+let append_message = 'Append new cue to end'; // if you change this, manually change the original HTML above too
+track.label = 'Main';
 vid.appendChild(track);
 vid.textTracks[0].mode = 'showing';
-PAGE_LENGTH = 10;
-point_in = 0;
-point_out = 0;
-looping = null;
+let PAGE_LENGTH = 10;
+let point_in = 0;
+let point_out = 0;
+let looping = null;
+let lifted = null;
 list.appendChild(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''));
 
-function pagego() {
+function pagego() { // refresh the display of the list
     let destination = Math.floor(page.valueAsNumber);
     if (list.children.length <= PAGE_LENGTH || destination < 1 || destination > total_pages()) {
         destination = Math.max(1, Math.min(destination, total_pages()));
@@ -90,21 +100,23 @@ function pagego() {
     for (let i = (destination-1)*10; i < Math.min((destination-1)*10+10, list.children.length); ++i) list.children[i].className = 'show';
     pagecount.innerText = total_pages();
 }
-function wheel(e) {
+function set_rate() { // set a new playback rate
+    if (looping !== null) loop_inout();
+    vid.playbackRate = rate.value;
+}
+function wheel(e) { // use mouse wheel to scroll through list pages
     e.preventDefault();
     let current = Math.floor(page.valueAsNumber);
     page.valueAsNumber = Math.min(total_pages(), Math.max(current + (e.deltaY>0?1:-1), 1));
     pagego();
 }
-function total_pages() {
+function total_pages() { // the number of pages the list needs
     return Math.ceil(list.children.length/PAGE_LENGTH);
 }
-function make_row(i, o, t) {
+function make_row(i, o, t) { // create and return a new cue row
     let row = document.createElement('tr');
     row.className = 'show';
-    row.innerHTML = '<td><input type="button" value="-" title="Remove this cue" onclick="remove(this)"/></td>' +
-        '<td><input type="button" value="+" title="Add a cue above this" onclick="insert(this)"/></td>' +
-        '<td><input type="button" value="^" title="Move this cue up" onclick="up(this)"/></td>' +
+    row.innerHTML = '<td><input type="button" value=">" title="' + select_message + '" onclick="interact(this)"/></td>' +
         '<td><input type="button" value="i" title="Set from in point" onclick="new_point(this, \'in\')"/></td>' +
         '<td><textarea class="time" rows=1 title="Cue start time">'+i+'</textarea></td>' +
         '<td><input type="button" title="Set from out point"value="o" onclick="new_point(this, \'out\')" /></td>' +
@@ -112,47 +124,90 @@ function make_row(i, o, t) {
         '<td><textarea class="text" rows=2 cols=60 title="Cue text">'+t+'</textarea></td>';
     return row;
 }
-function remove(e) {
+function interact(e) { // the interaction button, labeled ">" by default or "<" when active
+    if (!lifted) { // choose an item to interact with
+        lifted = e;
+        e.value = '<';
+        e.title = 'remove cue; click add to insert here; click a different ">" to move this there';
+        add_button.title = 'insert new cue above selected cue';
+        return;
+    }
+    if (e === lifted) remove(e); // remove item
+    else move(lifted, e);
+    lifted.value = '>';
+    lifted.title = select_message;
+    add_button.title = append_message;
+    lifted = null;
+}
+function add_cue() { // handle the button to add/insert
+    if (!lifted) append();
+    else {
+        insert(lifted);
+        lifted.value = '>';
+        lifted.title = select_message;
+        add_button.title = append_message;
+        lifted = null;
+    }
+}
+function remove(e) { // remove chosen cue from list
     if (list.children.length === 1) return;
     list.removeChild(e.parentNode.parentNode);
     pagego();
 }
-function insert(e) {
+function insert(e) { // insert a new cue before the selected cue
     list.insertBefore(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''), e.parentNode.parentNode);
     pagego();
 }
-function up(e) {
-    list.insertBefore(e.parentNode.parentNode, e.parentNode.parentNode.previousElementSibling);
+function append() { // append a new cue to the end of the list
+    list.appendChild(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''));
     pagego();
 }
-function assemble() {
-    return 'WEBVTT\n\n' + Array.from(list.children).map(x => 
-        `${x.children[4].children[0].value} --> ` +
-        `${x.children[6].children[0].value}\n` + 
-        `${x.children[7].children[0].value}`).join('\n\n');
+function move(destination, target) { // move destination cue to above target cue
+    list.insertBefore(destination.parentNode.parentNode, target.parentNode.parentNode);
+    pagego();
 }
-function new_point(e, which) {
+function assemble() { // create and return the text of a WebVTT file from the current cues
+    return 'WEBVTT\n\n' + Array.from(list.children).map(x => 
+        `${x.children[2].children[0].value} --> ` +
+        `${x.children[4].children[0].value}\n` + 
+        `${x.children[5].children[0].value}`.replaceAll('\n', '')).join('\n\n');
+        // newlines aren't the only invalid cue text, but they're the only ones that would complicate my import process
+}
+function new_point(e, which) { // set in or out point of this cue to corresponding selected value
     e.parentNode.nextElementSibling.children[0].value = secondsToStamp(which==='in'?point_in:point_out)
 }
-function jump_seconds(direction) {
+function jump_seconds(direction) { // seek through the video by the selected step size
+    if (looping !== null) loop_inout();
     vid.currentTime += direction * step_size.valueAsNumber || 0;
 }
-function loop_inout() {
+function loop_inout() { // toggle looping video playback between selected in and out points
     if (looping === null) {
+        if (point_in >= point_out) {
+            alert('Out point must be after in point to loop.');
+            return;
+        }
+        if (vid.playbackRate === 0) {
+            alert('Playback rate must be above zero to loop.');
+            return;
+        }
         loop_schedule();
         loop_button.value = 'Looping...';
+        loop_button.title = 'Stop looping';
+        vid.play();
     }
     else {
         clearTimeout(looping);
         looping = null;
         loop_button.value = 'Loop in-out';
+        loop_button.title = 'Loop from in to out points';
+        vid.pause();
     }
 }
-function loop_schedule() {
+function loop_schedule() { // actually schedule the in-out playback loop
     vid.currentTime = point_in;
-    looping = setTimeout(loop_schedule, Math.abs((point_out-point_in)*1000));
+    looping = setTimeout(loop_schedule, (point_out-point_in) / vid.playbackRate * 1000);
 }
-function secondsToStamp(num) {
+function secondsToStamp(num) { // convert raw seconds to valid WebVTT time
         let h = `${Math.floor(num/3600)}`.padStart(2, '0');
         let remainder = num%3600;
         let m = `${Math.floor(remainder/60)}`.padStart(2, '0');
@@ -160,23 +215,23 @@ function secondsToStamp(num) {
         let ms = num.toFixed(3).split('.')[1];
         return `${h}:${m}:${s}.${ms}`;
 }
-function load_sub(event) {
+function load_sub(event) { // set the current cue list as the video's sub track
     track.src = URL.createObjectURL(new Blob([assemble()]));
 }
-function mark_in() {
+function mark_in() { // set a new in point
     point_in = vid.currentTime;
     inbutton.value = secondsToStamp(point_in);
     return point_in;
 }
-function mark_out() {
+function mark_out() { // set a new out point
     point_out = vid.currentTime;
     outbutton.value = secondsToStamp(point_out);
     return point_out;
 }
-function export_string() {
+function export_string() { // put a WebVTT file based on the current cues into the main text area
     txt.value = assemble();
 }
-function import_vtt() {
+function import_vtt() { // create a list of cues based on the WebVTT file in the main text area
     cues = txt.value.slice(txt.value.indexOf('\n')+1).trim().split('\n\n');
     list.innerHTML = '';
     for (let cue of cues) {
@@ -193,13 +248,14 @@ function import_vtt() {
     load_sub();
     txt.value = '';
 }
-function sort() {
+function sort() { // sort the cues in the list by ascending start time
     let temp = Array.from(list.children);
-    temp.sort((a, b) => a.children[4].children[0].value.localeCompare(b.children[4].children[0].value));
+    temp.sort((a, b) => a.children[2].children[0].value.localeCompare(b.children[4].children[0].value));
     list.innerHTML = '';
     for (let e of temp) list.appendChild(e);
+    pagego();
 }
-function play_file(event) {
+function play_file(event) { // open and show the chosen video
     let file = this.files[0];
     if (!file) return;
     if (vid.canPlayType(file.type) === 'no') return;

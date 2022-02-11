@@ -7,7 +7,7 @@
 <div id='list' align='center'></div><br />
 <div align='center'>
 <button style='float:left; margin-left: 9vw;'
-    type='button' class='export' onclick='add_button()'>Add item</button>
+    type='button' id='add_button' class='export' title='append new item to list' onclick='add_item()'>Add item</button>
 <button style='float:right; margin-right: 9vw;'
     type='button' class='export' onclick='update_url()'>Update URL</button>
 </div>
@@ -48,13 +48,15 @@ textarea.list {
 </style>
 <script>
 let list = document.getElementById('list');
-let tall = window.innerHeight > window.innerWidth;
+let add_button = document.getElementById('add_button');
+let append_message = 'append new item to list';
+let select_message = 'select this item';
 let lifted = null;
 function new_item() { // create a new item
     newElement = document.createElement('div');
     newElement.style = 'padding: 3px;'
-    newElement.innerHTML = "<input class='list' type='color' value='#FFFFFF'>\n" +
-        "<button class='list' onclick='interact(this)'>&gt;</button>\n" +
+    newElement.innerHTML = "<input class='list' title='choose a color' type='color' value='#FFFFFF'>\n" +
+        "<button class='list' title='" + select_message + "' onclick='interact(this)'>&gt;</button>\n" +
         "<textarea class='list' placeholder='Enter item...'></textarea>\n";
     return newElement;
 }
@@ -68,19 +70,26 @@ function append() { // append a new item to the end of the list
     list.appendChild(newElement);
     newElement.children[2].focus();
 }
-function add_button() { // handle the button to add/insert
+function add_item() { // handle the button to add/insert
     if (!lifted) append();
     else {
         insert(lifted);
         lifted.innerText = '>';
+        lifted.title = select_message;
         lifted = null;
+        add_button.title = append_message;
     }
 }
-function remove(e) { list.removeChild(e.parentNode); } // remove an item
+function remove(e) { // remove an item
+    list.removeChild(e.parentNode);
+    add_button.title = append_message;
+}
 function interact(e) { // interact with an item
     if (!lifted) { // choose an item to interact with
         lifted = e;
         e.innerText = '...';
+        e.title = 'cross off, or remove if empty; click a different ">" to move this there';
+        add_button.title = 'insert new item above selected item';
         return;
     }
     if (e === lifted) {
@@ -88,16 +97,17 @@ function interact(e) { // interact with an item
             toggle_strike(lifted.nextElementSibling);
         else remove(e); // empty, remove item
     }
-    else { // move item
-    list.insertBefore(lifted.parentNode, e.parentNode);
-    }
+    else list.insertBefore(lifted.parentNode, e.parentNode); // move item
     lifted.innerText = '>';
+    add_button.title = append_message;
+    lifted.title = select_message;
     lifted = null;
 }
 function toggle_strike(e) {
     if (e.style['text-decoration'] === 'line-through')
         e.style['text-decoration'] = 'none';
     else e.style['text-decoration'] = 'line-through';
+    add_button.title = append_message;
 }
 function update_url() { // create URL and navigate there
     let items = Array.from(list.getElementsByTagName('div'));
