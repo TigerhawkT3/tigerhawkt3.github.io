@@ -36,7 +36,7 @@ table > tr.hide {
 </style>
 <div class='list'>
  <table align='center'><tr>
- <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number' onchange='pagego()'></textarea></td>
+ <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number'></textarea></td>
  <td>/</td>
  <td id='pagecount'>1</td>
  </tr></table>
@@ -45,15 +45,15 @@ table > tr.hide {
   <input type='button' id='add_button' value='Add cue' onclick='add_cue()' title='Append new cue to end' />
  </td></tr></table></div>
 <div style='text-align:right; width: 55%'>
-<video id='vid' style='max-width: 100%;' preload="metadata" controls></video><br />
- <input type='file' id='chooser' accept='video/*' />
- <input type='number' placeholder='rate' onchange='set_rate()' id='rate' style='width: 4em;' min='0' max='16' step='0.25' title='Playback rate (1 is normal)' />
+<video id='vid' style='max-width: 100%;' preload='metadata' controls></video><br />
+  <input type='file' id='chooser' accept='video/*,audio/*' />
+ <input type='number' placeholder='rate' id='rate' style='width: 4em;' min='0' max='16' step='0.25' title='Playback rate (1 is normal)' />
  <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
  <input type='button' value='<' onclick='jump_seconds(-1)' title='Seek backward by step size' />
  <input type='button' value='>' onclick='jump_seconds(1)' title='Seek forward by step size' />
  <input type='button' id='loop_button' value='Loop in-out' onclick='loop_inout()' title='Loop from in to out points' />
 <br />
-<textarea id="source" style='height: 100px; width: 100%; max-width: 800px;'></textarea><br />
+<textarea id='source' style='height: 100px; width: 100%; max-width: 800px;'></textarea><br />
 <input type='button' id='inbutton' value='00:00:00.000' onclick='mark_in()' title='(Set new) in point' />-->
 <input type='button' id='outbutton' value='00:00:00.000' onclick='mark_out()' title='(Set new) out point' />
 <br />
@@ -77,6 +77,7 @@ let add_button = document.getElementById('add_button');
 let pagecount = document.getElementById('pagecount');
 let page = document.getElementById('page');
 let rate = document.getElementById('rate');
+let chooser = document.getElementById('chooser');
 let track = document.createElement('track');
 let select_message = 'Select this cue';
 let append_message = 'Append new cue to end'; // if you change this, manually change the original HTML above too
@@ -255,14 +256,24 @@ function sort() { // sort the cues in the list by ascending start time
     for (let e of temp) list.appendChild(e);
     pagego();
 }
-function play_file(event) { // open and show the chosen video
-    let file = this.files[0];
-    if (!file) return;
+function drop_file(event) { // open the dropped file
+    event.preventDefault();
+    chooser.files = event.dataTransfer.files;
+    choose_file({'target':{'files':event.dataTransfer.files}});
+}
+function choose_file(event) { // open the chosen file
+    let file = event.target.files[0];
     if (vid.canPlayType(file.type) === 'no') return;
     vid.src = URL.createObjectURL(file);
 }
-document.getElementById('chooser').addEventListener('change', play_file, false);
-list.addEventListener('wheel', wheel, true);
+vid.ondrop = drop_file;
+vid.ondragover = vid.ondragenter = function(evt) {
+  evt.preventDefault();
+}
+chooser.onchange = choose_file;
+list.onwheel = wheel;
+page.onchange = pagego;
+rate.onchange = set_rate;
 </script>
 </body> 
 </html>

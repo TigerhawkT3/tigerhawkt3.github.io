@@ -45,21 +45,27 @@ month = <number>1</number>
 <tr><td style="text-align:center; font-size:2em; font-weight:bold; padding:1em; font-family:Helvetica, sans-serif, Arial Black;">NEWS</td></tr>
 <tr><td>
 <p>
+<date>20220212:</date> The <a href="shopping_list.html">Shopping List</a> now has mouseover tooltips for the various buttons after the UI update made it a little less straightfoward, and I've implemented those UI updates for add/remove/move into the <a href='subtitle_creator.html'>Subtitle Creator</a>. While I was doing that, I had some more ideas, so you can now drag and drop a file into the video frame (or onto the chooser button), and you can play audio files there as well if you want the customizable seek and loop functionality. The media playback rate is now also adjustable, 0-16x.<br /><br />
+I've also written another small article, this time about <a href="nonprofit_nonpauper.html">non-profit organizations</a> and their real and perceived roles in a society.<br /><br />
 <date>20220128:</date> I have been using the <a href="shopping_list.html">Shopping List</a> lately, and came up with some improvements: more features, less interface!
 <ul><li>The export button has been replaced with a much simpler function. Instead of copying the assembled URL to the clipboard, or producing a link for iOS, it just navigates there.</li>
 <li>To move an item, click its "&gt;" button followed by the one at its target location.</li>
 <li>Clicking "&gt;" and then the same button again (appearing as "...") will remove that item if the text field is empty.</li>
 <li>If it's not empty, that toggles a line through the item instead.</li>
 <li>Click "Add item" to add an item to the end of the list. If you've used one of the "&gt;" buttons beforehand, it'll be inserted there instead.</li>
-<li>To the left of each "&gt;" is a color picker. Check off items, mark groups, whatever you like. Colors even persist through export/import! Take a look at an exported URL and you'll see that each item starts with a hex color (and an underscore for readability), e.g. <code>ffff00_tomatoes</code> means "tomatoes" with a yellow square.</li>
+<li>To the left of each "&gt;" is a color picker. Check off items, mark groups, whatever you like. Colors and strikethrough even persist through export/import! Take a look at an exported URL and you'll see that each item starts with its strikethrough state, the period, then hex color, then underscore for readability, e.g. <code>0.ffff00_tomatoes</code> means "tomatoes" with a yellow square and not crossed out.</li>
 </ul>
 Enjoy!<br /><br />
 <date>20220118:</date> <a href="metrictime.html">Metric time</a> doesn't mean silly phrases like "80 past 2 on April 47th" as you may have been led to believe. It measures the duration from one point in time to another, just like meters measure the linear distance from one point in space to another. This makes it impractical for everyday human use in tracking our planet's rotation (time of day) and orbit (time of year), but computers tell time in this exact way: start with a single fixed point in time, add a duration, and it'll do the math to give you a date and time you can make sense of.<br /><br />
+<details><summary>2021</summary><br />
 <date>20211223:</date> Say what you mean! If you're thinking of Christmas, say Merry Christmas, not <a href="happyholidays.html">"Happy Holidays."</a> I'd rather hear an honest assumption that the listener is Christian (which will usually be accurate but can easily be corrected if necessary and desired) than dishonest virtue-signaling.<br /><br />
 <date>20211115:</date> Please enjoy <a href="rich_web_poor_web.html">"Rich Web, Poor Web,"</a> an article about how some web browsers provide a "reader" feature that reformats overloaded modern websites into much simpler pages. I've also updated my earlier articles to work better with such readers and use dark styling.<br /><br />
 <date>20211020:</date> <a href="disney_and_copyright.html">Disney and copyright</a> make poor bedfellows, and I will explain why in great detail.<br /><br />
+</details>
+<details><summary>2020</summary><br />
 <date>20200820:</date> Sometimes I have to write things on paper. I got pens. I'm using the pens. I remembered that there are some cursive letters that I've never liked. I redesigned them. I <a href='letter_animation.html'>animated the forms</a> with a <a href="https://css-tricks.com/svg-line-animation-works">technique</a> wherein you create a path (with e.g. GIMP), export the path to an SVG, animate a dashed line on the SVG's path, make each dash the length of the path, and then tell the dash to start one path-length behind.<br /><br />
-<details><summary>2019</summary>
+</details>
+<details><summary>2019</summary><br />
 <date>20190629:</date> Have you been looking for a convenient way to create and share a shopping list? The <a href='shopping_list.html'>Shopping List</a> allows you to add, remove, and rearrange items, and you can share your list as a link.<br /><br />
 <date>20190524:</date> Have you ever watched a video? Have you ever turned on subtitles or captioning for such? Have you ever wanted to do so but they're unavailable? Have you ever wanted to assemble that subtitle file on your own? If you answered "yes" to that last question, color me surprised! But my answer is the same, so I wrote a program (HTML/JS/CSS) to help do that. The <a href='subtitle_creator.html'>Subtitle Creator</a> allows you to load a video, retrieve start and end times during playback, and create new cues. You can also edit or remove cues as well as import or export your subtitles (in WebVTT format). It doesn't involve uploading anything, and all you have to download is the page itself. It implements a subset of the WebVTT standard, limited to non-overlapping cues with no comments, styling, etc. (you can modify your subtitles afterward if you like, of course).<br /><br />
 </details>
