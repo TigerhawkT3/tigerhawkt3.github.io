@@ -40,7 +40,7 @@ table > tr.hide {
     display: none;
 }
 </style>
-<div id='right_pane'><div id='list_container' class='list'>
+<div id='right_pane'><div id='list_container' class='list'><div id='list_group'>
  <table align='center'><tr>
  <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number'></textarea></td>
  <td>/</td>
@@ -49,11 +49,22 @@ table > tr.hide {
  <table style='border-collapse:collapse;' border='1' id='list' width='100%'></table>
  <table align='center'><tr><td>
   <input type='button' id='add_button' value='Add cue' onclick='add_cue()' title='Append new cue to end' />
- </td></tr></table></div></div>
+ </td></tr></table></div></div></div>
 <div id='left_pane' style='text-align:right; width: 55%'>
-<table align='right'><tr align='right'><td id='pane_nw'></td><td>
+<table align='right'><tr align='right'><td id='pane_nw'></td><td id='pane_ne'>
 <video id='vid' preload='metadata' style='max-width: 100%; max-height: 98vh;' controls></video></td></tr>
-<tr align='right'><td></td><td id='pane_se'><div id='control_panel'> <input type='file' id='chooser' accept='video/*,audio/*' />
+<tr align='right'><td id='pane_sw'></td><td id='pane_se'><div id='control_panel'>
+ <input type='file' id='chooser' accept='video/*,audio/*' />
+ <select id='view_menu' title='Rearrange the view'>
+  <option value='0'>View: Default</option>
+  <option value='1'>Wide 1</option>
+  <option value='2'>Wide 2</option>
+  <option value='3'>Compact 1</option>
+  <option value='4'>Compact 2</option>
+  <option value='5'>Portrait 1</option>
+  <option value='6'>Portrait 2</option>
+  <option value='7'>Narrow 1</option>
+  <option value='8'>Narrow 2</option></select>
  <input type='number' placeholder='rate' id='rate' style='width: 4em;' min='0' max='16' step='0.25' title='Playback rate (1 is normal)' />
  <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
  <input type='button' value='<' onclick='jump_seconds(-1)' title='Seek backward by step size' />
@@ -80,6 +91,7 @@ let info = document.getElementById('info');
 let loop_button = document.getElementById('loop_button');
 let step_size = document.getElementById('step_size');
 let list = document.getElementById('list');
+let list_group = document.getElementById('list_group');
 let inbutton = document.getElementById('inbutton');
 let outbutton = document.getElementById('outbutton');
 let add_button = document.getElementById('add_button');
@@ -90,10 +102,13 @@ let chooser = document.getElementById('chooser');
 let control_panel = document.getElementById('control_panel');
 let pane_nw = document.getElementById('pane_nw');
 let pane_se = document.getElementById('pane_se');
+let pane_sw = document.getElementById('pane_sw');
+let pane_ne = document.getElementById('pane_ne');
 let list_container = document.getElementById('list_container');
 let right_pane = document.getElementById('right_pane');
 let bottom_pane = document.getElementById('bottom_pane');
 let left_pane = document.getElementById('left_pane');
+let view_menu = document.getElementById('view_menu');
 let track = document.createElement('track');
 let select_message = 'Select this cue';
 let append_message = 'Append new cue to end'; // if you change this, manually change the original HTML above too
@@ -282,33 +297,78 @@ function choose_file(event) { // open the chosen file
     if (vid.canPlayType(file.type) === 'no') return;
     vid.src = URL.createObjectURL(file);
 }
-function rearrange() { // handle different window and video aspect ratios
-    if (vid.videoHeight > 1.5 * vid.videoWidth) {
+function rearrange() { // rearrange view of video, list, and controls
+    if (view_menu.value === '0') {          // V L
+        pane_se.appendChild(control_panel); // C
+        pane_ne.appendChild(vid);
+        right_pane.appendChild(list_container);
+        list_container.className = 'list';
+        left_pane.style['width'] = '55%';
+    }
+    else if (view_menu.value === '1') { // C V L
+        pane_nw.appendChild(control_panel);
+        pane_ne.appendChild(vid);
+        right_pane.appendChild(list_container);
+        list_container.className = 'list';
+        left_pane.style['width'] = '55%';
+    }
+    else if (view_menu.value === '2') { // V C L
+        pane_nw.appendChild(vid);
+        pane_ne.appendChild(control_panel);
+        right_pane.appendChild(list_container);
+        list_container.className = 'list';
+        left_pane.style['width'] = '55%';
+    }
+    else if (view_menu.value === '3') { // V L
+        pane_ne.appendChild(vid);       //   C
+        list_container.appendChild(list_group);
         list_container.appendChild(control_panel);
         right_pane.appendChild(list_container);
         list_container.className = 'list';
         left_pane.style['width'] = '55%';
-    } // tall video
-    else { // wide video in...
-        if (window.innerWidth > 1.5 * window.innerHeight) {
-            pane_se.appendChild(control_panel);
-            right_pane.appendChild(list_container);
-            list_container.className = 'list';
-            left_pane.style['width'] = '55%';
-        } // wide window
-        else {
-            pane_nw.appendChild(control_panel);
-            bottom_pane.appendChild(list_container);
-            list_container.className = 'moved';
-            left_pane.style['width'] = '100%';
-        } // tall window
+    }
+    else if (view_menu.value === '4') { // V C
+        pane_ne.appendChild(vid);       //   L
+        list_container.appendChild(control_panel);
+        list_container.appendChild(list_group);
+        right_pane.appendChild(list_container);
+        list_container.className = 'list';
+        left_pane.style['width'] = '55%';
+    }
+    else if (view_menu.value === '5') { // C V
+        pane_ne.appendChild(vid);       //  L
+        pane_nw.appendChild(control_panel);
+        bottom_pane.appendChild(list_container);
+        list_container.className = 'moved';
+        left_pane.style['width'] = '100%';
+    }
+    else if (view_menu.value === '6') { // V C
+        pane_nw.appendChild(vid);       //  L
+        pane_ne.appendChild(control_panel);
+        bottom_pane.appendChild(list_container);
+        list_container.className = 'moved';
+        left_pane.style['width'] = '100%';
+    }
+    else if (view_menu.value === '7') {         // V
+        pane_nw.appendChild(vid);               // C
+        bottom_pane.appendChild(control_panel); // L
+        bottom_pane.appendChild(list_container);
+        list_container.className = 'moved';
+        left_pane.style['width'] = '100%';
+    }
+    else {
+        pane_ne.appendChild(vid);                // V
+        bottom_pane.appendChild(list_container); // L
+        bottom_pane.appendChild(control_panel);  // C
+        list_container.className = 'moved';
+        left_pane.style['width'] = '100%';
     }
 }
 vid.ondrop = drop_file;
 vid.ondragover = vid.ondragenter = function(evt) {
   evt.preventDefault();
 }
-vid.onloadeddata = rearrange;
+view_menu.onchange = rearrange;
 chooser.onchange = choose_file;
 list.onwheel = wheel;
 page.onchange = pagego;
