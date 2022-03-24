@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Shopping List by TigerhawkT3</title>
@@ -9,7 +10,7 @@
 <button style='float:left; margin-left: 9vw;'
     type='button' id='add_button' class='export' title='append new item to list' onclick='add_item()'>Add item</button>
 <button style='float:right; margin-right: 9vw;'
-    type='button' class='export' onclick='update_url()'>Update URL</button>
+    type='button' id='update_button' class='export' onclick='update_url()'>Update URL</button>
 </div>
 <style>
 button.list {
@@ -39,6 +40,7 @@ button.export {
 }
 textarea.list {
     vertical-align: top;
+    box-sizing: border-box;
     width: 70vw;
     height: 9vw;
     font-size: calc(10px + 2vw);
@@ -49,7 +51,7 @@ textarea.list {
 <script>
 let list = document.getElementById('list');
 let add_button = document.getElementById('add_button');
-let append_message = 'append new item to list';
+let update_button = document.getElementById('update_button');
 let select_message = 'select this item';
 let lifted = null;
 function new_item() { // create a new item
@@ -74,15 +76,11 @@ function add_item() { // handle the button to add/insert
     if (!lifted) append();
     else {
         insert(lifted);
-        lifted.innerText = '>';
-        lifted.title = select_message;
-        lifted = null;
-        add_button.title = append_message;
+        clear_lift();
     }
 }
 function remove(e) { // remove an item
     list.removeChild(e.parentNode);
-    add_button.title = append_message;
 }
 function interact(e) { // interact with an item
     if (!lifted) { // choose an item to interact with
@@ -90,6 +88,8 @@ function interact(e) { // interact with an item
         e.innerText = '...';
         e.title = 'cross off, or remove if empty; click a different ">" to move this there';
         add_button.title = 'insert new item above selected item';
+        update_button.innerText = 'Split item...';
+        update_button.title = 'split this into multiple items by newline or highlighted substring';
         return;
     }
     if (e === lifted) {
@@ -98,34 +98,56 @@ function interact(e) { // interact with an item
         else remove(e); // empty, remove item
     }
     else list.insertBefore(lifted.parentNode, e.parentNode); // move item
-    lifted.innerText = '>';
-    add_button.title = append_message;
-    lifted.title = select_message;
-    lifted = null;
+    clear_lift();
 }
 function toggle_strike(e) {
     if (e.style['text-decoration'] === 'line-through')
         e.style['text-decoration'] = 'none';
     else e.style['text-decoration'] = 'line-through';
-    add_button.title = append_message;
 }
-function update_url() { // create URL and navigate there
-    let items = Array.from(list.getElementsByTagName('div'));
-    let result = location.origin + location.pathname + '?' + items.map(
-        e => (e.children[2].style['text-decoration']==='line-through' ? '1' : '0') +
-             '.' +
-             e.children[0].value.slice(1) +
-             '_' +
-             encodeURIComponent(e.children[2].value)
-        ).join('&');
-    window.location.href = result;
+function update_url() { // create URL and navigate there, or split an item
+    if (!lifted) {
+        let items = Array.from(list.getElementsByTagName('div'));
+        let result = location.origin + location.pathname + '?' + items.map(
+            e => (e.children[2].style['text-decoration']==='line-through' ? '1' : '0') +
+                 '.' +
+                 e.children[0].value.slice(1) +
+                 '_' +
+                 encodeURIComponent(e.children[2].value)
+            ).join('&');
+        window.location.href = result;
+    }
+    else {
+        let ele = lifted.nextElementSibling;
+        let content = ele.value;
+        let substring = content.slice(ele.selectionStart, ele.selectionEnd) || '\n';
+        let items = content.split(substring);
+        let last = items.pop();
+        for (let item of items) {
+            let e = new_item();
+            e.children[0].value = lifted.previousElementSibling.value;
+            e.children[2].value = item;
+            if (lifted.nextElementSibling.style['text-decoration'] === 'line-through') toggle_strike(e.children[2]);
+            list.insertBefore(newElement, lifted.parentNode);
+        }
+        ele.value = last;
+        clear_lift();
+    }
+}
+function clear_lift() { // reset buttons and tooltips after putting down a lifted item
+    lifted.innerText = '>';
+    lifted.title = select_message;
+    lifted = null;
+    add_button.title = 'append new item to list';
+    update_button.innerText = 'Update URL';
+    update_button.title = '';
 }
 if (location.search === '') append(); // empty query string, just make one node
 else { // non-empty query string, import nodes
     let items = location.search.slice(1).split('&');
     for (let item of items) {
         let e = new_item();
-        content = decodeURIComponent(item);
+        let content = decodeURIComponent(item);
         e.children[0].value = '#' + content.slice(2, 8)
         e.children[2].value = content.slice(9);
         if (content.slice(0, 1) === '1') toggle_strike(e.children[2]);
