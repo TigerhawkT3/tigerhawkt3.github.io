@@ -45,6 +45,26 @@ month = <number>1</number>
 <tr><td style="text-align:center; font-size:2em; font-weight:bold; padding:1em; font-family:Helvetica, sans-serif, Arial Black;">NEWS</td></tr>
 <tr><td>
 <p>
+<date>20220419:</date> I created a sliding tile puzzle in Python quite a while ago (find it in the <a href='programming.html'>programming</a> page), and I'd lately been wanting more and more to try to implement something similar in JS so it can be used in a browser rather than requiring the Python interpreter and a few extra libraries. I also figured that would be a good platform to add support for actual videos, as HTML5 has a very excellent <code>&lt;video&gt;</code> tag. As it turns out, it also has a widget called a <code>&lt;canvas&gt;</code>, perfect for drawing shapes, text, or even segments from an image... or video! It's optimized well enough that some sites actually choose to display video via a canvas rather than the native video tag, even if they're not doing any special processing. It performs just as well with segments as it does an entire video.<br /><br />
+Anyway, here's the rundown on my JS implementation of a  <a href='sliding_tile.html'>Sliding Tile Puzzle</a>.<br /><br />
+Similarities between the JS and Python versions:
+<ul><li>smooth, crisp mouse controls</li>
+<li>still images</li>
+<li>selectable grid size</li>
+<li>can scale down to fit your screen</li>
+<li>can toggle number labels for each tile</li></ul>
+Python only:
+<ul><li>selectable color for empty tile</li>
+<li>handles GIF animations, but results can be hit or miss</li>
+<li>can toggle the image on and off</li>
+<li>keyboard controls, including the option to invert them if they feel backwards</li>
+<li>can specify a directory to get a random image from it</li>
+<li>can specify a URL to get a file from the web</li></ul>
+JS only:
+<ul><li>handles any video that works with HTML5 video</li>
+<li>GIFs will only show the first frame, because showing an animated GIF on an HTML5 canvas is at about the same stage of development as animating a GIF in Python Tkinter, as in, I'm not doing that again just for another hit-or-miss result... fortunately, turning a GIF into a video is much better than vice versa</li>
+<li>works on mobile! just touch and swipe!</li></ul>
+I think it's pretty neat and I hope you enjoy it.<br /><br />
 <date>20220324:</date> The <a href="shopping_list.html">Shopping List</a> can now split an item into multiple items, useful when importing a list from another source like a text message. Just hit the button to interact and then the button that says "Split this..." (alternate function of the "Update URL" button). It splits on newline by default, but you can specify a custom substring to split on by highlighting it in your item before hitting the split button.<br /><br />
 <date>20220212:</date> The <a href="shopping_list.html">Shopping List</a> now has mouseover tooltips for the various buttons after the UI update made it a little less straightfoward, and I've implemented those UI updates for add/remove/move into the <a href='subtitle_creator.html'>Subtitle Creator</a>. While I was doing that, I had some more ideas, so you can now drag and drop a file into the video frame (or onto the chooser button), and you can play audio files there as well if you want the customizable seek and loop functionality. The media playback rate is now also adjustable, 0-16x.<br /><br />
 I've also written another small article, this time about <a href="nonprofit_nonpauper.html">non-profit organizations</a> and their real and perceived roles in a society.<br /><br />

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html>
+
+<head><title>Sliding Tile Puzzle by TigerhawkT3</title>
+<meta name='viewport' content='width=device-width'></head>
+
+<body>
+<video loop id='video' style='display: none;' /></video>
+<img id='image' style='display: none;' />
+<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; margin-bottom: 2px;' />
+<button id='play_button' onclick='toggle_playback()' style='display: none;' title='play/pause'>&#x23EF;</button>
+<a href='index.html'>Home</a> | <a href='https://www.paypal.me/TigerhawkT3'>Donate</a>
+<br />
+Columns: <input type='number' id='columns' min='3' max='99' step='1' value='3' title='columns' style='width: 2.5em;' />
+Rows: <input type='number' id='rows' min='3' max='99' step='1' value='3' title='rows' style='width: 2.5em;' />
+Labels: <input type='checkbox' id='labels' title='labels' />
+<br />
+<canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw;'></canvas><br />
+
+<script>
+
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext("2d");
+let video = document.getElementById('video');
+let image = document.getElementById('image');
+let play_button = document.getElementById('play_button');
+let column_field = document.getElementById('columns');
+let row_field = document.getElementById('rows');
+let labels = document.getElementById('labels');
+let MIN_COLS = 3;
+let MAX_COLS = 99;
+let MIN_ROWS = 3;
+let MAX_ROWS = 99;
+let source;
+let columns;
+let rows;
+let board;
+let tile_h;
+let tile_w;
+let blank_ID;
+let success = false;
+
+// https://stackoverflow.com/a/12646864/2617068 because JS has no built-in random.shuffle()
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+function lay_tiles() {
+    ctx.drawImage(source, 0, 0, source.width, source.height, 0, 0, canvas.width, canvas.height)
+    for (let idx = 0; idx < board.length; ++idx) { // go through the board
+        sx = (board[idx] % columns) * tile_w; // cell's contents indicate source location
+        sy = Math.floor(board[idx] / columns) * tile_h;
+        dx = (idx % columns) * tile_w; // cell's index indicates destination location
+        dy = Math.floor(idx / columns) * tile_h; // next, handle blank tile (or draw tile)
+        if (board[idx] === blank_ID && !success) ctx.fillRect(dx, dy, tile_w, tile_h);
+        else ctx.drawImage(source, sx, sy, tile_w, tile_h, dx, dy, tile_w, tile_h);
+        if (labels.checked) { // draw numbering labels
+            let factor = canvas.width/canvas.clientWidth;
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(dx, dy, 30*factor, 20*factor);
+            ctx.fillStyle = '#000000';
+            ctx.font = 20 * factor + 'px sans-serif';
+            ctx.fillText(board[idx]+1, dx+2*factor, dy+18*factor);
+        }
+    }
+}
+function make_segments() {
+    success = false;
+    board = []; // just a vector, not 2D
+    for (let r=0; r<rows; ++r) {
+        for (let c=0; c<columns; ++c) { // persistent ID for shuffle and win check
+            board.push(r*columns+c);
+        }
+    }
+    blank_ID = board.pop();
+    /* I specifically want the "missing" tile to be from the bottom right,
+       to make it more visually pleasing to gradually solve the puzzle.
+       and since that's known, the blank might as well also start at the bottom right */
+    shuffleArray(board);
+    /* now we count inversions.
+       http://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+       an inversion is when a tile with a larger ID comes before a tile with
+       a smaller ID - their order is "inverted." This is a factor in
+       whether a given puzzle is solvable. */
+    let inversions = 0;
+    for (let tile = 0; tile < board.length; ++tile) {
+        for (let subsequent = tile; subsequent < board.length; ++subsequent) {
+            if (board[tile] > board[subsequent]) ++inversions;
+        }
+    }
+    /* based on the way the blank tile is always the 'last' one, in the
+       lower-right corner, we need an even number of inversions if we want
+       this to be solvable. if it's odd, swap the last two elements */
+    if (inversions % 2 === 1) [board[board.length-1], board[board.length-2]] = board.slice(-2);
+    board.push(blank_ID); // don't forget to add the blank tile back after shuffling
+    tile_h = canvas.height/rows;
+    tile_w = canvas.width/columns;
+}
+function start_moving(event) {
+    event.preventDefault();
+    if (!success) { // don't move after winning
+        canvas.addEventListener('mousemove', move);
+        move(event);
+    }
+}
+function start_touch(event) {
+    event.preventDefault();
+    if (!success) { // don't move after winning
+        canvas.addEventListener('touchmove', move);
+        move(event);
+    }
+}
+function move(event) {
+    event.preventDefault();
+    if (success) return; // don't move after winning
+    // these max/min are necessary because the event coords can be outside the canvas, e.g. -1
+    if (!(event.clientX && event.clientY)) { // jury-rig the correct offset, mock touch to mouse event
+        let r = canvas.getBoundingClientRect();
+        event.offsetX = event.targetTouches[0].clientX - r.left;
+        event.offsetY = event.targetTouches[0].clientY - r.top;
+    }
+    let x = Math.floor(columns * Math.max(0, 
+            Math.min(canvas.clientWidth-2, event.offsetX)) /
+            canvas.clientWidth); // calculate clicked xy tile coords
+    let y = Math.floor(rows * Math.max(0,
+            Math.min(canvas.clientHeight-2, event.offsetY)) /
+            canvas.clientHeight);
+    let tile_idx = y * columns + x; // calculate corresponding index in board
+    for (let [a, b] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) { // neighbor tile locations
+        // check that the neighbor is actually on the board, as the index calculation wouldn't complain
+        if (!(0 <= x+a && x+a < columns && 0 <= y+b && y+b < rows)) continue;
+        neighbor_idx = (y+b) * columns + (x+a) // calculate corresponding index in board
+        if (board[neighbor_idx] === blank_ID) { // swap to that spot
+            [board[tile_idx], board[neighbor_idx]] = [board[neighbor_idx], board[tile_idx]];
+            lay_tiles();
+            for (let idx = 0; idx < board.length; ++idx) if (idx !== board[idx]) return; // win check
+            success = true;
+            lay_tiles()
+            break;
+        }
+    }
+}
+function stop_moving(event) {
+    canvas.removeEventListener('mousemove', move);
+}
+function stop_touch(event) {
+    canvas.removeEventListener('touchmove', move);
+}
+function toggle_playback() {
+    if (video.paused) video.play();
+    else video.pause();
+}
+function step() { // update the canvas when a video proceeds to next frame
+    lay_tiles();
+    requestAnimationFrame(step);
+}
+function setdims() { // setup after loading a video
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    make_segments();
+    source = video;
+    labels.onclick = lay_tiles;
+}
+function waitForImageToLoad(imageElement){
+  return new Promise(resolve=>{imageElement.onload = resolve})
+}
+function drop_file(event) { // open the dropped file
+    event.preventDefault();
+    chooser.files = event.dataTransfer.files;
+    choose_file({'target':{'files':event.dataTransfer.files}});
+}
+function choose_file(event) { // open the chosen file
+    let file = event.target.files[0];
+    if (!file) return;
+    rows = Math.max(MIN_ROWS, Math.min(MAX_ROWS, parseInt(row_field.value)));
+    columns = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(column_field.value)));
+    if (video.canPlayType(file.type)) {
+        image.src = ''
+        video.src = URL.createObjectURL(file);
+        video.addEventListener('loadeddata', setdims, false);
+        video.addEventListener('play', step);
+        play_button.style['display'] = 'inline';
+    }
+    else {
+        video.src = ''
+        image.src = URL.createObjectURL(file);
+        video.removeEventListener('play', step);
+        video.removeEventListener('loadeddata', setdims);
+        waitForImageToLoad(image).then(()=>{
+            canvas.width = image.width;
+            canvas.height = image.height;
+            make_segments();
+            source = image;
+            lay_tiles();
+            labels.onclick = lay_tiles;
+        });
+        play_button.style['display'] = 'none';
+    }
+}
+canvas.ondrop = drop_file;
+canvas.ondragover = canvas.ondragenter = function(evt) {
+  evt.preventDefault();
+}
+chooser.onchange = choose_file;
+canvas.addEventListener('mousedown', start_moving);
+canvas.addEventListener('touchstart', start_touch);
+document.addEventListener('mouseup', stop_moving);
+document.addEventListener('touchend', stop_touch);
+</script>
+</body>
+
+</html>

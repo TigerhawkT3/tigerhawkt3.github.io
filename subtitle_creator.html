@@ -42,7 +42,7 @@ table > tr.hide {
 </style>
 <div id='right_pane'><div id='list_container' class='list'><div id='list_group'>
  <table align='center'><tr>
- <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number'></textarea></td>
+ <td><input type='number' id='page' min='1' max='99999' step='1' value='1' title='Page number'></td>
  <td>/</td>
  <td id='pagecount'>1</td>
  </tr></table>
@@ -294,8 +294,7 @@ function drop_file(event) { // open the dropped file
 }
 function choose_file(event) { // open the chosen file
     let file = event.target.files[0];
-    if (vid.canPlayType(file.type) === 'no') return;
-    vid.src = URL.createObjectURL(file);
+    if (vid.canPlayType(file.type)) vid.src = URL.createObjectURL(file);
 }
 function rearrange() { // rearrange view of video, list, and controls
     if (view_menu.value === '0') {          // V L
