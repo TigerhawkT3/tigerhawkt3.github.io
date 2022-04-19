@@ -149,8 +149,18 @@ function stop_touch(event) {
     canvas.removeEventListener('touchmove', move);
 }
 function toggle_playback() {
-    if (video.paused) video.play();
-    else video.pause();
+    if (video.paused) video.play(); // have to start it at the beginning at least
+    else video.playbackRate = !video.playbackRate;
+    // if you have event handling attached to videoplayback, with e.g. requestAnimationFrame,
+    // to do some processing on each frame, it'll do that processing once for EACH TIME
+    // you've told the video to play(), including to resume playback after a pause().
+    // toggling the playback rate between 0 and 1 (false and true) works around
+    // this by never technically stopping playback, or you could remove the event listener
+    // every time you do the processing (not yet sure why, cargo culting)
+    // but any way you choose results in some kind of stuttering playback. just don't pause?
+    // I don't even know anymore, I'm leaving it like this, at least it doesn't hog CPU
+    // when it stutters
+    // BUT WTF THOUGH WHY DOES HTML/JS DO THIS WHY WHY WHY
 }
 function step() { // update the canvas when a video proceeds to next frame
     lay_tiles();
