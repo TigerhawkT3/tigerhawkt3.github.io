@@ -12,9 +12,11 @@
 <button id='play_button' onclick='toggle_playback()' style='display: none;' title='play/pause'>&#x23EF;</button>
 <a href='index.html'>Home</a> | <a href='https://www.paypal.me/TigerhawkT3'>Donate</a>
 <br />
-Columns: <input type='number' id='columns' min='3' max='99' step='1' value='3' title='columns' style='width: 2.5em;' />
-Rows: <input type='number' id='rows' min='3' max='99' step='1' value='3' title='rows' style='width: 2.5em;' />
-Labels: <input type='checkbox' id='labels' title='labels' />
+Columns: <input type='number' id='columns' step='1' value='3'
+ title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
+Rows: <input type='number' id='rows' step='1' value='3'
+ title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
+Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' />
 <br />
 <canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw;'></canvas><br />
 
@@ -35,6 +37,7 @@ let MAX_ROWS = 99;
 let source;
 let columns;
 let rows;
+let autoselect;
 let board;
 let tile_h;
 let tile_w;
@@ -99,22 +102,20 @@ function make_segments() {
     tile_w = canvas.width/columns;
 }
 function start_moving(event) {
+    if (success) return;
     event.preventDefault();
-    if (!success) { // don't move after winning
-        canvas.addEventListener('mousemove', move);
-        move(event);
-    }
+    canvas.addEventListener('mousemove', move);
+    move(event);
 }
 function start_touch(event) {
+    if (success) return;
     event.preventDefault();
-    if (!success) { // don't move after winning
-        canvas.addEventListener('touchmove', move);
-        move(event);
-    }
+    canvas.addEventListener('touchmove', move);
+    move(event);
 }
 function move(event) {
-    event.preventDefault();
     if (success) return; // don't move after winning
+    event.preventDefault();
     // these max/min are necessary because the event coords can be outside the canvas, e.g. -1
     if (!(event.clientX && event.clientY)) { // jury-rig the correct offset, mock touch to mouse event
         let r = canvas.getBoundingClientRect();
@@ -166,7 +167,14 @@ function step() { // update the canvas when a video proceeds to next frame
     lay_tiles();
     requestAnimationFrame(step);
 }
+function autoselect_dimensions(small, width, height) {
+    let ratio = Math.max(width, height) / Math.min(width, height);
+    let big = Math.round(small * ratio);
+    if (width > height) [columns, rows] = [big, small];
+    else [rows, columns] = [big, small];
+}
 function setdims() { // setup after loading a video
+    if (autoselect) autoselect_dimensions(Math.max(rows, columns), video.videoWidth, video.videoHeight);
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     make_segments();
@@ -184,8 +192,11 @@ function drop_file(event) { // open the dropped file
 function choose_file(event) { // open the chosen file
     let file = event.target.files[0];
     if (!file) return;
-    rows = Math.max(MIN_ROWS, Math.min(MAX_ROWS, parseInt(row_field.value)));
-    columns = Math.max(MIN_COLS, Math.min(MAX_COLS, parseInt(column_field.value)));
+    rows = parseInt(row_field.value);
+    columns = parseInt(column_field.value);
+    autoselect = false;
+    if (rows < 3 && columns < 3) rows = columns = 3;
+    else if (rows < 3 || columns < 3) autoselect = true;
     if (video.canPlayType(file.type)) {
         image.src = ''
         video.src = URL.createObjectURL(file);
@@ -199,6 +210,7 @@ function choose_file(event) { // open the chosen file
         video.removeEventListener('play', step);
         video.removeEventListener('loadeddata', setdims);
         waitForImageToLoad(image).then(()=>{
+            if (autoselect) autoselect_dimensions(Math.max(rows, columns), image.width, image.height);
             canvas.width = image.width;
             canvas.height = image.height;
             make_segments();
