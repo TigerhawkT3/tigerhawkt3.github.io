@@ -49,7 +49,8 @@ function shuffleArray(array) {
     }
 }
 function lay_tiles() {
-    for (let idx = 0; idx < board.length; ++idx) { // go through the board
+    if (success) ctx.drawImage(source, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+    else for (let idx = 0; idx < board.length; ++idx) { // go through the board
         sx = (board[idx] % columns) * tile_w; // cell's contents indicate source location
         sy = Math.floor(board[idx] / columns) * tile_h;
         dx = (idx % columns) * tile_w; // cell's index indicates destination location
