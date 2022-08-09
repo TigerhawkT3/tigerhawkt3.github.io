@@ -5,22 +5,26 @@
 <head><title>Sliding Tile Puzzle by TigerhawkT3</title>
 <meta name='viewport' content='width=device-width'></head>
 
-<body>
+<body style='font-size: 1em;'>
 <video loop id='video' style='display: none;' /></video>
 <img id='image' style='display: none;' />
-<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; margin-bottom: 2px;' />
+<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; margin-bottom: 2px; font-size: 1em;' />
 <br />
-<input type='text' id='address' placeholder='Enter URL...'  /><button onclick='choose_URL()'>Go!</button>
-<button id='play_button' onclick='toggle_playback()' style='display: none; margin-left: 5px;' title='play/pause'>&#x23EF;</button>
+<input style='font-size: inherit;' type='text' id='address' placeholder='Enter URL...'  />
+<button style='font-size: inherit;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
+<button style='font-size: inherit;' title='load video' onclick='choose_URL("image")'>&#x1F4F7;</button>
+<button id='play_button' onclick='toggle_playback()'
+    style='display: none; font-size: inherit;' title='play/pause'>&#x23EF;</button>
 <br />
 Cols: <input type='number' id='columns' step='1' value='3'
  title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
 Rows: <input type='number' id='rows' step='1' value='3'
  title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
 Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' />
-<a href='index.html' title='Home'>&#x1F3E0;</a> | <a href='https://www.paypal.me/TigerhawkT3' title='Donate'>&#x1F4B8;</a>
+<a href='index.html' title='Home' style='font-size: 1.25em; text-decoration: none;'>&#x1F3E0;</a> | <a
+    href='https://www.paypal.me/TigerhawkT3' title='Donate' style='font-size: 1.25em; text-decoration: none;'>&#x1F4B8;</a>
 <br />
-<canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw;'></canvas><br />
+<canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw; margin-top: 5px;'></canvas><br />
 
 <script>
 
@@ -188,16 +192,10 @@ function choose_file(event) { // open the chosen file
     if (video.canPlayType(file.type)) start_media(obj_url, 'video');
     else start_media(obj_url, 'image');
 }
-function choose_URL() {
-    let obj_url = address.value;
-    // ext parser adapted from https://stackoverflow.com/a/58905118/2617068
-    try { new URL(obj_url); }
-    catch { return; }
-    let url_obj = new URL(obj_url);
-    let ext = url_obj.pathname.split('/').reverse()[0].split('.').reverse()[0]
-    if (['ogm', 'wmv', 'mpeg', 'asx', 'mpg', 'ogv', 'webm', 'mov', 'mp4', 'm4v', 'avi'].includes(ext))
-        start_media(obj_url, 'video');
-    else start_media(obj_url, 'image');
+function choose_URL(kind) {
+    try { new URL(address.value); }
+    catch { return; } // if it's an invalid URL
+    start_media(address.value, kind); // kind is either 'video' or 'image'
 }
 function start_media(obj_url, kind) {
     rows = parseInt(row_field.value);
