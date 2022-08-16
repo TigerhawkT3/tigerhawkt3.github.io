@@ -18,7 +18,7 @@ div.moved {
     height: 98%;
 }
 td > textarea.time {
-    height: 1.5em;
+    height: 1.6em;
     width: 8em;
     vertical-align: bottom;
     resize: none;
@@ -66,7 +66,7 @@ table > tr.hide {
   <option value='7'>Narrow 1</option>
   <option value='8'>Narrow 2</option></select>
  <input type='number' placeholder='rate' id='rate' style='width: 4em;' min='0' max='16' step='0.25' title='Playback rate (1 is normal)' />
- <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds' />
+ <input type='number' placeholder='step' id='step_size' style='width: 4em;' min='0' title='Step size in seconds (blank or zero for auto)' />
  <input type='button' value='<' onclick='jump_seconds(-1)' title='Seek backward by step size' />
  <input type='button' value='>' onclick='jump_seconds(1)' title='Seek forward by step size' />
  <input type='button' id='loop_button' value='Loop in-out' onclick='loop_inout()' title='Loop from in to out points' />
@@ -120,6 +120,7 @@ let point_in = 0;
 let point_out = 0;
 let looping = null;
 let lifted = null;
+let step_computed;
 list.appendChild(make_row(secondsToStamp(point_in), secondsToStamp(point_out), ''));
 
 function pagego() { // refresh the display of the list
@@ -210,7 +211,7 @@ function new_point(e, which) { // set in or out point of this cue to correspondi
 }
 function jump_seconds(direction) { // seek through the video by the selected step size
     if (looping !== null) loop_inout();
-    vid.currentTime += direction * step_size.valueAsNumber || 0;
+    vid.currentTime += direction * step_size.valueAsNumber || step_computed;
 }
 function loop_inout() { // toggle looping video playback between selected in and out points
     if (looping === null) {
@@ -296,6 +297,9 @@ function choose_file(event) { // open the chosen file
     let file = event.target.files[0];
     if (vid.canPlayType(file.type)) vid.src = URL.createObjectURL(file);
 }
+function vid_loaded() {
+    step_computed = Math.log10(vid.duration)**2.5;
+}
 function rearrange() { // rearrange view of video, list, and controls
     if (view_menu.value === '0') {          // V L
         pane_se.appendChild(control_panel); // C
@@ -367,6 +371,7 @@ vid.ondrop = drop_file;
 vid.ondragover = vid.ondragenter = function(evt) {
   evt.preventDefault();
 }
+vid.onloadeddata = vid_loaded;
 view_menu.onchange = rearrange;
 chooser.onchange = choose_file;
 list.onwheel = wheel;

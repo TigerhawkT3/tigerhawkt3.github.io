@@ -5,22 +5,26 @@
 <head><title>Sliding Tile Puzzle by TigerhawkT3</title>
 <meta name='viewport' content='width=device-width'></head>
 
-<body style='font-size: 1em;'>
-<video loop id='video' style='display: none;' /></video>
+<body>
+<video loop id='video' style='display: none;'></video>
 <img id='image' style='display: none;' />
-<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; margin-bottom: 2px; font-size: 1em;' />
+<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; border-radius: 4px; margin-bottom: 4px; font-size: 1em;' />
 <br />
-<input style='font-size: inherit;' type='text' id='address' placeholder='Enter URL...'  />
-<button style='font-size: inherit;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
-<button style='font-size: inherit;' title='load video' onclick='choose_URL("image")'>&#x1F4F7;</button>
-<button id='play_button' onclick='toggle_playback()'
-    style='display: none; font-size: inherit;' title='play/pause'>&#x23EF;</button>
-<br />
+<div style='height: 2em;'>
+<input style='vertical-align: top; box-sizing: border-box; height: 100%;' type='text' id='address' placeholder='Enter URL...'  />
+<button style='height: 100%;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
+<button style='height: 100%;' title='load image' onclick='choose_URL("image")'>&#x1F4F7;</button>
+<button name='video_control' onclick='skip(-1)'
+    style='display: none; vertical-align: top; height: 100%;' title='skip back'>&#x21B6;</button>
+<button name='video_control' onclick='toggle_playback()'
+    style='display: none; height: 100%;' title='play/pause'>&#x23EF;</button>
+<button name='video_control' onclick='skip(1)'
+    style='display: none; vertical-align: top; height: 100%;' title='skip forward'>&#x21B7;</button></div>
 Cols: <input type='number' id='columns' step='1' value='3'
- title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
+ title='set one dimension below 3 to autoselect for square tiles' style='width: 2em;' />
 Rows: <input type='number' id='rows' step='1' value='3'
- title='set one dimension below 3 to autoselect for square tiles' style='width: 2.5em;' />
-Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' />
+ title='set one dimension below 3 to autoselect for square tiles' style='width: 2em;' />
+Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' /> |
 <a href='index.html' title='Home' style='font-size: 1.25em; text-decoration: none;'>&#x1F3E0;</a> | <a
     href='https://www.paypal.me/TigerhawkT3' title='Donate' style='font-size: 1.25em; text-decoration: none;'>&#x1F4B8;</a>
 <br />
@@ -32,11 +36,11 @@ let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
 let video = document.getElementById('video');
 let image = document.getElementById('image');
-let play_button = document.getElementById('play_button');
 let column_field = document.getElementById('columns');
 let row_field = document.getElementById('rows');
 let labels = document.getElementById('labels');
 let address = document.getElementById('address');
+let step_size;
 let source;
 let columns;
 let rows;
@@ -62,7 +66,12 @@ function lay_tiles() {
         sy = Math.floor(board[idx] / columns) * tile_h;
         dx = (idx % columns) * tile_w; // cell's index indicates destination location
         dy = Math.floor(idx / columns) * tile_h; // next, handle blank tile (or draw tile)
-        if (board[idx] === blank_ID && !success) ctx.fillRect(dx, dy, tile_w, tile_h);
+        if (board[idx] === blank_ID && !success) {
+            for (let i = 1; i > 0.5; i -= 0.02) { // fill progressively smaller rects
+                ctx.fillStyle = '#' + Math.round((i-0.5)*255).toString(16).padStart(2, '0').repeat(3);
+                ctx.fillRect(dx + (1-i)*tile_w, dy + (1-i)*tile_h, (2*i-1)*tile_w, (2*i-1)*tile_h);
+            }
+        }
         else ctx.drawImage(source, sx, sy, tile_w, tile_h, dx, dy, tile_w, tile_h);
         if (labels.checked) { // draw numbering labels
             let factor = canvas.width/canvas.clientWidth;
@@ -109,13 +118,13 @@ function make_segments() {
 function start_moving(event) {
     if (success) return;
     event.preventDefault();
-    canvas.addEventListener('mousemove', move);
+    canvas.onmousemove = move;
     move(event);
 }
 function start_touch(event) {
     if (success) return;
     event.preventDefault();
-    canvas.addEventListener('touchmove', move);
+    canvas.ontouchmove = move;
     move(event);
 }
 function move(event) {
@@ -149,13 +158,17 @@ function move(event) {
     }
 }
 function stop_moving(event) {
-    canvas.removeEventListener('mousemove', move);
+    canvas.onmousemove = null;
 }
 function stop_touch(event) {
-    canvas.removeEventListener('touchmove', move);
+    canvas.ontouchmove = null;
 }
 function toggle_playback() {
     video.paused ? video.play() : video.pause();
+}
+function skip(direction) { // a skip that loops around, and scales with duration
+    let target = video.currentTime + direction * step_size;
+    video.currentTime = target < 0 ? target + video.duration : target % video.duration;
 }
 function step() { // update the canvas when a video proceeds to next frame
     lay_tiles();
@@ -173,9 +186,11 @@ function setdims() { // setup after loading a video
     canvas.height = video.videoHeight;
     make_segments();
     source = video;
+    step_size = Math.log10(video.duration)**2.5;
     labels.onclick = lay_tiles;
     video.cancelVideoFrameCallback(animation_handle);
     step();
+    video.play()
 }
 function waitForImageToLoad(imageElement){
   return new Promise(resolve=>{imageElement.onload = resolve});
@@ -209,14 +224,15 @@ function start_media(obj_url, kind) {
 function start_video(obj_url) {
     image.src = '';
     video.src = obj_url;
-    video.addEventListener('loadeddata', setdims, false);
-    play_button.style['display'] = 'inline';
+    video.onloadeddata = setdims;
+    for (let element of document.getElementsByName('video_control'))
+        element.style['display'] = 'inline';
 }
 function start_image(obj_url) {
     video.src = '';
     image.src = obj_url;
-    video.removeEventListener('play', step);
-    video.removeEventListener('loadeddata', setdims);
+    video.onplay = null;
+    video.onloadeddata = null;
     waitForImageToLoad(image).then(()=>{
         if (autoselect) autoselect_dimensions(Math.max(rows, columns), image.width, image.height);
         canvas.width = image.width;
@@ -226,17 +242,18 @@ function start_image(obj_url) {
         lay_tiles();
         labels.onclick = lay_tiles;
     });
-    play_button.style['display'] = 'none';
+    for (let element of document.getElementsByName('video_control'))
+        element.style['display'] = 'none';
 }
 canvas.ondrop = drop_file;
 canvas.ondragover = canvas.ondragenter = function(evt) {
   evt.preventDefault();
 }
 chooser.onchange = choose_file;
-canvas.addEventListener('mousedown', start_moving);
-canvas.addEventListener('touchstart', start_touch);
-document.addEventListener('mouseup', stop_moving);
-document.addEventListener('touchend', stop_touch);
+canvas.onmousedown = start_moving;
+canvas.ontouchstart = start_touch;
+document.onmouseup = stop_moving;
+document.ontouchend = stop_touch;
 </script>
 </body>
 
