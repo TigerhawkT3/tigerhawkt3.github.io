@@ -211,7 +211,7 @@ function new_point(e, which) { // set in or out point of this cue to correspondi
 }
 function jump_seconds(direction) { // seek through the video by the selected step size
     if (looping !== null) loop_inout();
-    vid.currentTime += direction * step_size.valueAsNumber || step_computed;
+    vid.currentTime += direction * (step_size.valueAsNumber || step_computed);
 }
 function loop_inout() { // toggle looping video playback between selected in and out points
     if (looping === null) {
