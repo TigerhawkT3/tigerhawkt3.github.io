@@ -8,18 +8,18 @@
 <body>
 <video loop id='video' style='display: none;'></video>
 <img id='image' style='display: none;' />
-<input type='file' id='chooser' accept='video/*,image/*' style='border: 1px solid black; border-radius: 4px; margin-bottom: 4px; font-size: 1em;' />
+<input type='file' multiple id='chooser' accept='video/*,image/*' style='border: 1px solid black; border-radius: 4px; margin-bottom: 4px; font-size: 1em;' />
 <br />
-<div style='height: 2em;'>
-<input style='vertical-align: top; box-sizing: border-box; height: 100%;' type='text' id='address' placeholder='Enter URL...'  />
-<button style='height: 100%;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
-<button style='height: 100%;' title='load image' onclick='choose_URL("image")'>&#x1F4F7;</button>
+<div>
+<textarea style='vertical-align: top; box-sizing: border-box; margin-bottom: 5px; width: 90vw; max-width: 40em;' id='addresses' placeholder='Enter URL...'  rows='2'></textarea><br />
+<button style='height: 2em; margin-bottom: 1px;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
+<button style='height: 2em; margin-bottom: 1px;' title='load image' onclick='choose_URL("image")'>&#x1F4F7;</button>
 <button name='video_control' onclick='skip(-1)'
-    style='display: none; vertical-align: top; height: 100%;' title='skip back'>&#x21B6;</button>
+    style='display: none; vertical-align: top; height: 2em; margin-bottom: 1px;' title='skip back'>&#x21B6;</button>
 <button name='video_control' onclick='toggle_playback()'
-    style='display: none; height: 100%;' title='play/pause'>&#x23EF;</button>
+    style='display: none; height: 2em; margin-bottom: 1px;' title='play/pause'>&#x23EF;</button>
 <button name='video_control' onclick='skip(1)'
-    style='display: none; vertical-align: top; height: 100%;' title='skip forward'>&#x21B7;</button></div>
+    style='display: none; vertical-align: top; height: 2em; margin-bottom: 1px;' title='skip forward'>&#x21B7;</button></div>
 Cols: <input type='number' id='columns' step='1' value='3'
  title='set one dimension below 3 to autoselect for square tiles' style='width: 2em;' />
 Rows: <input type='number' id='rows' step='1' value='3'
@@ -39,7 +39,7 @@ let image = document.getElementById('image');
 let column_field = document.getElementById('columns');
 let row_field = document.getElementById('rows');
 let labels = document.getElementById('labels');
-let address = document.getElementById('address');
+let addresses = document.getElementById('addresses');
 let step_size;
 let source;
 let columns;
@@ -58,6 +58,9 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+function rand_idx(sequence) { // pick a random index in a sequence
+    return Math.floor(Math.random() * sequence.length);
 }
 function lay_tiles() {
     if (success) ctx.drawImage(source, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
@@ -203,14 +206,33 @@ function drop_file(event) { // open the dropped file
 function choose_file(event) { // open the chosen file
     let file = event.target.files[0];
     if (!file) return;
-    let obj_url = URL.createObjectURL(file);
-    if (video.canPlayType(file.type)) start_media(obj_url, 'video');
-    else start_media(obj_url, 'image');
+    files = event.target.files;
+    let obj_urls = [];
+    for (let ob of event.target.files) obj_urls.push(URL.createObjectURL(ob));
+    for (let item of obj_urls) addresses.value += '\n'+item;
+    if (obj_urls.length === 1) {
+        if (video.canPlayType(file.type)) start_media(obj_urls[0], 'video');
+        else start_media(obj_urls[0], 'image');
+    }
 }
 function choose_URL(kind) {
-    try { new URL(address.value); }
-    catch { return; } // if it's an invalid URL
-    start_media(address.value, kind); // kind is either 'video' or 'image'
+    let address = addresses.value.slice(addresses.selectionStart, addresses.selectionEnd);
+    if (address) { // play highlighted URL
+        try { new URL(address); }
+        catch { return; } // if it's an invalid URL
+        start_media(address, kind); // kind is either 'video' or 'image'
+        addresses.focus();
+        addresses.setSelectionRange(0, 0);
+    }
+    else { // highlight random line
+        addresses.value = addresses.value.replace(/\n+/g, '\n').trim();
+        let blocks = addresses.value.split('\n');
+        let idx = rand_idx(blocks);
+        let start = idx + blocks.slice(0, idx).map((i) => i.length).reduce((a,b) => a+b, 0);
+        let end = start + blocks[idx].length;
+        addresses.focus();
+        addresses.setSelectionRange(start, end);
+    }
 }
 function start_media(obj_url, kind) {
     rows = parseInt(row_field.value);
@@ -246,6 +268,7 @@ function start_image(obj_url) {
         element.style['display'] = 'none';
 }
 canvas.ondrop = drop_file;
+addresses.ondrop = drop_file;
 canvas.ondragover = canvas.ondragenter = function(evt) {
   evt.preventDefault();
 }
