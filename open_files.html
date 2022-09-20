@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Image Opener by TigerhawkT3</title>
+<meta name='viewport' content='width=device-width' /></head>
+<body>
+<input type='file' id='chooser' accept='image/*' multiple />
+<script>
+document.getElementById('chooser').onchange = function (event) {
+    for (let file of event.target.files) 
+        window.open(URL.createObjectURL(file), '_blank');
+}
+</script></body></html>
