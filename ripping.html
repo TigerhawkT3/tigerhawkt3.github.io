@@ -1,0 +1,527 @@
+<html>
+
+<head>
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="icon" type="image/ico" href="/favicon.ico">
+<title>David's DVD Ripping</title>
+<meta name="keywords" content="dvd, rip, ripping, flaskmpeg, smartripper">
+<meta name="description" content="David's guide to quality DVD ripping">
+</head>
+
+<body bgcolor="#FFFFD0">
+
+<p align="center"><font face="arial, helvetica, sans serif" color="#FF0000" size="+4"><strong>Rip Your Troubles Away</strong></font></p>
+<p align="center"><font color="#000000" size="+1" face="Times New Roman, Times, serif"><strong>by David Muller </strong></font></p>
+<p>
+<font size="+3" face="Century Gothic, Verdana"><strong>Table Of Contents:</strong></font><br>
+<font color="#0000FF"><strong><font size="+2"><a href="#toc_introduction">Introduction</a></font></strong><font size="+2"><br>
+<strong><a href="#toc_materials">Materials</a><br>
+<a href="#toc_software">Software</a><br>
+<a href="#toc_rip">Part 1: The Rip</a><br>
+<a href="#toc_flask">Part 2: The FlasK</a></strong><br>
+</font></font><font color="#00BB00" size="+1"><strong><a href="#toc_select">Selecting A File</a></strong></font><br>
+<strong><font color="#00BB00" size="+1"><a href="#toc_formats">Setting Formats And Bitrates</a></font></strong><br>
+<strong><font color="#00BB00" size="+1"><a href="#toc_advanced">Setting Advanced Options</a></font></strong><br>
+<strong><a href="#toc_video">Video</a><br>
+<a href="#toc_audio">Audio</a><br>
+<a href="#toc_post">Post Processing</a><br>
+<a href="#toc_files">Files</a><br>
+<a href="#toc_general">General</a></strong><br>
+<font color="#0000FF" size="+2"><strong><a href="#toc_dub">Part 3: The Dub</a></strong></font><br>
+<strong><font color="#00BB00" size="+1"><a href="#toc_dubsettings">Settings</a></font></strong><br>
+<strong><font color="#00BB00" size="+1"><a href="#toc_tasks">Tasks</a></font></strong><br>
+<strong><a href="#toc_dubfile">Dubbing a FlasKed File</a><br>
+<a href="#toc_splitfile">Splitting A FlasKed File</a><br>
+<a href="#toc_joinfile">Rejoining A Segmented File</a><br>
+<a href="#toc_soundtrack">Saving A Soundtrack (Audio Tracks)</a><br>
+<a href="#toc_frame">Saving A Single Frame</a></strong><br>
+<strong><font color="#0000FF" size="+2"><a href="#toc_Conclusion">Conclusion</a><br>
+<strong><font color="#0000FF" size="+2"><a href="#toc_legal">Legal</a></font></strong>
+</font></strong></p>
+<p>&nbsp;</p>
+<h2><font color="#0000FF"><a name="toc_introduction"></a>Introduction</font></h2>
+<p>DVDs can hold an enormous quantity of data: up to 4.7GB on a single-layer disc or up to 8.5GB on a dual-layer disc. They are a remarkable improvement over both the bulky VHS tape and the ubiquitous CD (which holds only 700MB, or 0.7GB). However, most DVD movies are sold in large boxes which can increase the movie’s weight by a factor of two or more and its volume by five times or more, virtually eliminating their portability. Even worse, a disc runs the risk of damage each time it is removed from its packaging. These problems can make collecting and enjoying DVDs more trouble than they should be.</p>
+<p>Fortunately, there is a solution: ripping. There are a number of methods for videophiles to copy the contents of a DVD onto a computer hard drive and convert them to a more compact, portable format. This article will guide readers through one effective DVD ripping process, covering many important details of the ripping process.</p>
+<p>
+<p>&nbsp;</p>
+<h2><font color="#0000FF"><a name="toc_materials"></a>Materials</font></h2>
+<p>First you will need to gather these required materials:
+<ul>
+<li>A DVD-ROM drive or better</li>
+<li>A decent computer – the CPU speed and hard drive size will make the most difference here.</li>
+<li>DVDs
+  </p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h2><font color="#0000FF"><a name="toc_software"></a>Software</font></h2>
+<p>You will also need to download and install the following programs:
+<dl>
+<dt><strong><a href="smart.exe">SmartRipper</a></strong></dt>
+<dd>This program streamlines the transfer of a DVD’s files to your hard drive.</dd>
+<dt><strong><a href="divx_3.11alpha.zip">DivX Codec</a></strong></dt>
+<dd>This program will allow your computer to create MPEG4 (also known as AVI, Audio-Video Interleave) format video files.</dd>
+<dt><strong><a href="radiummp3.zip">Radium MP3 Codec</a></strong></dt>
+<dd>This program will allow your computer to use a variety of audio formats, sizes, and qualities.<dd>
+<dt><strong><a href="flaskmpeg_078_39.zip">FlasKMPEG Encoder</a></strong>
+<dt>
+<dd>This program constitutes the majority of the ripping process.</dd>
+<dt><strong><a href="VirtualDub-1.6.14.zip">VirtualDUB</a></strong>
+<dt>
+<dd>This program lets you do more with your encoded file, including syncing and splitting.</dd>
+</dl>
+
+<p>Before you can start ripping, you need to download and install the required programs and follow any additional instructions they give you. The two codecs listed above need to be installed and functioning before ripping, but do not add any steps to a rip.</p>
+<p>&nbsp;</p>
+<p><h2 align="left"><font color="0000FF"><a name="toc_rip"></a>Part 1: The Rip</font></h2>
+<h2 align="center"><font color="0000FF"><br>
+<img src="images/smartripper_main_mod.jpg" alt="SmartRipper's main window" width="713" height="561" border="0" usemap="#Map">
+<map name="Map">
+  <area shape="rect" coords="45,302,160,355" href="#rip_3" alt="Settings">
+  <area shape="rect" coords="46,373,160,425" href="#rip_10" alt="Start">
+  <area shape="rect" coords="197,156,386,270" href="#rip_7" alt="Title-> Program Chain-> Angle">
+  <area shape="rect" coords="391,156,524,270" href="#rip_8" alt="Chapters">
+  <area shape="rect" coords="178,482,471,515" href="#rip_9" alt="Choose target location">
+</map>
+</font></h2>
+</p>
+  <div align="center"><font color="0000FF"><img src="images/smartripper_settings_mod.jpg" alt="SmartRipper's settings window" width="488" height="381" border="0" usemap="#Map2">
+      <map name="Map2">
+        <area shape="rect" coords="30,80,119,123" href="#rip_4" alt="Key Check">
+        <area shape="rect" coords="159,80,294,220" href="#rip_5" alt="File Splitting">
+        <area shape="rect" coords="372,334,475,372" href="#rip_6" alt="OK">
+      </map>
+</font></div>
+<p>
+<ol>
+<li>To rip a DVD (copy it to your hard drive), put it in the DVD-ROM drive and play it for a few seconds with Windows Media Player, PowerDVD, Nero Showtime, or some other such program to unlock it. This will allow SmartRipper full access to the files on the disc.</li><br><br>
+<li>Open SmartRipper. You should see a small window pop up describing SmartRipper’s attempts to read the DVD.<br>
+  <br>
+</li>
+<div align="center"><img src="images/smartripper_start.jpg" alt="SmartRipper's read window" width="316" height="465"><br>
+</div>
+<li><a name="rip_3"></a>Click the Settings tab to adjust your preferences.</li><br><br>
+<li><a name="rip_4"></a>Set the Key-Check to “Once.”</li><br><br>
+
+<li><a name="rip_5"></a>Choose a file splitting mode:<br>
+  <br><br>
+<dl>
+<dt><strong>max-filesize</strong></dt>
+<dd>This setting is for older computers.</dd>
+<dt><strong>every vob-file</strong></dt>
+<dd>This is the default, ordinary mode.</dd>
+<dt><strong>every chapter</strong></dt>
+<dd>This setting will create a separate file for every chapter. This can be important when you want to split a VTS (video title sequence) file into parts. For example, a television show might have two VTS files per disc and three or four episodes per VTS. In this case, you would select this mode and choose only the chapters of the episode you want, keeping each episode’s group of ripped chapters separate to be able to process them individually later.</dd>
+<dt><strong>every vob-id</strong></dt>
+<dd>You won’t need this setting.</dd>
+<dt><strong>every cell-id</strong></dt>
+<dd>You won’t need this setting.<br>
+</dd>
+</dl>
+</li><br>
+<li><a name="rip_6"></a>Click &quot;OK.&quot; <br>
+  <br>
+</li>
+<li><a name="rip_7"></a>Choose the video you want to rip in the “Title->Program Chain->Angle” field.</li>
+<br>
+<br>
+<li><a name="rip_8" id="rip_8"></a>Choose the chapters you want to rip in the “->Chapters” field.</li>
+<br>
+<br>
+<li><a name="rip_9" id="rip_9"></a>Browse to the location where the ripped files will be.</li>
+<br>
+<br>
+<li><a name="rip_10" id="rip_10"></a>Click “Start.”</li>
+<br>
+<br>
+<li>A television episode 22 minutes long will take between one and three minutes to rip, and a full-length movie can take 15 minutes or more. SmartRipper will notify you when it finishes a rip.<br>
+</li>
+</ol>
+<p align="center"><img src="images/smartripper_complete.jpg" alt="SmartRipper completes a rip" width="590" height="383"><br>
+</p>
+<h2><font color="0000FF"><a name="toc_flask"></a>Part 2: The FlasK</font></h2>
+
+<p>
+Run FlasKMPEG.
+
+<p>&nbsp;</p>
+<h3><font color="00BB00"><a name="toc_select"></a>Selecting A File</font></h3>
+<p align="center"><img src="images/flask_start_mod.jpg" alt="FlasK's startup window" width="358" height="340" border="0" usemap="#Map3">
+  <map name="Map3">
+    <area shape="rect" coords="3,26,120,70" href="#select_1" alt="File-> Open Media">
+  </map>
+</p>
+<p align="center"><img src="images/flask_choose_mod.jpg" alt="FlasK's Open Media window" width="563" height="416" border="0" usemap="#Map4">
+  <map name="Map4">
+    <area shape="rect" coords="245,114,338,258" href="#select_2" alt="Choose an .ifo or .vob">
+  </map>
+</p>
+<p align="center"><img src="images/flask_streams_mod.jpg" alt="FlasK's DVD Selector" width="440" height="313" border="0" usemap="#Map5">
+  <map name="Map5">
+    <area shape="rect" coords="6,29,304,266" href="#select_3" alt="Choose video, audio, and subtitles">
+    <area shape="rect" coords="328,239,431,271" href="#select_4" alt="FlasK this DVD!">
+  </map>
+<img src="images/flask_streams_alt_mod.jpg" alt="FlasK's Stream Selector" width="440" height="313" border="0" usemap="#Map6">
+<map name="Map6">
+  <area shape="rect" coords="327,240,431,272" href="#select_4" alt="FlasK it!">
+</map>
+</p>
+<ol>
+<li><a name="select_1"></a>Select File -> Open Media.</li><br><br>
+<li><a name="select_2"></a>If the video you want to encode was contained in a single “Title,” double-click to choose a file that ends in “.ifo.” If you didn’t rip an entire “Title” (perhaps because a “Title” contained several episodes of a television show), choose a file that ends in “.vob.” When you choose a .vob file, FlasKMPEG will also include all .vob files connected to the one you chose.</li><br><br>
+<li><a name="select_3"></a>Choose what audio or subtitle streams you want to include by clicking on them. To deselect a selected subtitle stream, simply click on it again.</li><br><br>
+<li><a name="select_4"></a>Select “FlasK this DVD!”</li><br><br>
+</ol>
+
+<p>&nbsp;</p>
+<h3 align="left"><font color="00BB00"><a name="toc_formats"></a>Setting Formats And Bitrates</font></h3>
+<h3 align="center"><font color="00BB00"><br>
+  <img src="images/flask_formats_mod.jpg" alt="FlasKMPEG's main window" width="834" height="576" border="0" usemap="#Map7">
+  <map name="Map7">
+    <area shape="rect" coords="75,26,234,70" href="#formats_1" alt="Options-> Output Format Options">
+  </map>
+</font></h3>
+<h3 align="center"><font color="00BB00"><img src="images/flask_formats_window_mod.jpg" alt="Output Options window" width="717" height="438" border="0" usemap="#Map8">
+    <map name="Map8">
+      <area shape="rect" coords="8,35,299,223" href="#formats_2" alt="Video Codecs">
+      <area shape="rect" coords="9,230,300,363" href="#formats_3" alt="Audio Codecs">
+      <area shape="rect" coords="303,53,402,113" href="#formats_4" alt="Configure">
+      <area shape="rect" coords="549,50,698,82" href="#formats_7" alt="Configure First Pass">
+      <area shape="rect" coords="550,85,696,116" href="#formats_10" alt="Configure Second Pass">
+      <area shape="rect" coords="315,230,705,363" href="#formats_12" alt="Available audio formats">
+      <area shape="rect" coords="480,366,592,431" href="#formats_13" alt="OK">
+    </map>
+</font></h3>
+<h3 align="center"><font color="00BB00"><img src="images/flask_bitrates_mod.jpg" alt="Bitrates" width="311" height="325" border="0" usemap="#Map9">
+    <map name="Map9">
+      <area shape="rect" coords="93,81,129,106" href="#formats_5" alt="Keyframes">
+      <area shape="rect" coords="13,147,294,171" href="#formats_8" alt="Compression Control">
+      <area shape="rect" coords="13,219,293,245" href="#formats_8" alt="Data Rate">
+      <area shape="rect" coords="20,265,147,297" href="#formats_6" alt="OK">
+    </map>
+</font></h3>
+<ol>
+<li><a name="formats_1"></a>Select “Options-> Output Format Options.”</li><br><br>
+<li><a name="formats_2"></a>Under “Video Codes: Double Click to configure,” select “DivX ;-) MPEG-4 Low-Motion.”</li><br><br>
+<li><a name="formats_3"></a>Under “Audio Codecs,” select “Fraunhofer IIS MPEG Layer-3 Codec (professional).”</li><br><br>
+<li><a name="formats_4"></a>Click “Configure.”</li><br><br>
+<li><a name="formats_5"></a>Enter “10” (without the quotes) for the first field, “100” for the first slider, and “6000” for the second slider.</li><br><br>
+<li><a name="formats_6"></a>Click “OK.”</li><br><br>
+<li><a name="formats_7"></a>Click “Configure First Pass.”</li><br><br>
+<li><a name="formats_8"></a>Use the same settings as in Step 5.</li><br><br>
+<li><a name="formats_9"></a>Click “OK.”</li><br><br>
+<li><a name="formats_10"></a>Click “Configure Second Pass” and check that the settings are the same as in “Configure First Pass.”</li><br><br>
+<li><a name="formats_11"></a>Click "OK."</li><br><br>
+<li><a name="formats_12"></a>Under “Available formats for audio codec,” choose any option that mentions “Stereo” and “48,000 Hz.” This will give you stereo sound that syncs properly with the video. You’ll get excellent sound with a bitrate of “128 kBit/s,” but you can choose a lower or higher bitrate for less space or better quality, respectively.</li><br><br>
+<li><a name="formats_13"></a>Click “OK.”</li><br><br>
+</ol>
+
+<p>&nbsp;</p>
+<h3><font color="00BB00"><a name="toc_advanced"></a>Setting Advanced Options</font></h3>
+<p align="center"><img src="images/flask_advanced_mod.jpg" alt="FlasKMPEG's main window" width="834" height="576" border="0" usemap="#Map10">
+  <map name="Map10">
+    <area shape="rect" coords="76,24,234,88" href="#advanced_1" alt="Options-> Advanced Options">
+  </map>
+</p>
+<ol>
+<li><a name="advanced_1"></a>Select "Options-> Advanced Options."</li><br><br>
+<li>Click “OK” or “Cancel” at any time to accept any changes you’ve made and close the dialog box or discard any changes you’ve made and close the dialog box, respectively.</li>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_video"></a>Video</h4>
+<p align="center"><img src="images/flask_video_mod.jpg" alt="Advanced Options window" width="606" height="411" border="0" usemap="#Map11">
+  <map name="Map11">
+    <area shape="rect" coords="5,27,52,53" href="#video_1" alt="Video tab">
+    <area shape="rect" coords="14,55,192,184" href="#video_2" alt="Frame Size">
+    <area shape="rect" coords="197,55,299,184" href="#video_3" alt="Dual Pass">
+    <area shape="rect" coords="14,188,156,287" href="#video_4" alt="Time Base (fps)">
+    <area shape="rect" coords="162,187,429,287" href="#video_5" alt="Video Structure">
+  </map>
+</p>
+<ol>
+<li><a name="video_1"></a>Click on the "Video" tab.</li><br><br>
+<li><a name="video_2"></a>In “Frame Size,” uncheck “Don't resize,” make the “Width” “480,” and make the height “320.” The reasons for this will be discussed below.</li><br><br>
+
+<li><a name="video_3"></a>
+In “Dual Pass,” check “Perform dual pass encoding.” While this will take FlasKMPEG twice as long to encode, it will yield much better results. The way it does this is as follows:<br><br>
+<ol>
+<li>FlasKMPEG analyzes the video and stores data about when to devote a higher bitrate to fast-motion parts and a lower bitrate to lower-motion parts in a temporary log file.</li>
+<li>FlasKMPEG encodes the video with information from the log file it created.</li>
+<li>The result is a video that can look good everywhere without sacrificing too much disk space.</li>
+</ol><br>
+However, if you encode the video at its original, full resolution of 720x480, Dual Pass will make a mess of the job. It will be forced to devote an extremely high bitrate to fast-motion parts and a woefully inadequate bitrate to lower-motion parts. This will cause an amazing amount of artifacts (which are bad) to appear all the time in your video. If you choose a resolution of 480x320, though, FlasKMPEG will be able to create a video that looks excellent at all times and will usually take up a lot less space than a video created using Single Pass (which encodes all parts at the bitrate you select, which is wasteful during low-motion parts).
+</li><br><br>
+
+<li><a name="video_4"></a>The “Time Base (fps) section is the frames per second of the encoded video. FlasKMPEG will automatically detect the correct framerate.</li><br><br>
+<li><a name="video_5"></a>In the “Video Structure” section, try starting with all three checkboxes checked. If the entire video ends up looking wavy, choppy, or otherwise unacceptable, try changing these options. You’ll have to experiment a bit to see what works best with each DVD.</li><br>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_audio"></a>Audio</h4>
+<p align="center"><img src="images/flask_audio_mod.jpg" alt="Advanced Options window" width="606" height="411" border="0" usemap="#Map12">
+  <map name="Map12">
+    <area shape="rect" coords="44,28,94,54" href="#audio_1" alt="Audio tab">
+    <area shape="rect" coords="19,121,120,150" href="#audio_2" alt="Decode Audio">
+    <area shape="rect" coords="24,223,229,275" href="#audio_3" alt="Sampling Frequency">
+  </map>
+</p>
+<ol>
+<li><a name="audio_1"></a>Click on the “Audio” tab.</li><br><br>
+<li><a name="audio_2"></a>Select “Decode audio.”</li><br><br>
+<li><a name="audio_3"></a>Uncheck “Same as input,” select “48000 Hz,” and recheck “Same as input.” This will ensure that the audio sampling rate is the proper 48000 Hz.</li>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_post"></a>Post Processing</h4>
+<p align="center"><img src="images/flask_postprocessing_mod.jpg" alt="Advanced Options window" width="606" height="411" border="0" usemap="#Map13">
+  <map name="Map13">
+    <area shape="rect" coords="86,25,183,55" href="#post_1" alt="Post Processing tab">
+    <area shape="rect" coords="209,69,278,98" href="#post_2" alt="No crop">
+    <area shape="rect" coords="203,249,314,275" href="#post_3" alt="Keep aspect ratio">
+  </map>
+</p>
+<ol>
+<li><a name="post_1"></a>Click on the “Post Processing” tab.</li><br><br>
+<li><a name="post_2"></a>Make sure that “No crop” is selected.</li><br><br>
+<li><a name="post_3"></a>Make sure that “Keep aspect ratio” is not selected.</li><br><br>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_files"></a>Files</h4>
+<p align="center"><img src="images/flask_files_mod.jpg" alt="Advanced Options window" width="606" height="411" border="0" usemap="#Map14">
+  <map name="Map14">
+    <area shape="rect" coords="175,25,223,54" href="#files_1" alt="Files tab">
+    <area shape="rect" coords="37,91,293,121" href="#files_2" alt="Target location">
+    <area shape="rect" coords="240,122,328,154" href="#files_2" alt="Browse">
+  </map>
+</p>
+<ol>
+
+<li><a name="files_1"></a>Click on the “Files” tab.</li><br><br>
+<li><a name="files_2"></a>Click on the “Browse” button to choose a location and a name for FlasKMPEG’s output file, or enter them into the text box. The filename does not need to end with “.avi,” as FlasKMPEG will add that automatically.</li><br><br>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_general"></a>General</h4>
+<p align="center"><img src="images/flask_general_mod.jpg" alt="Advanced Options window" width="606" height="411" border="0" usemap="#Map15">
+  <map name="Map15">
+    <area shape="rect" coords="218,28,275,55" href="#general_1" alt="General tab">
+    <area shape="rect" coords="22,115,135,142" href="#general_2" alt="Compile whole file">
+    <area shape="rect" coords="260,351,344,400" href="#general_3" alt="OK">
+  </map>
+</p>
+<p align="center"><img src="images/flask_finish_mod.jpg" alt="FlasKMPEG's main window" width="834" height="576" border="0" usemap="#Map16">
+  <map name="Map16">
+    <area shape="rect" coords="723,422,824,465" href="#general_4" alt="FlasK it!">
+  </map>
+</p>
+<ol>
+<li><a name="general_1"></a>Click on the “General” tab.</li><br><br>
+<li><a name="general_2"></a>Make sure that “Compile whole file” is selected.</li><br><br>
+<li><a name="general_3"></a>Since you’ve gone through all of the options in this dialog box, you can click “OK” at this point to accept the changes you’ve just made.</li><br><br>
+<li><a name="general_4"></a>Click “FlasK it!”</li><br><br>
+</ol>
+
+<p>&nbsp;</p>
+<p><h2><font color="0000FF"><a name="toc_dub"></a>Part 3: The Dub</font></h2>
+<p align="center"><img src="images/virtualdub_open_mod.jpg" alt="VirtualDub's main window" width="993" height="576" border="0" usemap="#Map17">
+  <map name="Map17">
+    <area shape="rect" coords="3,45,236,73" href="#dub_2" alt="File-> Open video file">
+  </map>
+</p>
+<ol>
+<li>Run VirtualDub.</li><br><br>
+<li><a name="dub_2"></a>To open a file, select “File-> Open Video File” or press “Ctrl+O.”</li>
+</ol>
+
+<p>&nbsp;</p>
+<h3><font color="00BB00"><a name="toc_dubsettings"></a>Settings</font></h3>
+<p align="center"><img src="images/virtualdub_video_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map18">
+  <map name="Map18">
+    <area shape="rect" coords="83,139,327,168" href="#dubsettings_1" alt="Video-> Direct stream copy">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_audio_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map19">
+  <map name="Map19">
+    <area shape="rect" coords="120,46,318,74" href="#dubsettings_2" alt="Audio-> Interleaving">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_interleaving_mod.jpg" width="380" height="316" border="0" usemap="#Map20">
+  <map name="Map20">
+    <area shape="rect" coords="131,103,251,152" href="#dubsettings_3" alt="Interleave audio every">
+    <area shape="rect" coords="130,193,215,228" href="#dubsettings_4" alt="Delay audio track by">
+    <area shape="rect" coords="205,273,291,308" href="#dubsettings_5" alt="OK">
+  </map>
+</p>
+<ol>
+<li><a name="dubsettings_1"></a>Select “Video-> Direct stream copy.”</li><br><br>
+<li><a name="dubsettings_2"></a>Select “Audio-> Interleaving.”</li><br><br>
+<li><a name="dubsettings_3"></a>Set the “Interleave audio every” field to “100” and select “ms” after it.</li><br><br>
+<li><a name="dubsettings_4"></a>The “Audio skew correction” section is sometimes necessary if the video and audio in a clip are not correctly synced. If something happens in a clip and you hear it a fraction of a second later, make the “Delay audio track by” value negative. This happens more often than the opposite, in which case you would use a positive value.</li><br><br>
+<li><a name="dubsettings_5"></a>Click "OK."</li>
+</ol>
+
+<p>&nbsp;</p>
+<h3><font color="00BB00"><a name="toc_tasks"></a>Tasks</font></h3>
+
+<h4><a name="toc_dubfile"></a>Dubbing A FlasKed File</h4>
+<p align="center"><img src="images/virtualdub_save_mod.jpg" alt="VirtualDub's main window" width="993" height="576" border="0" usemap="#Map21">
+  <map name="Map21">
+    <area shape="rect" coords="3,166,235,191" href="#dubfile_2" alt="File-> Save as AVI">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_savewindow_mod.jpg" alt="Save as AVI window" width="563" height="458" border="0" usemap="#Map22">
+  <map name="Map22">
+    <area shape="rect" coords="97,60,455,405" href="#dubfile_3" alt="Target location">
+    <area shape="rect" coords="476,372,557,402" href="#dubfile_4" alt="Save">
+  </map>
+</p>
+<ol>
+<li>Follow the steps above.</li><br><br>
+<li><a name="dubfile_2"></a>Select “File-> Save as AVI.”</li><br><br>
+<li><a name="dubfile_3"></a>Browse to a location and choose a filename.</li><br><br>
+<li><a name="dubfile_4"></a>Press “Enter” or click "Save."</li><br><br>
+<li>The process should take between three and five minutes, depending on the filesize.</li>
+</ol>
+
+<p align="center"><img src="images/virtualdub_progress.jpg" alt="Dub in progress" width="293" height="328"></p>
+<p align="center">&nbsp;</p>
+<h4><a name="toc_splitfile"></a>Splitting A FlasKed File</h4>
+<p align="center"><img src="images/virtualdub_splitting_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map23">
+  <map name="Map23">
+    <area shape="rect" coords="80,417,113,449" href="#" alt="[Start]">
+    <area shape="rect" coords="155,417,178,451" href="#" alt="]End]">
+    <area shape="rect" coords="181,417,232,450" href="#" alt="Previous/Next Keyframe">
+    <area shape="rect" coords="278,416,305,452" href="#" alt="[Mark in]">
+    <area shape="rect" coords="307,416,339,451" href="#" alt="[Mark out]">
+  </map>
+</p>
+<p>You might want to split a file into parts for several reasons, including:
+
+<ul>
+<li>To fit a large video onto several CDs</li>
+<li>To save a small video segment of particular interest</li>
+</ul>
+
+<ol>
+<li><a name="splitfile_1"></a>Set the slider at the beginning of the file by selecting “Go-> Beginning,” pressing “Ctrl+Left,” or pressing “[Start].”</li><br><br>
+<li><a name="splitfile_2"></a>Mark the beginning of a desired video segment by selecting “Edit-> Set selection start,” pressing “Home,” or clicking “[Mark in].”</li><br><br>
+<li><a name="splitfile_3"></a>Click and drag the slider to the endpoint of the desired video segment. Hold “Shift” while you drag to snap the slider between keyframes. Select “Go-> Prev keyframe,” press “Shift+Left,” or click “[Key previous]” to snap to the closest keyframe before the slider position. Select “Go-> Next keyframe,” press “Shift+Left,” or click “[Key next]” to snap to the closest keyframe after the slider position.</li>
+
+<p><dl>
+<dt><strong>About Keyframes</strong></dt>
+<dd>Keyframes are inserted regularly into a video file when it is encoded. If you follow the above directions, keeping the default settings, FlasKMPEG will insert a keyframe into a video file every ten seconds. A video segment must start at a keyframe, but doesn’t necessarily have to end in one. If you are splitting a video into parts, each section will have to begin and end in a keyframe so that the following section can begin in one. The segment containing the end of the video does not have to end in a keyframe and the slider can be set to the last frame in the video. Try to use keyframes that occur in parts of the video with little or no action or dialogue for a more seamless experience.</dd>
+</dl>
+
+<p>
+<li><a name="splitfile_4"></a>Mark the end of a desired video segment by selecting “Edit-> Set selection end,” pressing “End,” or clicking “[Mark out].”</li><br><br>
+<li><a name="splitfile_5"></a>Follow steps <a href="#dubfile_2">2-5</a> in <strong><a href="#toc_dubfile">Dubbing A FlasKed File</a></strong>, above, to save the current segment. Remember that each segment needs a unique filename.</li><br><br>
+<li><a name="splitfile_6"></a>Keeping the slider at the end of the previous segment, follow step <a href="#splitfile_2">2</a> above.</li><br><br>
+<li>After the beginning of the segment has been marked, follow steps <a href="#splitfile_3">3-5</a> above.</li><br><br>
+<li>Repeat steps <a href="#splitfile_2">2-5</a> above to save the remaining segments.</li><br><br>
+<li><a name="splitfile_9"></a>For the last segment, follow step <a href="#splitfile_6">6</a> above and then select “Go-> End,” press “Ctrl+Right,” or click “[End]” to make the last segment end at the end of the original video.</li><br><br>
+<li>Follow step <a href="#splitfile_5">5</a> above (steps <a href="#dubfile_2">2-5</a> in <strong><a href="#toc_dubfile">Dubbing A FlasKed File</a></strong>) to save the last segment.</li>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_joinfile"></a>Rejoining A Segmented File</h4>
+<p align="center"><img src="images/virtualdub_append_mod.jpg" alt="VirtualDub's main window" width="993" height="576" border="0" usemap="#Map24">
+  <map name="Map24">
+    <area shape="rect" coords="0,80,237,108" href="#joinfile_2" alt="File-> Append AVI segment">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_append_window_mod.jpg" alt="Append AVI segment window" width="563" height="458" border="0" usemap="#Map25">
+  <map name="Map25">
+    <area shape="rect" coords="94,60,451,404" href="#joinfile_3" alt="Next segment location">
+  </map>
+</p>
+<ol>
+<li>Open the first segment of the segmented video file by selecting “File-> Open Video File” or pressing “Ctrl+O.”</li><br><br>
+<li><a name="joinfile_2"></a>Attach the second segment by selecting “File-> Append AVI segment.”</li><br><br>
+<li><a name="joinfile_3"></a>Browse to the next segment, and double-click it.</li><br><br>
+<li>VirtualDub will automatically append any appropriate files until the video is complete, but only if they are all in the same folder. If you stored each segment in a separate folder, follow step 2 above for each segment.</li><br><br>
+<li>Follow steps <a href="#dubfile_2">2-5</a> in <strong><a href="#toc_dubfile">Dubbing A FlasKed File</a></strong>, above, to save the completed video.</li>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_soundtrack"></a>Saving A Soundtrack (Audio Tracks)</h4>
+<p align="center"><img src="images/virtualdub_soundtrack_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map26">
+  <map name="Map26">
+    <area shape="rect" coords="80,418,277,451" href="#soundtrack_1" alt="Navigation">
+    <area shape="rect" coords="281,418,306,450" href="#soundtrack_2" alt="]Mark in]">
+    <area shape="rect" coords="309,416,334,452" href="#soundtrack_4" alt="[Mark out]">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_soundtrack_save_mod.jpg" alt="VirtualDub's main window" width="993" height="576" border="0" usemap="#Map27">
+  <map name="Map27">
+    <area shape="rect" coords="1,326,235,356" href="#soundtrack_5" alt="File-> Save WAV">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_soundtrack_save_window_mod.jpg" alt="Save WAV File window" width="563" height="458" border="0" usemap="#Map28">
+  <map name="Map28">
+    <area shape="rect" coords="97,62,453,425" href="#soundtrack_6" alt="Target location">
+    <area shape="rect" coords="476,393,556,422" href="#soundtrack_7" alt="Save">
+  </map>
+</p>
+<ol>
+<li><a name="soundtrack_1"></a>Navigate to the beginning of an audio track by using the slider or the buttons at the bottom of VirtualDub’s control panel.</li><br><br>
+<li><a name="soundtrack_2"></a>Mark the beginning of a desired audio track by selecting “Edit-> Set selection start,” pressing “Home,” or clicking “[Mark in].”</li><br><br>
+<li>Navigate to the end of an audio track by using the slider or the buttons at the bottom of VirtualDub’s control panel.</li><br><br>
+<li><a name="soundtrack_4"></a>Mark the end of a desired audio track by selecting “Edit-> Set selection end,” pressing “End,” or clicking “[Mark out].”</li><br><br>
+<li><a name="soundtrack_5"></a>Select “File-> Save WAV.”</li><br><br>
+<li><a name="soundtrack_6"></a>Browse to a location and choose a unique filename.</li><br><br>
+<li><a name="soundtrack_7"></a>Click “Save.”</li><br><br>
+<li>Repeat steps <a href="#soundtrack_1">1-7</a> above for each desired audio track.</li>
+</ol>
+
+<p>&nbsp;</p>
+<h4><a name="toc_frame"></a>Saving A Single Frame</h4>
+<p align="center"><img src="images/virtualdub_imagecap_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map29">
+  <map name="Map29">
+    <area shape="rect" coords="80,416,281,451" href="#frame_1" alt="Navigation">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_imagecap_save_mod.jpg" alt="VirtualDub's main window" width="993" height="471" border="0" usemap="#Map30">
+  <map name="Map30">
+    <area shape="rect" coords="85,218,325,243" href="#frame_2" alt="Video-> Copy source frame to clipboard">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_imagecap_paste_mod.jpg" alt="Windows Paint's main window" width="607" height="490" border="0" usemap="#Map31">
+  <map name="Map31">
+    <area shape="rect" coords="30,125,186,150" href="#frame_4" alt="Edit-> Paste">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_imagecap_finish_mod.jpg" alt="Windows Paint's main window" width="607" height="490" border="0" usemap="#Map32">
+  <map name="Map32">
+    <area shape="rect" coords="5,82,275,107" href="#frame_5" alt="File-> Save">
+  </map>
+</p>
+<p align="center"><img src="images/virtualdub_imagecap_finish_window_mod.jpg" alt="Save As window" width="563" height="419" border="0" usemap="#Map33">
+  <map name="Map33">
+    <area shape="rect" coords="97,63,454,386" href="#frame_6" alt="Target location">
+    <area shape="rect" coords="474,353,555,386" href="#frame_7" alt="Save">
+  </map>
+</p>
+<ol>
+<li><a name="frame_1"></a>Navigate to the desired frame by using the slider or the buttons at the bottom of VirtualDub’s control panel.</li><br><br>
+<li><a name="frame_2"></a>Select “Video-> Copy source frame to clipboard” or press “Ctrl+1.”</li><br><br>
+<li>Open a program such as Windows Paint (located in “Start-> All Programs-> Accessories-> Paint” in Windows XP).</li><br><br>
+<li><a name="frame_4"></a>Select “Edit-> Paste” or press “Ctrl+V.”</li><br><br>
+<li><a name="frame_5"></a>Select “File-> Save” or press “Ctrl+S.”</li><br><br>
+<li><a name="frame_6"></a>Browse to a location and choose a unique filename.</li><br><br>
+<li><a name="frame_7"></a>Click “Save.”</li>
+</ol>
+
+<p>&nbsp;</p>
+<h2><font color="#0000FF"><a name="toc_conclusion"></a>Conclusion</font></h2>
+
+<p>
+You now have complete control over the DVDs cluttering the space around you, whether they’re on shelves, racks, or in stacks on the floor. You can watch DVDs when it’s convenient for <em>you</em>. You can bring every episode of your favorite television shows wherever you go. You can listen to snippets of your favorite movies or shows on a portable audio player. You can even send your friends a snapshot of a favorite scene. And, perhaps most importantly for the couch potato in all of us, you are no longer forced to reach for a shelf, perhaps all the way across a large room, simply to watch your movies.
+<p>&nbsp;</p>
+<h2><font color="#0000FF"><a name="toc_legal"></a>Legal</font></h2>
+<p>This guide is purely informational.<br>
+  This guide, including its contents, screenshots, and design, was created by David Muller and is copyright David Muller 2006. However, David Muller assumes no responsibility for anything anyone does for any reason, nor for any event that occurs for any reason. David Muller neither encourages nor condones anything of any sort.</p>
+<p align="center"><a href="contact.html">Contact</a></p>
+</body>
+</html>

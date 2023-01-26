@@ -1,0 +1,573 @@
+<html>
+<head>
+<title>Format Wars</title>
+<style>
+@font-face {
+    font-family: computer;
+    src: url("fonts/COMPUTERRobot.ttf");
+}
+computer {
+    font-family: computer;
+    font-size: 6em;
+    display: block;
+    text-align: center;
+}
+p {
+    text-align: justify;
+}
+code {
+    font-family: Consolas, Lucida Console, Courier New, Courier, monospace;
+    font-size: 0.9em;
+    background-color: #333333;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-radius: 0.25em;
+}
+pre {
+    font-family: Consolas, Lucida Console, Courier New, Courier, monospace;
+    font-size: 1em;
+    background-color: #333333;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    border-radius: 0.25em;
+    max-width: 600px;
+}
+body {
+    color: white;
+    background: black;
+}
+:link {
+    color: #5555FF;
+}
+:visited {
+    color: purple;
+}
+:hover {
+    color: #7777FF;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+img.row {
+    display: inline;
+}
+.btn-group .button {
+	float: left;
+}
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    position: relative;
+    background-color: #1111DD;
+    border: none;
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    font-family: Consolas, monospace;
+    font-weight: Bold;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.button.current {
+    background-color: #EE2222;
+}
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.button:hover span {
+    padding-right: 25px;
+}
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+</style>
+</head>
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0"><tr><td>
+<div class="btn-group">
+<a href="index.html" class="button"><span>Home</span></a>
+  <a href="programming.html" class="button"><span>Programming</span></a>
+  <a href="music.html" class="button"><span>Music</span></a>
+</div></td></tr><tr><td>
+<div class="btn-group">
+  <a href="articles.html" class="button"><span>Articles</span></a>
+  <a href="other.html" class="button"><span>Other</span></a>
+  <a href="https://www.paypal.me/TigerhawkT3" class="button"><span>Donate</span></a>
+</div></td></tr></table>
+<computer>Format Wars</computer>
+<table width=600 align=center>
+<tr height=50px></tr>
+<tr><td>
+<h2>Table of Contents</h2>
+<p><a href="#victory">Victory!</a><br />
+<a href="#first_things_first">First things first</a><br />
+<a href="#and_now_for_something_completely_different">And now for something completely different<br />
+<a href="#lost_in_endless_time">Lost in endless time</a><br />
+<a href="#professional_courtesy">Professional courtesy</a><br />
+<a href="#the_next_generation">The Next Generation</a><br />
+<a href="#a_plethora_of_options">A plethora of options</a><br />
+<a href="#ay_there_s_the_rub">Ay, there&rsquo;s the rub</a><br />
+<a href="#it_s_not_for_you">It&rsquo;s not <em>for</em> you</a><br />
+<a href="#back_to_your_turnips">Back to your turnips!</a><br />
+<a href="#it_s_over_9000">It&rsquo;s over 9000!</a><br />
+<a href="#i_could_help_you_do_that_better">I could help you do that better</a><br />
+<a href="#trashercise">Trashercise</a><br />
+<a href="#tautology_club">Tautology Club</a><br />
+<a href="#fair_and_balanced">Fair And Balanced</a><br />
+<a href="#webp">WebP</a><br />
+<a href="#heic">HEIC</a><br />
+<a href="#no">No.</a><br />
+<a href="#avif">AVIF</a><br />
+<a href="#hi_i_m_the_jpeg_organization">Hi. I&rsquo;m the JPEG organization.</a><br />
+<a href="#nature_and_nurture">Nature and nurture</a><br />
+<a href="#but_in_the_end_it_doesn_t_even_matter">But in the end, it doesn&rsquo;t even matter</a><br />
+<a href="#with_malice_aforethought">With malice aforethought</a><br />
+<a href="#the_bazaar">The bazaar</a><br />
+<a href="#i_m_not_dead_i_feel_fine">I&rsquo;m not dead. I feel fine!</a><br />
+<a href="#appendices">Appendices</a><br />
+<a href="#compressing_on_your_android_phone">Compressing on your Android phone</a><br />
+<a href="#compressing_audio">Compressing audio</a><br />
+<a href="#compressing_dvd_video">Compressing DVD video</a><br />
+<a href="#compressing_modern_video_on_android">Compressing modern video on Android</a><br />
+<a href="#compressing_modern_video_on_windows">Compressing modern video on Windows</a><br />
+<a href="#compressing_images_to_jpeg_xl">Compressing images to JPEG XL</a><br />
+<a href="#compressing_images_to_webp">Compressing images to WebP</a><br />
+<a href="#compressing_images_to_avif">Compressing images to AVIF</a><br />
+<a href="#soundtrack_comparison">Soundtrack comparison</a><br />
+<a href="#image_sources">Image sources</a></p><br /><br />
+<p>The format wars are over. And we won!</p>
+<h1><a name="victory"></a>Victory!</h1>
+<p>Unfortunately, we also lost. It depends on your perspective, priorities, technical knowledge, professional industry, and so on. For most people, it&rsquo;s mostly a win. But I am not most people, and if you&rsquo;re reading this article, then neither are you!</p>
+<h1><a name="first_things_first"></a>First things first</h1>
+<p>What is a format? What is a format war? And why do we care? Briefly put, a format is a specified structure of some kind of media content, such as images or audio, and a format war is the inconvenient truth that it&rsquo;s unrealistic to use every format every time, which leads to competition and &ndash; sometimes lamentably &ndash; attrition. One of the earliest modern examples of a format war is the <a href="https://en.wikipedia.org/wiki/Videotape_format_war">videotape format war</a> between VHS and Beta. They were two quite similar products to serve the same basic purpose, but still proprietary and incompatible with each other. A VHS player couldn&rsquo;t play a Beta tape and vice versa, and they were initially quite expensive, so most families had to choose just one. Beta tapes allowed for higher quality video but not as much recording time, which was a key factor (along with marketing, most likely) in the VHS format&rsquo;s rise to dominance. More VHS players meant more incentive to focus on VHS tapes, which meant more reason to buy a VHS player, and this feedback loop spelled the end of the Beta format &ndash; or at least, of Betamax, meant for the consumer market. Betacam, meant for the professional market, remained in use for many years. Years later, we had the privilege of enduring <a href="https://en.wikipedia.org/wiki/High-definition_optical_disc_format_war">another format war</a>, this time for high-definition video. Did you get an HD DVD player or a Blu-Ray player? If you made the wrong choice, you&rsquo;d be stuck with a stagnant library while all new releases went to the winning format. The winner of that war was Blu-Ray, largely due to its use in the <a href="https://en.wikipedia.org/wiki/PlayStation_3">PlayStation 3</a>, which was cheaper than most high-definition video players and served as a gaming console to boot.</p>
+<h1><a name="and_now_for_something_completely_different"></a>And now for something completely different</h1>
+<p>Well, not <em>completely</em> different, per se, but I quite enjoy putting little jokes and references into these headings.</p>
+<p>Cassettes and discs of various types are physical media formats, but there are also formats for describing just the data themselves, used in computing. Even the least computer-savvy among us is familiar with at least a few of these, like JPEG for photos and MP3 for music. These formats provide a sort of standard packaging for a file&rsquo;s data, and they&rsquo;re also accompanied by a corresponding &ldquo;codec&rdquo; which tells the computer how to enCOde or DECode those data. Note that this isn&rsquo;t the secret kind of code, but simply the representation and conversion of information. There are formats and codecs or encodings for text, images, audio, video, file archives, typesetting, and everything else under the sun.</p>
+<p>But, what actually is a format or encoding? Like, what <em>is</em> it? Let&rsquo;s get down to the nuts and bolts with a simplified example of an image format and codec. Computers show images as a grid of appropriately-colored pixels, so our format could tell a computer about an image by first providing the dimensions of the image and then describing each pixel, one at a time, by its colors. Our codec will use the colors red, green, and blue, which can combine to show any shade (commonly referred to as RGB). Each color will have a value of 0 through 9, for a total of 1,000 possible colors. So, if our codec is given an image to encode, it will first write down the dimensions, such as 640 pixels wide by 480 pixels tall, and then continue with e.g. 000 for a black pixel or 770 for a dark yellow pixel, until we&rsquo;ve described every pixel. Once we have an image file constructed in our format and its data specified by our codec, we can give this file to a photo gallery program. The program will look for the image data using the format&rsquo;s specifications, and then use a decoder for our codec that instructs it how to read the image dimensions, then read three digits at a time for each pixel until it&rsquo;s complete. The program will use this information to show us the image.</p>
+<p>You may have noticed some flaws in our format and its codec. How exactly do we specify the dimensions? How large can each dimension be? What if we want more precise colors (common displays are capable of 16.7 million colors)? We didn&rsquo;t consider things like transparency, either. Even worse, there&rsquo;s no compression of any kind, so file sizes would scale linearly with the number of pixels in the image, regardless of the image&rsquo;s complexity. With our simple format, a completely black image that was ten million pixels wide and tall would be a gigantic file to store and manipulate even though I just described it with just a few English words. This is why there are so many formats and codecs: each one has different strengths and weaknesses, features and failings. The <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> text format is simpler and smaller than <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a>, but Unicode can handle many more unique characters. The <a href="https://en.wikipedia.org/wiki/BMP_file_format">BMP image format</a> stores every pixel exactly as intended, a little like our example format, which results in large files. The <a href="https://en.wikipedia.org/wiki/JPEG">JPEG</a> image format can compress images for excellent file size savings, but it does this by preserving only an approximation of the original image, so some details are discarded and lost.</p>
+<h1><a name="lost_in_endless_time"></a>Lost in endless time</h1>
+<p>Let&rsquo;s continue by casting our gaze into the misty depths of forgotten history. To be more specific, that would be 2007, which is sufficiently ancient that we may firmly consider it antiquity for our purposes. I wrote <a href="ripping.html">this guide to DVD archival</a> on October 30, 2007, judging by the date of last modification on its image files. At that point in my life, I was studying for a degree in technical writing, but I don&rsquo;t believe I wrote this guide for that. I also had a Geocities site, but I don&rsquo;t think I uploaded it there, especially given the rather stringent storage and bandwidth quotas. And yet, it&rsquo;s an HTML document. Why? Perhaps I was simply keeping my skills sharp with <a href="https://en.wikipedia.org/wiki/Adobe_Dreamweaver">Dreamweaver MX 2004</a>, a graphical web design tool that I&rsquo;d learned in high school a couple years prior. Alas, the world may never know my motivations with certainty.</p>
+<p>Suffice it to say, it was an ugly process with ugly results that were ugly. But that&rsquo;s what I did! And I recommended it, too (albeit to no one in particular, as my content doesn&rsquo;t exactly command the biggest readership around). I still have rips of DVDs from this time period, when I&rsquo;d buy DVDs online not from Amazon but from Deep Discount DVD, which doesn&rsquo;t exist anymore but they had decent prices and I think their mascot was some kind of anthropomorphic illustrated shark.</p>
+<p>Actually, upon further research via <a href="https://www.archive.org">The Internet Archive</a>, I&rsquo;m partly wrong. Deep Discount DVD no longer exists, because they became <a href="https://www.deepdiscount.com/">Deep Discount</a> when they started offering other products like books and clothing. Fortunately, I was right about the shark:</p>
+<a href="images/shark_old.webp"><img src="images/shark_old.gif"/></a>
+<p>That logo is no longer in use, but it&rsquo;s still a shark!</p>
+<a href="images/shark_new.svg"><img src="images/shark_new.svg" width="600" /></a>
+<p>Ah, nostalgia.</p>
+<p>Anyway, those rips are low-resolution (480 by 320, twice the width and height of YouTube&rsquo;s lowest available resolution), filled with motion artifacting, and with a tendency for audio sync to drift over time due to frame rates or something. To translate into plain English for non-technical users who probably aren&rsquo;t reading this article, they&rsquo;re fuzzy, they occasionally have weird glitches in some areas, and sounds happen further and further away from their visuals as the episode or movie progresses. To top it all off, the files are really large, comparable with modern HD video. That was the best we could do with good old DivX 3.11a, and it sufficed for me. Whenever I wanted to watch those videos, I could just push a few buttons on my computer without having to pull out any DVDs, which also minimized opportunities to scratch the discs. This format was also compatible with the superlatively excellent <a href="https://www.trustedreviews.com/reviews/cowon-a2-30gb-portable-multimedia-player">Cowon A2</a>, a portable media player from the mid-aughts which I still have to this day. This meant that I could watch my DVDs anywhere I wanted, quite a treat for long flights.</p>
+<p>It&rsquo;s worth mentioning the audio as well as the video. The audio, fortunately, wasn&rsquo;t nearly as ugly. The MP3 codec can take uncompressed CD-quality music and squeeze it down (with some data loss, like JPEG) as much as you want &ndash; a fifth of its original size while maintaining very good quality, a tenth of its original size while maintaining decent quality, even a twentieth of its original size at a quality that&rsquo;s mediocre at best but still usable, especially for less complex audio like speech. This is done by specifying a target <em>bit rate</em>, simply how many bits of data are used for a given duration of content (almost always one second), usually expressed these days with <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI prefixes</a> like kbps for kilobits per second so that the numbers don&rsquo;t get too unwieldy. Note that these are bits, not bytes, meaning just the smallest unit of binary information, which can take a value of 0 or 1. A byte is a group of eight bits, so you&rsquo;ll need to keep this in mind if you&rsquo;re working with both. One second of audio at 80 kilobits per second would thus have a file size of 10 kilobytes. This particular value is pretty low quality with the MP3 codec. The most commonly used bit rate is 128 kbps. People willing to sacrifice storage space for better quality might use 256 kbps or even more. Most devices can handle up to 320 kbps, and the format theoretically allows up to 640 kbps, but there are codecs with lossless compression algorithms (expressing data more compactly without discarding any of it) that can achieve lower bit rates than that anyway, so there&rsquo;s not much point. The most common lossless audio format and codec these days is the <a href="https://en.wikipedia.org/wiki/FLAC">Free Lossless Audio Codec, FLAC</a>.</p>
+<h1><a name="professional_courtesy"></a>Professional courtesy</h1>
+<p>A lawyer is sailing a small boat when a particularly boisterous wave tosses him into shark-infested waters. It takes time for the rescuers to arrive, and they fear the worst, but they pull him aboard unharmed. &ldquo;Why didn&rsquo;t the sharks attack you?&rdquo; they ask. The lawyer answers, &ldquo;professional courtesy."</p>
+<p>Get it? Because lawyers are sharks. The American Bar Association monitored all lawyer action in this article and no lawyers&rsquo; feelings were harmed in the making of this joke, because they don&rsquo;t have any. Get it? Again? Lawyers. The ABA didn&rsquo;t actually monitor this article, it&rsquo;s a joke, please don&rsquo;t sue.</p>
+<p>The point of all that was to dive into that little word in Free Lossless Audio Codec: &ldquo;Free.&rdquo; Some codecs are not free. Developing a codec can be very complex, and their creators would like to be compensated for their work, so they patent said work. If a third party wants to make hardware or software that can handle that codec, they need to pay licensing fees to the creators and/or implement it themselves. Unlike a novel gearing mechanism or radio antenna, the whole point of a format or codec is to allow different systems to work together, so adoption rates matter. Using a patented system can cause legal issues, ranging from simply paying licensing fees to being sued for using the patented system in an unlicensed way. This can drive away potential users, making it more difficult to find compatible equipment and leading to such codecs being called &ldquo;patent-encumbered,&rdquo; as these legal issues encumber a codec&rsquo;s popularity and practicality. Thus, a patent-encumbered codec has to be quite good to gain any adoption, much less widespread use. There are actually quite a few patented codecs with varying degrees of popularity, notably the MP3 codec, which was patented by its original creators, with various other related patented works from other entities. It was a very competitive codec at the time from a technical standpoint, so it was widely licensed. Some organizations created free implementations of the MP3 codec, and subsequently encountered legal issues. The developers of the <a href="https://en.wikipedia.org/wiki/LAME">LAME MP3 encoder</a>, one of the most capable and popular free MP3 encoders used by consumers, could only officially distribute source code, so the burden fell to users to dig around for a compiled executable and install it into whatever software we wanted to use rather than simply using something that worked out of the box. All related patents have since expired, but it was quite a hassle back then, and it&rsquo;s not a state-of-the-art codec anymore anyway. The fact that the length of a patent term can easily cover the vast majority of a tech product&rsquo;s useful life is another issue entirely.</p>
+<h1><a name="the_next_generation"></a>The Next Generation</h1>
+<p>Progress didn&rsquo;t stop there. The <a href="https://en.wikipedia.org/wiki/Advanced_Video_Coding">Advanced Video Codec, AVC</a>, soon became the most widely-used video codec worldwide, patented but with several convenient licensing concessions. It can be used for free when streaming video to end users who view for free, there are open-source encoders whose licensing is already taken care of, and so on. It has pretty much universal device and software support, doesn&rsquo;t take very powerful hardware to decode, can be encoded in real time in many use cases, and offers good quality and efficiency. It&rsquo;s absolutely everywhere.</p>
+<p>AVC is often combined with the <a href="https://en.wikipedia.org/wiki/Advanced_Audio_Coding">Advanced Audio Codec, AAC</a>, which offers better efficiency and features compared to MP3. As you might expect by now, it&rsquo;s patented. Implementing a codec that adheres to the AAC specs requires licensing, but distributing AAC-encoded audio does not.</p>
+<p>We&rsquo;re not done, of course. The rise of streaming media has driven an absolutely enormous research effort into more efficient codecs and formats. Smaller files mean lower storage and bandwidth costs, which can translate into many millions of dollars at the mind-boggling scale at which YouTube and other large services operate. Audio now has the excellent Opus codec (lossy, free to use, extremely high quality). Video has HEVC, VP8, VP9, VVC, AV1... an embarrassment of selection. Image formats aren&rsquo;t to be left out, of course, with WebP, AVIF, HEIF/HEIC, and JPEG XL seeing the most use besides older formats like JPEG, PNG, and GIF.</p>
+<h1><a name="a_plethora_of_options"></a>A plethora of options</h1>
+<p>Would you say we have a plethora of options? You would? We do? <a href="https://www.youtube.com/watch?v=P8ROhP_3-Qk">Well, what is a plethora? I would not like to think that a person would tell someone he has a plethora and find out that that person has no idea what it means to have a plethora.</a> If you don&rsquo;t know what it means to have a plethora of encoding options, you don&rsquo;t know whether that&rsquo;s good or bad.</p>
+<p>Now that that reference has more than overstayed its welcome, we do have many options, but what used to be a good thing has turned sour. <a href="https://www.stilldrinking.org/programming-sucks">Standards are unicorns.</a></p>
+<blockquote>
+<span style="font-size: 1.1em;">There’s a theory that you can cure this by following standards, except there are more “standards” than there are things computers can actually do, and these standards are all variously improved and maligned by the personal preferences of the people coding them, so no collection of code has ever made it into the real world without doing a few dozen identical things a few dozen not even remotely similar ways. The first few weeks of any job are just figuring out how a program works even if you’re familiar with every single language, framework, and standard that’s involved, because standards are unicorns.</span>
+<figcaption>&mdash; Programming Sucks</figcaption>
+</blockquote>
+<p><a href="https://xkcd.com/927/">Standards suffer from dilution.</a> Attempts to unify and simply a situation end up adding to the complexity without removing anything. This isn&rsquo;t unique to programming, computers, or even technology: <a href="https://en.wikipedia.org/wiki/Esperanto">Esperanto</a> is a language initially created by a single designer in the late 1800s, L. L. Zamenhof. The goal was to allow Europe&rsquo;s disparate cultural blocs to communicate in a single common language. There was just one problem: everyone already spoke a language, so Esperanto would mean a second language, and all those people would have to agree on it. In direct opposition to Zamenhof&rsquo;s intentions, the world simply got yet another language. Today, it enjoys a small but enthusiastic following, albeit more as a novelty or curiosity than a practical communication tool. Learning a new language is hard, and most people won&rsquo;t bother with one that doesn&rsquo;t offer real-world opportunities for use.</p>
+<h1><a name="ay_there_s_the_rub"></a>Ay, there&rsquo;s the rub</h1>
+<p>It&rsquo;s a simple rub. Which option should we choose, and why? Formats and codecs are saturated far past the point of having the right tool for the job, like PNG images for synthetic content such as screenshots or JPG images for photographic content. There are multiple candidates vying for the exact same use cases, especially with video, where most features employed by any given codec are intended to make it look better while taking up less space. As long as it can be decoded at 1x or greater for playback on a significant enough fraction of devices, speed is barely an afterthought. The AV1 codec, like most codecs, has a reference implementation developed by its core designers (<a href="https://en.wikipedia.org/wiki/Alliance_for_Open_Media">AOM, the Alliance for Open Media</a>). Unlike most codecs, that reference implementation generally manages to encode video in approximately one one-thousandth of realtime. Yes, AOM&rsquo;s AV1 encoder can take over 15 minutes for a clip just one second long, with a typical resolution and frame rate. Now consider how many seconds are in a movie. Or, more directly, go back to that factor of a thousand: a 90-minute feature-length film will tie up a machine for about 1500 hours, or two months. Fortunately, Intel has collaborated with Netflix to develop their own open-source implementation (<a href="https://en.wikipedia.org/wiki/AV1#Software_implementations">SVT-AV1</a>) that&rsquo;s an order of magnitude faster. That&rsquo;s right: you can now encode a movie at home in a mere week or so! Amazing! This is much better than the couple hours or so it took in 2006:</p>
+<a href="images/ripstudio.webp"><img src="images/ripstudio.webp" width="600" /></a>
+<p>And, oh, how we used to suffer in 2011 when we got less than an hour to savor the encoding process!</p>
+<a href="images/flasknow2.webp"><img src="images/flasknow2.webp" width="600" /></a>
+<p>This is definitely what progress looks like for everyday consumers without access to giant server farms. <a href="https://www.youtube.com/watch?v=JcOfFeKXcd4">Winning the format wars!</a></p>
+<h1><a name="it_s_not_for_you"></a>It&rsquo;s not <em>for</em> you</h1>
+<p>Video codec development has, over the past decade or two, gradually swung from enthusiasts and hobbyists to industry titans. Netflix has the resources to encode their content in AV1 so they can save on storage and bandwidth. You don&rsquo;t. <a href="https://www.penny-arcade.com/comic/2004/03/24/the-adventures-of-twisp-and-catsby">It&rsquo;s not <em>for</em> you.</a> Even YouTube doesn&rsquo;t have the resources to encode every video to AV1 &ndash; for now, only the really popular videos merit that kind of effort. If you want to make practical use of modern video codecs beyond just consuming content, you&rsquo;ll need one of several specific modern graphics cards and a good deal of tweaking that lets you move the workload from the CPU to the GPU, which is more specialized but also much more powerful. Video encoding is an increasingly daunting task for the home user... and increasingly vital.</p>
+<p>Consumer-captured media (still images, audio, and video) have exploded in popularity as the processes have gotten easier and cheaper, with better-quality results. Recording a home video no longer requires renting a camera and then storing the tape on a shelf. My current smartphone is a <a href="https://en.wikipedia.org/wiki/Samsung_Galaxy_Note_9">Samsung Galaxy Note 9</a>, the company&rsquo;s flagship model from almost five years ago, and it can shoot in 4K60. That&rsquo;s 3840 by 2160 resolution at 60 frames per second, exactly 54 times the information density compared to the best efforts of my venerable <a href="https://en.wikipedia.org/wiki/Panasonic_Lumix_DMC-FZ50">Panasonic Lumix DMC-FZ50</a> from the mid-2000s, a mere 640 by 480 at 30 frames per second. Storing that much information is much easier than in the videotape days, but the numbers have obviously ballooned over the course of digital photography.</p>
+<h1><a name="back_to_your_turnips"></a>Back to your turnips!</h1>
+<p>Commoners and peasants toil away in electronic fields, while <a href="https://www.youtube.com/watch?v=YJhIkgsw1L4">the landed gentry hoard technological developments</a>. Insidiously, it isn&rsquo;t a deliberate choice to artificially keep us down. It&rsquo;s a simple result of the drivers of those developments having their own goals and not really caring about anyone else&rsquo;s. YouTube and Netflix don&rsquo;t mind taking a little while to compress their most popular content, but what of our digital photography that needs to encode video in real time? The solution, sadly, is to use very little compression. It&rsquo;s the age-old problem of having to choose between speed, quality, and cost: for video capture, realtime speed is a hard requirement, and quality is the top metric that every layman can and will evaluate, so cost gets the short end of the stick. Ceteris paribus, more efficient video compression takes more encoding time, and so we can speed it up by increasing the allowed bit rate until it can encode in real time.</p>
+<h1><a name="it_s_over_9000"></a>It&rsquo;s over 9000!</h1>
+<p>Megabytes, that is, to record an hour and a half of 1080p30 video on an iPhone, even using the more-efficient HEVC rather than the typical AVC. I witnessed exactly this late last year (2022), when my parents filmed a friend&rsquo;s <a href="https://en.wikipedia.org/wiki/Bar_and_bat_mitzvah">bat mitzvah</a>. The ceremony was about an hour and a half. The file is over nine gigs (9.222 gigabytes, or 8.588 gibibytes). How much storage do you have? Think beyond your PC with 12 terabytes of space across multiple drives (that&rsquo;s my situation, anyway). The first place that has to store content captured by your phone is, obviously, your phone. How much room on there? 128 GB, maybe 256? Room for a microSD card to double that, perhaps? Now consider that you don&rsquo;t want these files to be trapped in your phone. You want to transfer it to other devices, share it with other people, back it up in cloud storage, and so on. Well, your nine gig file is a nine gig file. That&rsquo;s at least nine gigs!</p>
+<p>My parents&rsquo; solution was to upload the file to iCloud, at which point they could download it onto their PC (yes, that was the least inconvenient method) and share the video with the bat mitzvah&rsquo;s family, who also uses iCloud. I can only imagine and hope that, internally, Apple (actually, they subcontract their cloud service to Google Cloud rather than running their own, last I heard, so I&rsquo;m not sure who&rsquo;s doing what here) is merely linking to the same copy rather than duplicating the entire file. But then I wonder, how does that affect storage quotas? Does it all come out of the original owner&rsquo;s? Or does it take nine gigs from anyone who saves the file to their account? Or is the storage quota burden split between them? I have no idea, and I suddenly don&rsquo;t want to think about it anymore. The fact remains that it&rsquo;s a nine gig file. And that&rsquo;s simply a bit rate issue; shorter videos don&rsquo;t get more efficient compression. 90 one-minute videos would take up just as much room.</p>
+<h1><a name="i_could_help_you_do_that_better"></a>I could help you do that better</h1>
+<p>I, <a href="https://static.wikia.nocookie.net/leagueoflegends/images/d/d4/Heimerdinger_Original_Move_2_old.ogg">being a scientist</a>, was compelled &ndash; nay, contractually obligated &ndash; to meddle. My immediate and frantic inquest to learn the details, and my subsequent assessment of the problems we now faced, were met with nonplussed tolerance. But, as any scientist knows, one cannot let concerned stares drive one from the path to knowledge. After all, a mad scientist is still a scientist. Fortunately for my parents, or at least for my expectations of what they ought to care about, I&rsquo;ve been doing this for a long time and have kept my hand in over the years. After uploading the original file to iCloud, and then downloading it back to my dad&rsquo;s work computer (best possible CPU, couple hundred gigs of RAM &ndash; standard equipment for finite element analysis), I ran the command to process the file.</p>
+<p>It took an entire day. As in, more than 24 hours.</p>
+<p>And then we double-clicked the result to play it back and found that the colors were washed out.</p>
+<p>After another day or two of frustrated research that involved short test encodings, Google searches of things like FFmpeg VP9 encoder supported bit depth and colorspaces, and a few rounds of <a href="https://www.penny-arcade.com/comic/2006/12/20/and-heres-gabe-with-the-weather">Weather Game</a> with various encoders and players, I finally found the problem. The Windows 10 default video player app doesn&rsquo;t properly handle WebM VP9. The file worked properly in other video players.</p>
+<p>So now we had an 825 MB file instead of a 9,222 MB file that we could share a lot more easily. It doesn&rsquo;t really matter, since the only people interested in it already had access to it on iCloud, but now they have a more convenient copy for when bandwidth or storage space are concerns. The result is visually lossless, meaning that it doesn&rsquo;t produce the exact same pixels of output as the original, and differences between corresponding frames can be rather easily spotted in a blink comparison at 250% zoom, but there&rsquo;s no distinguishable quality loss in actual viewing. Of course, Apple being Apple, the default iOS video player doesn&rsquo;t support this format, but <a href="https://en.wikipedia.org/wiki/VLC_media_player">VLC</a> offers an iOS app that does (I&rsquo;m sure there are other capable players as well). But I did it! Success!</p>
+<h1><a name="trashercise"></a>Trashercise</h1>
+<p>There&rsquo;s nothing quite like realizing that you&rsquo;ve been duped into <a href="https://dilbert.com/strip/1995-09-12">helping a corporation save money</a> by <a href="https://www.youtube.com/watch?v=guxDD-d2iKQ&t=156">doing their job for them at home for free</a>. Why don&rsquo;t companies like Apple provide any facility for compressing these ultra-high-bit rate videos? The answer is simple. As I said above, even YouTube doesn&rsquo;t encode everything into AV1, reserving that for the very largest or most popular videos, because it&rsquo;s a resource-intensive process. They don&rsquo;t even want to devote the resources to create easy-to-use tools allowing users to do this on their own devices. They&rsquo;ll do just enough to produce the files, and then leave users to figure out how to deal with these absolute storage and bandwidth hogs on our own, which usually means buying more storage and bandwidth, often from those selfsame companies.</p>
+<h1><a name="tautology_club"></a>Tautology Club</h1>
+<p><a href="https://xkcd.com/703/">The first rule of Tautology Club is, of course, the first rule of Tautology Club</a>, and we learn it when we try to explain to people why they should care about formats. <a href="https://downloads.khinsider.com/">KHInsider</a> offers a huge repository of video game music, with most albums available in MP3 and FLAC, occasionally replacing one or both of these with other formats like M4A (the audio container format for AAC encoding) or <a href="https://en.wikipedia.org/wiki/Ogg">Ogg</a>. 99% of the files have extremely high bit rates for high quality, and 0% of the files are in Opus format which would save upwards of 50-70% compared to MP3 albums or 80-90% compared to FLAC. The cherry on top is that many albums aren&rsquo;t copies of the game files, particularly for old systems that synthesize their music with the console&rsquo;s proprietary sound chip. They&rsquo;re simply recorded. And then uploaded in a lossless format. So an ancient game like Super Mario Bros. for NES has a 13 MB MP3 soundtrack or a 31 MB FLAC soundtrack, when the game itself is only 40 KB. That&rsquo;s the whole game, including not only the music but also the sound effects, program code, and sprites. Emulators for these old systems are only a megabyte or two. Somehow, I suspect that not all of those 31 million bytes are absolutely necessary to represent the music.</p>
+<p>And yet, even though the webmaster makes a big deal out of how much it costs to run the site and sells paid memberships to unlock features like downloading an entire album with a single click, I&rsquo;ve tried and failed twice to convince him of how neat it would be to use a better and more modern codec. The first time, the response was that the bulk of the storage and bandwidth comes from serving the FLAC files, and most people just want MP3s anyway, so an Opus copy wouldn&rsquo;t be useful. The second time, when I suggested that I could handle everything because I see it as a fun and exciting project, the response mentioned a test of converting 200 albums to Opus. This was a small test for him with local access to the files, but a six-week slog for me without.</p>
+<p>My tests covered the site&rsquo;s top 200 most popular albums of all time, according to <a href="https://downloads.khinsider.com/all-time-top-100">this listing</a>, at the time of writing. I encoded with Opus at 96 kbps, and moved album art from track metadata into separate files to avoid duplication. I also included any art that appeared on a soundtrack&rsquo;s web page but wasn&rsquo;t included in track metadata, usually in their original format, but converting to JPEG XL in extreme cases like Call of Duty: Black Ops 2 which has several images weighing in at dozens of megabytes apiece. The smallest total size of these files offered by the website is 73,895 MB (usually MP3 format), the largest total size is 189,318 MB (usually FLAC format), and the total size of the Opus encodings (often including additional album art, remember) is 28,508 MB. Thus, the minimum file size reduction is about 61%, the average reduction is 78%, and the maximum reduction is 85%. See the appendices at the end of this article for <a href="#soundtrack_comparison">a complete table of all these files</a>.</p>
+<p>The site owner, on the other hand, encoded his Opus test files <em>at virtually the same bit rate as the MP3 versions</em>, and concluded that Opus didn&rsquo;t produce meaningful file size savings.</p>
+<p>In other news, aluminum is useless because a pound of aluminum weighs just as much as a pound of steel.</p>
+<p>At that point I gave up, and thus began my journey of enlightenment in which I gradually realized that the format wars are over and we lost.</p>
+<h1><a name="fair_and_balanced"></a>Fair And Balanced</h1>
+<p>The fact that we lost the format wars really hit me when the Chrome team dropped experimental support for the JPEG XL image format, which will remove the option of turning on a flag that allows Chrome to display JPEG XL images. And by &ldquo;the Chrome team&rdquo; I mean one single program manager who, by pure coincidence I&rsquo;m sure, happens to be involved in the development of AVIF, a &ldquo;competing&rdquo; image format. I use scare-quotes there not to suggest that AVIF is poor competition, but that it&rsquo;s not a competition at all &ndash; or it shouldn&rsquo;t be, anyway. Even with <a href="https://en.wikipedia.org/wiki/Feature_creep">feature creep</a> and <a href="https://en.wikipedia.org/wiki/Parallel_evolution">parallel evolution</a>, there remain enough distinctions to justify coexistence. Jon Sneyers, a JPEG XL developer who is extremely active and helpful in the field and its surrounding community, is always quick to note the advantages of other formats rather than pretending his project is the be-all and end-all of image formats. Rather than shooing you off to pore through <a href="https://cloudinary.com/blog/author/jon_sneyers">Cloudinary&rsquo;s collection of Dr. Sneyers&rsquo; articles</a> (Cloudinary is his employer and a key part of JPEG XL development), Chromium issue tracker threads, and Reddit posts, I&rsquo;ll summarize the situation here.</p>
+<p>For decades now, the three main image formats used on the web have been JPEG for photographic content (real-world photos), PNG for synthetic content (screenshots, flowcharts, etc.), and GIF for animations. There are no strict boundaries enforcing this, of course; these are just the best uses of each format according to their strengths. And yes, there are animated versions of both JPEG (MJPEG) and PNG (APNG). These formats have served us well, but, surprise surprise, there&rsquo;s been progress in computer science, and superior formats are available.</p>
+<h1><a name="webp"></a>WebP</h1>
+<p>The first modern format to appear was <a href="https://en.wikipedia.org/wiki/WebP">WebP</a>, created by Google and intended for photo distribution on the web. It can compress images in a lossy mode with better quality and lower file size than JPEG, and it can compress images in a lossless mode with lower file size than PNG. It also allows for GIF-like animations. The encoder and decoder are both quite fast, and the images can be displayed in any modern browser, with a smattering of support among other software. Its major problem, in my considered opinion, is that Google&rsquo;s official open-source library has a really idiotic default of discarding all metadata including color profiles. There&rsquo;s an option to request it to please keep that information so your converted images don&rsquo;t end up lighter or darker than they&rsquo;re supposed to, but that should be the default. Lossless encoding in particular should be expected not to have any <em>loss</em> of important information that affects the appearance of the image. Other than that, and other than its much more meager compatibility and support compared to the older legacy formats, it&rsquo;s kind of nice. When its successor, WebP2, was essentially killed off (<a href="https://killedbygoogle.com/">as Google is wont to do</a>), it became clear that this format is dead in the water. It also lacks many features that are unnecessary for photos on a web page but important elsewhere, like wider color gamuts.</p>
+<h1><a name="heic"></a>HEIC</h1>
+<p>HEIC is just HEVC intras in HEIF. I think that about sums it up. Right?</p>
+<h1><a name="no"></a>No.</h1>
+<p>To expand upon that, <a href="https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format">HEIF</a> is a format that can store images, audio, or video data. When it&rsquo;s used to store images that have been encoded with the HEVC codec (yes, that&rsquo;s a video codec, <a href="#nature_and_nurture">more on that later</a>), the result is known as an HEIC file. This was the image format that got me interested in image formats last year. I made an offhand comment about iPhone cameras using JPEG for photos, and someone corrected me: they use HEIC by default nowadays. Down that rabbit hole I went, and here we are.</p>
+<p>HEIC might be the format with the biggest gulf between how commonly it&rsquo;s used and how commonly it&rsquo;s known. It&rsquo;s been the default image format on iOS for several years, and I&rsquo;d be surprised if more than 1% of its users knew of its existence. The format is heavily patent-encumbered, with correspondingly poor compatibility, but it&rsquo;s more efficient than JPEG, and iOS uses it to reduce file sizes while maintaining the same level of image quality. The system Apple came up with is very &ldquo;Apple&rdquo; &ndash; it&rsquo;s still a walled garden, but it communicates seamlessly and transparently with the outside world. When an iPhone user takes a picture, it&rsquo;s stored as an HEIC image. When they back it up on iCloud or send it to a friend&rsquo;s iPhone, nothing unusual happens. However, if they send it outside Apple&rsquo;s ecosystem, such as in an email, text message, other backup service, and so on, no they don&rsquo;t. Send it, that is. Their Apple device or service converts the HEIC image to JPEG on the fly, and sends the JPEG instead. The process is totally invisible to the end user. The only downside I can think of is that it can mislead people into thinking they&rsquo;re working with the original image file when they&rsquo;re really not, and that&rsquo;s a pretty darn small downside. My dad will literally save ISO images of DVD home movies because any lossy compression would involve loss and he can&rsquo;t abide that notion, and even he wasn&rsquo;t bothered when I explained to him that his photo backups weren&rsquo;t actually the original files. That said, this behavior is optional. You can adjust the settings to save photos with HEIC and automatically convert to JPEG when needed (the default), save photos with JPEG in the first place, or save photos with HEIC and send the original file instead of converting. I&rsquo;m no fan of Apple, but I firmly believe in giving credit where credit is due, and this system works well.</p>
+<h1><a name="avif"></a>AVIF</h1>
+<p>AVIF is AV1 intras in HEIF. I think we&rsquo;re done here.</p>
+<p>For real though, AVIF images are encoded with the AV1 codec. It supports lossy encoding, lossless encoding, and animations. The industry consortium backing this format is pushing it hard, but you&rsquo;d be hard-pressed to find compatibility anywhere but web browsers. As with AV1, the AOM encoder is not usable due to its slow speed (several minutes to encode a single image). Even the SVT encoder is markedly slower than mature, less-efficient legacy formats, but it&rsquo;s not too bad. What is bad is that FFmpeg&rsquo;s latest build does offer AVIF encoding with SVT, but &ndash; surprisingly and yet somehow also obviously &ndash; the dimensions must be multiples of two, a common requirement with video codecs (some will insist on multiples of 8 or 16). For example, a height of 500 pixels is fine, but 501 would not be fine, and attempting to produce such an image with AVIF would result in an error. You have to add a filter that gives you acceptable dimensions, such as cropping out one line of pixels or scaling the image. The standalone AVIF encoder, avifenc.exe, has managed to overcome this issue and allows odd dimensions. However, it doesn&rsquo;t offer SVT encoding, so it&rsquo;s worthless. Harsh, but I won&rsquo;t give credit where it isn&rsquo;t due. The tooling is still too immature for practical consumer use, even for enthusiasts.</p>
+<h1><a name="hi_i_m_the_jpeg_organization"></a>Hi. I&rsquo;m the JPEG organization.</h1>
+<p><a href="https://www.youtube.com/watch?v=Y6jSKetRBU0">You may remember me from such standards as</a> JPEG, JPEG 2000, JPEG LS, JPEG XR, JPEG XS, JPEG XT... The <a href="https://jpeg.org/">Joint Photographic Experts Group</a> didn&rsquo;t rest on their laurels after developing the JPEG format. They&rsquo;ve developed a variety of formats for use cases that have proven less popular than cat pictures. The least obscure of the bunch is probably JPEG 2000, which has two primary uses. The first is in medical imaging, where it&rsquo;s valued for its superior efficiency in lossless compression compared to PNG. The second is in digital cinema, as the format is capable of high-quality lossless animation. If you&rsquo;ve watched a movie at a theater in the last several years, it was probably a JPEG 2000 image.</p>
+<p>JPEG XL is designed as a successor to JPEG, with the &ldquo;L&rdquo; signifying long-term use. It&rsquo;s often abbreviated to its file extension, JXL (rhymes with &ldquo;pixel,&rdquo; but I usually pronounce it as an initialism). The format&rsquo;s specification includes many features for personal and professional use, from high bit depth support to progressive decoding (showing an image in gradually improving quality as it&rsquo;s downloaded) to tiled decoding (decoding only a certain section of an image, helpful when working with very large images). Not all of the spec&rsquo;s features are implemented yet, but the reference codec has just recently gotten to version 0.8 at the time of writing. Give them some time.</p>
+<p>The format has a lossy mode, a lossless mode, and animation support, with superior efficiency and speed pretty much across the board. While codecs like AVIF are more adept at maintaining better image quality under very high compression, JPEG XL prioritizes performance with high-quality images. One of JPEG XL&rsquo;s most interesting features is lossless JPEG transcoding, which starts with a regular JPEG and creates a JPEG XL image 15-25% smaller than the original, with no quality loss. The process can even be reversed to exactly reproduce the original JPEG file, basically serving as a more efficient way to transfer and store existing JPEGs without any generation loss (changes to the image resulting from resaving it in a new file with lossy compression). This makes it an easy choice for migrating an existing hoard of JPEGs to a new, more efficient format. The new, smaller files can be used as they are, or turned back into JPEGs when needed for a client that doesn&rsquo;t yet support JPEG XL. Apple&rsquo;s HEIC compatibility solution is good, but conversion to JPEG does result in a very slightly different image.</p>
+<h1><a name="nature_and_nurture"></a>Nature and nurture</h1>
+<p><a href="#no">Here&rsquo;s the later when we come back to more.</a> In an ironic twist, JPEG XL has managed to be the only modern image format that&rsquo;s actually designed from the ground up <em>as an image format</em>. WebP is based on the VP8 video codec, WebP&rsquo;s intended successor WebP2 was to be based on VP8&rsquo;s intended successor VP9, HEIC is based on the HEVC video codec, and AVIF is based on the AV1 video codec. They masquerade as image formats by limiting themselves to what&rsquo;s called an &ldquo;intraframe,&rdquo; as opposed to &ldquo;interframe.&rdquo; &ldquo;Intra&rdquo; means within, and &ldquo;inter&rdquo; means between, as in e.g. the global Internet vs a company&rsquo;s local intranet. The meat behind a video codec&rsquo;s ability to compress a video stream is that digital video doesn&rsquo;t exist as a simple series of individual pictures, like an old film reel. Instead of compressing each frame independently, video codecs look for <em>differences</em> between frames. A sitcom with a few characters moving around a static set will result in many frames in a row that show the same scenery and props in the same place. The codec can draw that part once and then just leave it alone until it finally changes, devoting the saved bandwidth to describing the people&rsquo;s movements instead.</p>
+<p>An intraframe, also known as a keyframe, is a frame in a video that actually does contain the whole picture rather than relying on surrounding frames. They&rsquo;re generally placed at scene changes or at regular intervals of five to ten seconds. An interframe is one of those efficient frames that&rsquo;s compressed based on changes between frames. Thus, an image in one of these video-derived image codecs is basically just a video consisting of a single keyframe. As you might guess, the video-derived image codecs have some convenient optimizations available for adding animation to such an &ldquo;image,&rdquo; although it&rsquo;s generally better to just make an actual video.</p>
+<p>The problem with these video intraframe image formats is that some things are relevant for still images that aren&rsquo;t a consideration for video, which precludes the possibility of those particular features. For example, early versions of HEIC and AVIF couldn&rsquo;t encode an image bigger than the 4K video resolution, because HEVC and AV1 hadn&rsquo;t yet needed to do so before. They got around this by packing several images into a single file, to be arranged in a grid for display. Unfortunately, it was all too easy to spot in the resulting picture where one tile ended and the next began. Fortunately, AVIF and HEIC have since been updated to handle images up to 65536 by 65536 (2 to the 16th power). Next, since each frame of a video is only visible for a small fraction of a second, it doesn&rsquo;t make sense to consider the situation where it takes a few seconds to download a single frame, so they have no facility for progressive decoding. Full image formats like JPEG, PNG, and JPEG XL can quickly show a fuzzy picture and then gradually fill in the details as the rest of the image is downloaded. This isn&rsquo;t always vital, but it can come in handy for users on slow or unstable connections (such as mobile data, poor reception, etc.), and a partially-downloaded image with progressive decoding can even serve as its own thumbnail, obviating the need to generate and store a second set of images.</p>
+<p>Basically, video-derived image formats focus on quantity, while full image formats focus on quality.</p>
+<h1><a name="but_in_the_end_it_doesn_t_even_matter"></a>But in the end, it doesn&rsquo;t even matter</h1>
+<p>Because not only are short-form videos with no audio still referred to as GIFs, they often actually are GIFs. Web video has progressed by leaps and bounds, inserting a video into a web page is as easy as <code>&lt;video&gt;</code>, AVC is a perfectly serviceable video codec with essentially universal support, and yet we&rsquo;re still using GIFs. There are too many people who don&rsquo;t understand why not every video has to be a GIF anymore, and too many of those people are able to dictate these views to others, such as some subreddits specifically stating in the rules that no videos are allowed, only GIFs. Of course, if you upload a GIF to Reddit, Reddit will immediately transcode it back into a video that merely links to the original GIF when clicked, so if you view posts normally, you&rsquo;ll never see the GIF.</p>
+<p>Uploading a still image to Reddit is even less consistent. PNG images are maintained in their original format, JPEG images are <em>sometimes</em> maintained in their original format but also sometimes converted to WebP for previews, and WebP images are converted to rather low-quality JPEGs (with the exact same file size as the original WebP, in my experience). Even lossless WebP images fall victim to this mangling. It&rsquo;s anyone&rsquo;s guess as to why Reddit devs didn&rsquo;t simply choose a preferred format and leave user uploads unchanged if they already match that format. Seriously, I have no idea why they do it this way. It makes no sense.</p>
+<h1><a name="with_malice_aforethought"></a>With malice aforethought</h1>
+<p>Oh, how I yearn for those halcyon times when a corporate media format decision didn&rsquo;t make sense. It&rsquo;s <a href="https://comb.io/G8zk6a">immediately obvious</a> why Discord offers the following audio options. Just look.</p>
+<a href="images/discord_boost.webp"><img src="images/discord_boost.webp" width="600" /></a>
+<p>That&rsquo;s a lossless WebP image, by the way. The <a href="images/discord_boost.png">original PNG saved in Microsoft Paint</a> was 148 KB, the <a href="images/discord_boost_ffmpeg.png">PNG saved with FFmpeg&rsquo;s PNG encoder</a> was 105 KB, the <a href="images/discord_boost.jxl">JPEG XL saved at default settings</a> was 90 KB, the <a href="images/discord_boost.webp">WebP shown above</a> is 84 KB, and the <a href="images/discord_boost_e9.jxl">JPEG XL saved at the maximum compression effort setting</a> was 73 KB. It would&rsquo;ve been nice to go with the most efficient one, but the best I could do with reasonable confidence that it would actually display in your browser was WebP, because you lost the format wars.</p>
+<p>This image is from a screenshot my sister sent to me when debating whether she ought to support Discord and a server she participates in with a &ldquo;boost,&rdquo; which is a euphemism for money. At least it&rsquo;s not &ldquo;loyalty,&rdquo; I suppose. Note one of the features listed as a perk: audio quality. Discord uses Opus for its audio, and the default bit rate for a free-tier server with no boosts is 64 kbps. That&rsquo;s unlikely to be totally transparent (indistinguishable from the original in listening tests) for typical music, but it&rsquo;s still quite good, <a href="https://hydrogenaud.io/index.php?topic=118129.0">more or less on par with MP3 at its de facto default bit rate of 128 kbps</a>. For content that will primarily consist of speech, recorded with low-quality equipment in rooms with no acoustical considerations, it&rsquo;s more than enough. If it&rsquo;s not, administrators of free-tier servers can choose to increase the bit rate above the default, up to 96 kbps. Opus hits transparency for most content at that point. Discord&rsquo;s &ldquo;level 1 perk&rdquo; for audio quality is 128 kbps, which is more or less the useful limit for two-channel (stereo) audio <a href="https://hydrogenaud.io/index.php/topic,114656.0.html">barring rare exceptions of complex material like harpsichord music</a>.</p>
+<p>Level 2 allows 256 kbps. Level 3? 384 kbps. Boost now! You need this! Transact money posthaste!</p>
+<p>Given the choice between inexplicable format conversion decisions and blatantly misleading people into buying things they don&rsquo;t need, I think I prefer the former. It&rsquo;s not a comfortable choice, but we lost the format wars.</p>
+<h1><a name="the_bazaar"></a>The bazaar</h1>
+<p>This is why <a href="http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/">the bazaar is more preferable to the cathedral</a> than ever. If I were locked into the Apple ecosystem, I wouldn&rsquo;t know what my phone was doing, it wouldn&rsquo;t make an effort to tell me, and I would be saving nine-gig video files in my cloud storage. Well, speaking only for myself, personally, I expect I&rsquo;d endeavor to learn as much as possible and do what I could with whatever tools were available and allowed. After all, my parents saved a nine-gig video file in their cloud storage, but I was able to produce a file more than 90% smaller.</p>
+<p>Fortunately for me, I&rsquo;m not locked into the Apple ecosystem. I can install whatever programs I want on my Windows PC and my Android phone, including encoders and decoders for JPEG XL, AVIF, WebP, and Opus. I can write scripts to consolidate complex processes into a simple command. I have enough freedom to manage my files on my devices, without some middle manager deciding that key features are too ugly or complex to even allow, much less provide.</p>
+<p>My phone&rsquo;s default video codec is AVC, which results in bit rates of around 14 Mbps for 1080p30 and a staggering 72 Mbps for 4K60. That&rsquo;s nine megabytes for a single second of video. A recent clip I captured at this quality produced a 213 MB file for 25 seconds of video. Oh, and the audio is 256 kbps AAC for no real reason at all. It&rsquo;s not like audio is difficult to encode in real time these days, so they could easily use more compression. No bit rate will compensate for terrible acoustics and microphones, anyway. It&rsquo;s a tiny sliver of the overall file size, but it could&rsquo;ve been better if they cared to try. Samsung phones provide an &ldquo;advanced&rdquo; option to record video with HEVC instead of AVC, although it has to be manually enabled while Apple devices default to HEVC. I stick with the less efficient codec in this case because it&rsquo;s not worth inviting potential compatibility issues when I&rsquo;ll be compressing the file myself anyway. I use VP9, because while AV1 has higher theoretical efficiency, its tooling and encoders aren&rsquo;t consistently available across platforms.</p>
+<p>A 15-second clip at 1080p30 is 50 MB as captured in AVC, and I bring that down to 8.3 MB with VP9, an 83% size reduction. The 25-second clip at 4K60 goes from 213 MB as captured in AVC to 37.6MB with VP9, an 82% size reduction. Keep in mind that not only is VP9 a more efficient codec than AVC, I&rsquo;m also able to use much higher compression because I&rsquo;m not constrained by the requirement to encode in real time like the capturing device is. Depending on resolution and frame rate, this compression process takes anywhere from 20 to 100 times the duration of the clip. However, I can do it on my PC or my phone, with a simple command (see the relevant appendices <a href="#compressing_modern_video_on_android">for Android</a> or <a href="#compressing_modern_video_on_windows">for Windows</a>).</p>
+<p>You may have noticed that encoding to VP9 saved over 90% for the nine-gig video my parents recorded in HEVC but less than 85% for my AVC clips, even though HEVC is significantly more efficient than AVC (my phone reduces the bit rate by 40% when shooting in HEVC to maintain quality comparable to AVC; I expect Apple uses similar values). This is because videos are captured at a constant bit rate, while anyone performing reencoding without real-time constraints can analyze the video to determine when it can use a lower bit rate for scenes with less motion and complexity. My clips involved a lot of camera movement, while my parents&rsquo; video captured scenes with little or no motion shot from a tripod.</p>
+<h1><a name="i_m_not_dead_i_feel_fine"></a>I&rsquo;m not dead. I feel fine!</h1>
+<p>The format wars may be over, but <a href="https://www.youtube.com/watch?v=grbSQ6O6kbs">we&rsquo;re not ready for the cart just yet</a>. And I suppose there&rsquo;s technically still an outside chance that <a href="https://www.youtube.com/watch?v=NJEgqhzwz0o&t=283">we may eventually pull through</a>. I know <a href="https://www.youtube.com/watch?v=-_7FaWnlhS4">I&rsquo;m doing my part</a>: I participate in the <a href="https://www.reddit.com/r/jpegxl/">JPEG XL subreddit</a>, I provide friends and family with efficiently-encoded clips instead of gigantic original files, and now I&rsquo;ve written this article. It&rsquo;s not much, but the perfect is the enemy of the good. Maybe one day the Chromium team will listen to the requests for JPEG XL support from industry giants like Adobe and Facebook. Maybe one day Reddit will accept uploads of high-quality, efficiently-encoded files like WebP images and VP9 WebM videos as they are rather than meddling with them or outright rejecting them. Maybe one day companies like Apple will offer some kind of automatic video compression service, whether on their own servers or on users&rsquo; local devices. Maybe one day people will take an interest in this and push for improvements. Maybe I&rsquo;ve convinced you to become one of those people.</p>
+<p>We&rsquo;ll see.</p>
+</td></tr>
+<tr height="300"></tr>
+<tr><td><h3><a name="appendices"></a>Appendices</h3>
+<h4><a name="compressing_on_your_android_phone"></a>Compressing on your Android phone</h4>
+<p>You&rsquo;ll need to download <a href="https://termux.dev/en/">Termux</a> and grant it permission to install on your device. You can then enter commands to install various packages, like <code>pkg install ffmpeg</code> for FFmpeg, <code>pkg install opus-tools</code> for the standalone Opus tools, and <code>pkg install libjxl-progs</code> for the standalone JPEG XL tools. I also like <code>pkg install python</code> so I can use Python, <code>pkg install youtube-dl</code> for a versatile video downloader (works with more than just YouTube), and <code>pkg install p7zip</code> for a powerful command-line archive tool that allows you to combine files into a single archive, split a large file into multiple pieces, add password protection, and more.</p>
+<h4><a name="compressing_audio"></a>Compressing audio</h4>
+You can produce Opus audio at a variable bit rate targeting an average of 96 kbps with <a href="https://ffmpeg.org/">FFmpeg</a>:</p>
+<p><code>ffmpeg -hide_banner -i my_input_file.mp3 -b:a 96k my_output_file.opus</code></p>
+<p>Or with <a href="https://opus-codec.org/">the Opus reference encoder</a>, which provides several convenient options such as <code>--discard-pictures</code> to remove attached images from metadata:</p>
+<p><code>opusenc --bitrate 96k my_input_file.mp3 my_output_file.opus</code></p>
+<h4><a name="compressing_dvd_video"></a>Compressing DVD video</h4>
+<p>Here&rsquo;s how to compress a DVD, which generally means a VOB file containing a 720 by 480 MPEG-2 video. I use AVC for this because MPEG-2 is a lossy codec that&rsquo;s rather noisy even at a constant 10 Mbps and modern codecs really struggle with that for some reason compared to AVC. The PowerShell command:</p>
+<pre>ffmpeg -hide_banner -i .\inp.vob -vsync vfr `
+    -enc_time_base -1 -c:v libx264 -crf 22 -tune film `
+    -filter:v "yadif,scale=640:480" -c:a libopus `
+    -b:a 64k -strict 2 output.mp4</pre>
+<p>The <code>-vsync vfr</code> option allows FFmpeg to properly handle variable frame timings rather than forcing a constant frame rate by duplicating or dropping frames, <code>-enc_time_base -1</code> attempts to ensure consistent time codes, <code>libx264</code> is the technical term for FFmpeg&rsquo;s AVC encoder, <code>-crf 22</code> is a good efficiency compromise that yields excellent visual quality and good file size savings (you can go down to 15 for better quality or up to 30 or so for smaller files), <code>yadif</code> is &ldquo;yet another deinterlacing filter&rdquo; (for those old DVDs that use interlaced video instead of progressive video), and <code>-strict 2</code> allows you to use Opus in an MP4 container. <code>-tune film</code> is one option that you need to keep an eye on, as this setting is only intended for film (live action). For animated content like cartoons, use <code>-tune animation</code> instead. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p>
+<h4><a name="compressing_modern_video_on_android"></a>Compressing modern video on Android</h4>
+<p>If you&rsquo;re starting with a high-quality source rather than DVDs, you can use a more modern codec.</p>
+<p>On Linux environments, such as the Termux terminal emulator for Android, I have saved the following script, with a file name of <code>shrink_video.sh</code>:</p>
+<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 -b:v 0 -crf 40 -quality good \
+    -speed 1 -an pass 1 -f webm /dev/null
+ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good \
+    -speed 1 -c:a libopus -b:a 96k -pass 2 "${1%.*}.webm"</pre>
+<p>Invoke this with a simple <code>bash shrink_video my_video.mp4</code> to (eventually) produce <code>my_video.webm</code>. Note that the backslash character <code>\</code> is used in bash to split a command and continue it on the next line, used here for formatting purposes.</p>
+<p>And here&rsquo;s an explanation of a few of those options, adapted from <a href="https://developers.google.com/media/vp9/settings/vod">Google&rsquo;s VP9 encoding guide</a>:</p>
+<table border="1"><tr><td><code>-i "$1"</code></td><td>Use as input the file name you provided. The quotes ensure that file names with spaces are handled properly.</td></tr>
+<tr><td><code>-y</code></td><td>Termux will ask if you want to overwrite the <code>/dev/null</code> file, which it shouldn&rsquo;t bother with, so this option automatically says yes.</td></tr>
+<tr><td><code>-c:v vp9</code></td><td>Use the VP9 codec for video.</td></tr>
+<tr><td><code>-b:v 0</code></td><td>When you use two-pass encoding with a variable bit rate, as this script does, VP9 requires that you explicitly specify a bit rate of 0.</td></tr>
+<tr><td><code>-crf 40</code></td><td>A constant rate factor of 40, which is basically the quality level you&rsquo;re aiming for. I&rsquo;ve found 40 to be good for this codec, but you can go for bigger files and higher quality by using lower values down to 30 or so, or sacrifice some quality for better compression by using higher values up to around 50.</td></tr>
+<tr><td><code>-quality good</code></td><td>A speed vs quality compromise, in between <code>best</code> and <code>realtime</code>.</td></tr>
+<tr><td><code>-speed 1</code></td><td>Almost as high quality as <code>-speed 0</code>, but appreciably faster. You can go up to 4 or so if you want, but higher than that is mostly for real time encoding.</td></tr>
+<tr><td><code>-an</code></td><td>No audio. Used only on the first pass, which is only analyzing the video and not the audio.</td></tr>
+<tr><td><code>-pass 1|2</code></td><td>1 for the first pass which analyzes the video to look for possible optimizations and stores its findings in a log file, 2 for the second pass which actually creates the video. The second pass is much slower than the first.</td></tr>
+<tr><td><code>-f webm /dev/null</code></td><td>The output for the first pass is a temporary log file, which you can feel free to delete after everything is complete.</td></tr>
+<tr><td><code>-c:a libopus</code></td><td>Use the Opus audio codec.</td></tr>
+<tr><td><code>-b:a 96k</code></td><td>Encode audio at 96 kbps, offering excellent quality and efficiency.</td></tr>
+<tr><td><code>"${1%.*}.webm"</code></td><td>The name of the new file, which replaces the old extension with <code>webm</code>. Note that if you&rsquo;re already starting with a WebM file, or if you have multiple files whose names differ only in their extensions, you&rsquo;ll need to be careful with this and possibly change it to suit your needs.</td></tr>
+</table>
+<h4><a name="compressing_modern_video_on_windows"></a>Compressing modern video on Windows</h4>
+<p>On Windows, you can use the PowerShell terminal emulator. The command has a few differences that set it apart from the Linux version. I tend to just paste this into the terminal rather than saving a script.</p>
+<p><pre>ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 -crf 40 `
+    -quality good -speed 1 -an -pass 1 -f null NUL; `
+    if ($?) { ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 `
+    -crf 40 -quality good -speed 1 -c:a copy -pass 2 my_video.webm }</pre></p>
+<p>And here&rsquo;s the explanation.</p>
+<table border="1"><tr><td><code>-f null NUL</code></td><td>Store the log output of the first pass without actually creating a new file.</td></tr>
+<tr><td><code>if ($?) { ... }</code></td><td>Only execute the command in curly braces, which is the second pass, if the previous command, which is the first pass, was successful. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</td></tr>
+</table>
+<h4><a name="compressing_images_to_jpeg_xl"></a>Compressing images to JPEG XL</h4>
+<p>For JPEG XL, I recommend <a href="https://github.com/libjxl/libjxl">libjxl</a>, the official reference implementation. You can find binary executables (software that&rsquo;s ready to use right out of the box) <a href="https://artifacts.lucaversari.it/libjxl/libjxl/latest/">here</a>. There are many options, but the following are the most common:</p>
+<ul><li><code>-d 0-25</code> for distance, meaning how much compression you want. <code>-d 0</code> is lossless, <code>-d 1</code> is visually lossless, and higher numbers offer greater compression. I tend to stick to 0 and 1, and you probably won&rsquo;t want to use anything past 3. Note that it doesn&rsquo;t have to be a whole number.</li>
+<li><code>-e 0-9</code> for effort, meaning how many algorithms to use and to what level of detail they should run. This is basically how hard it should try to compress the file, with the primary tradeoff being encoding time rather than drastic quality differences (although there is an effect on quality in some cases). See the discussion <a href="https://www.reddit.com/r/jpegxl/comments/10157np/analysis_of_effort_settings/">in this thread</a> for an explanation of what each setting does, directly from Jon Sneyers. The default setting of 7 works well.</li>
+<li><code>-j 0|1</code> specifies whether JPEG input should be compressed with a lossless transcode. If you don&rsquo;t use this option, the default behavior is to perform a lossless transcode when JPEG input is detected, and also notify you when that occurs. A value of 0 will treat JPEGs as any other image, useful for when you want to try higher compression or other settings. A value of 1 will perform a lossless transcode when JPEG input is detected, and not notify you when that occurs.</li>
+<li><code>-p</code> enables progressive decoding, which can improve the user experience on slow network connections by displaying an image whose quality gradually improves as it receives more data. In my testing, this option had a tendency to increase file sizes considerably. I don&rsquo;t know whether this is expected behavior, an issue that will be resolved in future versions, or a mistake I&rsquo;m making somewhere.</li></ul>
+<h4><a name="compressing_images_to_webp"></a>Compressing images to WebP</h4>
+<p>WebP images can be encoded with <a href="https://developers.google.com/speed/webp/docs/using">libwebp, Google&rsquo;s reference encoder</a>, or FFmpeg. I highly advise using the former rather than the latter, because the default behavior is to discard all metadata including important color information, and I have yet to discover how to resolve that in FFmpeg. The <code>-o</code> option in cwebp specifies the output file (c.f. FFmpeg in which you specify the input file with the <code>-i</code> option). The <code>-metadata icc</code> option tells cwebp to preserve color profile metadata, which is kind of important if you want the image to look right.</p>
+<p>Lossy: <code>cwebp -metadata icc my_image.jpg -o my_image.webp</code></p>
+<p>Lossless: <code>cwebp -metadata icc -lossless 1 my_image.png -o my_image.webp</code></p>
+<p>Note that animated WebP images have better compression than equivalent GIFs and work well in a browser, but I&rsquo;m aware of no tools &ndash; not even Google&rsquo;s reference software &ndash; that can read in an animated WebP image for conversion into different formats or other processing.</p>
+<h4><a name="compressing_images_to_avif"></a>Compressing images to AVIF</h4>
+<p>For AVIF, you&rsquo;ll want something with the SVT encoder, which generally means FFmpeg on an x86 or x64 architecture (regular computer, not mobile devices or Apple Silicon). The alternatives to SVT are, as I&rsquo;ve said before, unusably slow. My horrible concoction of a PowerShell script to convert all PNG images in a folder that catches odd dimensions and retries with even dimensions is as follows:</p>
+<pre>foreach ($f in Get-ChildItem *.png) {
+    ffmpeg -hide_banner -i $f -c libsvtav1 -crf 5 `
+    ($f.BaseName + '_crf5.avif')
+    if (!$?) {
+        ffmpeg -hide_banner -y -i $f -c libsvtav1 -crf 5 `
+        -filter:v scale=iw:ih+1 ($f.BaseName + '_crf5.avif')
+    
+    if (!$?) {
+        ffmpeg -hide_banner -y -i $f -c libsvtav1 -crf 5 `
+        -filter:v scale=iw+1:ih ($f.BaseName + '_crf5.avif')
+    };
+    if (!$?) {
+        ffmpeg -hide_banner -y -i $f -c libsvtav1 -crf 5 `
+        -filter:v scale=iw+1:ih+1 ($f.BaseName + '_crf5.avif')
+    }<br />
+}</pre>
+<p>It&rsquo;ll first attempt to simply convert the image (at a CRF of 5, which is a much lower value than used in video, because a still image needs higher quality &ndash; I&rsquo;ve gotten usable results with values up to 20 or so). If that fails, it rescales the image to be one pixel taller, then tries again. If that fails, it tries one pixel wider instead. If that fails as well, it tries both one pixel taller and wider. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p>
+<h4><a name="soundtrack_comparison"></a>Soundtrack comparison</h4>
+<p>In the following table, the first column is the identifying name of the album. For example, <a href="https://downloads.khinsider.com/game-soundtracks/album/minecraft">https://downloads.khinsider.com/game-soundtracks/album/minecraft</a> would be <code>minecraft</code>. The next columns are album sizes in MP3, M4A, Ogg, and FLAC formats, as available, in megabytes (if that format wasn&rsquo;t available, I&rsquo;ve simply left its label in the cell). The last column is the size of the album in Opus format. Items with an asterisk * had low-quality original files, so my 96 kbps encodings may have ended up larger, if I bothered with that album at all. N.B.: I am well aware that there are actually 201 albums in the following table.</p>
+<table border="1" cellpadding="3"><tr><td><strong>Title</strong></td><td><strong>MP3</strong></td>
+<td><strong>M4A</strong></td><td><strong>Ogg</strong></td><td><strong>FLAC</strong></td><td><strong>Opus</strong></td></tr>
+<tr><td>minecraft</td><td>349</td><td>M4A</td><td>Ogg</td><td>861</td><td>131</td></tr>
+<tr><td>persona-5</td><td>436</td><td>M4A</td><td>Ogg</td><td>1378</td><td>164</td></tr>
+<tr><td>the-legend-of-zelda-breath-of-the-wild</td><td>1199</td><td>M4A</td><td>Ogg</td><td>2781</td><td>435</td></tr>
+<tr><td>friday-night-funkin-ost-flash</td><td>265</td><td>M4A</td><td>Ogg</td><td>1201</td><td>92</td></tr>
+<tr><td>super-mario-bros</td><td>13</td><td>M4A</td><td>Ogg</td><td>31</td><td>11</td></tr>
+<tr><td>persona-5-royal</td><td>199</td><td>M4A</td><td>Ogg</td><td>647</td><td>74</td></tr>
+<tr><td>super-mario-64-soundtrack</td><td>94</td><td>M4A</td><td>Ogg</td><td>262</td><td>43</td></tr>
+<tr><td>need-for-speed-most-wanted</td><td>195</td><td>M4A</td><td>Ogg</td><td>734</td><td>66</td></tr>
+<tr><td>super-mario-3d-world-soundtrack</td><td>283</td><td>M4A</td><td>Ogg</td><td>705</td><td>91</td></tr>
+<tr><td>animal-crossing-new-horizons-2020-switch-gamerip</td><td>650</td><td>M4A</td><td>Ogg</td><td>1759</td><td>267</td></tr>
+<tr><td>mario-kart-wii</td><td>256</td><td>M4A</td><td>Ogg</td><td>805</td><td>122</td></tr>
+<tr><td>just-shapes-beats-2018</td><td>242</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>178</td></tr>
+<tr><td>among-us</td><td>18</td><td>M4A</td><td>Ogg</td><td>58</td><td>2</td></tr>
+<tr><td>persona-4-original-soundtrack</td><td>344</td><td>839</td><td>Ogg</td><td>FLAC</td><td>94</td></tr>
+<tr><td>mario-kart-8</td><td>495</td><td>M4A</td><td>Ogg</td><td>1300</td><td>146</td></tr>
+<tr><td>five-nights-at-freddy-s-fnaf</td><td>36</td><td>M4A</td><td>Ogg</td><td>39</td><td>15</td></tr>
+<tr><td>new-super-mario-bros.-wii</td><td>289</td><td>M4A</td><td>Ogg</td><td>775</td><td>139</td></tr>
+<tr><td>ryu-ga-gotoku-zero-yakuza-0-ost-a-and-b-sides</td><td>613</td><td>3019</td><td>Ogg</td><td>FLAC</td><td>148</td></tr>
+<tr><td>super-smash-bros.-anthology-vol.-01-super-smash-bros</td><td>814</td><td>M4A</td><td>Ogg</td><td>3094</td><td>287</td></tr>
+<tr><td>animal-crossing-new-leaf</td><td>499</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>235</td></tr>
+<tr><td>fire-emblem-three-houses-gamerip</td><td>1004</td><td>M4A</td><td>Ogg</td><td>3601</td><td>733</td></tr>
+<tr><td>persona-3-original-soundtrack</td><td>375</td><td>825</td><td>Ogg</td><td>FLAC</td><td>94</td></tr>
+<tr><td>super-mario-galaxy-2</td><td>303</td><td>M4A</td><td>Ogg</td><td>737</td><td>104</td></tr>
+<tr><td>earthbound-snes</td><td>329</td><td>M4A</td><td>Ogg</td><td>605</td><td>160</td></tr>
+<tr><td>wii-music-collection</td><td>72</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>31</td></tr>
+<tr><td>pokemon-diamond-and-pearl-super-music-collection</td><td>418</td><td>1003</td><td>Ogg</td><td>FLAC</td><td>106</td></tr>
+<tr><td>pokemon-sword-shield-ost</td><td>498</td><td>M4A</td><td>Ogg</td><td>1703</td><td>179</td></tr>
+<tr><td>harvest-moon-back-to-nature</td><td>92</td><td>M4A</td><td>Ogg</td><td>284</td><td>36</td></tr>
+<tr><td>need-for-speed-underground-2</td><td>112</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>85</td></tr>
+<tr><td>super-mario-odyssey-original-soundtrack</td><td>486</td><td>1527</td><td>Ogg</td><td>FLAC</td><td>186</td></tr>
+<tr><td>pokemon-black-and-white</td><td>615</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>187</td></tr>
+<tr><td>plants-vs.-zombies</td><td>120</td><td>M4A</td><td>Ogg</td><td>302</td><td>48</td></tr>
+<tr><td>legend-of-zelda-the-breath-of-the-wild-original-soundtrack</td><td>745</td><td>M4A</td><td>Ogg</td><td>2002</td><td>292</td></tr>
+<tr><td>kingdom-hearts-iii-gamerip</td><td>1188</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>419</td></tr>
+<tr><td>the-witcher-3-wild-hunt-extended-edition</td><td>288</td><td>M4A</td><td>Ogg</td><td>748</td><td>87</td></tr>
+<tr><td>the-legend-of-zelda-skyward-sword-expanded</td><td>1037</td><td>M4A</td><td>Ogg</td><td>1941</td><td>342</td></tr>
+<tr><td>castlevania-symphony-of-the-night</td><td>160</td><td>M4A</td><td>Ogg</td><td>560</td><td>59</td></tr>
+<tr><td>persona-3-dancing-moon-night-persona-5-dancing-star-night-full-soundtrack</td><td>421</td><td>M4A</td><td>Ogg</td><td>1426</td><td>151</td></tr>
+<tr><td>kirby-s-return-to-dream-land</td><td>511</td><td>M4A</td><td>Ogg</td><td>1623</td><td>220</td></tr>
+<tr><td>dragon-ball-z-bgm</td><td>224</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>99</td></tr>
+<tr><td>pokemon-black-and-white-2-super-music-collection</td><td>566</td><td>586</td><td>Ogg</td><td>FLAC</td><td>187</td></tr>
+<tr><td>hollow-knight-original-soundtrack</td><td>168</td><td>M4A</td><td>Ogg</td><td>377</td><td>51</td></tr>
+<tr><td>super-mario-world-snes-gamerip</td><td>90</td><td>M4A</td><td>Ogg</td><td>166</td><td>55</td></tr>
+<tr><td>pokemon-heartgold-and-soulsilver</td><td>599</td><td>M4A</td><td>Ogg</td><td>1526</td><td>165</td></tr>
+<tr><td>cuphead</td><td>342</td><td>M4A</td><td>Ogg</td><td>1057</td><td>129</td></tr>
+<tr><td>super-smash-bros-brawl-gamerip</td><td>692</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>485</td></tr>
+<tr><td>the-henry-stickmin-collection-soundtrack-2020</td><td>228</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>93</td></tr>
+<tr><td>geometry-dash</td><td>28</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>47*</td></tr>
+<tr><td>genshin-impact-gamerip</td><td>585</td><td>M4A</td><td>1069</td><td>FLAC</td><td>257</td></tr>
+<tr><td>dark-souls-iii-soundtracks</td><td>390</td><td>M4A</td><td>Ogg</td><td>1064</td><td>116</td></tr>
+<tr><td>dragon-ball-z-complete-bgm-collection</td><td>209</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>158</td></tr>
+<tr><td>legend-of-zelda-the-twilight-princess-gamerip</td><td>795</td><td>M4A</td><td>Ogg</td><td>3500</td><td>293</td></tr>
+<tr><td>shadow-fight-2</td><td>81</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>24</td></tr>
+<tr><td>super-mario-sunshine-game-rip</td><td>299</td><td>M4A</td><td>Ogg</td><td>783</td><td>124</td></tr>
+<tr><td>brawl-stars</td><td>210</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>143</td></tr>
+<tr><td>ace-combat-7-skies-unknown-original-soundtrack</td><td>849</td><td>M4A</td><td>Ogg</td><td>2566</td><td>355</td></tr>
+<tr><td>octopath-traveler-original-soundtrack-2018</td><td>451</td><td>M4A</td><td>Ogg</td><td>1321</td><td>188</td></tr>
+<tr><td>xenoblade-chronicles</td><td>570</td><td>M4A</td><td>Ogg</td><td>2034</td><td>271</td></tr>
+<tr><td>mario-kart-64</td><td>98</td><td>M4A</td><td>Ogg</td><td>280</td><td>37</td></tr>
+<tr><td>super-paper-mario</td><td>501</td><td>M4A</td><td>Ogg</td><td>1343</td><td>159</td></tr>
+<tr><td>call-of-duty-modern-warfare-2</td><td>444</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>133</td></tr>
+<tr><td>pokemon-x-y</td><td>421</td><td>M4A</td><td>Ogg</td><td>1467</td><td>163</td></tr>
+<tr><td>super-mario-3d-land</td><td>270</td><td>M4A</td><td>Ogg</td><td>489</td><td>64</td></tr>
+<tr><td>persona-4-dancing-all-night</td><td>644</td><td>1555</td><td>Ogg</td><td>FLAC</td><td>211</td></tr>
+<tr><td>assassin-s-creed-2</td><td>208</td><td>M4A</td><td>Ogg</td><td>600</td><td>82</td></tr>
+<tr><td>donkey-kong-country-02-diddys-kong-quest</td><td>102</td><td>M4A</td><td>Ogg</td><td>315</td><td>46</td></tr>
+<tr><td>super-mario-maker-2-gamerip</td><td>649</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>510</td></tr>
+<tr><td>digimon-themes</td><td>456</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>272</td></tr>
+<tr><td>pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds</td><td>746</td><td>2345</td><td>Ogg</td><td>FLAC</td><td>257</td></tr>
+<tr><td>persona-4-the-golden-original-soundtrack</td><td>76</td><td>M4A</td><td>Ogg</td><td>251</td><td>47</td></tr>
+<tr><td>pokemon-sun-moon-super-music-collection</td><td>545</td><td>M4A</td><td>Ogg</td><td>1883</td><td>210</td></tr>
+<tr><td>legend-of-zelda-the-twilight-princess-hd-original-soundtrack</td><td>379</td><td>M4A</td><td>Ogg</td><td>1088</td><td>204</td></tr>
+<tr><td>the-last-of-us-2013</td><td>95</td><td>M4A</td><td>Ogg</td><td>226</td><td>48</td></tr>
+<tr><td>pokemon-ruby-sapphire-music-super-complete</td><td>326</td><td>835</td><td>Ogg</td><td>FLAC</td><td>92</td></tr>
+<tr><td>banjo-kazooie-complete</td><td>1086</td><td>M4A</td><td>Ogg</td><td>2925</td><td>409</td></tr>
+<tr><td>donkey-kong-country-2-1995-snes</td><td>142</td><td>M4A</td><td>Ogg</td><td>296</td><td>59</td></tr>
+<tr><td>super-sentai-ost</td><td>164</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>105</td></tr>
+<tr><td>cyberpunk-2077-original-game-score</td><td>244</td><td>M4A</td><td>Ogg</td><td>727</td><td>91</td></tr>
+<tr><td>donkey-kong-country-tropical-freeze-original-soundtrack</td><td>649</td><td>M4A</td><td>Ogg</td><td>1964</td><td>271</td></tr>
+<tr><td>street-fighter-2-turbo</td><td>118</td><td>M4A</td><td>Ogg</td><td>344</td><td>91</td></tr>
+<tr><td>mega-man-x-snes-gamerip</td><td>94</td><td>M4A</td><td>Ogg</td><td>250</td><td>27</td></tr>
+<tr><td>fortnite-battle-royale-soundtrack</td><td>87</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>35</td></tr>
+<tr><td>legend-of-zelda-the-majora-s-mask-3d-original-sound-track</td><td>231</td><td>M4A</td><td>Ogg</td><td>700</td><td>145</td></tr>
+<tr><td>lord-of-the-rings-the-fellowship-of-the-ring-howard-shore</td><td>65</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>53</td></tr>
+<tr><td>friday-night-funkin-vs.-sonic.exe-ost</td><td>885</td><td>M4A</td><td>Ogg</td><td>3982</td><td>242</td></tr>
+<tr><td>streets-of-rage-remake-ultimate-soundtrack</td><td>1343</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>433</td></tr>
+<tr><td>god-of-war-original-soundtrack</td><td>83</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>41</td></tr>
+<tr><td>tekken-5-tekken-dark-resurrection-original-soundtrack</td><td>390</td><td>M4A</td><td>Ogg</td><td>1018</td><td>106</td></tr>
+<tr><td>need-for-speed-underground-original-soundtrack</td><td>89</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>67</td></tr>
+<tr><td>terraria-complete-soundtrack</td><td>205</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>61</td></tr>
+<tr><td>god-of-war-playstation-soundtrack</td><td>225</td><td>M4A</td><td>Ogg</td><td>416</td><td>56</td></tr>
+<tr><td>kirby-the-crystal-shards</td><td>180</td><td>M4A</td><td>Ogg</td><td>578</td><td>63</td></tr>
+<tr><td>kingdom-hearts-hd-2.5-remix</td><td>792</td><td>M4A</td><td>Ogg</td><td>1629</td><td>193</td></tr>
+<tr><td>friday-night-funkin-back-alley-blitz-vs.-whitty-ost-pc-mod-gamerip</td><td>36</td><td>M4A</td><td>Ogg</td><td>109</td><td>14</td></tr>
+<tr><td>paper-mario-the-origami-king-gamerip</td><td>998</td><td>M4A</td><td>Ogg</td><td>3588</td><td>355</td></tr>
+<tr><td>megaman-2-original-soundtrack</td><td>32</td><td>M4A</td><td>Ogg</td><td>79</td><td>21</td></tr>
+<tr><td>mother-3</td><td>1230</td><td>M4A</td><td>Ogg</td><td>2481</td><td>299</td></tr>
+<tr><td>the-world-ends-with-you-twewy-soundtrack-full-collection</td><td>726</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>222</td></tr>
+<tr><td>friday-night-funkin-gamerip</td><td>178</td><td>M4A</td><td>182</td><td>FLAC</td><td>75</td></tr>
+<tr><td>hotline-miami-2-wrong-number</td><td>378</td><td>M4A</td><td>Ogg</td><td>1536</td><td>147</td></tr>
+<tr><td>luigi-s-mansion-3</td><td>1371</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>445</td></tr>
+<tr><td>mario-kart-ds</td><td>349</td><td>M4A</td><td>Ogg</td><td>1128</td><td>123</td></tr>
+<tr><td>howls-moving-castle-original-soundtrack</td><td>97</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>53</td></tr>
+<tr><td>mario-kart-double-dash</td><td>240</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>108</td></tr>
+<tr><td>red-dead-redemption-2-original-soundtrack</td><td>111</td><td>M4A</td><td>Ogg</td><td>221</td><td>33</td></tr>
+<tr><td>splatoon-2-original-soundtrack</td><td>421</td><td>M4A</td><td>Ogg</td><td>1155</td><td>128</td></tr>
+<tr><td>friday-night-funkin-b-sides-ost-pc-flash-mod</td><td>240</td><td>M4A</td><td>Ogg</td><td>1580</td><td>91</td></tr>
+<tr><td>super-smash-bros.-melee-original-sound-version</td><td>428</td><td>M4A</td><td>Ogg</td><td>827</td><td>117</td></tr>
+<tr><td>kirby-triple-deluxe</td><td>382</td><td>M4A</td><td>Ogg</td><td>891</td><td>112</td></tr>
+<tr><td>plants-vs.-zombies-2</td><td>1257</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>294</td></tr>
+<tr><td>kirby-star-allies-original-soundtrack</td><td>768</td><td>M4A</td><td>Ogg</td><td>2415</td><td>334</td></tr>
+<tr><td>super-mario-64-n64</td><td>128</td><td>M4A</td><td>Ogg</td><td>349</td><td>50</td></tr>
+<tr><td>god-of-war-ii-ost</td><td>93</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>53</td></tr>
+<tr><td>assassin-s-creed-iv-black-flag</td><td>296</td><td>M4A</td><td>Ogg</td><td>1744</td><td>114</td></tr>
+<tr><td>super-smash-bros.-anthology-vol.-02-super-mario</td><td>763</td><td>M4A</td><td>Ogg</td><td>2854</td><td>277</td></tr>
+<tr><td>friday-night-funkin-mid-fight-masses-mod-original-soundtrack</td><td>59</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>22</td></tr>
+<tr><td>rockman-exe-sound-box</td><td>666</td><td>M4A</td><td>Ogg</td><td>2603</td><td>350</td></tr>
+<tr><td>bloodborne-original-soundtrack-2015</td><td>164</td><td>M4A</td><td>Ogg</td><td>2932</td><td>64</td></tr>
+<tr><td>wii-sports-wii</td><td>52</td><td>M4A</td><td>Ogg</td><td>151</td><td>27</td></tr>
+<tr><td>ultimate-marvel-vs.-capcom-the-complete-soundtrack</td><td>520</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>188</td></tr>
+<tr><td>pirates-of-the-caribbean-the-legend-of-jack-sparrow</td><td>171</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>56</td></tr>
+<tr><td>friday-night-funkin-vs.-tricky-mod-gamerip</td><td>46</td><td>M4A</td><td>Ogg</td><td>206</td><td>18</td></tr>
+<tr><td>paper-mario-2-the-thousand-year-door</td><td>386</td><td>M4A</td><td>Ogg</td><td>1191</td><td>186</td></tr>
+<tr><td>super-mario-rpg-original-soundtrack</td><td>203</td><td>M4A</td><td>Ogg</td><td>780</td><td>99</td></tr>
+<tr><td>legend-of-zelda-takt-of-wind-original-sound-tracks</td><td>507</td><td>M4A</td><td>Ogg</td><td>1462</td><td>212</td></tr>
+<tr><td>pokemon-mystery-dungeon-explorers-of-sky</td><td>717</td><td>M4A</td><td>Ogg</td><td>2364</td><td>289</td></tr>
+<tr><td>kirby-planet-robobot-original-soundtrack</td><td>284</td><td>936</td><td>Ogg</td><td>FLAC</td><td>115</td></tr>
+<tr><td>genshin-impact-the-wind-and-the-star-traveler-2020</td><td>51</td><td>M4A</td><td>Ogg</td><td>141</td><td>25</td></tr>
+<tr><td>donkey-kong-country-returns-original-sound-version</td><td>714</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>230</td></tr>
+<tr><td>new-super-mario-brothers</td><td>190</td><td>M4A</td><td>Ogg</td><td>501</td><td>77</td></tr>
+<tr><td>monster-hunter-world-original-soundtrack</td><td>432</td><td>M4A</td><td>Ogg</td><td>1274</td><td>153</td></tr>
+<tr><td>assassin-s-creed-odyssey-original-game-soundtrack</td><td>233</td><td>M4A</td><td>Ogg</td><td>1398</td><td>92</td></tr>
+<tr><td>donkey-kong-country-snes</td><td>102</td><td>M4A</td><td>Ogg</td><td>195</td><td>47</td></tr>
+<tr><td>bully-original-soundtrack</td><td>217</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>117</td></tr>
+<tr><td>lion-king</td><td>32</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>--*</td></tr>
+<tr><td>jojo-s-bizzare-adventure-battle-tendency-musik</td><td>174</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>48</td></tr>
+<tr><td>guilty-gear-xrd-sign</td><td>684</td><td>M4A</td><td>Ogg</td><td>1908</td><td>199</td></tr>
+<tr><td>call-of-duty-black-ops-2</td><td>284</td><td>M4A</td><td>Ogg</td><td>867</td><td>137</td></tr>
+<tr><td>crash-bandicoot-n.-sane-trilogy-complete-soundtrack</td><td>269</td><td>M4A</td><td>Ogg</td><td>892</td><td>103</td></tr>
+<tr><td>mario-kart-7-original-soundtrack</td><td>323</td><td>M4A</td><td>Ogg</td><td>1283</td><td>151</td></tr>
+<tr><td>ryu-ga-gotoku-kiwami-original-soundtrack</td><td>199</td><td>M4A</td><td>Ogg</td><td>1533</td><td>67</td></tr>
+<tr><td>metal-gear-solid-v-original-soundtrack-2015</td><td>295</td><td>M4A</td><td>Ogg</td><td>850</td><td>120</td></tr>
+<tr><td>undertale-yellow-ost</td><td>46</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>24</td></tr>
+<tr><td>god-of-war-3</td><td>113</td><td>362</td><td>Ogg</td><td>FLAC</td><td>40</td></tr>
+<tr><td>shadow-of-the-colossus-ost</td><td>146</td><td>M4A</td><td>Ogg</td><td>2648</td><td>59</td></tr>
+<tr><td>mega-man-x4-psx</td><td>124</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>44</td></tr>
+<tr><td>jojo-s-bizarre-adventure-2nd-season-op</td><td>20</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>6</td></tr>
+<tr><td>persona-q2-new-cinema-labyrinth-original-soundtrack</td><td>438</td><td>1471</td><td>Ogg</td><td>FLAC</td><td>166</td></tr>
+<tr><td>kingdom-hearts-hd-1.5-remix</td><td>461</td><td>M4A</td><td>Ogg</td><td>1060</td><td>131</td></tr>
+<tr><td>tekken-3-playstation-soundtrack-002</td><td>144</td><td>M4A</td><td>Ogg</td><td>522</td><td>59</td></tr>
+<tr><td>splatoon-2-original-soundtrack-octotune-nintendo-switch</td><td>247</td><td>M4A</td><td>Ogg</td><td>805</td><td>114</td></tr>
+<tr><td>half-life-2-official-soundtrack</td><td>142</td><td>M4A</td><td>Ogg</td><td>265</td><td>42</td></tr>
+<tr><td>persona-3-fes-original-soundtrack</td><td>135</td><td>346</td><td>Ogg</td><td>FLAC</td><td>41</td></tr>
+<tr><td>midnight-club-3-dubedition</td><td>267</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>196</td></tr>
+<tr><td>castle-crashers</td><td>106</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>75</td></tr>
+<tr><td>crash-twinsanity-original-soundtrack</td><td>171</td><td>M4A</td><td>Ogg</td><td>567</td><td>64</td></tr>
+<tr><td>yakuza-like-a-dragon-unofficial-original-soundtrack-2020</td><td>827</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>258</td></tr>
+<tr><td>wii-shop-channel-wii</td><td>4</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>2</td></tr>
+<tr><td>donkey-kong-64-game-music</td><td>869</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>265</td></tr>
+<tr><td>dragon-ball-fighterz-original-sound-version</td><td>418</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>205</td></tr>
+<tr><td>pokemon-gold-silver</td><td>211</td><td>M4A</td><td>Ogg</td><td>660</td><td>112</td></tr>
+<tr><td>the-legend-of-zelda-ocarina-of-time</td><td>101</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>65</td></tr>
+<tr><td>xenoblade-chronicles-2-original-soundtrack-type-c</td><td>843</td><td>M4A</td><td>Ogg</td><td>6670</td><td>238</td></tr>
+<tr><td>pokemon-black-and-white-super-music-collection</td><td>533</td><td>565</td><td>Ogg</td><td>FLAC</td><td>171</td></tr>
+<tr><td>hotline-miami</td><td>211</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>76</td></tr>
+<tr><td>new-super-mario-bros.-u</td><td>61</td><td>M4A</td><td>Ogg</td><td>164</td><td>30</td></tr>
+<tr><td>super-danganronpa-2-original-soundtrack</td><td>403</td><td>1368</td><td>Ogg</td><td>FLAC</td><td>143</td></tr>
+<tr><td>my-neighbor-totoro-original-soundtrack</td><td>55</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>--*</td></tr>
+<tr><td>mega-man-x6-psx</td><td>114</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>38</td></tr>
+<tr><td>mario-party-9-soundtrack</td><td>433</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>132</td></tr>
+<tr><td>kingdom-hearts-birth-by-sleep-358-2-days-original-soundtrack</td><td>531</td><td>M4A</td><td>Ogg</td><td>1420</td><td>159</td></tr>
+<tr><td>kirby-super-star</td><td>134</td><td>M4A</td><td>Ogg</td><td>324</td><td>58</td></tr>
+<tr><td>persona-4-golden-the-complete-soundtrack</td><td>587</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>167</td></tr>
+<tr><td>minecraft-nether-update</td><td>36</td><td>M4A</td><td>Ogg</td><td>83</td><td>15</td></tr>
+<tr><td>persona-3-portable-original-soundtrack</td><td>90</td><td>178</td><td>Ogg</td><td>FLAC</td><td>21</td></tr>
+<tr><td>call-of-duty-zombies-chronicles-soundtrack</td><td>297</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>91</td></tr>
+<tr><td>bowser-s-fury-original-soundtrack</td><td>110</td><td>M4A</td><td>Ogg</td><td>411</td><td>44</td></tr>
+<tr><td>doki-doki-literature-club-official-soundtrack</td><td>155</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>55</td></tr>
+<tr><td>stardew-valley</td><td>300</td><td>M4A</td><td>Ogg</td><td>768</td><td>138</td></tr>
+<tr><td>kingdom-hearts-iii-re-mind-soundtrack</td><td>211</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>106</td></tr>
+<tr><td>splatoon-original-soundtrack-splatune</td><td>194</td><td>M4A</td><td>Ogg</td><td>688</td><td>114</td></tr>
+<tr><td>megaman-7-original-soundtrack</td><td>96</td><td>M4A</td><td>Ogg</td><td>283</td><td>46</td></tr>
+<tr><td>tekken-7-soundtrack-plus</td><td>671</td><td>M4A</td><td>Ogg</td><td>1724</td><td>191</td></tr>
+<tr><td>mario-and-luigi-bowser-s-inside-story-ost</td><td>180</td><td>M4A</td><td>Ogg</td><td>609</td><td>67</td></tr>
+<tr><td>world-of-warcraft-soundtrack</td><td>135</td><td>M4A</td><td>Ogg</td><td>403</td><td>70</td></tr>
+<tr><td>ultra-street-fighter-iv-original-soundtrack</td><td>991</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>286</td></tr>
+<tr><td>ragnarok-online-original-soundtrack</td><td>261</td><td>M4A</td><td>Ogg</td><td>754</td><td>Opus</td></tr>
+<tr><td>crash-bandicoot-ps1-soundtrack-collection</td><td>414</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>--*</td></tr>
+<tr><td>paper-mario-color-splash-original-sound-version-mp3</td><td>327</td><td>M4A</td><td>Ogg</td><td>1160</td><td>139</td></tr>
+<tr><td>persona-5-scramble-the-phantom-strikers-trial-version-2020-switch</td><td>230</td><td>M4A</td><td>Ogg</td><td>753</td><td>88</td></tr>
+<tr><td>rockman-x1-6-collection</td><td>1072</td><td>M4A</td><td>Ogg</td><td>2430</td><td>247</td></tr>
+<tr><td>fire-emblem-awakening</td><td>683</td><td>M4A</td><td>Ogg</td><td>1547</td><td>264</td></tr>
+<tr><td>shin-megami-tensei-iv-original-soundtrack</td><td>535</td><td>M4A</td><td>Ogg</td><td>1961</td><td>206</td></tr>
+<tr><td>hyrule-warriors-age-of-calamity-complete-soundtrack</td><td>846</td><td>M4A</td><td>Ogg</td><td>2536</td><td>291</td></tr>
+<tr><td>kidou-senshi-gundam-extreme-vs.-full-boost-premium-g-sound-edition</td><td>656</td><td>M4A</td><td>Ogg</td><td>FLAC</td><td>200</td></tr>
+<tr><td>a-hat-in-time-ost</td><td>593</td><td>M4A</td><td>Ogg</td><td>2141</td><td>233</td></tr>
+<tr><td>street-fighter-ii-the-definitive-soundtrack</td><td>309</td><td>M4A</td><td>Ogg</td><td>1912</td><td>116</td></tr>
+<tr><td>persona-5-strikers-original-soundtrack-2020</td><td>309</td><td>M4A</td><td>Ogg</td><td>1189</td><td>124</td></tr>
+<tr><td>pokemon-firered-leafgreen-music-super-complete</td><td>224</td><td>M4A</td><td>Ogg</td><td>836</td><td>127</td></tr>
+<tr><td>pokemon-red-green-blue-yellow</td><td>108</td><td>M4A</td><td>Ogg</td><td>330</td><td>56</td></tr>
+</table>
+<h4><a name="image_sources"></a>Image sources</h4>
+<ul>
+<li><a href="https://web.archive.org/web/20061110211308im_/http://www.deepdiscountdvd.com/images/rightbar.gif">Deep Discount DVD&rsquo;s old shark</a></li>
+<li><a href="https://www.deepdiscount.com/customers/deepdiscount/img/logo_shadow.svg">Deep Discount&rsquo;s new shark</a></li></ul>
+</td></tr></table>
+</body>
+</html>
