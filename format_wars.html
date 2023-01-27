@@ -118,6 +118,21 @@ img.row {
     opacity: 1;
     transition: 0s;
 }
+summary {
+    font-family: Consolas, monospace;
+    font-weight: Bold;
+    font-size: 22px;
+    background-color: #222222;
+    padding-left: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 4px solid #5E5E5E;
+}
+details[open] > summary {
+    border: 4px dashed #0000FF;
+}
 </style>
 </head>
 <body>
@@ -157,6 +172,8 @@ img.row {
 <a href="#no">No.</a><br />
 <a href="#avif">AVIF</a><br />
 <a href="#hi_i_m_the_jpeg_organization">Hi. I&rsquo;m the JPEG organization.</a><br />
+<a href="#generation_loss">Generation loss</a><br />
+<a href="#fast_fashion">Fast Fashion</a><br />
 <a href="#nature_and_nurture">Nature and nurture</a><br />
 <a href="#but_in_the_end_it_doesn_t_even_matter">But in the end, it doesn&rsquo;t even matter</a><br />
 <a href="#with_malice_aforethought">With malice aforethought</a><br />
@@ -255,6 +272,13 @@ img.row {
 <p><a href="https://www.youtube.com/watch?v=Y6jSKetRBU0">You may remember me from such standards as</a> JPEG, JPEG 2000, JPEG LS, JPEG XR, JPEG XS, JPEG XT... The <a href="https://jpeg.org/">Joint Photographic Experts Group</a> didn&rsquo;t rest on their laurels after developing the JPEG format. They&rsquo;ve developed a variety of formats for use cases that have proven less popular than cat pictures. The least obscure of the bunch is probably JPEG 2000, which has two primary uses. The first is in medical imaging, where it&rsquo;s valued for its superior efficiency in lossless compression compared to PNG. The second is in digital cinema, as the format is capable of high-quality lossless animation. If you&rsquo;ve watched a movie at a theater in the last several years, it was probably a JPEG 2000 image.</p>
 <p>JPEG XL is designed as a successor to JPEG, with the &ldquo;L&rdquo; signifying long-term use. It&rsquo;s often abbreviated to its file extension, JXL (rhymes with &ldquo;pixel,&rdquo; but I usually pronounce it as an initialism). The format&rsquo;s specification includes many features for personal and professional use, from high bit depth support to progressive decoding (showing an image in gradually improving quality as it&rsquo;s downloaded) to tiled decoding (decoding only a certain section of an image, helpful when working with very large images). Not all of the spec&rsquo;s features are implemented yet, but the reference codec has just recently gotten to version 0.8 at the time of writing. Give them some time.</p>
 <p>The format has a lossy mode, a lossless mode, and animation support, with superior efficiency and speed pretty much across the board. While codecs like AVIF are more adept at maintaining better image quality under very high compression, JPEG XL prioritizes performance with high-quality images. One of JPEG XL&rsquo;s most interesting features is lossless JPEG transcoding, which starts with a regular JPEG and creates a JPEG XL image 15-25% smaller than the original, with no quality loss. The process can even be reversed to exactly reproduce the original JPEG file, basically serving as a more efficient way to transfer and store existing JPEGs without any generation loss (changes to the image resulting from resaving it in a new file with lossy compression). This makes it an easy choice for migrating an existing hoard of JPEGs to a new, more efficient format. The new, smaller files can be used as they are, or turned back into JPEGs when needed for a client that doesn&rsquo;t yet support JPEG XL. Apple&rsquo;s HEIC compatibility solution is good, but conversion to JPEG does result in a very slightly different image.</p>
+<h1><a name="generation_loss"></a>Generation loss</h1>
+<p>Sometimes we end up with more than a slight difference, because we&rsquo;ve converted and screenshotted and reposted and rotated and resized it until the slight differences added up to a glitchy mess. There&rsquo;s even a layman&rsquo;s term for it: <a href="https://knowyourmeme.com/memes/moldy-memes">moldy memes</a>. JPEG XL has <a href="https://www.youtube.com/watch?v=w7UDJUCMTng">excellent resistance to generation loss</a>, particularly compared to JPEG, the most common format by a gargantuan margin (even for synthetic content that would be much better suited to a lossless format like PNG). Surreptitiously switching people&rsquo;s photos to a superior format might actually be easier than teaching them how to properly copy files and manage their photo collections. The average consumer isn&rsquo;t <a href="https://en.wikipedia.org/wiki/Ansel_Adams">Ansel Adams</a>, the 20th-century photographer reputed to spend hours waiting for the perfect moment, take one single, perfect photograph, and leave. The average consumer is <a href="https://www.reveddit.com/v/shittyfoodporn/comments/107t7ex/i_got_a_permanent_ban_from_the_food_subreddit_for/j3qhjeb/?context=3">a teenager who takes several photos at a time and takes screenshots of the photo gallery for easier sharing because that app has incomplete sharing options</a> (backup <a href="https://web.archive.org/web/20230127071645/https://www.reveddit.com/v/shittyfoodporn/comments/107t7ex/i_got_a_permanent_ban_from_the_food_subreddit_for/j3qhjeb/?context=3">on archive.org in case the original gets deleted</a>, and how about <a href="images/reddit_107t7ex.webp">a photo backup</a> because I&rsquo;m paranoid).</p>
+<p>The result is over 30,000 images, around a quarter of which are screenshots, with up to a hundred nearly-identical versions of the same photo. The fault here lies not with the user, but with the systems that were provided. A gallery app should allow users to share photos to any app, not just messaging apps. As far as taking multiple photos where one would suffice, people have been doing that since the rise of cheap digital photography, so it shouldn&rsquo;t be an unexpected use case. For a quick solution off the top of my head, how about a photo capture mode that prompts the user to snap multiple photos and then asks them to select the best one, discarding the rest. Whatever the case may be, these systems have to be designed around what users actually want to do and the way they want to do it. It&rsquo;s a simple rule: <a href="https://peps.python.org/pep-0020/">&ldquo;practicality beats purity.&rdquo;</a></p>
+<h1><a name="fast_fashion"></a>Fast Fashion</h1>
+<p>The design intent of long-term use also bears further examination: JPEG XL is not meant to merely supplement JPEG, but to replace it entirely, hence its combination of backward compatibility and forward thinking. Its superior efficiency, while excellent, isn&rsquo;t enough for a long-term JPEG replacement &ndash; it also has new functionality to better deal with modern image-processing needs.</p>
+<p>Sadly, this sets it apart from the video landscape, which is littered with flash-in-the-pan formats and codecs that aren&rsquo;t even mature, much less in widespread use, before being discarded in favor of a younger, more attractive codec. For video, this is particularly deleterious, as its complexity and corresponding file sizes are vastly larger than those of other media, making migration a serious effort not to be undertaken lightly. And yet, new ones pop up every few years promising better quality and compression. If I tried to embrace every new video codec, I&rsquo;d barely finish reencoding my library before the next one reared its head. It&rsquo;s almost worse than the trend for fast fashion, meaning clothes that are meant to be worn a few times and then discarded because they&rsquo;re no longer in style. We can barely give them away anymore; <a href="https://www.huffpost.com/entry/these-african-countries-dont-want-your-used-clothing-anymore_n_57cf19bce4b06a74c9f10dd6">some African countries are even considering banning the importation of used clothing</a>.</p>
+<p>In the same vein, <a href="https://www.androidauthority.com/qualcomm-av1-encoding-3271556">an article published just yesterday</a> features an interview with a Qualcomm representative who suggested that they might just skip AV1 encoding (for recording videos) and wait for <a href="https://en.wikipedia.org/wiki/Versatile_Video_Coding">Versatile Video Coding, or VVC</a>, a codec whose specifications were only finalized a few years ago. Given the massive encoding complexity of all these new video codecs juxtaposed with the necessity for real-time speed, recording directly with one of these codecs seems in my eyes to be barking up the wrong tree. Does recording in HEVC rather than AVC produce smaller files? Yes. Are they smaller than converted files that were encoded without time constraints? Absolutely not. There&rsquo;s no dire need for alternative options for recording videos; we can already do that just fine. If we want to save space, the logical route at this time is to shoot videos with extreme bit rates for the highest possible quality, and then compress them afterwards. Call the original a &ldquo;preview&rdquo; to prevent people from getting attached to it, then process it over time and discard the original. Videos can be processed during idle periods, only while the phone is plugged in, at partial CPU loads, and so on. I&rsquo;m sure that industry professionals could find a way to make this work and normalize it. It&rsquo;s easier than designing new hardware, anyway.</p>
 <h1><a name="nature_and_nurture"></a>Nature and nurture</h1>
 <p><a href="#no">Here&rsquo;s the later when we come back to more.</a> In an ironic twist, JPEG XL has managed to be the only modern image format that&rsquo;s actually designed from the ground up <em>as an image format</em>. WebP is based on the VP8 video codec, WebP&rsquo;s intended successor WebP2 was to be based on VP8&rsquo;s intended successor VP9, HEIC is based on the HEVC video codec, and AVIF is based on the AV1 video codec. They masquerade as image formats by limiting themselves to what&rsquo;s called an &ldquo;intraframe,&rdquo; as opposed to &ldquo;interframe.&rdquo; &ldquo;Intra&rdquo; means within, and &ldquo;inter&rdquo; means between, as in e.g. the global Internet vs a company&rsquo;s local intranet. The meat behind a video codec&rsquo;s ability to compress a video stream is that digital video doesn&rsquo;t exist as a simple series of individual pictures, like an old film reel. Instead of compressing each frame independently, video codecs look for <em>differences</em> between frames. A sitcom with a few characters moving around a static set will result in many frames in a row that show the same scenery and props in the same place. The codec can draw that part once and then just leave it alone until it finally changes, devoting the saved bandwidth to describing the people&rsquo;s movements instead.</p>
 <p>An intraframe, also known as a keyframe, is a frame in a video that actually does contain the whole picture rather than relying on surrounding frames. They&rsquo;re generally placed at scene changes or at regular intervals of five to ten seconds. An interframe is one of those efficient frames that&rsquo;s compressed based on changes between frames. Thus, an image in one of these video-derived image codecs is basically just a video consisting of a single keyframe. As you might guess, the video-derived image codecs have some convenient optimizations available for adding animation to such an &ldquo;image,&rdquo; although it&rsquo;s generally better to just make an actual video.</p>
@@ -282,27 +306,29 @@ img.row {
 </td></tr>
 <tr height="300"></tr>
 <tr><td><h3><a name="appendices"></a>Appendices</h3>
-<h4><a name="compressing_on_your_android_phone"></a>Compressing on your Android phone</h4>
-<p>You&rsquo;ll need to download <a href="https://termux.dev/en/">Termux</a> and grant it permission to install on your device. You can then enter commands to install various packages, like <code>pkg install ffmpeg</code> for FFmpeg, <code>pkg install opus-tools</code> for the standalone Opus tools, and <code>pkg install libjxl-progs</code> for the standalone JPEG XL tools. I also like <code>pkg install python</code> so I can use Python, <code>pkg install youtube-dl</code> for a versatile video downloader (works with more than just YouTube), and <code>pkg install p7zip</code> for a powerful command-line archive tool that allows you to combine files into a single archive, split a large file into multiple pieces, add password protection, and more.</p>
-<h4><a name="compressing_audio"></a>Compressing audio</h4>
+<details><summary><a name="compressing_on_your_android_phone"></a>Compressing on your Android phone</summary><br />
+<p>You&rsquo;ll need to download <a href="https://termux.dev/en/">Termux</a> and grant it permission to install on your device. You can then enter commands to install various packages, like <code>pkg install ffmpeg</code> for FFmpeg, <code>pkg install opus-tools</code> for the standalone Opus tools, and <code>pkg install libjxl-progs</code> for the standalone JPEG XL tools. I also like <code>pkg install python</code> so I can use Python, <code>pkg install youtube-dl</code> for a versatile video downloader (works with more than just YouTube), and <code>pkg install p7zip</code> for a powerful command-line archive tool that allows you to combine files into a single archive, split a large file into multiple pieces, add password protection, and more.</p></details>
+<details><summary><a name="compressing_audio"></a>Compressing audio</summary><br />
 You can produce Opus audio at a variable bit rate targeting an average of 96 kbps with <a href="https://ffmpeg.org/">FFmpeg</a>:</p>
 <p><code>ffmpeg -hide_banner -i my_input_file.mp3 -b:a 96k my_output_file.opus</code></p>
 <p>Or with <a href="https://opus-codec.org/">the Opus reference encoder</a>, which provides several convenient options such as <code>--discard-pictures</code> to remove attached images from metadata:</p>
-<p><code>opusenc --bitrate 96k my_input_file.mp3 my_output_file.opus</code></p>
-<h4><a name="compressing_dvd_video"></a>Compressing DVD video</h4>
+<p><code>opusenc --bitrate 96k my_input_file.mp3 my_output_file.opus</code></p></details>
+<details><summary><a name="compressing_dvd_video"></a>Compressing DVD video</summary><br />
 <p>Here&rsquo;s how to compress a DVD, which generally means a VOB file containing a 720 by 480 MPEG-2 video. I use AVC for this because MPEG-2 is a lossy codec that&rsquo;s rather noisy even at a constant 10 Mbps and modern codecs really struggle with that for some reason compared to AVC. The PowerShell command:</p>
 <pre>ffmpeg -hide_banner -i .\inp.vob -vsync vfr `
     -enc_time_base -1 -c:v libx264 -crf 22 -tune film `
     -filter:v "yadif,scale=640:480" -c:a libopus `
     -b:a 64k -strict 2 output.mp4</pre>
-<p>The <code>-vsync vfr</code> option allows FFmpeg to properly handle variable frame timings rather than forcing a constant frame rate by duplicating or dropping frames, <code>-enc_time_base -1</code> attempts to ensure consistent time codes, <code>libx264</code> is the technical term for FFmpeg&rsquo;s AVC encoder, <code>-crf 22</code> is a good efficiency compromise that yields excellent visual quality and good file size savings (you can go down to 15 for better quality or up to 30 or so for smaller files), <code>yadif</code> is &ldquo;yet another deinterlacing filter&rdquo; (for those old DVDs that use interlaced video instead of progressive video), and <code>-strict 2</code> allows you to use Opus in an MP4 container. <code>-tune film</code> is one option that you need to keep an eye on, as this setting is only intended for film (live action). For animated content like cartoons, use <code>-tune animation</code> instead. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p>
-<h4><a name="compressing_modern_video_on_android"></a>Compressing modern video on Android</h4>
+<p>The <code>-vsync vfr</code> option allows FFmpeg to properly handle variable frame timings rather than forcing a constant frame rate by duplicating or dropping frames, <code>-enc_time_base -1</code> attempts to ensure consistent time codes, <code>libx264</code> is the technical term for FFmpeg&rsquo;s AVC encoder, <code>-crf 22</code> is a good efficiency compromise that yields excellent visual quality and good file size savings (you can go down to 15 for better quality or up to 30 or so for smaller files), <code>yadif</code> is &ldquo;yet another deinterlacing filter&rdquo; (for those old DVDs that use interlaced video instead of progressive video), and <code>-strict 2</code> allows you to use Opus in an MP4 container. <code>-tune film</code> is one option that you need to keep an eye on, as this setting is only intended for film (live action). For animated content like cartoons, use <code>-tune animation</code> instead. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p></details>
+<details><summary><a name="compressing_modern_video_on_android"></a>Compressing modern video on Android</summary><br />
 <p>If you&rsquo;re starting with a high-quality source rather than DVDs, you can use a more modern codec.</p>
 <p>On Linux environments, such as the Termux terminal emulator for Android, I have saved the following script, with a file name of <code>shrink_video.sh</code>:</p>
-<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 -b:v 0 -crf 40 -quality good \
-    -speed 1 -an pass 1 -f webm /dev/null
-ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good \
-    -speed 1 -c:a libopus -b:a 96k -pass 2 "${1%.*}.webm"</pre>
+<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 \
+    -b:v 0 -crf 40 -quality good -speed 1 -an \
+    pass 1 -f webm /dev/null
+ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 \
+    -crf 40 -quality good -speed 1 -c:a libopus \
+    -b:a 96k -pass 2 "${1%.*}.webm"</pre>
 <p>Invoke this with a simple <code>bash shrink_video my_video.mp4</code> to (eventually) produce <code>my_video.webm</code>. Note that the backslash character <code>\</code> is used in bash to split a command and continue it on the next line, used here for formatting purposes.</p>
 <p>And here&rsquo;s an explanation of a few of those options, adapted from <a href="https://developers.google.com/media/vp9/settings/vod">Google&rsquo;s VP9 encoding guide</a>:</p>
 <table border="1"><tr><td><code>-i "$1"</code></td><td>Use as input the file name you provided. The quotes ensure that file names with spaces are handled properly.</td></tr>
@@ -318,29 +344,31 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good \
 <tr><td><code>-c:a libopus</code></td><td>Use the Opus audio codec.</td></tr>
 <tr><td><code>-b:a 96k</code></td><td>Encode audio at 96 kbps, offering excellent quality and efficiency.</td></tr>
 <tr><td><code>"${1%.*}.webm"</code></td><td>The name of the new file, which replaces the old extension with <code>webm</code>. Note that if you&rsquo;re already starting with a WebM file, or if you have multiple files whose names differ only in their extensions, you&rsquo;ll need to be careful with this and possibly change it to suit your needs.</td></tr>
-</table>
-<h4><a name="compressing_modern_video_on_windows"></a>Compressing modern video on Windows</h4>
+</table></details>
+<details><summary><a name="compressing_modern_video_on_windows"></a>Compressing modern video on Windows</summary><br />
 <p>On Windows, you can use the PowerShell terminal emulator. The command has a few differences that set it apart from the Linux version. I tend to just paste this into the terminal rather than saving a script.</p>
-<p><pre>ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 -crf 40 `
-    -quality good -speed 1 -an -pass 1 -f null NUL; `
-    if ($?) { ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 `
-    -crf 40 -quality good -speed 1 -c:a copy -pass 2 my_video.webm }</pre></p>
-<p>And here&rsquo;s the explanation.</p>
+<p><pre>ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 `
+    -crf 40 -quality good -speed 1 -an -pass 1 -f null NUL; `
+    if ($?) { ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 `
+    -b:v 0 -crf 40 -quality good -speed 1 -c:a copy -pass 2 `
+    my_video.webm }</pre></p>
+<p>And here&rsquo;s the explanation (see <a href="#compressing_modern_video_on_android">Compressing modern video on Android</a> above for the options not covered below).</p>
 <table border="1"><tr><td><code>-f null NUL</code></td><td>Store the log output of the first pass without actually creating a new file.</td></tr>
-<tr><td><code>if ($?) { ... }</code></td><td>Only execute the command in curly braces, which is the second pass, if the previous command, which is the first pass, was successful. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</td></tr>
+<tr><td><code>if ($?) { ... }</code></td><td>Only execute the command in curly braces, which is the second pass, if the previous command, which is the first pass, was successful.</td></tr>
 </table>
-<h4><a name="compressing_images_to_jpeg_xl"></a>Compressing images to JPEG XL</h4>
+<p>Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p></details>
+<details><summary><a name="compressing_images_to_jpeg_xl"></a>Compressing images to JPEG XL</summary><br />
 <p>For JPEG XL, I recommend <a href="https://github.com/libjxl/libjxl">libjxl</a>, the official reference implementation. You can find binary executables (software that&rsquo;s ready to use right out of the box) <a href="https://artifacts.lucaversari.it/libjxl/libjxl/latest/">here</a>. There are many options, but the following are the most common:</p>
 <ul><li><code>-d 0-25</code> for distance, meaning how much compression you want. <code>-d 0</code> is lossless, <code>-d 1</code> is visually lossless, and higher numbers offer greater compression. I tend to stick to 0 and 1, and you probably won&rsquo;t want to use anything past 3. Note that it doesn&rsquo;t have to be a whole number.</li>
 <li><code>-e 0-9</code> for effort, meaning how many algorithms to use and to what level of detail they should run. This is basically how hard it should try to compress the file, with the primary tradeoff being encoding time rather than drastic quality differences (although there is an effect on quality in some cases). See the discussion <a href="https://www.reddit.com/r/jpegxl/comments/10157np/analysis_of_effort_settings/">in this thread</a> for an explanation of what each setting does, directly from Jon Sneyers. The default setting of 7 works well.</li>
 <li><code>-j 0|1</code> specifies whether JPEG input should be compressed with a lossless transcode. If you don&rsquo;t use this option, the default behavior is to perform a lossless transcode when JPEG input is detected, and also notify you when that occurs. A value of 0 will treat JPEGs as any other image, useful for when you want to try higher compression or other settings. A value of 1 will perform a lossless transcode when JPEG input is detected, and not notify you when that occurs.</li>
-<li><code>-p</code> enables progressive decoding, which can improve the user experience on slow network connections by displaying an image whose quality gradually improves as it receives more data. In my testing, this option had a tendency to increase file sizes considerably. I don&rsquo;t know whether this is expected behavior, an issue that will be resolved in future versions, or a mistake I&rsquo;m making somewhere.</li></ul>
-<h4><a name="compressing_images_to_webp"></a>Compressing images to WebP</h4>
+<li><code>-p</code> enables progressive decoding, which can improve the user experience on slow network connections by displaying an image whose quality gradually improves as it receives more data. In my testing, this option had a tendency to increase file sizes considerably. I don&rsquo;t know whether this is expected behavior, an issue that will be resolved in future versions, or a mistake I&rsquo;m making somewhere.</li></ul></details>
+<details><summary><a name="compressing_images_to_webp"></a>Compressing images to WebP</summary><br />
 <p>WebP images can be encoded with <a href="https://developers.google.com/speed/webp/docs/using">libwebp, Google&rsquo;s reference encoder</a>, or FFmpeg. I highly advise using the former rather than the latter, because the default behavior is to discard all metadata including important color information, and I have yet to discover how to resolve that in FFmpeg. The <code>-o</code> option in cwebp specifies the output file (c.f. FFmpeg in which you specify the input file with the <code>-i</code> option). The <code>-metadata icc</code> option tells cwebp to preserve color profile metadata, which is kind of important if you want the image to look right.</p>
 <p>Lossy: <code>cwebp -metadata icc my_image.jpg -o my_image.webp</code></p>
 <p>Lossless: <code>cwebp -metadata icc -lossless 1 my_image.png -o my_image.webp</code></p>
-<p>Note that animated WebP images have better compression than equivalent GIFs and work well in a browser, but I&rsquo;m aware of no tools &ndash; not even Google&rsquo;s reference software &ndash; that can read in an animated WebP image for conversion into different formats or other processing.</p>
-<h4><a name="compressing_images_to_avif"></a>Compressing images to AVIF</h4>
+<p>Note that animated WebP images have better compression than equivalent GIFs and work well in a browser, but I&rsquo;m aware of no tools &ndash; not even Google&rsquo;s reference software &ndash; that can read in an animated WebP image for conversion into different formats or other processing.</p></details>
+<details><summary><a name="compressing_images_to_avif"></a>Compressing images to AVIF</summary><br />
 <p>For AVIF, you&rsquo;ll want something with the SVT encoder, which generally means FFmpeg on an x86 or x64 architecture (regular computer, not mobile devices or Apple Silicon). The alternatives to SVT are, as I&rsquo;ve said before, unusably slow. My horrible concoction of a PowerShell script to convert all PNG images in a folder that catches odd dimensions and retries with even dimensions is as follows:</p>
 <pre>foreach ($f in Get-ChildItem *.png) {
     ffmpeg -hide_banner -i $f -c libsvtav1 -crf 5 `
@@ -358,8 +386,8 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good \
         -filter:v scale=iw+1:ih+1 ($f.BaseName + '_crf5.avif')
     }<br />
 }</pre>
-<p>It&rsquo;ll first attempt to simply convert the image (at a CRF of 5, which is a much lower value than used in video, because a still image needs higher quality &ndash; I&rsquo;ve gotten usable results with values up to 20 or so). If that fails, it rescales the image to be one pixel taller, then tries again. If that fails, it tries one pixel wider instead. If that fails as well, it tries both one pixel taller and wider. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p>
-<h4><a name="soundtrack_comparison"></a>Soundtrack comparison</h4>
+<p>It&rsquo;ll first attempt to simply convert the image (at a CRF of 5, which is a much lower value than used in video, because a still image needs higher quality &ndash; I&rsquo;ve gotten usable results with values up to 20 or so). If that fails, it rescales the image to be one pixel taller, then tries again. If that fails, it tries one pixel wider instead. If that fails as well, it tries both one pixel taller and wider. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p></details>
+<details><summary><a name="soundtrack_comparison"></a>Soundtrack comparison</h4></summary><br />
 <p>In the following table, the first column is the identifying name of the album. For example, <a href="https://downloads.khinsider.com/game-soundtracks/album/minecraft">https://downloads.khinsider.com/game-soundtracks/album/minecraft</a> would be <code>minecraft</code>. The next columns are album sizes in MP3, M4A, Ogg, and FLAC formats, as available, in megabytes (if that format wasn&rsquo;t available, I&rsquo;ve simply left its label in the cell). The last column is the size of the album in Opus format. Items with an asterisk * had low-quality original files, so my 96 kbps encodings may have ended up larger, if I bothered with that album at all. N.B.: I am well aware that there are actually 201 albums in the following table.</p>
 <table border="1" cellpadding="3"><tr><td><strong>Title</strong></td><td><strong>MP3</strong></td>
 <td><strong>M4A</strong></td><td><strong>Ogg</strong></td><td><strong>FLAC</strong></td><td><strong>Opus</strong></td></tr>
@@ -563,11 +591,11 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good \
 <tr><td>persona-5-strikers-original-soundtrack-2020</td><td>309</td><td>M4A</td><td>Ogg</td><td>1189</td><td>124</td></tr>
 <tr><td>pokemon-firered-leafgreen-music-super-complete</td><td>224</td><td>M4A</td><td>Ogg</td><td>836</td><td>127</td></tr>
 <tr><td>pokemon-red-green-blue-yellow</td><td>108</td><td>M4A</td><td>Ogg</td><td>330</td><td>56</td></tr>
-</table>
-<h4><a name="image_sources"></a>Image sources</h4>
+</table></details>
+<details><summary><a name="image_sources"></a>Image sources</h4></summary><br />
 <ul>
 <li><a href="https://web.archive.org/web/20061110211308im_/http://www.deepdiscountdvd.com/images/rightbar.gif">Deep Discount DVD&rsquo;s old shark</a></li>
-<li><a href="https://www.deepdiscount.com/customers/deepdiscount/img/logo_shadow.svg">Deep Discount&rsquo;s new shark</a></li></ul>
+<li><a href="https://www.deepdiscount.com/customers/deepdiscount/img/logo_shadow.svg">Deep Discount&rsquo;s new shark</a></li></ul></details>
 </td></tr></table>
 </body>
 </html>
