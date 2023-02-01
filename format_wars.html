@@ -30,7 +30,7 @@ pre {
     padding-left: 0.25em;
     padding-right: 0.25em;
     border-radius: 0.25em;
-    max-width: 600px;
+    max-width: 800px;
 }
 body {
     color: white;
@@ -148,7 +148,7 @@ details[open] > summary {
   <a href="https://www.paypal.me/TigerhawkT3" class="button"><span>Donate</span></a>
 </div></td></tr></table>
 <computer>Format Wars</computer>
-<table width=600 align=center>
+<table width=800 align=center>
 <tr height=50px></tr>
 <tr><td>
 <h2>Table of Contents</h2>
@@ -206,7 +206,7 @@ details[open] > summary {
 <p>Actually, upon further research via <a href="https://www.archive.org">The Internet Archive</a>, I&rsquo;m partly wrong. Deep Discount DVD no longer exists, because they became <a href="https://www.deepdiscount.com/">Deep Discount</a> when they started offering other products like books and clothing. Fortunately, I was right about the shark:</p>
 <a href="images/shark_old.webp"><img src="images/shark_old.gif"/></a>
 <p>That logo is no longer in use, but it&rsquo;s still a shark!</p>
-<a href="images/shark_new.svg"><img src="images/shark_new.svg" width="600" /></a>
+<a href="images/shark_new.svg"><img src="images/shark_new.svg" width="800" /></a>
 <p>Ah, nostalgia.</p>
 <p>Anyway, those rips are low-resolution (480 by 320, twice the width and height of YouTube&rsquo;s lowest available resolution), filled with motion artifacting, and with a tendency for audio sync to drift over time due to frame rates or something. To translate into plain English for non-technical users who probably aren&rsquo;t reading this article, they&rsquo;re fuzzy, they occasionally have weird glitches in some areas, and sounds happen further and further away from their visuals as the episode or movie progresses. To top it all off, the files are really large, comparable with modern HD video. That was the best we could do with good old DivX 3.11a, and it sufficed for me. Whenever I wanted to watch those videos, I could just push a few buttons on my computer without having to pull out any DVDs, which also minimized opportunities to scratch the discs. This format was also compatible with the superlatively excellent <a href="https://www.trustedreviews.com/reviews/cowon-a2-30gb-portable-multimedia-player">Cowon A2</a>, a portable media player from the mid-aughts which I still have to this day. This meant that I could watch my DVDs anywhere I wanted, quite a treat for long flights.</p>
 <p>It&rsquo;s worth mentioning the audio as well as the video. The audio, fortunately, wasn&rsquo;t nearly as ugly. The MP3 codec can take uncompressed CD-quality music and squeeze it down (with some data loss, like JPEG) as much as you want &ndash; a fifth of its original size while maintaining very good quality, a tenth of its original size while maintaining decent quality, even a twentieth of its original size at a quality that&rsquo;s mediocre at best but still usable, especially for less complex audio like speech. This is done by specifying a target <em>bit rate</em>, simply how many bits of data are used for a given duration of content (almost always one second), usually expressed these days with <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI prefixes</a> like kbps for kilobits per second so that the numbers don&rsquo;t get too unwieldy. Note that these are bits, not bytes, meaning just the smallest unit of binary information, which can take a value of 0 or 1. A byte is a group of eight bits, so you&rsquo;ll need to keep this in mind if you&rsquo;re working with both. One second of audio at 80 kilobits per second would thus have a file size of 10 kilobytes. This particular value is pretty low quality with the MP3 codec. The most commonly used bit rate is 128 kbps. People willing to sacrifice storage space for better quality might use 256 kbps or even more. Most devices can handle up to 320 kbps, and the format theoretically allows up to 640 kbps, but there are codecs with lossless compression algorithms (expressing data more compactly without discarding any of it) that can achieve lower bit rates than that anyway, so there&rsquo;s not much point. The most common lossless audio format and codec these days is the <a href="https://en.wikipedia.org/wiki/FLAC">Free Lossless Audio Codec, FLAC</a>.</p>
@@ -228,9 +228,9 @@ details[open] > summary {
 <p><a href="https://xkcd.com/927/">Standards suffer from dilution.</a> Attempts to unify and simply a situation end up adding to the complexity without removing anything. This isn&rsquo;t unique to programming, computers, or even technology: <a href="https://en.wikipedia.org/wiki/Esperanto">Esperanto</a> is a language initially created by a single designer in the late 1800s, L. L. Zamenhof. The goal was to allow Europe&rsquo;s disparate cultural blocs to communicate in a single common language. There was just one problem: everyone already spoke a language, so Esperanto would mean a second language, and all those people would have to agree on it. In direct opposition to Zamenhof&rsquo;s intentions, the world simply got yet another language. Today, it enjoys a small but enthusiastic following, albeit more as a novelty or curiosity than a practical communication tool. Learning a new language is hard, and most people won&rsquo;t bother with one that doesn&rsquo;t offer real-world opportunities for use.</p>
 <h1><a name="ay_there_s_the_rub"></a>Ay, there&rsquo;s the rub</h1>
 <p>It&rsquo;s a simple rub. Which option should we choose, and why? Formats and codecs are saturated far past the point of having the right tool for the job, like PNG images for synthetic content such as screenshots or JPG images for photographic content. There are multiple candidates vying for the exact same use cases, especially with video, where most features employed by any given codec are intended to make it look better while taking up less space. As long as it can be decoded at 1x or greater for playback on a significant enough fraction of devices, speed is barely an afterthought. The AV1 codec, like most codecs, has a reference implementation developed by its core designers (<a href="https://en.wikipedia.org/wiki/Alliance_for_Open_Media">AOM, the Alliance for Open Media</a>). Unlike most codecs, that reference implementation generally manages to encode video in approximately one one-thousandth of realtime. Yes, AOM&rsquo;s AV1 encoder can take over 15 minutes for a clip just one second long, with a typical resolution and frame rate. Now consider how many seconds are in a movie. Or, more directly, go back to that factor of a thousand: a 90-minute feature-length film will tie up a machine for about 1500 hours, or two months. Fortunately, Intel has collaborated with Netflix to develop their own open-source implementation (<a href="https://en.wikipedia.org/wiki/AV1#Software_implementations">SVT-AV1</a>) that&rsquo;s an order of magnitude faster. That&rsquo;s right: you can now encode a movie at home in a mere week or so! Amazing! This is much better than the couple hours or so it took in 2006:</p>
-<a href="images/ripstudio.webp"><img src="images/ripstudio.webp" width="600" /></a>
+<a href="images/ripstudio.webp"><img src="images/ripstudio.webp" width="800" /></a>
 <p>And, oh, how we used to suffer in 2011 when we got less than an hour to savor the encoding process!</p>
-<a href="images/flasknow2.webp"><img src="images/flasknow2.webp" width="600" /></a>
+<a href="images/flasknow2.webp"><img src="images/flasknow2.webp" width="800" /></a>
 <p>This is definitely what progress looks like for everyday consumers without access to giant server farms. <a href="https://www.youtube.com/watch?v=JcOfFeKXcd4">Winning the format wars!</a></p>
 <h1><a name="it_s_not_for_you"></a>It&rsquo;s not <em>for</em> you</h1>
 <p>Video codec development has, over the past decade or two, gradually swung from enthusiasts and hobbyists to industry titans. Netflix has the resources to encode their content in AV1 so they can save on storage and bandwidth. You don&rsquo;t. <a href="https://www.penny-arcade.com/comic/2004/03/24/the-adventures-of-twisp-and-catsby">It&rsquo;s not <em>for</em> you.</a> Even YouTube doesn&rsquo;t have the resources to encode every video to AV1 &ndash; for now, only the really popular videos merit that kind of effort. If you want to make practical use of modern video codecs beyond just consuming content, you&rsquo;ll need one of several specific modern graphics cards and a good deal of tweaking that lets you move the workload from the CPU to the GPU, which is more specialized but also much more powerful. Video encoding is an increasingly daunting task for the home user... and increasingly vital.</p>
@@ -289,7 +289,7 @@ details[open] > summary {
 <p>Uploading a still image to Reddit is even less consistent. PNG images are maintained in their original format, JPEG images are <em>sometimes</em> maintained in their original format but also sometimes converted to WebP for previews, and WebP images are converted to rather low-quality JPEGs (with the exact same file size as the original WebP, in my experience). Even lossless WebP images fall victim to this mangling. It&rsquo;s anyone&rsquo;s guess as to why Reddit devs didn&rsquo;t simply choose a preferred format and leave user uploads unchanged if they already match that format. Seriously, I have no idea why they do it this way. It makes no sense.</p>
 <h1><a name="with_malice_aforethought"></a>With malice aforethought</h1>
 <p>Oh, how I yearn for those halcyon times when a corporate media format decision didn&rsquo;t make sense. It&rsquo;s <a href="https://comb.io/G8zk6a">immediately obvious</a> why Discord offers the following audio options. Just look.</p>
-<a href="images/discord_boost.webp"><img src="images/discord_boost.webp" width="600" /></a>
+<a href="images/discord_boost.webp"><img src="images/discord_boost.webp" width="800" /></a>
 <p>That&rsquo;s a lossless WebP image, by the way. The <a href="images/discord_boost.png">original PNG saved in Microsoft Paint</a> was 148 KB, the <a href="images/discord_boost_ffmpeg.png">PNG saved with FFmpeg&rsquo;s PNG encoder</a> was 105 KB, the <a href="images/discord_boost.jxl">JPEG XL saved at default settings</a> was 90 KB, the <a href="images/discord_boost.webp">WebP shown above</a> is 84 KB, and the <a href="images/discord_boost_e9.jxl">JPEG XL saved at the maximum compression effort setting</a> was 73 KB. It would&rsquo;ve been nice to go with the most efficient one, but the best I could do with reasonable confidence that it would actually display in your browser was WebP, because you lost the format wars.</p>
 <p>This image is from a screenshot my sister sent to me when debating whether she ought to support Discord and a server she participates in with a &ldquo;boost,&rdquo; which is a euphemism for money. At least it&rsquo;s not &ldquo;loyalty,&rdquo; I suppose. Note one of the features listed as a perk: audio quality. Discord uses Opus for its audio, and the default bit rate for a free-tier server with no boosts is 64 kbps. That&rsquo;s unlikely to be totally transparent (indistinguishable from the original in listening tests) for typical music, but it&rsquo;s still quite good, <a href="https://hydrogenaud.io/index.php?topic=118129.0">more or less on par with MP3 at its de facto default bit rate of 128 kbps</a>. For content that will primarily consist of speech, recorded with low-quality equipment in rooms with no acoustical considerations, it&rsquo;s more than enough. If it&rsquo;s not, administrators of free-tier servers can choose to increase the bit rate above the default, up to 96 kbps. Opus hits transparency for most content at that point. Discord&rsquo;s &ldquo;level 1 perk&rdquo; for audio quality is 128 kbps, which is more or less the useful limit for two-channel (stereo) audio <a href="https://hydrogenaud.io/index.php/topic,114656.0.html">barring rare exceptions of complex material like harpsichord music</a>.</p>
 <p>Level 2 allows 256 kbps. Level 3? 384 kbps. Boost now! You need this! Transact money posthaste!</p>
@@ -315,20 +315,21 @@ You can produce Opus audio at a variable bit rate targeting an average of 96 kbp
 <p><code>opusenc --bitrate 96k my_input_file.mp3 my_output_file.opus</code></p></details>
 <details><summary><a name="compressing_dvd_video"></a>Compressing DVD video</summary><br />
 <p>Here&rsquo;s how to compress a DVD, which generally means a VOB file containing a 720 by 480 MPEG-2 video. I use AVC for this because MPEG-2 is a lossy codec that&rsquo;s rather noisy even at a constant 10 Mbps and modern codecs really struggle with that for some reason compared to AVC. The PowerShell command:</p>
-<pre>ffmpeg -hide_banner -i .\inp.vob -vsync vfr `
-    -enc_time_base -1 -c:v libx264 -crf 22 -tune film `
-    -filter:v "yadif,scale=640:480" -c:a libopus `
-    -b:a 64k -strict 2 output.mp4</pre>
-<p>The <code>-vsync vfr</code> option allows FFmpeg to properly handle variable frame timings rather than forcing a constant frame rate by duplicating or dropping frames, <code>-enc_time_base -1</code> attempts to ensure consistent time codes, <code>libx264</code> is the technical term for FFmpeg&rsquo;s AVC encoder, <code>-crf 22</code> is a good efficiency compromise that yields excellent visual quality and good file size savings (you can go down to 15 for better quality or up to 30 or so for smaller files), <code>yadif</code> is &ldquo;yet another deinterlacing filter&rdquo; (for those old DVDs that use interlaced video instead of progressive video), and <code>-strict 2</code> allows you to use Opus in an MP4 container. <code>-tune film</code> is one option that you need to keep an eye on, as this setting is only intended for film (live action). For animated content like cartoons, use <code>-tune animation</code> instead. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p></details>
+<pre>ffmpeg -hide_banner -i .\inp.vob -fps_mode vfr -enc_time_base -1 -c:v libx264 `
+    -crf 22 -tune film -filter:v "yadif,scale=640:480" -c:a libopus -b:a 64k `
+    -strict 2 output.mp4</pre>
+<p>The <code>-fps_mode vfr</code> option allows FFmpeg to properly handle variable frame timings rather than forcing a constant frame rate by duplicating or dropping frames, <code>-enc_time_base -1</code> attempts to ensure consistent time codes, <code>libx264</code> is the technical term for FFmpeg&rsquo;s AVC encoder, <code>-crf 22</code> is a good efficiency compromise that yields excellent visual quality and good file size savings (you can go down to 15 for better quality or up to 30 or so for smaller files), <code>yadif</code> is &ldquo;yet another deinterlacing filter&rdquo; (for those old DVDs that use interlaced video instead of progressive video), and <code>-strict 2</code> allows you to use Opus in an MP4 container. <code>-tune film</code> is one option that you need to keep an eye on, as this setting is only intended for film (live action). For animated content like cartoons, use <code>-tune animation</code> instead. Note that the backtick character <code>`</code> is used in PowerShell to split a command and continue it on the next line, used here for formatting purposes.</p></details>
 <details><summary><a name="compressing_modern_video_on_android"></a>Compressing modern video on Android</summary><br />
 <p>If you&rsquo;re starting with a high-quality source rather than DVDs, you can use a more modern codec.</p>
 <p>On Linux environments, such as the Termux terminal emulator for Android, I have saved the following script, with a file name of <code>shrink_video.sh</code>:</p>
-<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 \
-    -b:v 0 -crf 40 -quality good -speed 1 -an \
-    pass 1 -f webm /dev/null
-ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 \
-    -crf 40 -quality good -speed 1 -c:a libopus \
-    -b:a 96k -pass 2 "${1%.*}.webm"</pre>
+<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
+    -an pass 1 -f webm /dev/null
+let count=1
+while [ -f "${1%.*}_$count.webm" ]
+    do let "count++"
+    done
+ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
+    -c:a libopus -b:a 96k -pass 2 "${1%.*}_$count.webm"</pre>
 <p>Invoke this with a simple <code>bash shrink_video my_video.mp4</code> to (eventually) produce <code>my_video.webm</code>. Note that the backslash character <code>\</code> is used in bash to split a command and continue it on the next line, used here for formatting purposes.</p>
 <p>And here&rsquo;s an explanation of a few of those options, adapted from <a href="https://developers.google.com/media/vp9/settings/vod">Google&rsquo;s VP9 encoding guide</a>:</p>
 <table border="1"><tr><td><code>-i "$1"</code></td><td>Use as input the file name you provided. The quotes ensure that file names with spaces are handled properly.</td></tr>
@@ -341,17 +342,16 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 \
 <tr><td><code>-an</code></td><td>No audio. Used only on the first pass, which is only analyzing the video and not the audio.</td></tr>
 <tr><td><code>-pass 1|2</code></td><td>1 for the first pass which analyzes the video to look for possible optimizations and stores its findings in a log file, 2 for the second pass which actually creates the video. The second pass is much slower than the first.</td></tr>
 <tr><td><code>-f webm /dev/null</code></td><td>The output for the first pass is a temporary log file, which you can feel free to delete after everything is complete.</td></tr>
+<tr><td><code>let ... done</code></td><td>Starts a counter, assembles a file name, checks whether that file name already exists, and keeps incrementing the counter and checking until it finds a unique file name to safely use.</td></tr>
 <tr><td><code>-c:a libopus</code></td><td>Use the Opus audio codec.</td></tr>
 <tr><td><code>-b:a 96k</code></td><td>Encode audio at 96 kbps, offering excellent quality and efficiency.</td></tr>
-<tr><td><code>"${1%.*}.webm"</code></td><td>The name of the new file, which replaces the old extension with <code>webm</code>. Note that if you&rsquo;re already starting with a WebM file, or if you have multiple files whose names differ only in their extensions, you&rsquo;ll need to be careful with this and possibly change it to suit your needs.</td></tr>
-</table></details>
+<tr><td><code>"${1%.*}_$count.webm"</code></td><td>The name of the new file, which adds a counter for uniqueness and replaces the old extension with <code>webm</code>.</td></tr>
+</table><br /></details>
 <details><summary><a name="compressing_modern_video_on_windows"></a>Compressing modern video on Windows</summary><br />
 <p>On Windows, you can use the PowerShell terminal emulator. The command has a few differences that set it apart from the Linux version. I tend to just paste this into the terminal rather than saving a script.</p>
-<p><pre>ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 `
-    -crf 40 -quality good -speed 1 -an -pass 1 -f null NUL; `
-    if ($?) { ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 `
-    -b:v 0 -crf 40 -quality good -speed 1 -c:a copy -pass 2 `
-    my_video.webm }</pre></p>
+<p><pre>ffmpeg -hide_banner -i my_video.mp4 -c:v vp9 -b:v 0 -crf 40 -quality good `
+    -speed 1 -an -pass 1 -f null NUL; if ($?) { ffmpeg -hide_banner -i my_video.mp4 `
+    -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 -c:a copy -pass 2 my_video.webm }</pre></p>
 <p>And here&rsquo;s the explanation (see <a href="#compressing_modern_video_on_android">Compressing modern video on Android</a> above for the options not covered below).</p>
 <table border="1"><tr><td><code>-f null NUL</code></td><td>Store the log output of the first pass without actually creating a new file.</td></tr>
 <tr><td><code>if ($?) { ... }</code></td><td>Only execute the command in curly braces, which is the second pass, if the previous command, which is the first pass, was successful.</td></tr>
@@ -371,12 +371,11 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 \
 <details><summary><a name="compressing_images_to_avif"></a>Compressing images to AVIF</summary><br />
 <p>For AVIF, you&rsquo;ll want something with the SVT encoder, which generally means FFmpeg on an x86 or x64 architecture (regular computer, not mobile devices or Apple Silicon). The alternatives to SVT are, as I&rsquo;ve said before, unusably slow. My horrible concoction of a PowerShell script to convert all PNG images in a folder that catches odd dimensions and retries with even dimensions is as follows:</p>
 <pre>foreach ($f in Get-ChildItem *.png) {
-    ffmpeg -hide_banner -i $f -c libsvtav1 -crf 5 `
-    ($f.BaseName + '_crf5.avif')
+    ffmpeg -hide_banner -i $f -c libsvtav1 -crf 5 ($f.BaseName + '_crf5.avif')
     if (!$?) {
         ffmpeg -hide_banner -y -i $f -c libsvtav1 -crf 5 `
         -filter:v scale=iw:ih+1 ($f.BaseName + '_crf5.avif')
-    
+    }
     if (!$?) {
         ffmpeg -hide_banner -y -i $f -c libsvtav1 -crf 5 `
         -filter:v scale=iw+1:ih ($f.BaseName + '_crf5.avif')
@@ -591,7 +590,7 @@ ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 \
 <tr><td>persona-5-strikers-original-soundtrack-2020</td><td>309</td><td>M4A</td><td>Ogg</td><td>1189</td><td>124</td></tr>
 <tr><td>pokemon-firered-leafgreen-music-super-complete</td><td>224</td><td>M4A</td><td>Ogg</td><td>836</td><td>127</td></tr>
 <tr><td>pokemon-red-green-blue-yellow</td><td>108</td><td>M4A</td><td>Ogg</td><td>330</td><td>56</td></tr>
-</table></details>
+</table><br /></details>
 <details><summary><a name="image_sources"></a>Image sources</h4></summary><br />
 <ul>
 <li><a href="https://web.archive.org/web/20061110211308im_/http://www.deepdiscountdvd.com/images/rightbar.gif">Deep Discount DVD&rsquo;s old shark</a></li>
