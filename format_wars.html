@@ -322,17 +322,18 @@ You can produce Opus audio at a variable bit rate targeting an average of 96 kbp
 <details><summary><a name="compressing_modern_video_on_android"></a>Compressing modern video on Android</summary><br />
 <p>If you&rsquo;re starting with a high-quality source rather than DVDs, you can use a more modern codec.</p>
 <p>On Linux environments, such as the Termux terminal emulator for Android, I have saved the following script, with a file name of <code>shrink_video.sh</code>:</p>
-<pre>ffmpeg -hide_banner -i "$1" -y -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
-    -an pass 1 -f webm /dev/null
+<pre>ffmpeg -hide_banner -i "$1" $2 -y -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
+    -an -pass 1 -f webm /dev/null
 let count=1
 while [ -f "${1%.*}_$count.webm" ]
     do let "count++"
     done
-ffmpeg -hide_banner -i "$1" -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
+ffmpeg -hide_banner -i "$1" $2 -c:v vp9 -b:v 0 -crf 40 -quality good -speed 1 \
     -c:a libopus -b:a 96k -pass 2 "${1%.*}_$count.webm"</pre>
-<p>Invoke this with a simple <code>bash shrink_video my_video.mp4</code> to (eventually) produce <code>my_video.webm</code>. Note that the backslash character <code>\</code> is used in bash to split a command and continue it on the next line, used here for formatting purposes.</p>
+<p>Invoke this with a simple <code>bash shrink_video.sh my_video.mp4</code> to (eventually) produce <code>my_video.webm</code>. If you want, you can add more options after the file name, such as rescaling your output video with <code>bash shrink_video.sh my_video.mp4 "-filter:v scale=1280:720"</code>. Note that the backslash character <code>\</code> is used in bash to split a command and continue it on the next line, used here for formatting purposes.</p>
 <p>And here&rsquo;s an explanation of a few of those options, adapted from <a href="https://developers.google.com/media/vp9/settings/vod">Google&rsquo;s VP9 encoding guide</a>:</p>
 <table border="1"><tr><td><code>-i "$1"</code></td><td>Use as input the file name you provided. The quotes ensure that file names with spaces are handled properly.</td></tr>
+<tr><td><code>$2</code></td><td>Extra arguments, if any, that you want to pass to FFmpeg.</td></tr>
 <tr><td><code>-y</code></td><td>Termux will ask if you want to overwrite the <code>/dev/null</code> file, which it shouldn&rsquo;t bother with, so this option automatically says yes.</td></tr>
 <tr><td><code>-c:v vp9</code></td><td>Use the VP9 codec for video.</td></tr>
 <tr><td><code>-b:v 0</code></td><td>When you use two-pass encoding with a variable bit rate, as this script does, VP9 requires that you explicitly specify a bit rate of 0.</td></tr>
