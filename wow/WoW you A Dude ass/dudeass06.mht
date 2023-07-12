@@ -8965,7 +8965,7 @@ Content-Transfer-Encoding: quoted-printable
 Content-Location: http://forums.worldofwarcraft.com/css/theme/wrath/theme.css
 
 BODY {
-	BACKGROUND: url(/images/wrath/theme-bg.jpg) #000 repeat-x 100% 26px
+	BACKGROUND: url(/images/wrath/theme-bg.jpg) #FFFFFF repeat-x 100% 26px
 }
 #header {
 	BACKGROUND: url(/images/wrath/top-tile.gif) repeat-x center top
