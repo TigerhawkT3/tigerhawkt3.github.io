@@ -1,0 +1,1 @@
+ffmpeg -hide_banner -ss 44 -i "Shrek (2001) - Do You Know the Muffin Man Scene (2_10) _ Movieclips-mFl8nzZuExE.mp4" -t 59.5 -c:v libaom-av1 -crf 30 -filter:v "scale=106:60" -r 10 -c:a libopus -b:a 6k shrek_av1_crf30.mkv

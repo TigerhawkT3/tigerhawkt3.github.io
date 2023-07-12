@@ -1,0 +1,9 @@
+#Rage Gained from Damage Dealt for Level 80s
+[PromptVal=damage:Enter the damage of the attack]
+[PromptVal=hand:Main hand weapon? 1 for yes, 0 for no]
+[PromptVal=crit:Crit? 1 for yes, 0 for no]
+[PromptVal=speed:Enter the weapon speed]
+rage=(15*damage)/(1813.2)+(1.75*(hand+1)*(crit+1))*speed*0.5
+[DispVal=rage:The rage gained is]
+ragelimit=15*damage/453.3
+[DispVal=ragelimit:Rage for this damage is limited to]

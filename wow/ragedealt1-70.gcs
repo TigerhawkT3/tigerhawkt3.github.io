@@ -1,0 +1,10 @@
+#Rage Gained from Damage Dealt for Characters 1-70
+[PromptVal=damage:Enter the damage of the attack]
+[PromptVal=level:Enter the character's level, up to 70]
+[PromptVal=speed:Enter the weapon speed]
+[PromptVal=hand:Main hand weapon? 1 for yes, 0 for no]
+[PromptVal=crit:Crit? 1 for yes, 0 for no]
+rage=(15*damage)/(4*(.0091107836*level^2+3.225598133*level+4.2652911))+(1.75(hand+1)(crit+1))*speed*0.5
+[DispVal=rage:The rage gained is]
+ragelimit=15*damage/(.0091107836*level^2+3.225598133*level+4.2652911)
+[DispVal=ragelimit:Rage for this damage is limited to]

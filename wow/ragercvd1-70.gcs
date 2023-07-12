@@ -1,0 +1,4 @@
+#Rage Gained from Damage Received for Characters 1-70
+[PromptVal=damage:Enter the damage received]
+rage=2.5*damage*(.0091107836*level^2+3.225598133*level+4.2652911)
+[DispVal=rage:The rage gained is]

@@ -1,0 +1,4 @@
+#Rage Gained from Damage Received for Level 80s
+[PromptVal=damage:Enter the damage received]
+rage=2.5*damage/453.3
+[DispVal=rage:The rage gained is]
