@@ -47,6 +47,15 @@ textarea.list {
     max-height: 12vh;
     min-height: 6vw;
 }
+textarea.listbig {
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 70vw;
+    height: 90vw;
+    font-size: calc(10px + 2vw);
+    max-height: 95vh;
+    min-height: 6vw;
+}
 </style>
 <script>
 let list = document.getElementById('list');
@@ -88,8 +97,14 @@ function interact(e) { // interact with an item
         e.innerText = '...';
         e.title = 'cross off, or remove if empty; click a different ">" to move this there';
         add_button.title = 'insert new item above selected item';
-        update_button.innerText = 'Split item...';
-        update_button.title = 'split this into multiple items by newline or highlighted substring';
+        if (e.nextElementSibling.value != '') {
+            update_button.innerText = 'Split item...';
+            update_button.title = 'split this into multiple items by newline or highlighted substring';
+        }
+        else {
+            update_button.innerText = 'Toggle size...';
+            update_button.title = "expand or reset this item's box size";
+        }
         return;
     }
     if (e === lifted) {
@@ -117,7 +132,7 @@ function update_url() { // create URL and navigate there, or split an item
             ).join('&');
         window.location.href = result;
     }
-    else {
+    else if (lifted.nextElementSibling.value != '') {
         let ele = lifted.nextElementSibling;
         let content = ele.value;
         let substring = content.slice(ele.selectionStart, ele.selectionEnd) || '\n';
@@ -131,6 +146,10 @@ function update_url() { // create URL and navigate there, or split an item
             list.insertBefore(newElement, lifted.parentNode);
         }
         ele.value = last;
+        clear_lift();
+    }
+    else {
+        lifted.nextElementSibling.className = lifted.nextElementSibling.className == 'list' ? 'listbig' : 'list';
         clear_lift();
     }
 }
