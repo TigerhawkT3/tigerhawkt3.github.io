@@ -41,7 +41,7 @@ if (navigator.maxTouchPoints) {
 }
 function convert(text) {
     return Array.from(text || document.getElementById('in').value).map(
-                    x => x==='\n' ? x : `&#${x.charCodeAt(0)};`).join('');
+                    x => x==='\n' ? x : `&#${x.codePointAt(0)};`).join('');
 };
 function copy() {
     navigator.clipboard.writeText(convert());
