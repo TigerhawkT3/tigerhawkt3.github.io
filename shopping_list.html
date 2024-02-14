@@ -63,12 +63,13 @@ let add_button = document.getElementById('add_button');
 let update_button = document.getElementById('update_button');
 let select_message = 'select this item';
 let lifted = null;
+let box_class = 'list';
 function new_item() { // create a new item
     newElement = document.createElement('div');
     newElement.style = 'padding: 3px;'
     newElement.innerHTML = "<input class='list' title='choose a color' type='color' value='#FFFFFF'>\n" +
         "<button class='list' title='" + select_message + "' onclick='interact(this)'>&gt;</button>\n" +
-        "<textarea class='list' placeholder='Enter item...'></textarea>\n";
+        "<textarea class='" + box_class + "' placeholder='Enter item...'></textarea>\n";
     return newElement;
 }
 function insert(e) { // insert a new item above element e's parent
@@ -103,7 +104,7 @@ function interact(e) { // interact with an item
         }
         else {
             update_button.innerText = 'Toggle size...';
-            update_button.title = "expand or reset this item's box size";
+            update_button.title = "expand or reset box sizes";
         }
         return;
     }
@@ -149,7 +150,8 @@ function update_url() { // create URL and navigate there, or split an item
         clear_lift();
     }
     else {
-        lifted.nextElementSibling.className = lifted.nextElementSibling.className == 'list' ? 'listbig' : 'list';
+        box_class = box_class == 'list' ? 'listbig' : 'list';
+        for (let item of list.children) item.children[2].className = box_class;
         clear_lift();
     }
 }
