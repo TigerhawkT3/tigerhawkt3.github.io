@@ -9,26 +9,36 @@
 <video loop id='video' style='display: none;'></video>
 <img id='image' style='display: none;' />
 <input type='file' multiple id='chooser' accept='video/*,image/*' style='border: 1px solid black; border-radius: 4px; margin-bottom: 4px; font-size: 1em;' />
-<br />
-<div>
-<textarea style='vertical-align: top; box-sizing: border-box; margin-bottom: 5px; width: 90vw; max-width: 40em;' id='addresses' placeholder='Enter URL...'  rows='2'></textarea><br />
-<button style='height: 2em; margin-bottom: 1px;' title='load video' onclick='choose_URL("video")'>&#x1F3A5;</button>
-<button style='height: 2em; margin-bottom: 1px;' title='load image' onclick='choose_URL("image")'>&#x1F4F7;</button>
+<a href='index.html' title='Home' style='font-size: 1.25em; text-decoration: none;'>&#x1F3E0;</a>
+<a href='https://www.paypal.me/TigerhawkT3' title='Donate' style='font-size: 1.25em; text-decoration: none;'>&#x1F4B8;</a>
+<br>
+<textarea style='vertical-align: top; box-sizing: border-box; margin-bottom: 5px; width: 50vw;' id='textarea' placeholder='Replays and URLs here' rows='1'></textarea>
+<br>
+<div style='white-space: nowrap; display: flex; flex-direction: row; align-items: end; overflow-X: auto;' id='ribbon'></div>
 <button name='video_control' onclick='skip(-1)'
-    style='display: none; vertical-align: top; height: 2em; margin-bottom: 1px;' title='skip back'>&#x21B6;</button>
+    style='display: none; vertical-align: bottom; height: 2em; margin-bottom: 1px;' title='skip back'>&#x21B6;</button>
 <button name='video_control' onclick='toggle_playback()'
-    style='display: none; height: 2em; margin-bottom: 1px;' title='play/pause'>&#x23EF;</button>
+    style='display: none; vertical-align: bottom; height: 2em; margin-bottom: 1px;' title='play/pause'>&#x23EF;</button>
 <button name='video_control' onclick='skip(1)'
-    style='display: none; vertical-align: top; height: 2em; margin-bottom: 1px;' title='skip forward'>&#x21B7;</button></div>
+    style='display: none; vertical-align: bottom; height: 2em; margin-bottom: 1px;' title='skip forward'>&#x21B7;</button>
+<button style='height: 2em; margin-bottom: 1px;' title='choose random' onclick='choose_random()'>Random</button>
 Cols: <input type='number' id='columns' step='1' value='3'
  title='set one dimension below 3 to autoselect for square tiles' style='width: 2em;' />
 Rows: <input type='number' id='rows' step='1' value='3'
  title='set one dimension below 3 to autoselect for square tiles' style='width: 2em;' />
-Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' /> |
-<a href='index.html' title='Home' style='font-size: 1.25em; text-decoration: none;'>&#x1F3E0;</a> | <a
-    href='https://www.paypal.me/TigerhawkT3' title='Donate' style='font-size: 1.25em; text-decoration: none;'>&#x1F4B8;</a>
-<br />
-<canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw; margin-top: 5px;'></canvas><br />
+Labels: <input type='checkbox' id='labels' title='include a numbered label on each tile' />
+<button style='height: 2em; margin-bottom: 1px;' title='import replay or add from URL in text area' onclick='import_()'>Import</button>
+<button style='height: 2em; margin-bottom: 1px;' title='export replay to text area' onclick='export_replay()'>Export</button>
+<br>
+<button name='replay_control' id='replay_back' title='step backward' onclick='replay(-1)'
+    style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#8592;</button>
+<button name='replay_control' id='replay_toggle' title='toggle replay' onclick='toggle_replay()'
+    style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#x23EF;</button>
+<button name='replay_control' id='replay_forward' title='step forward' onclick='replay(1)'
+    style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#8594;</button>
+<span name='replay_control' id='tracker' style='display: none; height: 2em; margin-bottom: 1px;'></span><br name='replay_control' style='display: none;'>
+<input type='range' name='replay_control' id='range' title='replay timeline' style='display: none; width: 95vw; margin-bottom: 1px;'></input>
+<canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw; margin-top: 5px;'></canvas>
 
 <script>
 
@@ -39,13 +49,22 @@ let image = document.getElementById('image');
 let column_field = document.getElementById('columns');
 let row_field = document.getElementById('rows');
 let labels = document.getElementById('labels');
-let addresses = document.getElementById('addresses');
+let textarea = document.getElementById('textarea');
+let tracker = document.getElementById('tracker');
+let range = document.getElementById('range');
+let ribbon = document.getElementById('ribbon');
 let step_size;
 let source;
 let columns;
 let rows;
 let autoselect;
 let board;
+let starting_board;
+let movelist;
+let movelist_idx;
+let replaying;
+let range_going;
+let next_move;
 let tile_h;
 let tile_w;
 let blank_ID;
@@ -62,20 +81,25 @@ function shuffleArray(array) {
 function rand_idx(sequence) { // pick a random index in a sequence
     return Math.floor(Math.random() * sequence.length);
 }
-function lay_tiles() {
-    if (success) ctx.drawImage(source, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
+function choose_random() {
+    if (ribbon.children.length) ribbon.children[rand_idx(ribbon.children)].lastChild.onclick();
+}
+function lay_tiles(a, b) { // a and b are optional, to eliminate unnecessary drawImage calls
+    if (success) ctx.drawImage(source, 0, 0, source.width, source.height, 0, 0, canvas.width, canvas.height);
     else for (let idx = 0; idx < board.length; ++idx) { // go through the board
-        sx = (board[idx] % columns) * tile_w; // cell's contents indicate source location
-        sy = Math.floor(board[idx] / columns) * tile_h;
+        sx = (board[idx] % columns) * source.width/columns; // cell's contents indicate source location
+        sy = Math.floor(board[idx] / columns) * source.height/rows;
         dx = (idx % columns) * tile_w; // cell's index indicates destination location
         dy = Math.floor(idx / columns) * tile_h; // next, handle blank tile (or draw tile)
         if (board[idx] === blank_ID && !success) {
-            for (let i = 1; i > 0.5; i -= 0.02) { // fill progressively smaller rects
+            for (let i = 1; i > 0.5; i -= 0.01) { // fill progressively smaller rects
                 ctx.fillStyle = '#' + Math.round((i-0.5)*255).toString(16).padStart(2, '0').repeat(3);
                 ctx.fillRect(dx + (1-i)*tile_w, dy + (1-i)*tile_h, (2*i-1)*tile_w, (2*i-1)*tile_h);
             }
         }
-        else ctx.drawImage(source, sx, sy, tile_w, tile_h, dx, dy, tile_w, tile_h);
+        else if (idx===a || idx===b || a===b) // floor and ceil remove seams from rounding
+            ctx.drawImage(source, Math.floor(sx), Math.floor(sy), Math.ceil(source.width/columns), Math.ceil(source.height/rows),
+                                  Math.floor(dx), Math.floor(dy), Math.ceil(tile_w), Math.ceil(tile_h));
         if (labels.checked) { // draw numbering labels
             let factor = canvas.width/canvas.clientWidth;
             ctx.fillStyle = '#FFFFFF';
@@ -89,11 +113,10 @@ function lay_tiles() {
 function make_segments() {
     success = false;
     board = []; // just a vector, not 2D
-    for (let r=0; r<rows; ++r) {
-        for (let c=0; c<columns; ++c) { // persistent ID for shuffle and win check
-            board.push(r*columns+c);
-        }
-    }
+    movelist = [];
+    for (let element of document.getElementsByName('replay_control'))
+        element.style['display'] = 'none';
+    for (let i=0; i<rows*columns; ++i) board.push(i); // persistent ID for shuffle and win check
     blank_ID = board.pop();
     /* I specifically want the "missing" tile to be from the bottom right,
        to make it more visually pleasing to gradually solve the puzzle.
@@ -105,16 +128,15 @@ function make_segments() {
        a smaller ID - their order is "inverted." This is a factor in
        whether a given puzzle is solvable. */
     let inversions = 0;
-    for (let tile = 0; tile < board.length; ++tile) {
-        for (let subsequent = tile; subsequent < board.length; ++subsequent) {
+    for (let tile = 0; tile < board.length; ++tile)
+        for (let subsequent = tile; subsequent < board.length; ++subsequent)
             if (board[tile] > board[subsequent]) ++inversions;
-        }
-    }
     /* based on the way the blank tile is always the 'last' one, in the
        lower-right corner, we need an even number of inversions if we want
        this to be solvable. if it's odd, swap the last two elements */
     if (inversions % 2 === 1) [board[board.length-1], board[board.length-2]] = board.slice(-2);
     board.push(blank_ID); // don't forget to add the blank tile back after shuffling
+    starting_board = board.slice(0);
     tile_h = canvas.height/rows;
     tile_w = canvas.width/columns;
 }
@@ -149,16 +171,93 @@ function move(event) {
     for (let [a, b] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) { // neighbor tile locations
         // check that the neighbor is actually on the board, as the index calculation wouldn't complain
         if (!(0 <= x+a && x+a < columns && 0 <= y+b && y+b < rows)) continue;
-        neighbor_idx = (y+b) * columns + (x+a) // calculate corresponding index in board
+        neighbor_idx = (y+b) * columns + (x+a); // calculate corresponding index in board
         if (board[neighbor_idx] === blank_ID) { // swap to that spot
-            [board[tile_idx], board[neighbor_idx]] = [board[neighbor_idx], board[tile_idx]];
-            lay_tiles();
-            for (let idx = 0; idx < board.length; ++idx) if (idx !== board[idx]) return; // win check
-            success = true;
-            lay_tiles()
+            swap(tile_idx, neighbor_idx);
+            movelist.push([Date.now(), tile_idx, neighbor_idx]);
             break;
         }
     }
+}
+function swap(a, b) {
+    [board[a], board[b]] = [board[b], board[a]];
+    let flag = true; // assume success, then check for otherwise...
+    // but use a separate flag due to concurrency anxiety
+    for (let idx = 0; idx < board.length; ++idx) if (idx !== board[idx]) {
+        flag = false;
+        break;
+    }
+    success = flag;
+    lay_tiles(a, b);
+}
+function import_() {
+    textarea.value.startsWith('[') ? import_replay() : add_media(textarea.value);
+}
+function import_replay() {
+    [columns, rows, board, movelist] = JSON.parse(textarea.value);
+    starting_board = board.slice(0);
+    for (let element of document.getElementsByName('replay_control'))
+        element.style['display'] = 'inline';
+    movelist_idx = 0;
+    range.max = movelist.length;
+    row_field.value = rows;
+    column_field.value = columns;
+    tile_h = canvas.height/rows;
+    tile_w = canvas.width/columns;
+    blank_ID = board.length-1;
+    success = false;
+    refresh_replay_controls();
+    lay_tiles();
+}
+function refresh_replay_controls () {
+    document.getElementById('replay_back').disabled = !movelist_idx || replaying;
+    document.getElementById('replay_forward').disabled = movelist_idx >= movelist.length || replaying;
+    document.getElementById('replay_toggle').disabled = movelist_idx >= movelist.length;
+    range.disabled = replaying;
+    if (!range_going) range.value = movelist_idx;
+    tracker.innerHTML = movelist_idx === movelist.length ?
+        `${columns}x${rows} completed ` + 'with ' +
+        `${movelist.length} moves ` + 'in ' +
+        `${((movelist[movelist.length-1][0] - movelist[0][0])/1000).toFixed(3)} seconds.` :
+        'Move ' + (movelist_idx+1) + '/' + (movelist.length) + ': tile ' + (board[movelist[movelist_idx][1]]+1) +
+        ', spot ' + (movelist[movelist_idx][1]+1) + ' to ' + (movelist[movelist_idx][2]+1) + 
+        (movelist_idx ? ' in ' + ((movelist[movelist_idx][0] - movelist[movelist_idx-1][0])/1000).toFixed(3) + ' seconds' : ' (initial state)');
+}
+function range_go() {
+    range_going = true;
+    let direction = range.value - movelist_idx > 0 ? 1 : -1;
+    for (let i = movelist_idx; i != range.value; i += direction)
+        replay(direction);
+    range_going = false;
+}
+function export_replay() {
+    textarea.value = JSON.stringify([columns, rows, starting_board, movelist]);
+}
+function toggle_replay() {
+    replaying = !replaying;
+    refresh_replay_controls();
+    if (replaying) replay(1);
+    else clearTimeout(next_move);
+}
+function replay(direction) {
+    if (movelist_idx + direction < 0 || movelist_idx + direction > movelist.length) {
+        replaying = false;
+        return;
+    }
+    if (direction === 1) {
+        swap(...movelist[movelist_idx].slice(1));
+        movelist_idx += direction;
+    }
+    else {
+        movelist_idx += direction;
+        swap(...movelist[movelist_idx].slice(1));
+    }
+    if (replaying && movelist_idx < movelist.length)
+        next_move = setTimeout(replay,
+                               movelist[movelist_idx][0] - movelist[movelist_idx-1][0],
+                               1);
+    else replaying = false;
+    refresh_replay_controls();
 }
 function stop_moving(event) {
     canvas.onmousemove = null;
@@ -183,56 +282,26 @@ function autoselect_dimensions(small, width, height) {
     if (width > height) [columns, rows] = [big, small];
     else [rows, columns] = [big, small];
 }
-function setdims() { // setup after loading a video
-    if (autoselect) autoselect_dimensions(Math.max(rows, columns), video.videoWidth, video.videoHeight);
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    make_segments();
-    source = video;
-    step_size = Math.log10(video.duration)**2.5;
-    labels.onclick = lay_tiles;
-    video.cancelVideoFrameCallback(animation_handle);
-    step();
-    video.play()
-}
-function waitForImageToLoad(imageElement){
-  return new Promise(resolve=>{imageElement.onload = resolve});
-}
 function drop_file(event) { // open the dropped file
     event.preventDefault();
     chooser.files = event.dataTransfer.files;
     choose_file({'target':{'files':event.dataTransfer.files}});
 }
 function choose_file(event) { // open the chosen file
-    let file = event.target.files[0];
-    if (!file) return;
-    files = event.target.files;
-    let obj_urls = [];
-    for (let ob of event.target.files) obj_urls.push(URL.createObjectURL(ob));
-    for (let item of obj_urls) addresses.value += '\n'+item;
-    if (obj_urls.length === 1) {
-        if (video.canPlayType(file.type)) start_media(obj_urls[0], 'video');
-        else start_media(obj_urls[0], 'image');
-    }
+    for (let file of event.target.files)
+        add_media(URL.createObjectURL(file), video.canPlayType(file.type) ? 'video' : 'img');
 }
-function choose_URL(kind) {
-    let address = addresses.value.slice(addresses.selectionStart, addresses.selectionEnd);
-    if (address) { // play highlighted URL
-        try { new URL(address); }
-        catch { return; } // if it's an invalid URL
-        start_media(address, kind); // kind is either 'video' or 'image'
-        addresses.focus();
-        addresses.setSelectionRange(0, 0);
-    }
-    else { // highlight random line
-        addresses.value = addresses.value.replace(/\n+/g, '\n').trim();
-        let blocks = addresses.value.split('\n');
-        let idx = rand_idx(blocks);
-        let start = idx + blocks.slice(0, idx).map((i) => i.length).reduce((a,b) => a+b, 0);
-        let end = start + blocks[idx].length;
-        addresses.focus();
-        addresses.setSelectionRange(start, end);
-    }
+function add_media(obj_url, kind) {
+    // add to ribbon
+    if (kind !== 'video' && kind !== 'img')
+        kind = obj_url.toLowerCase().endsWith('mp4') ||
+        obj_url.toLowerCase().endsWith('webm') ||
+        obj_url.toLowerCase().endsWith('ogg') ? 'video' : 'img';
+    ribbon.innerHTML += "<div style='text-align: center; vertical-align: bottom;'><" +
+        kind + " src='" + obj_url + "' style='max-height: 4em; max-width: 4em;'>" +
+        (kind === 'video' ? '</video>' : '') +
+        "<br><button title='remove' onclick='this.parentElement.remove()'>del</button>" +
+        "<button title='go' onclick='start_media(\"" + obj_url + '", "' + kind + "\")'>go</button></div>";
 }
 function start_media(obj_url, kind) {
     rows = parseInt(row_field.value);
@@ -240,8 +309,7 @@ function start_media(obj_url, kind) {
     autoselect = false;
     if (rows < 3 && columns < 3) rows = columns = 3;
     else if (rows < 3 || columns < 3) autoselect = true;
-    if (kind === 'video') start_video(obj_url);
-    else start_image(obj_url);
+    (kind === 'video' ? start_video : start_img)(obj_url);
 }
 function start_video(obj_url) {
     image.src = '';
@@ -250,29 +318,51 @@ function start_video(obj_url) {
     for (let element of document.getElementsByName('video_control'))
         element.style['display'] = 'inline';
 }
-function start_image(obj_url) {
+function make_dims(w, h) { // prevent overly-large dimensions that may affect performance
+    let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0); // https://stackoverflow.com/a/8876069
+    let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    let ratio = w/h;
+    h = Math.min(Math.min(w, 2*vw)/ratio, 2*vh);
+    return [Math.floor(h*ratio), Math.floor(h)];
+}
+function setdims() { // setup after loading a video
+    if (autoselect) autoselect_dimensions(Math.max(rows, columns), video.videoWidth, video.videoHeight);
+    [canvas.width, canvas.height] = make_dims(video.videoWidth, video.videoHeight);
+    make_segments();
+    source = video;
+    [source.width, source.height] = [source.videoWidth, source.videoHeight];
+    step_size = Math.log10(video.duration)**2.5;
+    labels.onclick = function() {lay_tiles()}; // necessary wrapper
+    video.cancelVideoFrameCallback(animation_handle);
+    step();
+    video.play();
+}
+function start_img(obj_url) {
     video.src = '';
     image.src = obj_url;
     video.onplay = null;
     video.onloadeddata = null;
     waitForImageToLoad(image).then(()=>{
         if (autoselect) autoselect_dimensions(Math.max(rows, columns), image.width, image.height);
-        canvas.width = image.width;
-        canvas.height = image.height;
+        [canvas.width, canvas.height] = make_dims(image.width, image.height);
         make_segments();
         source = image;
         lay_tiles();
-        labels.onclick = lay_tiles;
+        labels.onclick = function() {lay_tiles()}; // necessary wrapper
     });
     for (let element of document.getElementsByName('video_control'))
         element.style['display'] = 'none';
 }
+function waitForImageToLoad(imageElement){
+  return new Promise(resolve=>{imageElement.onload = resolve});
+}
 canvas.ondrop = drop_file;
-addresses.ondrop = drop_file;
+textarea.ondrop = drop_file;
 canvas.ondragover = canvas.ondragenter = function(evt) {
   evt.preventDefault();
 }
 chooser.onchange = choose_file;
+range.oninput = range_go;
 canvas.onmousedown = start_moving;
 canvas.ontouchstart = start_touch;
 document.onmouseup = stop_moving;
