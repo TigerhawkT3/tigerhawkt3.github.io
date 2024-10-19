@@ -30,12 +30,14 @@ Labels: <input type='checkbox' id='labels' title='include a numbered label on ea
 <button style='height: 2em; margin-bottom: 1px;' title='import replay or add from URL in text area' onclick='import_()'>Import</button>
 <button style='height: 2em; margin-bottom: 1px;' title='export replay to text area' onclick='export_replay()'>Export</button>
 <br>
-<button name='replay_control' id='replay_back' title='step backward' onclick='replay(-1)'
+<button name='replay_control' id='replay_reverse' title='toggle replay reverse' onclick='toggle_replay(-1)'
+    style='display: none; height: 2em; width: 2.5em; margin-bottom: 1px; vertical-align: bottom'>&#x25C0;</button>
+<button name='replay_control' id='replay_step_back' title='step replay backward' onclick='replay(-1)'
     style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#8592;</button>
-<button name='replay_control' id='replay_toggle' title='toggle replay' onclick='toggle_replay()'
-    style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#x23EF;</button>
-<button name='replay_control' id='replay_forward' title='step forward' onclick='replay(1)'
+<button name='replay_control' id='replay_step_forward' title='step replay forward' onclick='replay(1)'
     style='display: none; height: 2em; margin-bottom: 1px; vertical-align: bottom'>&#8594;</button>
+<button name='replay_control' id='replay_forward' title='toggle replay forward' onclick='toggle_replay(1)'
+    style='display: none; height: 2em; width: 2.5em; margin-bottom: 1px; vertical-align: bottom'>&#x25B6;</button>
 <span name='replay_control' id='tracker' style='display: none; height: 2em; margin-bottom: 1px;'></span><br name='replay_control' style='display: none;'>
 <input type='range' name='replay_control' id='range' title='replay timeline' style='display: none; width: 95vw; margin-bottom: 1px;'></input>
 <canvas id="canvas" style='border: 1px solid black; max-height: 95vh; max-width: 95vw; margin-top: 5px;'></canvas>
@@ -53,6 +55,10 @@ let textarea = document.getElementById('textarea');
 let tracker = document.getElementById('tracker');
 let range = document.getElementById('range');
 let ribbon = document.getElementById('ribbon');
+let replay_step_back = document.getElementById('replay_step_back');
+let replay_step_forward = document.getElementById('replay_step_forward');
+let replay_reverse = document.getElementById('replay_reverse');
+let replay_forward = document.getElementById('replay_forward');
 let step_size;
 let source;
 let columns;
@@ -65,6 +71,8 @@ let movelist_idx;
 let replaying;
 let range_going;
 let next_move;
+let now;
+let total_time;
 let tile_h;
 let tile_w;
 let blank_ID;
@@ -114,6 +122,7 @@ function make_segments() {
     success = false;
     board = []; // just a vector, not 2D
     movelist = [];
+    now = Date.now();
     for (let element of document.getElementsByName('replay_control'))
         element.style['display'] = 'none';
     for (let i=0; i<rows*columns; ++i) board.push(i); // persistent ID for shuffle and win check
@@ -174,7 +183,8 @@ function move(event) {
         neighbor_idx = (y+b) * columns + (x+a); // calculate corresponding index in board
         if (board[neighbor_idx] === blank_ID) { // swap to that spot
             swap(tile_idx, neighbor_idx);
-            movelist.push([Date.now(), tile_idx, neighbor_idx]);
+            movelist.push([Date.now()-now, tile_idx, neighbor_idx]);
+            now = Date.now();
             break;
         }
     }
@@ -194,11 +204,17 @@ function import_() {
     textarea.value.startsWith('[') ? import_replay() : add_media(textarea.value);
 }
 function import_replay() {
+    if (!source) {
+        alert('Start a puzzle (load media and "go") before loading a replay.');
+        return;
+    }
     [columns, rows, board, movelist] = JSON.parse(textarea.value);
     starting_board = board.slice(0);
     for (let element of document.getElementsByName('replay_control'))
         element.style['display'] = 'inline';
     movelist_idx = 0;
+    now = Date.now();
+    total_time = movelist.reduce((a,b) => a+b[0], 0);
     range.max = movelist.length;
     row_field.value = rows;
     column_field.value = columns;
@@ -210,18 +226,21 @@ function import_replay() {
     lay_tiles();
 }
 function refresh_replay_controls () {
-    document.getElementById('replay_back').disabled = !movelist_idx || replaying;
-    document.getElementById('replay_forward').disabled = movelist_idx >= movelist.length || replaying;
-    document.getElementById('replay_toggle').disabled = movelist_idx >= movelist.length;
+    replay_step_back.disabled = !movelist_idx || replaying;
+    replay_step_forward.disabled = movelist_idx >= movelist.length || replaying;
+    replay_reverse.disabled = !movelist_idx;
+    replay_reverse.innerHTML = replaying ? '&#x23F8;' : '&#x25C0;';
+    replay_forward.disabled = movelist_idx >= movelist.length;
+    replay_forward.innerHTML = replaying ? '&#x23F8;' : '&#x25B6;';
     range.disabled = replaying;
     if (!range_going) range.value = movelist_idx;
     tracker.innerHTML = movelist_idx === movelist.length ?
-        `${columns}x${rows} completed ` + 'with ' +
+        `${columns}x${rows} ` + (success ? 'completed ' : '') + 'with ' +
         `${movelist.length} moves ` + 'in ' +
-        `${((movelist[movelist.length-1][0] - movelist[0][0])/1000).toFixed(3)} seconds.` :
-        'Move ' + (movelist_idx+1) + '/' + (movelist.length) + ': tile ' + (board[movelist[movelist_idx][1]]+1) +
+        `${(total_time/1000).toFixed(3)} seconds.` :
+        movelist_idx + '/' + (movelist.length) + '. Move ' + (movelist_idx+1) + ': tile ' + (board[movelist[movelist_idx][1]]+1) +
         ', spot ' + (movelist[movelist_idx][1]+1) + ' to ' + (movelist[movelist_idx][2]+1) + 
-        (movelist_idx ? ' in ' + ((movelist[movelist_idx][0] - movelist[movelist_idx-1][0])/1000).toFixed(3) + ' seconds' : ' (initial state)');
+        ' in ' + (movelist[movelist_idx][0]/1000).toFixed(3) + ' seconds.';
 }
 function range_go() {
     range_going = true;
@@ -233,10 +252,10 @@ function range_go() {
 function export_replay() {
     textarea.value = JSON.stringify([columns, rows, starting_board, movelist]);
 }
-function toggle_replay() {
+function toggle_replay(direction) {
     replaying = !replaying;
     refresh_replay_controls();
-    if (replaying) replay(1);
+    if (replaying) replay(direction);
     else clearTimeout(next_move);
 }
 function replay(direction) {
@@ -252,10 +271,8 @@ function replay(direction) {
         movelist_idx += direction;
         swap(...movelist[movelist_idx].slice(1));
     }
-    if (replaying && movelist_idx < movelist.length)
-        next_move = setTimeout(replay,
-                               movelist[movelist_idx][0] - movelist[movelist_idx-1][0],
-                               1);
+    if (replaying && movelist_idx + direction >= 0 && movelist_idx + direction <= movelist.length)
+        next_move = setTimeout(replay, movelist[movelist_idx][0], direction);
     else replaying = false;
     refresh_replay_controls();
 }
